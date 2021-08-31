@@ -1,0 +1,41 @@
+.form {
+  &-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-label {
+    font-family: graphik;
+    font-size: 1.2rem;
+    // line-height: 4rem;
+    color: #575a65;
+  }
+
+  &-input {
+    border: 1px solid #EBEBEB;
+    border-radius: 3px;
+    padding: 1rem;
+    font-size: 1.5rem;
+    font-family: graphik;
+    display: block;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:-webkit-autofill {
+      -webkit-text-fill-color: black;
+      box-shadow: 0 0 0px 1000px #ffffff inset;
+      -webkit-box-shadow: 0 0 0px 1000px #ffffff inset;
+    }
+  }
+
+  &-valid {
+    border: 1px solid green;
+  }
+
+  &-invalid {
+    border: 1px solid red !important;
+    background-color: #fda49a;
+  }
+}

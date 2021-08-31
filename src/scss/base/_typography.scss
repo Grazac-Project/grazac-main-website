@@ -1,0 +1,129 @@
+.title {
+  font-weight: bold;
+  font-size: 4.375rem;
+  letter-spacing: 0.01em;
+  text-shadow: 2px 2px #d4dfff;
+  color: #1f1035;
+  hyphens: auto;
+  font-family: "graphik";
+}
+
+.muted {
+  font-weight: normal;
+  color: #575a65;
+  line-height: 1.875rem;
+  font-family: graphik;
+
+  @include respond(tab-port) {
+    line-height: 2.875rem;
+  }
+
+  &-1 {
+    font-size: 1.125rem;
+
+    @media screen and (max-width: 800px) {
+      font-size: 1.3rem;
+    }
+  }
+
+  &-2 {
+    // font-weight: 600;
+    font-size: 0.875rem;
+
+    @media screen and (max-width: 800px) {
+      font-size: 1.3rem;
+    }
+  }
+
+  &-3 {
+    font-size: 1rem;
+  }
+}
+
+.small {
+  font-weight: normal;
+  font-size: 0.75rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin-bottom: 0 !important;
+  font-family: "graphik";
+
+  @media screen and (max-width: 800px) {
+    font-size: 1.2rem;
+  }
+  &-white {
+    color: #ffffff;
+  }
+
+  &-grey {
+    color: #575a65;
+  }
+}
+
+.subheader {
+  font-weight: bolder;
+  font-size: 2.375rem;
+  letter-spacing: 0.01em;
+  font-family: "graphik";
+  &-white {
+    color: #ffffff;
+  }
+  &-purple {
+    color: #271048;
+  }
+}
+
+.name {
+  color: #1f1035;
+  &-1 {
+    font-weight: bold;
+    font-size: 1.375rem;
+  }
+
+  &-2 {
+    font-weight: 500;
+    font-size: 1.5rem;
+  }
+}
+
+.blogtitle {
+  font-size: 1rem;
+  letter-spacing: 0.01em;
+  color: #773dd3;
+  font-family: "graphik";
+
+  @media screen and (max-width: 800px) {
+    font-size: 1rem;
+  }
+}
+
+.opacity {
+  opacity: 0 !important;
+
+}
+
+.apply-title {
+  font-family: graphik;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.3rem;
+  line-height: 65px;
+
+  color: #1f1035;
+}
+@keyframes opac {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.team {
+  font-size: 14px;
+  line-height: 65px;
+
+  color: #575a65;
+}

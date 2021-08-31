@@ -1,0 +1,30 @@
+.case{
+    p{
+        font-size: 1.4em;
+    }
+    h1{
+        font-size: 2.8em;
+    }
+    &_toptext{
+        margin: 90px 0 50px;
+    }
+    &_challenge{
+        display: flex;
+        margin:50px 0;
+        .first{
+            width: 20%;
+            margin-right: 20px;
+        }
+        .second{
+            width: 78%;
+        }
+        &-links{
+            display: flex;
+            p{
+                margin-right:  20px;
+                text-decoration: underline;
+            }
+        }
+    }
+    
+}

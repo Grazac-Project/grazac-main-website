@@ -1,0 +1,5 @@
+@font-face {
+  font-family: 'graphik';
+  src:  url('./fonts/graphik/Graphik-Bold.otf') format('otf'),
+        url('./fonts/graphik/Graphik-BoldItalic.otf') format('otf');
+}

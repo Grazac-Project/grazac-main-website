@@ -1,0 +1,32 @@
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+.form-label {
+  font-family: graphik;
+  font-size: 1.2rem;
+  color: #575a65;
+}
+.form-input {
+  border: 1px solid #EBEBEB;
+  border-radius: 3px;
+  padding: 1rem;
+  font-size: 1.5rem;
+  font-family: graphik;
+  display: block;
+}
+.form-input:focus {
+  outline: none;
+}
+.form-input:-webkit-autofill {
+  -webkit-text-fill-color: black;
+  box-shadow: 0 0 0px 1000px #ffffff inset;
+  -webkit-box-shadow: 0 0 0px 1000px #ffffff inset;
+}
+.form-valid {
+  border: 1px solid green;
+}
+.form-invalid {
+  border: 1px solid red !important;
+  background-color: #fda49a;
+}

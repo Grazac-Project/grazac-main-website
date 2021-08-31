@@ -1,0 +1,191 @@
+.blogs {
+  width: 100%;
+  &__welcome {
+    background-color: #5726a6;
+    position: relative;
+  }
+  &__container {
+    @include container;
+    padding: 2rem 0 20rem 0;
+    position: relative;
+  }
+
+  &__intro {
+    display: flex;
+    flex-direction: column;
+
+    span {
+      display: inline-block;
+      font-family: Minion Pro;
+      font-style: italic;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      text-align: left;
+      color: aliceblue;
+      margin-bottom: 0;
+      &:first-of-type {
+        font-size: 1.875rem;
+      }
+
+      &:last-of-type {
+        font-size: 4.375rem;
+        text-transform: capitalize;
+      }
+    }
+  }
+
+  &__list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 15rem;
+
+    @include respond(tab-port) {
+      display: none;
+    }
+  }
+  &__item {
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 21px;
+    letter-spacing: 0.03em;
+    color: #ffffff;
+  }
+
+  &__hero {
+    background: #ffffff;
+    // background-color: red;
+    box-shadow: 0px 4px 14px rgba(151, 161, 184, 0.1);
+    border-radius: 10px;
+    position: absolute;
+    margin-top: 5rem;
+    width: 100%;
+    text-decoration: none;
+
+    &-container {
+      padding: 4rem 2rem;
+
+      display: flex;
+      justify-content: space-around;
+    }
+
+    &-img {
+      border-radius: 10px;
+
+      margin-right: 2rem;
+      width: 400px;
+      height: 400px;
+      @media screen and (max-width: 800px) {
+        display: none;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        object-fit: cover;
+      }
+    }
+
+    &-content {
+      flex-shrink: 0;
+      align-self: stretch;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex-basis: 50%;
+      @media screen and (max-width: 800px) {
+        flex-basis: 100%;
+        text-align: center;
+      }
+      h4 {
+        font-weight: 600;
+        font-size: 2.125rem;
+        // line-height: 50px;
+
+        color: #151f10;
+        width: 85%;
+        @media screen and (max-width: 800px) {
+          width: 100%;
+          margin-bottom: 2rem;
+          font-size: 3rem;
+        }
+      }
+
+      p {
+        // font-family: "Minion Pro";
+        font-size: 1.2rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 30px;
+        letter-spacing: 0em;
+        text-align: justify;
+        width: 85%;
+        color: #575a65;
+
+        @include respond(tab-port) {
+          width: 100%;
+        }
+      }
+      small {
+        color: #575a65;
+      }
+    }
+  }
+
+  &__blog {
+    margin-top: 40rem;
+
+    width: 100%;
+    margin-bottom: 20rem;
+
+    @media screen and (max-width: 800px) {
+      margin-top: 45rem;
+    }
+
+    &-box {
+      @include container;
+    }
+    &-container {
+      display: grid;
+      grid-template-columns: repeat(3, 400px);
+      grid-template-rows: repeat(auto-fill, 360px);
+      justify-content: space-between;
+
+      row-gap: 10.8rem;
+      column-gap: 2rem;
+
+      @media screen and (max-width: 1425px) {
+        grid-template-columns: repeat(auto-fill, 300px);
+        grid-template-rows: repeat(auto-fill, 300px);
+      }
+      @media screen and (max-width: 890px) {
+        grid-template-columns: repeat(auto-fill, 300px);
+        grid-template-rows: repeat(auto-fill, 300px);
+        justify-content: space-between;
+        row-gap: 15.8rem;
+      }
+      @media screen and (max-width: 700px) {
+        grid-template-columns: repeat(1, 400px);
+        grid-template-rows: repeat(1, 300px);
+        justify-content: center;
+      }
+      @media screen and (max-width: 450px) {
+        grid-template-columns: repeat(1, 95%);
+      }
+    }
+  }
+
+  &__subscribe {
+    margin-top: 10rem;
+  }
+  &__loader {
+    width: 100%;
+    margin-top: 10rem;
+    display: flex;
+    justify-content: center;
+  }
+}

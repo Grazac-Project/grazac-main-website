@@ -1,0 +1,281 @@
+.build-btn{
+    color:$color-white;
+    background:$color-main;
+    border: 1px solid $color-main;
+    font-size:1rem;
+    padding:15px 25px;
+    margin: 20px 10px;
+    border-radius:5px;
+    text-decoration: none;
+    cursor: pointer;
+    @media(max-width:600px){
+      font-size: 2rem;
+    }
+
+    &:hover{
+        color: white;
+    }
+}
+.build{
+    &_case{
+        h1{
+            
+            @media(max-width: 600px){
+                font-size: 3.5rem;
+            }
+        }
+        &-flex1{
+            @media(min-width:700px){
+                display: flex;
+                justify-content: space-between;
+            }
+            &_first{
+                height:250px;
+                background-size: cover;
+                border-radius: 20px;
+                overflow: hidden;
+                margin-bottom: 20px;
+                @media(min-width:700px){
+                    margin-right: 20px;
+                    width:60%;
+                }
+            }
+            &_second{
+                background:url('../images/study2.png');
+                border-radius: 20px;
+                height:250px;
+                @media(min-width:700px){
+                    width:40%;
+                }
+            }
+        }
+        &-flex2{
+            margin-top: 20px;
+            justify-content: space-between;
+            @media(min-width:700px){
+                display: flex;
+            }
+
+            &_first{
+                margin-bottom: 20px;
+                background:url('../images/study3.png');
+                border-radius: 20px;
+                height:250px;
+                @media(min-width:700px){
+                    width:40%;
+                    margin-right: 20px;
+                }
+            }
+            &_second{
+                background:url('../images/study4.png');
+                border-radius: 20px;
+                height:250px;
+                @media(min-width:700px){
+                    width:60%;
+                }
+            }
+        }
+        &-flex3{
+            margin: 20px 0 50px;
+            @media(min-width:700px){
+                display: flex;
+                justify-content: space-between;
+            }
+            &_first{
+                margin-bottom: 20px;
+                height:250px;
+                background:url('../images/study5.png');
+                border-radius: 20px;
+                @media(min-width:700px){
+                    width:50%;
+                    margin-right: 20px;
+                }
+            }
+        }
+    }
+    &_stories{
+        background: #1F1035;
+        padding: 80px 0 50px;
+        position: relative;
+        margin-bottom: 150px;
+        &-text{
+            color: white;
+            text-align: center;
+            h1{
+                @media(max-width: 600px){
+                    font-size: 3.5rem;
+                }
+            }
+            p{
+                @media(max-width: 600px){
+                    font-size: 2rem;
+                }
+            }
+        }
+        &-bg{
+            background: rgba(31, 16, 53, 0.1);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            position: fixed;
+          }
+        &-form{
+            margin: 30px 25% 0;
+            top: 10px;
+            bottom: 20px;
+            overflow-y: scroll;
+            border-radius: 8px;
+            padding: 20px;
+            position: absolute;
+            -moz-box-shadow: 0 0 3px #ccc;
+            -webkit-box-shadow: 0 0 3px #ccc;
+            box-shadow: 0 0 3px #ccc;
+            background: $color-white;
+            @media (max-width: 550px) {
+                margin: 30px 20px 0;
+                box-sizing: border-box;
+            }
+
+            .form-input, select {
+                box-sizing: border-box;
+                border-top: 0px;
+                border-left: 0px;
+                border-right: 0px;
+                border-bottom: 1px solid #e0e0e0;
+                font-size: 1rem;
+                height: 40px;
+                padding: 0 10px;
+                width: 100%;
+                margin: 10px 5px;
+                @media (max-width: 600px) {
+                font-size: 2rem;
+                }
+            }
+            select{
+                color: #575a65;
+            }
+
+            textarea {
+                box-sizing: border-box;
+                border-top: 0px;
+                border-left: 0px;
+                border-right: 0px;
+                border-bottom: 1px solid #e0e0e0;
+                font-size: 1rem;
+                padding: 0 10px;
+                width: 100%;
+                margin: 25px 5px 10px;
+                @media (max-width: 600px) {
+                font-size: 2rem;
+                }
+            }
+
+            button {
+                height: 40px;
+                background: $color-main;
+                border: 1px solid $color-main;
+                color: white;
+                border-radius: 8px;
+                font-size: 0.9rem;
+                margin: 10px 0;
+                padding:10px 25px;
+                @media (max-width: 600px) {
+                font-size: 2rem;
+                }
+            }
+
+            label {
+                font-size: 1rem;
+                color: #575a65;
+                @media (max-width: 600px) {
+                font-size: 2rem;
+                }
+            }
+        }
+        .fillform-btn{
+            color:$color-white;
+            background:$color-main;
+            border: 1px solid $color-main;
+            font-size:1rem;
+            padding:10px 25px;
+            margin: 20px auto;
+            border-radius:5px;
+            display: block;
+            @media(max-width:600px){
+              font-size: 2rem;
+            }
+          }
+    }
+}
+
+/* The container */
+.hear-about {
+    position: relative;
+    width: 200px;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 14px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hide the browser's default checkbox */
+  .hear-about input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .hear-about:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .hear-about input:checked ~ .checkmark {
+    background-color: #eee;
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .hear-about input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .hear-about .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid $color-main;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  

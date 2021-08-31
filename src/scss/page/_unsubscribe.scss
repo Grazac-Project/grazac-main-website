@@ -1,0 +1,112 @@
+.unsubscribe {
+  width: 100%;
+
+  &__container {
+    display: flex;
+    justify-content: center;
+    margin: 10rem 0 0 0;
+
+    @media screen and (max-width: 600px) {
+      justify-content: stretch;
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  &__link {
+    width: 150px;
+    height: 43.46px;
+    display: block;
+    img {
+      width: 100%;
+    }
+  }
+
+  &__box {
+    font-family: graphik;
+    margin-top: 3rem;
+    border: 1px solid #e3e8ef;
+    border-radius: 10px;
+    padding: 3rem 5rem 4rem 3rem;
+    margin-bottom: 10rem;
+
+    h2 {
+      font-size: 24px !important;
+    }
+  }
+
+  &__radios {
+    margin-top: 3rem;
+  }
+
+  &__radio {
+    margin-bottom: 2rem;
+  }
+
+  &__label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    display: flex;
+    span:first-of-type {
+        position: relative;
+      border: 1px solid #773dd3;
+      height: 1.5625rem;
+      width: 1.5625rem;
+      border-radius: 50%;
+      margin-right: 1rem;
+      display: block;
+
+
+      &::before {
+        content: "";
+        position: absolute;
+        height: 1.2rem;
+        width: 1.2rem;
+        background-color: $color-main;
+        border-radius: 50%;
+        opacity: 0;
+        transition: opacity 0.5s;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+
+  &__input:checked + &__label > span:first-of-type::before {
+    opacity: 1;
+  }
+
+  &__textarea {
+    margin-top: 3rem;
+    width: 100%;
+
+    textarea {
+      width: 485px;
+      min-height: 142px;
+      max-height: 142px;
+      padding: 1rem 0 0 1rem;
+      font-size: 16px;
+      border: 1px solid #e3e8ef;
+      box-sizing: border-box;
+      border-radius: 5px;
+      &:focus {
+        outline: none;
+      }
+
+      &::-webkit-input-placeholder {
+        color: #575a65;
+      }
+    }
+
+    @media screen and (max-width: 600px) {
+      width: 100%;
+    }
+  }
+
+  &__btn button {
+    padding: 1.56rem 3.75rem;
+  }
+}

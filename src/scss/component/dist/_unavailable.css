@@ -1,0 +1,19 @@
+.unavailable {
+  width: 100%;
+  margin-top: 25rem;
+}
+.unavailable__container {
+  margin: auto;
+  padding: 12rem 0 5rem 0;
+  text-align: center;
+}
+.unavailable__container h1 {
+  font-size: 5rem;
+  color: #5726a6;
+  font-weight: bold;
+  letter-spacing: 1rem;
+  margin-bottom: 2rem;
+}
+.unavailable__container p {
+  font-size: 2.5rem;
+}

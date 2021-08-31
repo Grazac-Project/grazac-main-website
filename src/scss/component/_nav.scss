@@ -1,0 +1,50 @@
+.nav {
+  position: relative;
+  //   width: 50%;
+  //   background-color: red;
+  margin-left: auto;
+  
+
+  flex-grow: 1;
+
+  @media screen and (max-width: 800px) {
+    display: none;
+  }
+  &__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem 0;
+  }
+
+  &__item {
+    &:not(:last-child) {
+      margin-right: 6rem;
+
+      @media screen and (max-width: 1550px) {
+        margin-right: 4rem;
+      }
+
+       @media screen and (max-width: 1000px) {
+        margin-right: 2rem;
+      }
+    }
+  }
+
+  &__link {
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 25px;
+
+    color: #575a65;
+
+    &:hover {
+      color: $color-main;
+    }
+  }
+}

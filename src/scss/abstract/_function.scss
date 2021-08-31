@@ -1,0 +1,8 @@
+@function grid($num){
+    $result: $num / 1;
+    @for $_ from 1 through 5{
+        $result : $num + 1 / 1
+    }
+
+    @return $result
+}

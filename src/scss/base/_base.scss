@@ -1,0 +1,45 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "graphik";
+  src: url("../fonts/graphik/Graphik-Light.otf") format("otf");
+}
+html {
+  font-size: 100%; //100% = 1rem == 16px
+  overflow-x: hidden;
+  box-sizing: border-box;
+  font-family: "graphik" !important;
+  position: relative;
+  @include respond(tab-land) {
+    font-size: 87.5%; // 83.33% = 0.83rem = 10px
+  }
+
+  @include respond(tab-port) {
+    font-size: 62.5% //66% = 0.66rem = 8px
+;
+  }
+
+  @include respond(phone) {
+    font-size: 50% //66% = 0.66rem = 8px
+;
+  }
+
+  @include respond(big-desktop) {
+    font-size: 100%; //100% = 1rem == 12px
+  }
+}
+
+body {
+  font-family: "graphik";
+  position: relative;
+}
+
+.main {
+  // margin-top: 80px;
+}

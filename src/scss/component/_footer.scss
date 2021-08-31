@@ -1,0 +1,64 @@
+.footer {
+  margin: 70px 0 50px;
+  box-sizing: border-box;
+  h3 {
+    color: #1f1035;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    
+  }
+  p, a {
+    color: #575a65;
+    font-size: 12px;
+    display: block;
+    text-decoration: none;
+    margin-bottom: 1rem;
+    cursor: pointer;
+  }
+  &_bodies {
+    @media (min-width: 992px) {
+      display: flex;
+    }
+    .section4 {
+      margin-bottom: 40px;
+      @media (min-width: 992px) {
+        width: 10%;
+      }
+    }
+    &-innerflex {
+      display: flex;
+      margin-bottom: 30px;
+      @media (min-width: 992px) {
+        width: 45%;
+      }
+
+      &-1 {
+        width: 50%;
+      }
+    }
+  }
+
+  &_copyright {
+    margin-top: 20px;
+    color: #575a65;
+    display: flex;
+    .copy {
+      width: 50%;
+    }
+    .terms {
+      width: 50%;
+      text-align: right;
+      span {
+        @media (min-width: 500px) {
+          margin-left: 30px;
+        }
+        &:before {
+          @media (max-width: 500px) {
+            content: "\A";
+            white-space: pre;
+          }
+        }
+      }
+    }
+  }
+}

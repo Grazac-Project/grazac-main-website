@@ -1,0 +1,482 @@
+.bold {
+  font-weight: bold;
+}
+
+.innovation {
+  overflow-x: hidden;
+  &_toptext {
+    margin: 100px 0 70px;
+    p {
+      font-size: 1rem;
+      color: $color-main;
+      @media (max-width: 600px) {
+        font-size: 2rem;
+      }
+    }
+    h1 {
+      color: #1f1035;
+      font-size: 3em;
+      @media (max-width: 600px) {
+        font-size: 4.2rem;
+      }
+    }
+  }
+
+  &_hero {
+    padding: 100px 0px;
+    position: relative;
+    background: url("../images/website/IMG_9683.jpg");
+    background-size: cover;
+    background-position: left bottom -50px;
+
+    &-text {
+      color: white;
+      h2 {
+        font-size: 3rem;
+        @media (max-width: 600px) {
+          font-size: 4.5rem;
+        }
+      }
+      p {
+        @media (max-width: 600px) {
+          font-size: 1.8rem;
+        }
+      }
+      button {
+        color: $color-white;
+        background: $color-main;
+        border: 1px solid $color-main;
+        font-size: 1rem;
+        padding: 10px 25px;
+        margin: 20px 0px;
+        border-radius: 5px;
+        @media (max-width: 600px) {
+          font-size: 2rem;
+        }
+      }
+      @media (min-width: 900px) {
+        width: 600px;
+      }
+    }
+    &-bg {
+      background: rgba(31, 16, 53, 0.1);
+      backdrop-filter: blur(20px);
+      z-index: 1000;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      position: fixed;
+    }
+    &-form {
+      position: fixed;
+      top: 10vh;
+      border-radius: 8px;
+      padding: 20px;
+      background: $color-white;
+      @media (min-width: 550px) {
+        left: 30%;
+        right: 30%;
+      }
+      @media (max-width: 550px) {
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      p {
+        color: #575a65;
+        margin-left: 10px;
+        @media (max-width: 600px) {
+          font-size: 2rem;
+        }
+      }
+      input,
+      select {
+        box-sizing: border-box;
+        border: 1px solid #e0e0e0;
+        font-size: 1rem;
+        height: 40px;
+        padding: 0 10px;
+        width: 100%;
+        margin: 10px 5px;
+        @media (max-width: 600px) {
+          font-size: 2rem;
+        }
+      }
+      select {
+        color: #575a65;
+      }
+
+      button {
+        height: 40px;
+        background: $color-main;
+        border: 1px solid $color-main;
+        color: white;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        padding: 7px 15px;
+        margin: 10px 0;
+        @media (max-width: 600px) {
+          font-size: 2rem;
+        }
+      }
+
+      &-flexinput {
+        @media (min-width: 1000px) {
+          display: flex;
+          justify-content: space-between;
+        }
+        &:first {
+          @media (min-width: 1000px) {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  &_spaces {
+    margin: 100px 0;
+    @media screen and (max-width: 800px) {
+      display: none;
+    }
+    p {
+      font-size: 1rem;
+      @media (max-width: 600px) {
+        font-size: 2rem;
+      }
+    }
+    h1 {
+      @media (max-width: 600px) {
+        font-size: 3.5rem;
+      }
+    }
+    &-offices {
+      @media (min-width: 600px) {
+        display: flex;
+      }
+      &-selection {
+        margin-top: 40px;
+        font-size: 1rem;
+        cursor: pointer;
+        @media (max-width: 600px) {
+          font-size: 2rem;
+          width: 100%;
+          display: grid;
+          grid-template-columns: 25% 25% 25% 25%;
+        }
+        @media (min-width: 900px) {
+          min-width: 250px;
+        }
+      }
+      &-view {
+        margin: 20px;
+        width: calc(100vw-400px);
+        .images {
+          width: calc(100vw-400px);
+          border-radius: 10px;
+          position: relative;
+          overflow: hidden;
+          img {
+            width: 100%;
+          }
+        }
+        .about {
+          margin-top: 20px;
+        }
+        .link {
+          color: $color-main;
+        }
+      }
+    }
+  }
+
+  &_perks {
+    box-sizing: border-box;
+
+    @media screen and (max-width: 800px) {
+      margin-top: 5rem;
+    }
+    .text1 {
+      font-size: 1rem;
+      color: #575a65;
+      @media (max-width: 600px) {
+        font-size: 2rem;
+      }
+    }
+    @media (min-width: 600px) {
+      display: flex;
+      &-firstdiv {
+        width: 50%;
+      }
+      &-seconddiv {
+        width: 50%;
+      }
+    }
+    &_list {
+      display: flex;
+      @media (max-width: 600px) {
+        margin-bottom: 120px;
+      }
+      &-1 {
+        width: 50%;
+      }
+      &-2 {
+        width: 50%;
+      }
+      &-item {
+        display: flex;
+        margin: 20px 10px 10px 0;
+        .svg-box2 {
+          width: 40px;
+          height: 40px;
+          margin-right: 10px;
+          border-radius: 5px;
+          background: #f3efff;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        p {
+          font-size: 1rem;
+          color: #575a65;
+          @media (max-width: 600px) {
+            font-size: 2rem;
+          }
+        }
+        h1 {
+          font-size: 1.5em;
+          @media (max-width: 600px) {
+            font-size: 2.7rem;
+          }
+        }
+      }
+    }
+
+    &-imaging {
+      width: 100%;
+      position: relative;
+      padding-right: 50px;
+      @media (max-width: 599px) {
+        display: none;
+      }
+
+      img {
+        border-radius: 20px;
+        width: 100%;
+      }
+      &-box {
+        width: 250px;
+        height: 250px;
+        background: $color-main;
+        position: absolute;
+        z-index: 100;
+        top: -100px;
+        padding: 20px;
+        color: white;
+        border-radius: 10px;
+        right: 0;
+        p {
+          font-size: 0.9em;
+          @media (max-width: 600px) {
+            font-size: 2rem;
+          }
+        }
+        h3 {
+          font-size: 1.2em;
+          @media (max-width: 600px) {
+            font-size: 2.1rem;
+          }
+        }
+        .svg-box1 {
+          width: 30px;
+          height: 30px;
+          background: white;
+          border-radius: 10px;
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+
+  &_gallery {
+    background: #1f1035;
+    color: white;
+    position: relative;
+    padding: 35vw 0 50px;
+    margin-top: 20vw;
+
+    h1 {
+      @media (max-width: 600px) {
+        font-size: 3.5rem;
+      }
+    }
+    &-images {
+      display: flex;
+      position: absolute;
+      top: -10vw;
+      &-one {
+        width: 25vw;
+        background-color: gray;
+        height: 25vw;
+        margin-top: 15vw;
+        overflow: hidden;
+      }
+      &-two {
+        width: 50vw;
+        overflow: hidden;
+        background-color: gray;
+        margin: 0 10px;
+        height: 40vw;
+        border-radius: 15px;
+      }
+      .first-box {
+        border-radius: 0px 15px 15px 0px;
+      }
+      .third-box {
+        border-radius: 15px 0px 0px 15px;
+      }
+      img {
+        width: auto;
+        height: 100%;
+      }
+    }
+    button {
+      padding: 10px 45px 10px 15px;
+      margin-top: 40px;
+      font-size: 1rem;
+      color: $color-white;
+      border-radius: 5px;
+      position: relative;
+      @media (max-width: 600px) {
+        font-size: 2rem;
+      }
+
+      img {
+        width: 23px;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+    }
+    .first {
+      margin-right: 20px;
+      background: $color-main;
+      border: 1px solid $color-main;
+    }
+    .sec {
+      background: transparent;
+      border: 1px solid white;
+    }
+    p {
+      font-size: 1rem;
+      @media (max-width: 600px) {
+        font-size: 2rem;
+      }
+    }
+  }
+  &_feedback {
+    margin: 70px 0 0 100px;
+    @media (max-width: 760px) {
+      margin: 50px 0 0 30px;
+    }
+    h1 {
+      @media (max-width: 600px) {
+        font-size: 3.5rem;
+      }
+    }
+    p {
+      font-size: 1rem;
+      @media (max-width: 600px) {
+        font-size: 2rem;
+      }
+    }
+    h3 {
+      font-size: 1.4em;
+      @media (max-width: 600px) {
+        font-size: 2.7rem;
+      }
+    }
+
+    &-testimonial {
+      padding: 40px 0;
+      overflow-x: scroll;
+      white-space: nowrap;
+      width: 50%;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+
+      @include respond(tab-port) {
+        width: 100%;
+      }
+      @media (min-width: 600px) {
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      }
+      &-box {
+        width: 280px;
+        display: inline-block;
+        padding: 20px;
+        margin-right: 30px;
+        text-align: center;
+        white-space: normal;
+        box-shadow: 0px 4px 14px rgba(151, 161, 184, 0.1);
+        border-radius: 10px;
+        p {
+          font-size: 1rem;
+          color: #575a65;
+          @media (max-width: 600px) {
+            font-size: 2rem;
+          }
+        }
+      }
+    }
+  }
+
+  &_community {
+    background: url("../images/svg/pattern1.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: $color-main;
+    background-position-x: right;
+    color: white;
+    text-align: center;
+    margin: 100px 0;
+    padding: 70px 30px;
+
+    h1 {
+      @media (max-width: 600px) {
+        font-size: 3.5rem;
+      }
+    }
+    p {
+      font-size: 1rem;
+      @media (max-width: 600px) {
+        font-size: 2rem;
+      }
+    }
+    button {
+      padding: 10px 45px 10px 15px;
+      margin-top: 40px;
+      font-size: 1rem;
+      color: $color-white;
+      border-radius: 5px;
+      position: relative;
+      color: $color-main;
+      border: 1px solid white;
+      background: white;
+      @media (max-width: 600px) {
+        font-size: 2rem;
+      }
+
+      img {
+        width: 23px;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+    }
+  }
+}

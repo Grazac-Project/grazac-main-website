@@ -1,0 +1,49 @@
+.button {
+  text-decoration: none;
+  text-align: center;
+  padding: 15px 25px;
+  border-radius: 5px;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  border: none;
+  background-color: transparent;
+  transition: transform 0.5s ease;
+
+  &:disabled {
+    @include disabled;
+  }
+
+  &:hover {
+    transform: translateY(-0.3rem);
+  }
+  @include respond(tab-port) {
+    padding: 0.9rem 2rem;
+    font-size: 1.4rem;
+  }
+  & > img {
+    margin-left: 15px;
+    animation: hvr-buzz 1s linear infinite;
+  }
+
+  &-bg {
+    background-color: $color-main;
+    color: white;
+
+    &:hover {
+      color: #ffffff;
+    }
+  }
+
+  &-nobg {
+    border: 1px solid #773dd3;
+    border-radius: 5px;
+    color: $color-main;
+
+    &:hover {
+      color: #773dd3;
+    }
+  }
+}
