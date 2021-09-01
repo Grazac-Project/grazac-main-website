@@ -19,6 +19,13 @@ const Footer = () => {
               <h3>Useful Links</h3>
               <Link to="/about">About</Link>
               <Link to="/blog">Our Blog</Link>
+              <a
+                href="https://grazac-technologies-limited.breezy.hr/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Careers{" "}
+              </a>
               <p onClick={reveal}>Contact us</p>
             </div>
             <div>
@@ -46,8 +53,7 @@ const Footer = () => {
               >
                 Academy
               </a>
-              <a href="https://grazac-technologies-limited.breezy.hr/"  target="_blank"
-                rel="noreferrer">Careers </a>
+
               <Link to="/innovation">Innovation Lab</Link>
               <Link to="/build">Grazac Build</Link>
             </div>
