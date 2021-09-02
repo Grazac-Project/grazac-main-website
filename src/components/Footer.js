@@ -20,7 +20,7 @@ const Footer = () => {
               <Link to="/about">About</Link>
               <Link to="/blog">Our Blog</Link>
               <a
-                href="https://grazac-technologies-limited.breezy.hr/"
+                href="https://grazac.breezy.hr/"
                 target="_blank"
                 rel="noreferrer"
               >
