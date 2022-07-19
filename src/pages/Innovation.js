@@ -26,6 +26,10 @@ import ShowContext from "../showContext";
 //import Input from "../components/Input";
 import Tour from "../components/Tour";
 import Space from "../components/Space";
+import { Alert, Snackbar, AlertTitle } from "@mui/material";
+import { Box } from "@mui/system";
+// import { ToastContainer, toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 
 /* import SpaceInput from "../components/SpaceInput";
 import Button from "../components/button";
@@ -83,9 +87,12 @@ const form_obj = {
   },
 };*/
 const Innovation = () => {
+  // const notify = () => toast("Wow so easy!");
+
   const { modalReveal } = useContext(ShowContext);
   const [spaces, setSpaces] = useState("private");
   const [form, setForm] = useState(false);
+  const [alertState, setAlertState] = useState(false);
   const [tour, setTour] = useState(false);
   /*const [team1, setTeam1] = useState();
   const [team2, setTeam2] = useState();
@@ -213,8 +220,6 @@ const Innovation = () => {
     console.log(team2);
     console.log(team3);
   };*/
-  
-  
 
   return (
     <div>
@@ -237,7 +242,7 @@ const Innovation = () => {
         />
       </Helmet>
 
-      <Space form={form} setForm={setForm} />  
+      <Space form={form} setForm={setForm} />
 
       <Tour tour={tour} setTour={setTour} />
       <div className="innovation">
@@ -258,13 +263,37 @@ const Innovation = () => {
             backgroundRepeat: "no-repeat",
           }}
         >
+      
+      
+          <Snackbar
+            sx={{
+              position: "absolute",
+              // top: "200px",
+              // right: "100px",
+            }}
+            autoHideDuration={6000}
+            severity="info"
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            open={alertState}
+            onClose={() => setAlertState(!alertState)}
+            // message="I love snacks"
+          >
+               <Alert severity="info" sx={{ width: "100%" }}>
+           Co-working space is currently not available
+            </Alert>
+          </Snackbar>
+
           <div className="container">
             <div className="innovation_hero-text">
               {/*<p>WELCOME TO GRAZAC INNOVATION SPACE</p>*/}
               <h2>A creative environment that will boost your productivity</h2>
               <button
                 onClick={() => {
-                  setForm(true);
+                  // setForm(true);
+                  setAlertState(true);
                 }}
                 className="hvr-wobble-horizontal"
               >

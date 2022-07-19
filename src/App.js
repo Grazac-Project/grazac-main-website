@@ -67,6 +67,7 @@ const App = () => {
           modalReveal: () => setShowModal(true),
         }}
       >
+        
         <Layout>
           <Switch>
             <Route path="/" exact component={LandingPage} />
