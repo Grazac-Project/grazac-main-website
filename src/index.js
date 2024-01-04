@@ -5,7 +5,7 @@ import "./index.css";
 import "./scss/main.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-require("dotenv").config();
+// require("dotenv").config();
 
 ReactDOM.render(
   <BrowserRouter>

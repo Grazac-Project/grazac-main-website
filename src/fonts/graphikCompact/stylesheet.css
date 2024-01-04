@@ -1,0 +1,216 @@
+@font-face {
+    font-family: 'Graphik Compact';
+    src: url('GraphikCompactWebThin-Regular.eot');
+    src: local('Graphik Compact Thin'), local('GraphikCompactWebThin-Regular'),
+        url('GraphikCompactWebThin-Regular.eot?#iefix') format('embedded-opentype'),
+        url('GraphikCompactWebThin-Regular.woff2') format('woff2'),
+        url('GraphikCompactWebThin-Regular.woff') format('woff'),
+        url('GraphikCompactWebThin-Regular.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Graphik Compact';
+    src: url('GraphikCompLCWebMedium-Reg.eot');
+    src: local('Graphik Compact Medium'), local('GraphikCompLCWebMedium-Reg'),
+        url('GraphikCompLCWebMedium-Reg.eot?#iefix') format('embedded-opentype'),
+        url('GraphikCompLCWebMedium-Reg.woff2') format('woff2'),
+        url('GraphikCompLCWebMedium-Reg.woff') format('woff'),
+        url('GraphikCompLCWebMedium-Reg.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Graphik Compact Super';
+    src: url('GraphikCompLCWebSuper-Italic.eot');
+    src: local('Graphik Compact Super Italic'), local('GraphikCompLCWebSuper-Italic'),
+        url('GraphikCompLCWebSuper-Italic.eot?#iefix') format('embedded-opentype'),
+        url('GraphikCompLCWebSuper-Italic.woff2') format('woff2'),
+        url('GraphikCompLCWebSuper-Italic.woff') format('woff'),
+        url('GraphikCompLCWebSuper-Italic.ttf') format('truetype');
+    font-weight: 900;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Graphik Compact';
+    src: url('GraphikCompLCWebRegular-Ita.eot');
+    src: local('Graphik Compact Italic'), local('GraphikCompLCWebRegular-Ita'),
+        url('GraphikCompLCWebRegular-Ita.eot?#iefix') format('embedded-opentype'),
+        url('GraphikCompLCWebRegular-Ita.woff2') format('woff2'),
+        url('GraphikCompLCWebRegular-Ita.woff') format('woff'),
+        url('GraphikCompLCWebRegular-Ita.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Graphik Compact';
+    src: url('GraphikCompLCWebSemibd-Reg.eot');
+    src: local('Graphik Compact Semibold'), local('GraphikCompLCWebSemibd-Reg'),
+        url('GraphikCompLCWebSemibd-Reg.eot?#iefix') format('embedded-opentype'),
+        url('GraphikCompLCWebSemibd-Reg.woff2') format('woff2'),
+        url('GraphikCompLCWebSemibd-Reg.woff') format('woff'),
+        url('GraphikCompLCWebSemibd-Reg.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Graphik Compact';
+    src: url('GraphikCompLCWebLight-Regular.eot');
+    src: local('Graphik Compact Light'), local('GraphikCompLCWebLight-Regular'),
+        url('GraphikCompLCWebLight-Regular.eot?#iefix') format('embedded-opentype'),
+        url('GraphikCompLCWebLight-Regular.woff2') format('woff2'),
+        url('GraphikCompLCWebLight-Regular.woff') format('woff'),
+        url('GraphikCompLCWebLight-Regular.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Graphik Compact';
+    src: url('GraphikCompLCWebBlack-Regular.eot');
+    src: local('Graphik Compact Black'), local('GraphikCompLCWebBlack-Regular'),
+        url('GraphikCompLCWebBlack-Regular.eot?#iefix') format('embedded-opentype'),
+        url('GraphikCompLCWebBlack-Regular.woff2') format('woff2'),
+        url('GraphikCompLCWebBlack-Regular.woff') format('woff'),
+        url('GraphikCompLCWebBlack-Regular.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Graphik Compact';
+    src: url('GraphikCompLCWebLight-Italic.eot');
+    src: local('Graphik Compact Light Italic'), local('GraphikCompLCWebLight-Italic'),
+        url('GraphikCompLCWebLight-Italic.eot?#iefix') format('embedded-opentype'),
+        url('GraphikCompLCWebLight-Italic.woff2') format('woff2'),
+        url('GraphikCompLCWebLight-Italic.woff') format('woff'),
+        url('GraphikCompLCWebLight-Italic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Graphik Compact';
+    src: url('GraphikCompLCWebExlight-Ita.eot');
+    src: local('Graphik Compact Extralight Italic'), local('GraphikCompLCWebExlight-Ita'),
+        url('GraphikCompLCWebExlight-Ita.eot?#iefix') format('embedded-opentype'),
+        url('GraphikCompLCWebExlight-Ita.woff2') format('woff2'),
+        url('GraphikCompLCWebExlight-Ita.woff') format('woff'),
+        url('GraphikCompLCWebExlight-Ita.ttf') format('truetype');
+    font-weight: 200;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Graphik Compact';
+    src: url('GraphikCompLCWebBold-Regular.eot');
+    src: local('Graphik Compact Bold'), local('GraphikCompLCWebBold-Regular'),
+        url('GraphikCompLCWebBold-Regular.eot?#iefix') format('embedded-opentype'),
+        url('GraphikCompLCWebBold-Regular.woff2') format('woff2'),
+        url('GraphikCompLCWebBold-Regular.woff') format('woff'),
+        url('GraphikCompLCWebBold-Regular.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Graphik Compact';
+    src: url('GraphikCompLCWebThin-Italic.eot');
+    src: local('Graphik Compact Thin Italic'), local('GraphikCompLCWebThin-Italic'),
+        url('GraphikCompLCWebThin-Italic.eot?#iefix') format('embedded-opentype'),
+        url('GraphikCompLCWebThin-Italic.woff2') format('woff2'),
+        url('GraphikCompLCWebThin-Italic.woff') format('woff'),
+        url('GraphikCompLCWebThin-Italic.ttf') format('truetype');
+    font-weight: 100;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Graphik Compact';
+    src: url('GraphikCompLCWebBold-Italic.eot');
+    src: local('Graphik Compact Bold Italic'), local('GraphikCompLCWebBold-Italic'),
+        url('GraphikCompLCWebBold-Italic.eot?#iefix') format('embedded-opentype'),
+        url('GraphikCompLCWebBold-Italic.woff2') format('woff2'),
+        url('GraphikCompLCWebBold-Italic.woff') format('woff'),
+        url('GraphikCompLCWebBold-Italic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Graphik Compact';
+    src: url('GraphikCompLCWebRegular-Reg.eot');
+    src: local('Graphik Compact'), local('GraphikCompLCWebRegular-Reg'),
+        url('GraphikCompLCWebRegular-Reg.eot?#iefix') format('embedded-opentype'),
+        url('GraphikCompLCWebRegular-Reg.woff2') format('woff2'),
+        url('GraphikCompLCWebRegular-Reg.woff') format('woff'),
+        url('GraphikCompLCWebRegular-Reg.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Graphik Compact';
+    src: url('GraphikCompLCWebBlack-Italic.eot');
+    src: local('Graphik Compact Black Italic'), local('GraphikCompLCWebBlack-Italic'),
+        url('GraphikCompLCWebBlack-Italic.eot?#iefix') format('embedded-opentype'),
+        url('GraphikCompLCWebBlack-Italic.woff2') format('woff2'),
+        url('GraphikCompLCWebBlack-Italic.woff') format('woff'),
+        url('GraphikCompLCWebBlack-Italic.ttf') format('truetype');
+    font-weight: 900;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Graphik Compact';
+    src: url('GraphikCompLCWebSemibd-Italic.eot');
+    src: local('Graphik Compact Semibold Italic'), local('GraphikCompLCWebSemibd-Italic'),
+        url('GraphikCompLCWebSemibd-Italic.eot?#iefix') format('embedded-opentype'),
+        url('GraphikCompLCWebSemibd-Italic.woff2') format('woff2'),
+        url('GraphikCompLCWebSemibd-Italic.woff') format('woff'),
+        url('GraphikCompLCWebSemibd-Italic.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Graphik Compact Super';
+    src: url('GraphikCompLCWebSuper-Regular.eot');
+    src: local('Graphik Compact Super'), local('GraphikCompLCWebSuper-Regular'),
+        url('GraphikCompLCWebSuper-Regular.eot?#iefix') format('embedded-opentype'),
+        url('GraphikCompLCWebSuper-Regular.woff2') format('woff2'),
+        url('GraphikCompLCWebSuper-Regular.woff') format('woff'),
+        url('GraphikCompLCWebSuper-Regular.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Graphik Compact';
+    src: url('GraphikCompLCWebExlight-Reg.eot');
+    src: local('Graphik Compact Extralight'), local('GraphikCompLCWebExlight-Reg'),
+        url('GraphikCompLCWebExlight-Reg.eot?#iefix') format('embedded-opentype'),
+        url('GraphikCompLCWebExlight-Reg.woff2') format('woff2'),
+        url('GraphikCompLCWebExlight-Reg.woff') format('woff'),
+        url('GraphikCompLCWebExlight-Reg.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Graphik Compact';
+    src: url('GraphikCompLCWebMedium-Italic.eot');
+    src: local('Graphik Compact Medium Italic'), local('GraphikCompLCWebMedium-Italic'),
+        url('GraphikCompLCWebMedium-Italic.eot?#iefix') format('embedded-opentype'),
+        url('GraphikCompLCWebMedium-Italic.woff2') format('woff2'),
+        url('GraphikCompLCWebMedium-Italic.woff') format('woff'),
+        url('GraphikCompLCWebMedium-Italic.ttf') format('truetype');
+    font-weight: 500;
+    font-style: italic;
+}
+

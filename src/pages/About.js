@@ -154,7 +154,7 @@ const About = () => {
             {/* </div> */}
             <p>
               Send us a mail to{" "}
-              <a href="maiito:jobs@grazac.com.ng">jobs@grazac.com.ng</a>
+              <a href="mailto:jobs@grazac.com.ng">jobs@grazac.com.ng</a>
             </p>
           </div>
           <img

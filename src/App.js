@@ -25,6 +25,7 @@ const App = () => {
   const [showSidebar, setShowSidebar] = useState(false);
   const [showContact, setShowContact] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleClick = () => {
     setShowContact(!showContact);
@@ -65,6 +66,7 @@ const App = () => {
           modal: showModal,
           modalClick: setShowModal,
           modalReveal: () => setShowModal(true),
+          open, setOpen
         }}
       >
         

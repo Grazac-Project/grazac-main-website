@@ -28,6 +28,8 @@ import Tour from "../components/Tour";
 import Space from "../components/Space";
 import { Alert, Snackbar, AlertTitle } from "@mui/material";
 import { Box } from "@mui/system";
+// import Popup from "../components/BasicModal";
+import BasicModal from "../components/BasicModal/BasicModal";
 // import { ToastContainer, toast } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
 
@@ -89,11 +91,14 @@ const form_obj = {
 const Innovation = () => {
   // const notify = () => toast("Wow so easy!");
 
-  const { modalReveal } = useContext(ShowContext);
+  const { modalReveal, open, setOpen } = useContext(ShowContext);
   const [spaces, setSpaces] = useState("private");
   const [form, setForm] = useState(false);
   const [alertState, setAlertState] = useState(false);
   const [tour, setTour] = useState(false);
+  // const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   /*const [team1, setTeam1] = useState();
   const [team2, setTeam2] = useState();
   const [team3, setTeam3] = useState();
@@ -222,6 +227,7 @@ const Innovation = () => {
   };*/
 
   return (
+    <>
     <div>
       <Helmet>
         <title>Innovation - Grazac</title>
@@ -241,9 +247,8 @@ const Innovation = () => {
           content="https://www.grazac.com.ng/innovation"
         />
       </Helmet>
-
       <Space form={form} setForm={setForm} />
-
+      {/* {open && <BasicModal setOpen={setOpen}/>} */}
       <Tour tour={tour} setTour={setTour} />
       <div className="innovation">
         {/* <div className="innovation_toptext">
@@ -290,11 +295,17 @@ const Innovation = () => {
             <div className="innovation_hero-text">
               {/*<p>WELCOME TO GRAZAC INNOVATION SPACE</p>*/}
               <h2>A creative environment that will boost your productivity</h2>
-              <button
+              {/* <button
                 onClick={() => {
                   // setForm(true);
                   setAlertState(true);
                 }}
+                className="hvr-wobble-horizontal"
+              >
+                Book a Space
+              </button> */}
+              <button
+                onClick={() => setOpen(true)}
                 className="hvr-wobble-horizontal"
               >
                 Book a Space
@@ -562,6 +573,7 @@ const Innovation = () => {
       <Subscribe />
       <Scroll />
     </div>
+    </>
   );
 };
 

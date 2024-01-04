@@ -1,7 +1,8 @@
 // @ts-nocheck
-import React from "react"
+import React, {createContext} from "react"
 
-const ShowContext = React.createContext();
+
+const ShowContext = createContext();
 
 
 export default ShowContext
