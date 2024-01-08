@@ -9,11 +9,15 @@
     z-index: 10001;
 }
 .basicModal_space{
-    position: absolute;
+    /* position: absolute; */
+    position: fixed;
     z-index: 100000;
-    top: 12%;
+    overflow-y: scroll;
+    /* top: 12%; */
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    height: 85vh;
     width: 740px;
     border: 1px solid #fff;
     border-radius: 24px;
@@ -49,6 +53,10 @@
     display: flex;
     margin: 0 auto;
     gap: 16px;
+}
+.calendar{
+    width: 430px;
+    margin: 0 auto;
 }
 .basicModal_dateContainer_start, .basicModal_dateContainer_end{
     width: 207px;
@@ -141,12 +149,13 @@
     margin-top: 8px;
     margin-bottom: 22px;
     border: none;
+    font-size: 16px;
 }
-@media screen and (max-width: 900px) {
+/* @media screen and (max-width: 900px) {
     .basicModal_space{
         top: 16%;
     }
-}
+} */
 @media screen and (max-width: 768px) {
     .basicModal_space{
         width: 90%;
@@ -163,6 +172,9 @@
     }
     .basicModal_dateContainer{
         flex-direction: column;
+        width: 100%;
+    }
+    .calendar{
         width: 100%;
     }
     .basicModal_dateContainer_start, .basicModal_dateContainer_end{
@@ -195,6 +207,7 @@
     .basicModal_form button{
         width: 100%;
         margin: 8px 0px 22px 0px;
+        font-size: 16px;
     }
 }
 
