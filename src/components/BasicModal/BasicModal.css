@@ -57,6 +57,17 @@
 .calendar{
     width: 430px;
     margin: 0 auto;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out;
+}
+.calendar.visible{
+    opacity: 1;
+    visibility: visible;
+}
+.calendar.hidden{
+    opacity: 0;
+    visibility: hidden;
 }
 .basicModal_dateContainer_start, .basicModal_dateContainer_end{
     width: 207px;

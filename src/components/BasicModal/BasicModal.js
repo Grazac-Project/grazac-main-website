@@ -215,18 +215,20 @@ const BasicModal = ({ open, setOpen }) => {
     email: '',
     phoneNumber: '',
   });
-
+  const userLocale = navigator.language || 'en-US'
+  // const formattedDate = value.toLocaleDateString(userLocale, options);
   const handleChange = (value) => {
-    const formattedDate = value.toLocaleDateString('en-US', options);
+    const formattedDate = value.toLocaleDateString(userLocale, options);
     const dayOfMonth = value.getDate();
     const selectedStartDate = new Date(value);
-    const currentDate = new Date();
+    const currentDate = new Date(formattedDate);
 
     if (selectedStartDate < currentDate) {
       // Start date cannot be before the current date
       toast.error("Start date cannot be before the current date");
     } else {
-      const formattedDate = value.toLocaleDateString('en-US', options);
+      // const formattedDate = value.toLocaleDateString('en-US', options);
+      // const formattedDate = value.toLocaleDateString(userLocale, options);
       setStartDate(formattedDate);
       setEndDate(formattedDate);
       setHideCalendar(false);
@@ -239,12 +241,13 @@ const BasicModal = ({ open, setOpen }) => {
   };
 
   const handleChange2 = (value) => {
+    setHideCalendar(false)
     // const formattedDate = value.toLocaleDateString('en-US', options);
     // const dayOfMonth = value.getDate();
     // setEndDate(formattedDate);
     // setEndNum(dayOfMonth);
     // setHideCalendar2(false);
-    const formattedDate = value.toLocaleDateString('en-US', options);
+    const formattedDate = value.toLocaleDateString(userLocale, options);
     const selectedEndDate = new Date(value);
     const selectedStartDate = new Date(startDate);
     
@@ -337,7 +340,11 @@ const BasicModal = ({ open, setOpen }) => {
           <div className="basicModal_dateContainer">
             <div
               className="basicModal_dateContainer_start"
-              onClick={() => setHideCalendar(true)}
+              onClick={() => {
+                setHideCalendar2(false)
+                setHideCalendar(true)
+              }
+            }
             >
               <div>
                 <img src={calendar} alt="" />
@@ -349,7 +356,11 @@ const BasicModal = ({ open, setOpen }) => {
             </div>
             <div
               className="basicModal_dateContainer_end"
-              onClick={() => setHideCalendar2(true)}
+              onClick={() => {
+                setHideCalendar(false)
+                setHideCalendar2(true)
+              }
+            }
             >
               <div>
                 <img src={calendar} alt="calendar" />
@@ -360,10 +371,12 @@ const BasicModal = ({ open, setOpen }) => {
               </div>
             </div>
           </div>
-          <div className="calendar">
+          <div className={`calendar ${hideCalendar ? 'visible':'hidden'}`}>
             {hideCalendar && (
               <Calendar onChange={handleChange} value={value} />
             )}
+          </div>
+          <div className={`calendar ${hideCalendar2 ? 'visible':'hidden'}`}>
             {hideCalendar2 && (
               <Calendar onChange={handleChange2} value={value} />
             )}
