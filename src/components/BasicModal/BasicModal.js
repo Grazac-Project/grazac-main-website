@@ -272,7 +272,7 @@ const BasicModal = ({ open, setOpen }) => {
     return numOfDays;
   };
 
-  const totalAmount = (3000 * calculateNumOfDays()).toLocaleString();
+  const totalAmount = (3000 * calculateNumOfDays());
   const url =
     'https://api-grazacacademy-0358136c0905.herokuapp.com/api/v1/user/bookSpace';
 
@@ -384,7 +384,7 @@ const BasicModal = ({ open, setOpen }) => {
           <div className="basicModal_price">
             <p className="basicModal_price_label">Total Price:</p>
             <p className="basicModal_price_total">
-              <p className="sum">₦{totalAmount}</p>
+              <p className="sum">₦{totalAmount.toLocaleString()}</p>
               <p className="workings">₦3,000 x {calculateNumOfDays()} day(s)</p>
             </p>
           </div>
