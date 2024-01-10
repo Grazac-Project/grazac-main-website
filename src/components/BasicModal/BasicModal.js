@@ -37,7 +37,6 @@ const BasicModal = ({ open, setOpen }) => {
   const userLocale = navigator.language || 'en-US'
   const handleChange = (value) => {
     const formattedDate = value.toLocaleDateString(userLocale, options);
-    console.log('formatted', formattedDate)
     const selectedStartDate = new Date(value);
     const currentDate = new Date().setHours(0,0,0,0);
 
