@@ -12,7 +12,6 @@
     position: fixed;
     z-index: 100000;
     overflow-y: scroll;
-    /* top: 12%; */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -29,14 +28,13 @@
 .close{
     position: absolute;
     top: 10px;
-    right: 30px;
-    font-size: 40px;
+    right: 20px;
+    font-size: 30px;
     cursor: pointer;
 }
 .basicModal_space h2{
     font-size: 40px;
     font-weight: 600;
-    /* font-family: graphik2, sans-serif; */
     line-height: 48px;
     text-align: center;
     margin-top: 31px;
@@ -168,16 +166,14 @@
     border: none;
     font-size: 16px;
 }
-/* @media screen and (max-width: 900px) {
-    .basicModal_space{
-        top: 16%;
-    }
-} */
 @media screen and (max-width: 768px) {
     .basicModal_space{
         width: 90%;
         padding-left: 16px;
         padding-right: 16px;
+    }
+    .close{
+        font-size: 20px;
     }
     .basicModal_space h2{
         font-size: 24px;
