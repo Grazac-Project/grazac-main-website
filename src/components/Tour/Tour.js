@@ -1,0 +1,204 @@
+// @ts-nocheck
+import React, { useState } from "react";
+import axios from "axios";
+import Classes from "./Tour.module.css";
+import "react-calendar/dist/Calendar.css";
+import Calendar from "react-calendar";
+import Dropdown from "../../images/svg/Arrow.svg";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+const Tour = ({ tour, setTour }) => {
+  const options = { day: "numeric", month: "short", year: "numeric" };
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [message, setMessage] = useState("");
+  const [time, setTime] = useState("Select Time");
+  const [date, setDate] = useState("Select Date");
+  const [value, onChange] = useState(new Date());
+  const [dropdown, setDropdown] = useState(false);
+  const [dropdown2, setDropdown2] = useState(false);
+  const [text, setText] = useState("Book Now");
+  const [disabled, setDisabled] = useState("");
+
+  const bookTour = (e) => {
+    e.preventDefault();
+    setText("Submitting...");
+    setDisabled(true);
+    var formData = new FormData();
+    formData.append("firstName", firstName);
+    formData.append("lastName", lastName);
+    formData.append("email", email);
+    formData.append("phoneNumber", phone);
+    formData.append("date", date);
+    formData.append("time", time);
+    formData.append("message", message);
+    console.log(formData);
+    axios
+      .post(
+        "https://api-grazacacademy-0358136c0905.herokuapp.com/api/v1/user/bookATour",
+        formData
+      )
+      .then((resp) => resp.data)
+      .then((resp) => {
+        // console.log(resp.status)
+        if (resp.status === 201) {
+          toast.success("Payment successful! Verifying payment...");
+          // document.querySelector("#bookTour").reset();
+          setTour(false);
+          setDisabled(false);
+          setText("Submit");
+        } else {
+          setText("Submit");
+          setDisabled(false);
+          alert(resp.msg);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleChange = (value, event) => {
+    const formattedDate = value.toLocaleDateString("en-US", options);
+    setDate(formattedDate);
+    setDropdown(false);
+    setDropdown2(false);
+    console.log(time);
+  };
+  const handleChange2 = () => {
+    setDropdown2(true);
+  };
+
+  return (
+    <div>
+      {tour ? (
+        <>
+          <ToastContainer />
+          <div className={Classes.main}>
+            <div className={Classes.container}>
+              <div className={Classes.innerContainer}>
+                <div className="popup__cancel" onClick={() => setTour(false)}>
+                  <span>X</span>
+                </div>
+                <div className={Classes.text}>
+                  <h3>Book a Tour</h3>
+                  <p>
+                    We are ready to take you on a tour of our workspace. Please
+                    fill in this information correctly to get a taste for free!{" "}
+                    <br />{" "}
+                    <span>The tour is available between 9 am and 5 pm.</span>
+                  </p>
+                </div>
+                <form className={Classes.form} onSubmit={bookTour}>
+                  <input
+                    type="text"
+                    placeholder="First Name"
+                    minLength={3}
+                    name="firstName"
+                    onChange={(e) => setFirstName(e.target.value)}
+                    required
+                  />
+                  <input
+                    type="text"
+                    placeholder="Last Name"
+                    minLength={3}
+                    name="lastName"
+                    onChange={(e) => setLastName(e.target.value)}
+                    required
+                  />
+
+                  <input
+                    type="email"
+                    placeholder="Email Address"
+                    minLength={10}
+                    name="email"
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+                  <input
+                    type="text"
+                    placeholder="Phone Number"
+                    minLength={11}
+                    maxLength={15}
+                    onChange={(e) => setPhone(e.target.value)}
+                    name="phoneNumber"
+                    required
+                  />
+                  <div className={Classes.calender}>
+                    <div>{date}</div>
+                    <img
+                      src={Dropdown}
+                      alt="icon"
+                      onClick={() => setDropdown(true)}
+                    />
+                  </div>
+                  {dropdown ? (
+                    <div
+                      style={{
+                        zIndex: "99999",
+                        position: "absolute",
+                        top: "65%",
+                        left: "50%",
+                      }}
+                    >
+                      <Calendar onChange={handleChange} value={value} />
+                    </div>
+                  ) : null}
+
+                  <div className={Classes.calender}>
+                    <div>{time}</div>
+                    <img src={Dropdown} alt="icon" onClick={handleChange2} />
+                  </div>
+                  {dropdown2 ? (
+                    <div
+                      style={{
+                        zIndex: "9999",
+                        position: "absolute",
+                        top: "65%",
+                        left: "50%",
+                        width: "242px",
+                        borderRadius: "8px",
+                        boxShadow: "1px 1px 4px 0px rgba(0, 0, 0, 0.10)",
+                        padding: "10px 16px",
+                        backgroundColor: "#fff",
+                      }}
+                    >
+                      <div
+                        className={Classes.time}
+                        onClick={() => setDropdown2(false)}
+                      >
+                        <div onClick={() => setTime("9:00am")}>9:00 am</div>
+                        <div onClick={() => setTime("10:00am")}>10:00 am</div>
+                        <div onClick={() => setTime("6:00pm")}>6:00 pm</div>
+                      </div>
+                    </div>
+                  ) : null}
+                  <input
+                    type="text"
+                    placeholder="Message"
+                    name="message"
+                    onChange={(e) => setMessage(e.target.value)}
+                    required
+                  />
+
+                  <button
+                    className={Classes.btn}
+                    disabled={disabled}
+                    type="submit"
+                  >
+                    {text}
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </>
+      ) : null}
+    </div>
+  );
+};
+
+export default Tour;

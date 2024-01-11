@@ -58,68 +58,68 @@
         width: 600px;
       }
     }
-    &-bg {
-      background: rgba(31, 16, 53, 0.1);
-      backdrop-filter: blur(20px);
-      z-index: 1000;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      position: fixed;
-    }
-    &-form {
-      position: fixed;
-      top: 10vh;
-      border-radius: 8px;
-      padding: 20px;
-      background: $color-white;
-      @media (min-width: 550px) {
-        left: 30%;
-        right: 30%;
-      }
-      @media (max-width: 550px) {
-        width: 100%;
-        box-sizing: border-box;
-      }
+    // &-bg {
+    //   background: rgba(31, 16, 53, 0.1);
+    //   backdrop-filter: blur(20px);
+    //   z-index: 1000;
+    //   top: 0;
+    //   left: 0;
+    //   bottom: 0;
+    //   right: 0;
+    //   position: fixed;
+    // }
+    // &-form {
+    //   position: fixed;
+    //   top: 10vh;
+    //   border-radius: 8px;
+    //   padding: 20px;
+    //   background: $color-white;
+    //   @media (min-width: 550px) {
+    //     left: 30%;
+    //     right: 30%;
+    //   }
+    //   @media (max-width: 550px) {
+    //     width: 100%;
+    //     box-sizing: border-box;
+    //   }
 
-      p {
-        color: #575a65;
-        margin-left: 10px;
-        @media (max-width: 600px) {
-          font-size: 2rem;
-        }
-      }
-      input,
-      select {
-        box-sizing: border-box;
-        border: 1px solid #e0e0e0;
-        font-size: 1rem;
-        height: 40px;
-        padding: 0 10px;
-        width: 100%;
-        margin: 10px 5px;
-        @media (max-width: 600px) {
-          font-size: 2rem;
-        }
-      }
-      select {
-        color: #575a65;
-      }
+    //   p {
+    //     color: #575a65;
+    //     margin-left: 10px;
+    //     @media (max-width: 600px) {
+    //       font-size: 2rem;
+    //     }
+    //   }
+    //   input,
+    //   select {
+    //     box-sizing: border-box;
+    //     border: 1px solid #e0e0e0;
+    //     font-size: 1rem;
+    //     height: 40px;
+    //     padding: 0 10px;
+    //     width: 100%;
+    //     margin: 10px 5px;
+    //     @media (max-width: 600px) {
+    //       font-size: 2rem;
+    //     }
+    //   }
+    //   select {
+    //     color: #575a65;
+    //   }
 
-      button {
-        height: 40px;
-        background: $color-main;
-        border: 1px solid $color-main;
-        color: white;
-        border-radius: 8px;
-        font-size: 0.9rem;
-        padding: 7px 15px;
-        margin: 10px 0;
-        @media (max-width: 600px) {
-          font-size: 2rem;
-        }
-      }
+    //   button {
+    //     height: 40px;
+    //     background: $color-main;
+    //     border: 1px solid $color-main;
+    //     color: white;
+    //     border-radius: 8px;
+    //     font-size: 0.9rem;
+    //     padding: 7px 15px;
+    //     margin: 10px 0;
+    //     @media (max-width: 600px) {
+    //       font-size: 2rem;
+    //     }
+    //   }
 
       &-flexinput {
         @media (min-width: 1000px) {

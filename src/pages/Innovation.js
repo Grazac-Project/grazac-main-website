@@ -24,7 +24,7 @@ import Scroll from "../components/Scroll";
 import ShowContext from "../showContext";
 //import SpaceForm from "../components/SpaceForm";
 //import Input from "../components/Input";
-import Tour from "../components/Tour";
+import Tour from "../components/Tour/Tour";
 import Space from "../components/Space";
 import { Alert, Snackbar, AlertTitle } from "@mui/material";
 import { Box } from "@mui/system";
