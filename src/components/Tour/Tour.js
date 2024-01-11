@@ -80,8 +80,8 @@ const Tour = ({ tour, setTour }) => {
           <div className={Classes.main}>
             <div className={Classes.container}>
               <div className={Classes.innerContainer}>
-                <div className="popup__cancel" onClick={() => setTour(false)}>
-                  <span>X</span>
+                <div className={Classes.close} onClick={() => setTour(false)}>
+                  <span>x</span>
                 </div>
                 <div className={Classes.text}>
                   <h3>Book a Tour</h3>

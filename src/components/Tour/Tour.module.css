@@ -122,7 +122,24 @@ span {
   font-weight: 400;
   line-height: normal;
 }
+.close{
+    position: absolute;
+    /* top: 10px; */
+    right: 350px;
+    font-size: 30px;
+    cursor: pointer;
+}
+@media screen and (max-width: 1140px) {
+  .close{
+    right: 200px;
+    
+}
+}
 @media screen and (max-width: 768px) {
+  .close{
+    right: 90px;
+    
+}
   .container {
     width: 90%;
   }
@@ -143,9 +160,15 @@ span {
     margin-bottom: 8px;
     padding-top: 18px;
   }
+  .close{
+    right: 50px;
+  }
 }
 @media screen and (max-width: 375px) {
   .btn {
     width: 70%;
+  }
+  .close{
+    right: 30px;
   }
 }
