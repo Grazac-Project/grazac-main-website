@@ -45,7 +45,9 @@ const Tour = ({ tour, setTour }) => {
       .then((resp) => {
         // console.log(resp.status)
         if (resp.status === 201) {
-          toast.success("Payment successful! Verifying payment...");
+          // toast.success("Payment successful! Verifying payment...");
+          alert("Payment successful! Verifying payment...");
+          
           // document.querySelector("#bookTour").reset();
           setTour(false);
           setDisabled(false);
@@ -53,11 +55,12 @@ const Tour = ({ tour, setTour }) => {
         } else {
           setText("Submit");
           setDisabled(false);
-          alert(resp.msg);
+          toast("something is wrong");
         }
       })
       .catch((err) => {
-        console.log(err);
+        toast.error("Form submission not successful...");
+        
       });
   };
 
@@ -76,12 +79,12 @@ const Tour = ({ tour, setTour }) => {
     <div>
       {tour ? (
         <>
-          <ToastContainer />
+        <ToastContainer closeButton={false} />
           <div className={Classes.main}>
             <div className={Classes.container}>
               <div className={Classes.innerContainer}>
                 <div className={Classes.close} onClick={() => setTour(false)}>
-                  <span>x</span>
+                  <span>&times;</span>
                 </div>
                 <div className={Classes.text}>
                   <h3>Book a Tour</h3>
