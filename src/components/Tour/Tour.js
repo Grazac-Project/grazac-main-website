@@ -45,11 +45,14 @@ const Tour = ({ tour, setTour }) => {
       .then((resp) => {
         // console.log(resp.status)
         if (resp.status === 201) {
-          // toast.success("Payment successful! Verifying payment...");
-          alert("Payment successful! Verifying payment...");
+          toast.success("Payment successful! Verifying payment...");
+          // alert("Payment successful! Verifying payment...");
           
           // document.querySelector("#bookTour").reset();
-          setTour(false);
+          // setTour(false);
+          setTimeout(() => {
+            setTour(false);
+          }, 4500)
           setDisabled(false);
           setText("Submit");
         } else {
@@ -179,13 +182,14 @@ const Tour = ({ tour, setTour }) => {
                       </div>
                     </div>
                   ) : null}
-                  <input
+                  <textarea
                     type="text"
                     placeholder="Message"
                     name="message"
                     onChange={(e) => setMessage(e.target.value)}
                     required
-                  />
+                  >
+                  </textarea>
 
                   <button
                     className={Classes.btn}

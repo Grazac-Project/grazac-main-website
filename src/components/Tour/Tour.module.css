@@ -43,7 +43,8 @@
   margin: 0 auto 16px;
 }
 .form input,
-select {
+select,
+textarea {
   box-sizing: border-box;
   font-family: Graphik Trial;
   /* color: #afbaca; */
@@ -77,7 +78,7 @@ select {
   line-height: 150%; /* 21px */
   letter-spacing: 0.28px;
 }
-span {
+.text p span {
   color: #773dd3;
   font-family: Graphik Trial;
   font-size: 14px;
@@ -136,16 +137,14 @@ span {
   cursor: pointer;
 }
 .close span {
-  
-    font-family: "Montserrat", sans-serif;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 2rem;
-    line-height: 41px;
-    text-align: center;
-    font-variant: small-caps;
-    color: #ffffff;
-
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 2rem;
+  line-height: 41px;
+  text-align: center;
+  font-variant: small-caps;
+  color: #ffffff;
 }
 @media screen and (max-width: 1140px) {
   .close {
@@ -165,7 +164,8 @@ span {
 }
 @media screen and (max-width: 628px) {
   .form input,
-  select {
+  select,
+  textarea {
     width: 90%;
   }
   .calender {
