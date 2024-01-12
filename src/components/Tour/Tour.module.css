@@ -41,6 +41,7 @@
   border: 1px solid #afbaca;
   background: #fff;
   margin: 0 auto 16px;
+  cursor: pointer;
 }
 .form input,
 select,
@@ -104,6 +105,8 @@ textarea {
   border: none;
   margin: auto;
   margin-bottom: 19px;
+  cursor: pointer;
+
 }
 .text {
   text-align: center;
@@ -122,6 +125,8 @@ textarea {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  cursor: pointer;
+
 }
 .close {
   position: fixed;

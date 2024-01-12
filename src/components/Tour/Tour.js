@@ -63,6 +63,8 @@ const Tour = ({ tour, setTour }) => {
       })
       .catch((err) => {
         toast.error("Form submission not successful...");
+        setText("Submit");
+
         
       });
   };
@@ -133,12 +135,12 @@ const Tour = ({ tour, setTour }) => {
                     name="phoneNumber"
                     required
                   />
-                  <div className={Classes.calender}>
+                  <div className={Classes.calender} onClick={() => setDropdown(true)}>
                     <div>{date}</div>
                     <img
                       src={Dropdown}
                       alt="icon"
-                      onClick={() => setDropdown(true)}
+                      
                     />
                   </div>
                   {dropdown ? (
@@ -154,9 +156,9 @@ const Tour = ({ tour, setTour }) => {
                     </div>
                   ) : null}
 
-                  <div className={Classes.calender}>
+                  <div className={Classes.calender} onClick={handleChange2}>
                     <div>{time}</div>
-                    <img src={Dropdown} alt="icon" onClick={handleChange2} />
+                    <img src={Dropdown} alt="icon"  />
                   </div>
                   {dropdown2 ? (
                     <div
