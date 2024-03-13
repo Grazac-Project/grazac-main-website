@@ -474,7 +474,7 @@
 
         & > button {
           align-self: flex-start;
-          @media screen and( max-width: 600px ) {
+          @media screen and ( max-width: 600px ) {
             align-self: center !important;
           }
         }
