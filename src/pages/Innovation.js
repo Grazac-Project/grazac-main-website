@@ -577,11 +577,53 @@
 // };
 
 // export default Innovation;
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import executive from "../images/book/executive.png";
+import icon1 from "../images/book/icon1.svg";
+import icon2 from "../images/book/icon2.svg";
+import icon3 from "../images/book/icon3.svg";
+import icon4 from "../images/book/icon4.svg";
+import user from "../images/book/user.png";
+import image1 from "../images/book/image1.png";
+import image2 from "../images/book/image2.png";
+import image3 from "../images/book/image3.png";
+import review from "../images/book/review.png";
+
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 const Innovation = () => {
+  const [offer, setOffer] = useState(true);
+  const [offer1, setOffer1] = useState(true);
+  const [offer2, setOffer2] = useState(true);
+  const [offer3, setOffer3] = useState(true);
+
+  const handleCLick = () => {
+    setOffer1(false);
+    setOffer2(false);
+    setOffer3(false);
+    setOffer(true);
+  };
+  const handleCLick1 = () => {
+    setOffer1(true);
+    setOffer2(false);
+    setOffer3(false);
+    setOffer(false);
+  };
+  const handleCLick2 = () => {
+    setOffer1(false);
+    setOffer2(true);
+    setOffer3(false);
+    setOffer(false);
+  };
+  const handleCLick3 = () => {
+    setOffer1(false);
+    setOffer2(false);
+    setOffer3(true);
+    setOffer(false);
+  };
   return (
     <div className="innovation">
       <div className="innovation_hero">
@@ -601,27 +643,171 @@ const Innovation = () => {
             clients, partners and visitors
           </p>
           <div className="innovation_offer_wrapper_btnFlex">
-            <button>Executive Boardroom</button>
-            <button>Meeting Rooms</button>
-            <button>Relaxation Space</button>
-            <button>Dedicated Desks</button>
+            <button onClick={handleCLick} >Executive Boardroom</button>
+            <button onClick={handleCLick1}>Meeting Rooms</button>
+            <button onClick={handleCLick2}>Relaxation Space</button>
+            <button onClick={handleCLick3}>Dedicated Desks</button>
           </div>
         </div>
-        <div className="innovation_offer_executive">
-          <div className="innovation_offer_executive_text">
-            <h5>Executive Boardroom</h5>
-            <div>
-              <img src={executive} alt="build" />
+        {offer && (
+          <div className="innovation_offer_executive">
+            <div className="innovation_offer_executive_text">
+              <h5>Executive Boardroom</h5>
+              <div>
+                <img src={executive} alt="build" />
+              </div>
+              <p>
+                Get a unique experience with stunning interior elements that
+                makes your event memorable. Relax away from your desks and
+                recharge with drinks and games before taking on your next task.
+              </p>
+              <Link href="/">
+                <span>Take a Virtual Tour</span>
+              </Link>
             </div>
-            <p>
-              Get a unique experience with stunning interior elements that makes
-              your event memorable. Relax away from your desks and recharge with
-              drinks and games before taking on your next task.
-            </p>
-            <Link href="/">
-              <span>Take a Virtual Tour</span>
-            </Link>
           </div>
+        )}
+        {offer1 && (
+          <div className="innovation_offer_executive">
+            <div className="innovation_offer_executive_text">
+              <h5>Executive Boardroom</h5>
+              <div>
+                <img src={image1} alt="build" />
+              </div>
+              <p>
+                Get a unique experience with stunning interior elements that
+                makes your event memorable. Relax away from your desks and
+                recharge with drinks and games before taking on your next task.
+              </p>
+              <Link href="/">
+                <span>Take a Virtual Tour</span>
+              </Link>
+            </div>
+          </div>
+        )}
+        {offer2 && (
+          <div className="innovation_offer_executive">
+            <div className="innovation_offer_executive_text">
+              <h5>Executive Boardroom</h5>
+              <div>
+                <img src={image2} alt="build" />
+              </div>
+              <p>
+                Get a unique experience with stunning interior elements that
+                makes your event memorable. Relax away from your desks and
+                recharge with drinks and games before taking on your next task.
+              </p>
+              <Link href="/">
+                <span>Take a Virtual Tour</span>
+              </Link>
+            </div>
+          </div>
+        )}
+        {offer3 && (
+          <div className="innovation_offer_executive">
+            <div className="innovation_offer_executive_text">
+              <h5>Executive Boardroom</h5>
+              <div>
+                <img src={image3} alt="build" />
+              </div>
+              <p>
+                Get a unique experience with stunning interior elements that
+                makes your event memorable. Relax away from your desks and
+                recharge with drinks and games before taking on your next task.
+              </p>
+              <Link href="/">
+                <span>Take a Virtual Tour</span>
+              </Link>
+            </div>
+          </div>
+        )}
+      </div>
+      <div className="innovation_benefit">
+        <div className="innovation_benefit_text">
+          <h3>Benefits of our co-working space</h3>
+          <p>
+            Create a world where people work to make a life, not just a living.
+            A place where we’re redefining success measured by personal
+            fulfilment, not just the bottom line.
+          </p>
+        </div>
+        <div className="innovation_benefit_flex">
+          <div className="innovation_box">
+            <div className="innovation_box_text">
+              <img src={icon1} alt="img" />
+              <h6>40+</h6>
+              <span>Dedicated Desk</span>
+            </div>
+          </div>
+          <div className="innovation_box">
+            <div className="innovation_box_text">
+              <img src={icon2} alt="img" />
+              <h6>500mpbs</h6>
+              <span>High Speed Internet</span>
+            </div>
+          </div>
+          <div className="innovation_box">
+            <div className="innovation_box_text">
+              <img src={icon3} alt="img" />
+              <h6>Conducive</h6>
+              <span>Fully Air Conditioned</span>
+            </div>
+          </div>
+          <div className="innovation_box">
+            <div className="innovation_box_text">
+              <img src={icon3} alt="img" />
+              <h6>24hrs</h6>
+              <span>Power Supply</span>
+            </div>
+          </div>
+          <div className="innovation_box">
+            <div className="innovation_box_text">
+              <img src={icon4} alt="img" />
+              <h6>Secured</h6>
+              <span>Full Security Camera</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="innovation_gallery">
+        <div className="innovation_gallery_text">
+          <h1>Gallery</h1>
+          <p>Immersive beautiful, co-working space</p>
+          <div className="innovation_gallery_text_userFlex">
+            <img src={user} alt="img" />{" "}
+            <span> 20,000+ satisfied & Returning users</span>
+          </div>
+        </div>
+        {/* <Slider> */}
+        <img src={image1} alt="img" />
+        <img src={image2} alt="img" />
+        {/* <img src={image3} alt="img" /> */}
+        {/* </Slider> */}
+        <div className="innovation_hero_text">
+          <button>Book a tour</button>
+        </div>
+      </div>
+      <div className="innovation_review">
+        <h4>What Our Clients Say</h4>
+        <div className="innovation_review_flex">
+          <img src={review} alt="img" />
+          <div className="innovation_review_text">
+            <span>Well planned and standard</span>
+            <p>
+              This innovative space is well planned and standard. It has
+              improved my productivity a lot! Thumbs up to Grazac for this
+              amazing experience.
+            </p>
+            <h5>Ayomide Martins</h5>
+            <text>Freelancer</text>
+          </div>
+        </div>
+      </div>
+      <div className="innovation_community">
+        <div className="innovation_community_content">
+          <h6>Join other founder, freelancer, makers and many-hat wearers</h6>
+          <p>Join Grazac Community and take back control of your day</p>
+          <button>Join Community</button>
         </div>
       </div>
     </div>

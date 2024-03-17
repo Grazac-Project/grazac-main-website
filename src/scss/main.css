@@ -1735,7 +1735,7 @@ body {
 }
 
 .innovation_hero {
-  background-color: #140e1f;
+  background-image: url(/src/images/book/Hero.png);
   background-repeat: no-repeat;
   padding: 200px 0;
   margin: 0 auto;
@@ -1845,14 +1845,14 @@ body {
   width: 95%;
 }
 .innovation_offer_executive h5 {
-  font-family: Graphik Trial;
+  font-family: "Graphik Trial";
   font-size: 40px;
   font-weight: 600;
   line-height: 60px;
   color: #333333;
 }
 .innovation_offer_executive p {
-  font-family: Graphik Trial;
+  font-family: "Graphik Trial";
   font-size: 24px;
   font-weight: 400;
   line-height: 36px;
@@ -1862,7 +1862,7 @@ body {
   margin: 24px 0;
 }
 .innovation_offer_executive span {
-  font-family: Graphik Trial;
+  font-family: "Graphik Trial";
   font-size: 24px;
   font-weight: 500;
   line-height: 36px;
@@ -1874,6 +1874,253 @@ body {
 }
 .innovation_offer_executive img {
   width: 100%;
+}
+.innovation_benefit {
+  background-color: #fcf9ff;
+  padding: 40px 0;
+  width: 1440px;
+  margin: 132px 0;
+}
+@media screen and (max-width: 1440px) {
+  .innovation_benefit {
+    width: 100%;
+  }
+}
+.innovation_benefit_text {
+  width: 90%;
+  text-align: center;
+  margin: 0 auto;
+}
+.innovation_benefit_text h3 {
+  font-family: Graphik Trial;
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 48px;
+  color: #333333;
+  margin-bottom: 8px;
+}
+.innovation_benefit_text p {
+  font-family: Graphik Trial;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 36px;
+  letter-spacing: 0em;
+  color: #333333;
+}
+.innovation_benefit_flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin: 48px auto;
+  gap: 24px;
+}
+.innovation_box {
+  width: 20%;
+  padding: 24px;
+  border-radius: 16px;
+  gap: 8px;
+  border: 1px solid rgb(221, 221, 221);
+}
+.innovation_box_text {
+  margin: auto;
+  align-items: center;
+  text-align: center;
+}
+.innovation_box_text span {
+  font-family: Graphik Trial;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0em;
+  color: #333333;
+}
+.innovation_box_text h6 {
+  font-family: Graphik Trial;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 38px;
+  letter-spacing: 0em;
+  color: #333333;
+  margin: 8px 0;
+}
+.innovation_gallery {
+  width: 1440px;
+  margin: 0 auto;
+}
+@media screen and (max-width: 1440px) {
+  .innovation_gallery {
+    width: 100%;
+  }
+}
+.innovation_gallery_text {
+  width: 589px;
+  margin: 0 auto;
+}
+.innovation_gallery_text h1 {
+  font-family: Graphik Trial;
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 72px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #646464;
+  text-decoration: underline;
+}
+.innovation_gallery_text p {
+  font-family: Graphik Trial;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 48px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #646464;
+  margin: 16px 0;
+}
+.innovation_gallery_text span {
+  font-family: Graphik Trial;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 36px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #333333;
+}
+.innovation_gallery_text_userFlex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 18px 0;
+  margin: 0 auto;
+  background-color: #dccdf4;
+  font-family: Graphik Trial;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 36px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #333333;
+  border-radius: 16px;
+  margin-bottom: 32px;
+}
+.innovation_review {
+  width: 1440px;
+  margin: 40px auto;
+  background-image: url(/src/images/book/reviewBg.svg);
+  background-repeat: no-repeat;
+  background-position: top left;
+}
+@media screen and (max-width: 1440px) {
+  .innovation_review {
+    width: 100%;
+  }
+}
+.innovation_review h4 {
+  font-family: Graphik Trial;
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 72px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #333333;
+}
+.innovation_review_flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-image: url(/src/images/book/reviewBg1.png);
+  background-repeat: no-repeat;
+  background-position: bottom right;
+}
+.innovation_review_text {
+  width: 591px;
+}
+.innovation_review_text h5 {
+  font-family: Graphik Trial;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 38px;
+  letter-spacing: 0em;
+  color: #333333;
+}
+.innovation_review_text span {
+  font-family: Graphik Trial;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 36px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #333333;
+}
+.innovation_review_text p {
+  font-family: Graphik Trial;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 36px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #787676;
+  margin: 24px 0;
+}
+.innovation_review_text text {
+  font-family: Graphik Trial;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #773dd3;
+}
+.innovation_community {
+  width: 1440px;
+  margin: 0 auto;
+  padding: 80px 0;
+  background-image: url(/src/images/book/Stroke.png);
+  background-color: #773dd3;
+  border-radius: 16px;
+}
+@media screen and (max-width: 1440px) {
+  .innovation_community {
+    width: 90%;
+  }
+}
+.innovation_community_content {
+  width: 777px;
+  margin: 0 auto;
+  align-items: center;
+}
+.innovation_community_content h6 {
+  font-family: Graphik Trial;
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 48px;
+  text-align: center;
+  color: #fff;
+}
+.innovation_community_content p {
+  font-family: graphik;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: center;
+  color: #fff;
+  margin: 20px 0;
+}
+.innovation_community_content button {
+  display: flex;
+  margin: auto;
+  font-family: Graphik Trial;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: center;
+  padding: 17px 40px;
+  background-color: #e7a300;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
 }
 
 .tri {
