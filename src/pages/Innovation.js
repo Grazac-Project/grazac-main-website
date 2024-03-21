@@ -588,17 +588,19 @@ import user from "../images/book/user.png";
 import image1 from "../images/book/image1.png";
 import image2 from "../images/book/image2.png";
 import image3 from "../images/book/image3.png";
-import review from "../images/book/review.png";
+import avatar from "../images/book/avatar.png";
 
 // import "slick-carousel/slick/slick.css";
 // import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import { Splide, SplideSlide } from "@splidejs/react-splide";
+import "@splidejs/react-splide/css";
 
 const Innovation = () => {
   const [offer, setOffer] = useState(true);
-  const [offer1, setOffer1] = useState(true);
-  const [offer2, setOffer2] = useState(true);
-  const [offer3, setOffer3] = useState(true);
+  const [offer1, setOffer1] = useState(false);
+  const [offer2, setOffer2] = useState(false);
+  const [offer3, setOffer3] = useState(false);
 
   const handleCLick = () => {
     setOffer1(false);
@@ -624,6 +626,27 @@ const Innovation = () => {
     setOffer3(true);
     setOffer(false);
   };
+  const options = {
+    type: "loop",
+    gap: "10px",
+    autoplay: true,
+    pauseOnHover: true,
+    resetProgress: false,
+    // perPage: 3,
+    // speed: 1000, // Transition speed in milliseconds
+    // easing: "cubic-bezier(0.5, 0, 0.5, 1)", // Easing function for smooth motion
+  };
+  const options2 = {
+    type: "loop",
+    gap: "1rem",
+    autoplay: true,
+    pauseOnHover: true,
+    resetProgess: false,
+    arrows: false,
+    fixedWidth: "30vw",
+    speed: 100, // Transition speed in milliseconds
+    easing: "cubic-bezier(0.5, 0, 0.5, 0.5)", // Easing function for smooth motion
+  };
   return (
     <div className="innovation">
       <div className="innovation_hero">
@@ -643,129 +666,147 @@ const Innovation = () => {
             clients, partners and visitors
           </p>
           <div className="innovation_offer_wrapper_btnFlex">
-            <button onClick={handleCLick} >Executive Boardroom</button>
-            <button onClick={handleCLick1}>Meeting Rooms</button>
-            <button onClick={handleCLick2}>Relaxation Space</button>
-            <button onClick={handleCLick3}>Dedicated Desks</button>
+            <button
+              onClick={handleCLick}
+              style={{
+                backgroundColor: offer ? "#773dd3" : "transparent",
+                color: offer ? "#ffff" : "#5A5A5A",
+              }}
+            >
+              Executive Boardroom
+            </button>
+            <button
+              onClick={handleCLick1}
+              style={{
+                backgroundColor: offer1 ? "#773dd3" : "transparent",
+                color: offer1 ? "#ffff" : "#5A5A5A",
+              }}
+            >
+              Meeting Rooms
+            </button>
+            <button
+              onClick={handleCLick2}
+              style={{
+                backgroundColor: offer2 ? "#773dd3" : "transparent",
+                color: offer2 ? "#ffff" : "#5A5A5A",
+              }}
+            >
+              Relaxation Space
+            </button>
+            <button
+              onClick={handleCLick3}
+              style={{
+                backgroundColor: offer3 ? "#773dd3" : "transparent",
+                color: offer3 ? "#ffff" : "#5A5A5A",
+              }}
+            >
+              Dedicated Desks
+            </button>
           </div>
         </div>
         {offer && (
           <div className="innovation_offer_executive">
             <div className="innovation_offer_executive_text">
               <h5>Executive Boardroom</h5>
-              <div>
-                <img src={executive} alt="build" />
-              </div>
               <p>
                 Get a unique experience with stunning interior elements that
                 makes your event memorable. Relax away from your desks and
                 recharge with drinks and games before taking on your next task.
               </p>
-              <Link href="/">
-                <span>Take a Virtual Tour</span>
-              </Link>
+              <div>
+                <img src={executive} alt="build" />
+              </div>
             </div>
           </div>
         )}
         {offer1 && (
           <div className="innovation_offer_executive">
             <div className="innovation_offer_executive_text">
-              <h5>Executive Boardroom</h5>
-              <div>
-                <img src={image1} alt="build" />
-              </div>
+              <h5>Meeting Room</h5>
               <p>
                 Get a unique experience with stunning interior elements that
                 makes your event memorable. Relax away from your desks and
                 recharge with drinks and games before taking on your next task.
               </p>
-              <Link href="/">
-                <span>Take a Virtual Tour</span>
-              </Link>
+              <div>
+                <img src={executive} alt="build" />
+              </div>
             </div>
           </div>
         )}
         {offer2 && (
           <div className="innovation_offer_executive">
             <div className="innovation_offer_executive_text">
-              <h5>Executive Boardroom</h5>
-              <div>
-                <img src={image2} alt="build" />
-              </div>
+              <h5>Relaxation Space</h5>
               <p>
                 Get a unique experience with stunning interior elements that
                 makes your event memorable. Relax away from your desks and
                 recharge with drinks and games before taking on your next task.
               </p>
-              <Link href="/">
-                <span>Take a Virtual Tour</span>
-              </Link>
+              <div>
+                <img src={executive} alt="build" />
+              </div>
             </div>
           </div>
         )}
         {offer3 && (
           <div className="innovation_offer_executive">
             <div className="innovation_offer_executive_text">
-              <h5>Executive Boardroom</h5>
-              <div>
-                <img src={image3} alt="build" />
-              </div>
+              <h5>Dedicated Desk</h5>
               <p>
                 Get a unique experience with stunning interior elements that
                 makes your event memorable. Relax away from your desks and
                 recharge with drinks and games before taking on your next task.
               </p>
-              <Link href="/">
-                <span>Take a Virtual Tour</span>
-              </Link>
+              <div>
+                <img src={executive} alt="build" />
+              </div>
             </div>
           </div>
         )}
       </div>
       <div className="innovation_benefit">
-        <div className="innovation_benefit_text">
-          <h3>Benefits of our co-working space</h3>
-          <p>
-            Create a world where people work to make a life, not just a living.
-            A place where we’re redefining success measured by personal
-            fulfilment, not just the bottom line.
-          </p>
-        </div>
-        <div className="innovation_benefit_flex">
-          <div className="innovation_box">
-            <div className="innovation_box_text">
-              <img src={icon1} alt="img" />
-              <h6>40+</h6>
-              <span>Dedicated Desk</span>
-            </div>
+        <h5>Benefits of using our co-working space</h5>
+        <div className="innovation_benefit_grid">
+          <div className="innovation_benefit_grid_items">
+            <img src={icon4} alt=" img" />
+            <h6>40+ Dedicated Desk</h6>
+            <p>
+              Create a world where people work to make a life, not just a
+              living.{" "}
+            </p>
           </div>
-          <div className="innovation_box">
-            <div className="innovation_box_text">
-              <img src={icon2} alt="img" />
-              <h6>500mpbs</h6>
-              <span>High Speed Internet</span>
-            </div>
-          </div>
-          <div className="innovation_box">
-            <div className="innovation_box_text">
-              <img src={icon3} alt="img" />
-              <h6>Conducive</h6>
-              <span>Fully Air Conditioned</span>
-            </div>
-          </div>
-          <div className="innovation_box">
-            <div className="innovation_box_text">
-              <img src={icon3} alt="img" />
-              <h6>24hrs</h6>
-              <span>Power Supply</span>
-            </div>
-          </div>
-          <div className="innovation_box">
-            <div className="innovation_box_text">
-              <img src={icon4} alt="img" />
-              <h6>Secured</h6>
-              <span>Full Security Camera</span>
-            </div>
+          <div className="innovation_benefit_grid_items">
+            <img src={icon4} alt=" img" />
+            <h6>40+ Dedicated Desk</h6>
+            <p>
+              Create a world where people work to make a life, not just a
+              living.{" "}
+            </p>
+          </div>{" "}
+          <div className="innovation_benefit_grid_items">
+            <img src={icon4} alt=" img" />
+            <h6>24hrs Power Supply</h6>
+            <p>
+              Create a world where people work to make a life, not just a
+              living.{" "}
+            </p>
+          </div>{" "}
+          <div className="innovation_benefit_grid_items">
+            <img src={icon4} alt=" img" />
+            <h6>Conducive Environment</h6>
+            <p>
+              Create a world where people work to make a life, not just a
+              living.{" "}
+            </p>
+          </div>{" "}
+          <div className="innovation_benefit_grid_items">
+            <img src={icon4} alt=" img" />
+            <h6>500mbps Internet</h6>
+            <p>
+              Create a world where people work to make a life, not just a
+              living.{" "}
+            </p>
           </div>
         </div>
       </div>
@@ -778,29 +819,111 @@ const Innovation = () => {
             <span> 20,000+ satisfied & Returning users</span>
           </div>
         </div>
-        {/* <Slider> */}
-        <img src={image1} alt="img" />
-        <img src={image2} alt="img" />
-        {/* <img src={image3} alt="img" /> */}
-        {/* </Slider> */}
+        <div>
+          <Splide options={options2}>
+            <SplideSlide>
+              <div className="innovation_image">
+                <img src={image1} alt="img" />
+              </div>
+            </SplideSlide>
+            <SplideSlide>
+              <div className="innovation_image">
+                <img src={image2} alt="img" />
+              </div>
+            </SplideSlide>
+            <SplideSlide>
+              <div className="innovation_image">
+                <img src={image3} alt="img" />
+              </div>
+            </SplideSlide>
+          </Splide>
+        </div>
+        <div>
+          <Splide options={options2}>
+            <SplideSlide>
+              <div className="innovation_image">
+                <img src={image1} alt="img" />
+              </div>
+            </SplideSlide>
+            <SplideSlide>
+              <div className="innovation_image">
+                <img src={image2} alt="img" />
+              </div>
+            </SplideSlide>
+            <SplideSlide>
+              <div className="innovation_image">
+                <img src={image3} alt="img" />
+              </div>
+            </SplideSlide>
+          </Splide>
+        </div>
         <div className="innovation_hero_text">
           <button>Book a tour</button>
         </div>
       </div>
       <div className="innovation_review">
-        <h4>What Our Clients Say</h4>
-        <div className="innovation_review_flex">
-          <img src={review} alt="img" />
-          <div className="innovation_review_text">
-            <span>Well planned and standard</span>
-            <p>
-              This innovative space is well planned and standard. It has
-              improved my productivity a lot! Thumbs up to Grazac for this
-              amazing experience.
-            </p>
-            <h5>Ayomide Martins</h5>
-            <text>Freelancer</text>
-          </div>
+        <div className="innovation_review_innerCon">
+
+        <h4>Customer testimonials</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <Splide options={options}>
+          <SplideSlide className="innovation_review_items">
+            <h5>
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Suspendisse varius enim in eros elementum tristique. Duis cursus,
+              mi quis viverra ornare."
+            </h5>
+            <div className="innovation_review_items_flex">
+              <img src={avatar} alt="img" />
+              <div>
+                <h6>Olalekan</h6>
+                <span>UX Designer</span>
+              </div>
+            </div>
+          </SplideSlide>
+          <SplideSlide className="innovation_review_items">
+            <h5>
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Suspendisse varius enim in eros elementum tristique. Duis cursus,
+              mi quis viverra ornare."
+            </h5>
+            <div className="innovation_review_items_flex">
+              <img src={avatar} alt="img" />
+              <div>
+                <h6>Olalekan</h6>
+                <span>UX Designer</span>
+              </div>
+            </div>
+          </SplideSlide>{" "}
+          <SplideSlide className="innovation_review_items">
+            <h5>
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Suspendisse varius enim in eros elementum tristique. Duis cursus,
+              mi quis viverra ornare."
+            </h5>
+            <div className="innovation_review_items_flex">
+              <img src={avatar} alt="img" />
+              <div>
+                <h6>Olalekan</h6>
+                <span>UX Designer</span>
+              </div>
+            </div>
+          </SplideSlide>
+          <SplideSlide className="innovation_review_items">
+            <h5>
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Suspendisse varius enim in eros elementum tristique. Duis cursus,
+              mi quis viverra ornare."
+            </h5>
+            <div className="innovation_review_items_flex">
+              <img src={avatar} alt="img" />
+              <div>
+                <h6>Olalekan</h6>
+                <span>UX Designer</span>
+              </div>
+            </div>
+          </SplideSlide>
+        </Splide>
         </div>
       </div>
       <div className="innovation_community">
