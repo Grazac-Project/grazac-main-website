@@ -577,7 +577,7 @@
 // };
 
 // export default Innovation;
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import executive from "../images/book/executive.png";
 import icon1 from "../images/book/icon1.svg";
@@ -589,42 +589,22 @@ import image1 from "../images/book/image1.png";
 import image2 from "../images/book/image2.png";
 import image3 from "../images/book/image3.png";
 import avatar from "../images/book/avatar.png";
-
-// import "slick-carousel/slick/slick.css";
-// import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 
 const Innovation = () => {
-  const [offer, setOffer] = useState(true);
-  const [offer1, setOffer1] = useState(false);
-  const [offer2, setOffer2] = useState(false);
-  const [offer3, setOffer3] = useState(false);
+  const [selectedOffer, setSelectedOffer] = useState(0);
 
-  const handleCLick = () => {
-    setOffer1(false);
-    setOffer2(false);
-    setOffer3(false);
-    setOffer(true);
-  };
-  const handleCLick1 = () => {
-    setOffer1(true);
-    setOffer2(false);
-    setOffer3(false);
-    setOffer(false);
-  };
-  const handleCLick2 = () => {
-    setOffer1(false);
-    setOffer2(true);
-    setOffer3(false);
-    setOffer(false);
-  };
-  const handleCLick3 = () => {
-    setOffer1(false);
-    setOffer2(false);
-    setOffer3(true);
-    setOffer(false);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSelectedOffer((prevSelectedOffer) => (prevSelectedOffer + 1) % 4);
+    }, 1500);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleClick = (index) => {
+    setSelectedOffer(index);
   };
   const options = {
     type: "loop",
@@ -643,10 +623,33 @@ const Innovation = () => {
     pauseOnHover: true,
     resetProgess: false,
     arrows: false,
-    fixedWidth: "30vw",
-    speed: 100, // Transition speed in milliseconds
+    dots: false,
+    speed: 1000, // Transition speed in milliseconds
     easing: "cubic-bezier(0.5, 0, 0.5, 0.5)", // Easing function for smooth motion
   };
+
+  const [position, setPosition] = useState(0);
+  const [position2, setPosition2] = useState(0);
+
+  const trainLength = 3; // Number of train cars
+  const screenWidth = 500; // Width of the screen (adjust as needed)
+  // const intervalDuration = 1000
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPosition((prevPosition) => (prevPosition + 1) % trainLength);
+    }, 1000); // Change speed as needed
+    const interval2 = setInterval(() => {
+      setPosition2(
+        (prevPosition) => (prevPosition - 1 + trainLength) % trainLength
+      );
+    }, 1000); // Change speed as needed
+
+    return () => {
+      clearInterval(interval);
+      clearInterval(interval2);
+    };
+  }, []);
+
   return (
     <div className="innovation">
       <div className="innovation_hero">
@@ -667,44 +670,48 @@ const Innovation = () => {
           </p>
           <div className="innovation_offer_wrapper_btnFlex">
             <button
-              onClick={handleCLick}
+              onClick={() => handleClick(0)}
               style={{
-                backgroundColor: offer ? "#773dd3" : "transparent",
-                color: offer ? "#ffff" : "#5A5A5A",
+                backgroundColor:
+                  selectedOffer === 0 ? "#773dd3" : "transparent",
+                color: selectedOffer === 0 ? "#ffff" : "#5A5A5A",
               }}
             >
               Executive Boardroom
             </button>
             <button
-              onClick={handleCLick1}
+              onClick={() => handleClick(1)}
               style={{
-                backgroundColor: offer1 ? "#773dd3" : "transparent",
-                color: offer1 ? "#ffff" : "#5A5A5A",
+                backgroundColor:
+                  selectedOffer === 1 ? "#773dd3" : "transparent",
+                color: selectedOffer === 1 ? "#ffff" : "#5A5A5A",
               }}
             >
               Meeting Rooms
             </button>
             <button
-              onClick={handleCLick2}
+              onClick={() => handleClick(2)}
               style={{
-                backgroundColor: offer2 ? "#773dd3" : "transparent",
-                color: offer2 ? "#ffff" : "#5A5A5A",
+                backgroundColor:
+                  selectedOffer === 2 ? "#773dd3" : "transparent",
+                color: selectedOffer === 2 ? "#ffff" : "#5A5A5A",
               }}
             >
               Relaxation Space
             </button>
             <button
-              onClick={handleCLick3}
+              onClick={() => handleClick(3)}
               style={{
-                backgroundColor: offer3 ? "#773dd3" : "transparent",
-                color: offer3 ? "#ffff" : "#5A5A5A",
+                backgroundColor:
+                  selectedOffer === 3 ? "#773dd3" : "transparent",
+                color: selectedOffer === 3 ? "#ffff" : "#5A5A5A",
               }}
             >
               Dedicated Desks
             </button>
           </div>
         </div>
-        {offer && (
+        {selectedOffer === 0 && (
           <div className="innovation_offer_executive">
             <div className="innovation_offer_executive_text">
               <h5>Executive Boardroom</h5>
@@ -719,7 +726,7 @@ const Innovation = () => {
             </div>
           </div>
         )}
-        {offer1 && (
+        {selectedOffer === 1 && (
           <div className="innovation_offer_executive">
             <div className="innovation_offer_executive_text">
               <h5>Meeting Room</h5>
@@ -734,7 +741,7 @@ const Innovation = () => {
             </div>
           </div>
         )}
-        {offer2 && (
+        {selectedOffer === 2 && (
           <div className="innovation_offer_executive">
             <div className="innovation_offer_executive_text">
               <h5>Relaxation Space</h5>
@@ -749,7 +756,7 @@ const Innovation = () => {
             </div>
           </div>
         )}
-        {offer3 && (
+        {selectedOffer === 3 && (
           <div className="innovation_offer_executive">
             <div className="innovation_offer_executive_text">
               <h5>Dedicated Desk</h5>
@@ -764,7 +771,87 @@ const Innovation = () => {
             </div>
           </div>
         )}
+        <Splide options={options2}>
+          <SplideSlide className="innovation_offer_wrapper2">
+            <div className="innovation_offer_wrapper2_btn">
+              <button>Executive Boardroom</button>
+            </div>
+            <div className="innovation_offer_executive2">
+              <div className="innovation_offer_executive_2text">
+                <h5>Executive Boardroom</h5>
+                <p>
+                  Get a unique experience with stunning interior elements that
+                  makes your event memorable. Relax away from your desks and
+                  recharge with drinks and games before taking on your next
+                  task.
+                </p>
+                <div>
+                  <img src={executive} alt="build" />
+                </div>
+              </div>
+            </div>
+          </SplideSlide>
+
+          <SplideSlide className="innovation_offer_wrapper2">
+            <div className="innovation_offer_wrapper2_btn">
+              <button>Meeting Rooms</button>
+            </div>
+            <div className="innovation_offer_executive2">
+              <div className="innovation_offer_executive2_text">
+                <h5>Meeting Room</h5>
+                <p>
+                  Get a unique experience with stunning interior elements that
+                  makes your event memorable. Relax away from your desks and
+                  recharge with drinks and games before taking on your next
+                  task.
+                </p>
+                <div>
+                  <img src={executive} alt="build" />
+                </div>
+              </div>
+            </div>
+          </SplideSlide>
+          <SplideSlide className="innovation_offer_wrapper2">
+            <div className="innovation_offer_wrapper2_btn">
+              <button>Relaxation Space</button>
+            </div>
+            <div className="innovation_offer_executive2">
+              <div className="innovation_offer_executive2_text">
+                <h5>Relaxation Space</h5>
+                <p>
+                  Get a unique experience with stunning interior elements that
+                  makes your event memorable. Relax away from your desks and
+                  recharge with drinks and games before taking on your next
+                  task.
+                </p>
+                <div>
+                  <img src={executive} alt="build" />
+                </div>
+              </div>
+            </div>
+          </SplideSlide>
+          <SplideSlide className="innovation_offer_wrapper2">
+            <div className="innovation_offer_wrapper2_btn">
+              <button>Dedicated Desks</button>
+            </div>
+            <div className="innovation_offer_executive2">
+              <div className="innovation_offer_executive2_text">
+                <h5>Dedicated Desk</h5>
+                <p>
+                  Get a unique experience with stunning interior elements that
+                  makes your event memorable. Relax away from your desks and
+                  recharge with drinks and games before taking on your next
+                  task.
+                </p>
+                <div>
+                  <img src={executive} alt="build" />
+                </div>
+              </div>
+            </div>
+          </SplideSlide>
+        </Splide>
       </div>
+
       <div className="innovation_benefit">
         <h5>Benefits of using our co-working space</h5>
         <div className="innovation_benefit_grid">
@@ -820,42 +907,44 @@ const Innovation = () => {
           </div>
         </div>
         <div>
-          <Splide options={options2}>
-            <SplideSlide>
-              <div className="innovation_image">
-                <img src={image1} alt="img" />
-              </div>
-            </SplideSlide>
-            <SplideSlide>
-              <div className="innovation_image">
-                <img src={image2} alt="img" />
-              </div>
-            </SplideSlide>
-            <SplideSlide>
-              <div className="innovation_image">
-                <img src={image3} alt="img" />
-              </div>
-            </SplideSlide>
-          </Splide>
+          <div
+            className="innovation_splideCon"
+            style={{
+              transform: `translateX(${
+                position * (screenWidth / trainLength)
+              }px)`,
+            }}
+          >
+            <div className="innovation_image">
+              <img src={image1} alt="img" />
+            </div>
+            <div className="innovation_image">
+              <img src={image2} alt="img" />
+            </div>
+            <div className="innovation_image">
+              <img src={image3} alt="img" />
+            </div>
+          </div>
         </div>
         <div>
-          <Splide options={options2}>
-            <SplideSlide>
-              <div className="innovation_image">
-                <img src={image1} alt="img" />
-              </div>
-            </SplideSlide>
-            <SplideSlide>
-              <div className="innovation_image">
-                <img src={image2} alt="img" />
-              </div>
-            </SplideSlide>
-            <SplideSlide>
-              <div className="innovation_image">
-                <img src={image3} alt="img" />
-              </div>
-            </SplideSlide>
-          </Splide>
+          <div
+            className="innovation_splideCon"
+            style={{
+              transform: `translateX(${
+                position2 * (screenWidth / trainLength)
+              }px)`,
+            }}
+          >
+            <div className="innovation_image">
+              <img src={image1} alt="img" />
+            </div>
+            <div className="innovation_image">
+              <img src={image2} alt="img" />
+            </div>
+            <div className="innovation_image">
+              <img src={image3} alt="img" />
+            </div>
+          </div>
         </div>
         <div className="innovation_hero_text">
           <button>Book a tour</button>
@@ -863,67 +952,66 @@ const Innovation = () => {
       </div>
       <div className="innovation_review">
         <div className="innovation_review_innerCon">
-
-        <h4>Customer testimonials</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        <Splide options={options}>
-          <SplideSlide className="innovation_review_items">
-            <h5>
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse varius enim in eros elementum tristique. Duis cursus,
-              mi quis viverra ornare."
-            </h5>
-            <div className="innovation_review_items_flex">
-              <img src={avatar} alt="img" />
-              <div>
-                <h6>Olalekan</h6>
-                <span>UX Designer</span>
+          <h4>Customer testimonials</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <Splide options={options}>
+            <SplideSlide className="innovation_review_items">
+              <h5>
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse varius enim in eros elementum tristique. Duis
+                cursus, mi quis viverra ornare."
+              </h5>
+              <div className="innovation_review_items_flex">
+                <img src={avatar} alt="img" />
+                <div>
+                  <h6>Olalekan</h6>
+                  <span>UX Designer</span>
+                </div>
               </div>
-            </div>
-          </SplideSlide>
-          <SplideSlide className="innovation_review_items">
-            <h5>
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse varius enim in eros elementum tristique. Duis cursus,
-              mi quis viverra ornare."
-            </h5>
-            <div className="innovation_review_items_flex">
-              <img src={avatar} alt="img" />
-              <div>
-                <h6>Olalekan</h6>
-                <span>UX Designer</span>
+            </SplideSlide>
+            <SplideSlide className="innovation_review_items">
+              <h5>
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse varius enim in eros elementum tristique. Duis
+                cursus, mi quis viverra ornare."
+              </h5>
+              <div className="innovation_review_items_flex">
+                <img src={avatar} alt="img" />
+                <div>
+                  <h6>Olalekan</h6>
+                  <span>UX Designer</span>
+                </div>
               </div>
-            </div>
-          </SplideSlide>{" "}
-          <SplideSlide className="innovation_review_items">
-            <h5>
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse varius enim in eros elementum tristique. Duis cursus,
-              mi quis viverra ornare."
-            </h5>
-            <div className="innovation_review_items_flex">
-              <img src={avatar} alt="img" />
-              <div>
-                <h6>Olalekan</h6>
-                <span>UX Designer</span>
+            </SplideSlide>{" "}
+            <SplideSlide className="innovation_review_items">
+              <h5>
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse varius enim in eros elementum tristique. Duis
+                cursus, mi quis viverra ornare."
+              </h5>
+              <div className="innovation_review_items_flex">
+                <img src={avatar} alt="img" />
+                <div>
+                  <h6>Olalekan</h6>
+                  <span>UX Designer</span>
+                </div>
               </div>
-            </div>
-          </SplideSlide>
-          <SplideSlide className="innovation_review_items">
-            <h5>
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse varius enim in eros elementum tristique. Duis cursus,
-              mi quis viverra ornare."
-            </h5>
-            <div className="innovation_review_items_flex">
-              <img src={avatar} alt="img" />
-              <div>
-                <h6>Olalekan</h6>
-                <span>UX Designer</span>
+            </SplideSlide>
+            <SplideSlide className="innovation_review_items">
+              <h5>
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse varius enim in eros elementum tristique. Duis
+                cursus, mi quis viverra ornare."
+              </h5>
+              <div className="innovation_review_items_flex">
+                <img src={avatar} alt="img" />
+                <div>
+                  <h6>Olalekan</h6>
+                  <span>UX Designer</span>
+                </div>
               </div>
-            </div>
-          </SplideSlide>
-        </Splide>
+            </SplideSlide>
+          </Splide>
         </div>
       </div>
       <div className="innovation_community">
