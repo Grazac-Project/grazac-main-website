@@ -586,11 +586,11 @@
 
     &_wrapper {
       width: 1440px;
-      
+
       @media screen and (max-width: 1440px) {
         width: 100%;
       }
-      
+
       &_text {
         text-align: center;
         margin: 0 auto;
@@ -1113,19 +1113,20 @@
     }
   }
   &_image {
-    max-width: 40%;
+    max-width: 10%;
     border-radius: 12px;
     // height: fit-content;
   }
   &_splideCon {
     margin-bottom: 20px;
-    width: 100%;
-    overflow: hidden;
+    
   }
   &_imageCon {
     transition: transform 5s linear;
     display: flex;
     gap: 10px;
+    max-width:  100%;
+    overflow: hidden;
   }
   &_line {
     position: absolute;
@@ -1142,7 +1143,40 @@
     right: 41%;
     @media screen and (max-width: 425px) {
       right: 25%;
-      top: 25%
-      }
+      top: 25%;
+    }
+  }
+  &_slide {
+    animation: scrollRight 3s linear infinite;
+    display: flex;
+    width: calc(750px * 2.88);
+    overflow: hidden;
+    gap: 10px;
+  }
+  &_slide2 {
+    overflow: hidden;
+    animation: scroll 3s linear infinite;
+    display: flex;
+    width: calc(750px * 1.88);
+    gap: 10px;
+    margin-bottom: 20px;
+    
+  }
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-768px * 2.44));
+    }
+  }
+
+  @keyframes scrollRight {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(768px * 2.44));
+    }
   }
 }

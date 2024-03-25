@@ -626,49 +626,29 @@ const Innovation = () => {
     resetProgess: false,
     arrows: false,
     dots: false,
-    speed: 1000, // Transition speed in milliseconds
-    easing: "cubic-bezier(0.5, 0, 0.5, 0.5)", // Easing function for smooth motion
+    speed: 1000,
+    easing: "cubic-bezier(0.5, 0, 0.5, 0.5)",
   };
-  const [position, setPosition] = useState(0);
-  const [position2, setPosition2] = useState(0);
+  const texts = ["productivity", "Creativity"];
+  const images = [avatar, image3];
 
-  const containerRef = useRef(null);
-  const imageRef = useRef(null);
-  const imageRef2 = useRef(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex2, setCurrentIndex2] = useState(0);
+
 
   useEffect(() => {
-    const containerWidth = containerRef.current.offsetWidth;
-    const imageWidth = imageRef.current.offsetWidth;
-    const imageWidth2 = imageRef2.current.offsetWidth;
+    const intervalId = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % texts.length);
+    }, 2000);
 
-    let animationId;
-    let animationId2;
+    const Image = setInterval(() => {
+      setCurrentIndex2((prevIndex) => (prevIndex + 1) % images.length);
+    }, 2000);
 
-    const moveImages = () => {
-      setPosition((prevPosition) => {
-        const newPosition = (prevPosition - 2) % imageWidth;
-        return newPosition <= -containerWidth
-          ? newPosition + containerWidth
-          : newPosition;
-      });
-      animationId = requestAnimationFrame(moveImages);
-    };
-    const moveImages2 = () => {
-      setPosition2((prevPosition) => {
-        const newPosition2 = (prevPosition + 2) % imageWidth2;
-        return newPosition2 >= containerWidth
-          ? newPosition2 + containerWidth + containerWidth
-          : newPosition2;
-      });
-      animationId2 = requestAnimationFrame(moveImages2);
-    };
-    moveImages();
-    moveImages2();
-
-    return () => {
-      cancelAnimationFrame(animationId);
-      cancelAnimationFrame(animationId2);
-    };
+    return () =>{
+      clearInterval(intervalId)
+      clearInterval(Image)
+    } ;
   }, []);
 
   return (
@@ -677,9 +657,11 @@ const Innovation = () => {
         <div className="innovation_hero_text">
           <h4>
             A creative environment that will boost your{" "}
-            <span>productivity</span>
+            <span>{texts[currentIndex]}</span>
           </h4>
-          <button className="">Book a space</button>
+          <Link to="/co">
+            <button className="">Book a space</button>
+          </Link>
         </div>
       </div>
       <div className="innovation_offer">
@@ -929,16 +911,12 @@ const Innovation = () => {
 
           <p>Immersive beautiful, co-working space</p>
           <div className="innovation_gallery_text_userFlex">
-            <img src={user} alt="img" />{" "}
+            {[currentIndex2]}{" "}
             <span> 20,000+ satisfied & Returning users</span>
           </div>
         </div>
-        <div className="innovation_splideCon" ref={containerRef}>
-          <div
-            className="innovation_imageCon"
-            ref={imageRef2}
-            style={{ transform: `translatex(${position2}px)` }}
-          >
+        <div className="innovation_imageCon">
+          <div div className="innovation_slide2">
             <div className="innovation_image">
               <img src={image1} alt="img" />
             </div>
@@ -968,12 +946,8 @@ const Innovation = () => {
             </div>
           </div>
         </div>
-        <div className="innovation_splideCon" ref={containerRef}>
-          <div
-            className="innovation_imageCon"
-            ref={imageRef}
-            style={{ transform: `translatex(${position}px)` }}
-          >
+        <div className="innovation_imageCon">
+          <div className="innovation_slide">
             <div className="innovation_image">
               <img src={image1} alt="img" />
             </div>
@@ -1003,6 +977,7 @@ const Innovation = () => {
             </div>
           </div>
         </div>
+
         <div className="innovation_hero_text">
           <button>Book a tour</button>
         </div>

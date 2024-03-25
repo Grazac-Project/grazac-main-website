@@ -2437,18 +2437,18 @@ body {
   border-radius: 8px;
 }
 .innovation_image {
-  max-width: 40%;
+  max-width: 10%;
   border-radius: 12px;
 }
 .innovation_splideCon {
   margin-bottom: 20px;
-  width: 100%;
-  overflow: hidden;
 }
 .innovation_imageCon {
   transition: transform 5s linear;
   display: flex;
   gap: 10px;
+  max-width: 100%;
+  overflow: hidden;
 }
 .innovation_line {
   position: absolute;
@@ -2470,6 +2470,37 @@ body {
   .innovation_line2 {
     right: 25%;
     top: 25%;
+  }
+}
+.innovation_slide {
+  animation: scrollRight 3s linear infinite;
+  display: flex;
+  width: 2160px;
+  overflow: hidden;
+  gap: 10px;
+}
+.innovation_slide2 {
+  overflow: hidden;
+  animation: scroll 3s linear infinite;
+  display: flex;
+  width: 1410px;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-1873.92px);
+  }
+}
+@keyframes scrollRight {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(1873.92px);
   }
 }
 
