@@ -2442,8 +2442,8 @@ body {
 }
 .innovation_splideCon {
   margin-bottom: 20px;
-  width: 1440px;
-  overflow-x: -100px;
+  width: 100%;
+  overflow: hidden;
 }
 .innovation_imageCon {
   transition: transform 5s linear;
