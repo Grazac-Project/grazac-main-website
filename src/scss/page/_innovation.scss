@@ -1120,7 +1120,7 @@
   &_splideCon {
     margin-bottom: 20px;
     width: 1440px;
-    overflow-x: -100px;
+    overflow:hidden;1
   }
   &_imageCon {
     transition: transform 5s linear;
