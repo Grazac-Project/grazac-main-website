@@ -577,7 +577,7 @@
 // };
 
 // export default Innovation;
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import executive from "../images/book/executive.png";
 import icon1 from "../images/book/icon1.svg";
@@ -589,6 +589,8 @@ import image1 from "../images/book/image1.png";
 import image2 from "../images/book/image2.png";
 import image3 from "../images/book/image3.png";
 import avatar from "../images/book/avatar.png";
+import line from "../images/book/underline.png";
+
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 
@@ -627,26 +629,45 @@ const Innovation = () => {
     speed: 1000, // Transition speed in milliseconds
     easing: "cubic-bezier(0.5, 0, 0.5, 0.5)", // Easing function for smooth motion
   };
-
   const [position, setPosition] = useState(0);
   const [position2, setPosition2] = useState(0);
 
-  const trainLength = 3; // Number of train cars
-  const screenWidth = 500; // Width of the screen (adjust as needed)
-  // const intervalDuration = 1000
+  const containerRef = useRef(null);
+  const imageRef = useRef(null);
+  const imageRef2 = useRef(null);
+
   useEffect(() => {
-    const interval = setInterval(() => {
-      setPosition((prevPosition) => (prevPosition + 1) % trainLength);
-    }, 1000); // Change speed as needed
-    const interval2 = setInterval(() => {
-      setPosition2(
-        (prevPosition) => (prevPosition - 1 + trainLength) % trainLength
-      );
-    }, 1000); // Change speed as needed
+    const containerWidth = containerRef.current.offsetWidth;
+    const imageWidth = imageRef.current.offsetWidth;
+    const imageWidth2 = imageRef2.current.offsetWidth;
+
+    let animationId;
+    let animationId2;
+
+    const moveImages = () => {
+      setPosition((prevPosition) => {
+        const newPosition = (prevPosition - 2) % imageWidth;
+        return newPosition <= -containerWidth
+          ? newPosition + containerWidth
+          : newPosition;
+      });
+      animationId = requestAnimationFrame(moveImages);
+    };
+    const moveImages2 = () => {
+      setPosition2((prevPosition) => {
+        const newPosition2 = (prevPosition + 2) % imageWidth2;
+        return newPosition2 >= containerWidth
+          ? newPosition2 + containerWidth + containerWidth
+          : newPosition2;
+      });
+      animationId2 = requestAnimationFrame(moveImages2);
+    };
+    moveImages();
+    moveImages2();
 
     return () => {
-      clearInterval(interval);
-      clearInterval(interval2);
+      cancelAnimationFrame(animationId);
+      cancelAnimationFrame(animationId2);
     };
   }, []);
 
@@ -663,11 +684,15 @@ const Innovation = () => {
       </div>
       <div className="innovation_offer">
         <div className="innovation_offer_wrapper">
-          <h5>Our Offers</h5>
-          <p>
-            We have an inviting workspace with an amiable effect on both
-            clients, partners and visitors
-          </p>
+          <div className="innovation_offer_wrapper_text">
+            <h5>Our Offers</h5>
+            <img src={line} alt="line" className="innovation_line2" />
+
+            <p>
+              We have an inviting workspace with an amiable effect on both
+              clients, partners and visitors
+            </p>
+          </div>
           <div className="innovation_offer_wrapper_btnFlex">
             <button
               onClick={() => handleClick(0)}
@@ -900,21 +925,38 @@ const Innovation = () => {
       <div className="innovation_gallery">
         <div className="innovation_gallery_text">
           <h1>Gallery</h1>
+          <img src={line} alt="line" className="innovation_line" />
+
           <p>Immersive beautiful, co-working space</p>
           <div className="innovation_gallery_text_userFlex">
             <img src={user} alt="img" />{" "}
             <span> 20,000+ satisfied & Returning users</span>
           </div>
         </div>
-        <div>
+        <div className="innovation_splideCon" ref={containerRef}>
           <div
-            className="innovation_splideCon"
-            style={{
-              transform: `translateX(${
-                position * (screenWidth / trainLength)
-              }px)`,
-            }}
+            className="innovation_imageCon"
+            ref={imageRef2}
+            style={{ transform: `translatex(${position2}px)` }}
           >
+            <div className="innovation_image">
+              <img src={image1} alt="img" />
+            </div>
+            <div className="innovation_image">
+              <img src={image2} alt="img" />
+            </div>
+            <div className="innovation_image">
+              <img src={image3} alt="img" />
+            </div>
+            <div className="innovation_image">
+              <img src={image1} alt="img" />
+            </div>
+            <div className="innovation_image">
+              <img src={image2} alt="img" />
+            </div>
+            <div className="innovation_image">
+              <img src={image3} alt="img" />
+            </div>
             <div className="innovation_image">
               <img src={image1} alt="img" />
             </div>
@@ -926,15 +968,30 @@ const Innovation = () => {
             </div>
           </div>
         </div>
-        <div>
+        <div className="innovation_splideCon" ref={containerRef}>
           <div
-            className="innovation_splideCon"
-            style={{
-              transform: `translateX(${
-                position2 * (screenWidth / trainLength)
-              }px)`,
-            }}
+            className="innovation_imageCon"
+            ref={imageRef}
+            style={{ transform: `translatex(${position}px)` }}
           >
+            <div className="innovation_image">
+              <img src={image1} alt="img" />
+            </div>
+            <div className="innovation_image">
+              <img src={image2} alt="img" />
+            </div>
+            <div className="innovation_image">
+              <img src={image3} alt="img" />
+            </div>
+            <div className="innovation_image">
+              <img src={image1} alt="img" />
+            </div>
+            <div className="innovation_image">
+              <img src={image2} alt="img" />
+            </div>
+            <div className="innovation_image">
+              <img src={image3} alt="img" />
+            </div>
             <div className="innovation_image">
               <img src={image1} alt="img" />
             </div>
@@ -953,6 +1010,8 @@ const Innovation = () => {
       <div className="innovation_review">
         <div className="innovation_review_innerCon">
           <h4>Customer testimonials</h4>
+          <img src={line} alt="line" className="innovation_line" />
+
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
           <Splide options={options}>
             <SplideSlide className="innovation_review_items">

@@ -1855,34 +1855,34 @@ body {
 }
 .innovation_offer_wrapper {
   width: 1440px;
-  text-align: center;
-  margin: 0 auto;
 }
 @media screen and (max-width: 1440px) {
   .innovation_offer_wrapper {
     width: 100%;
   }
 }
-@media screen and (max-width: 768px) {
-  .innovation_offer_wrapper {
-    display: none;
-  }
+.innovation_offer_wrapper_text {
+  text-align: center;
+  margin: 0 auto;
+  position: relative;
 }
-.innovation_offer_wrapper h5 {
+.innovation_offer_wrapper_text h5 {
   font-family: Graphik Trial;
   font-size: 48px;
   font-weight: 600;
   line-height: 72px;
   color: #333333;
   margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
 }
 @media screen and (max-width: 768px) {
-  .innovation_offer_wrapper h5 {
+  .innovation_offer_wrapper_text h5 {
     font-size: 40px;
     line-height: 65px;
   }
 }
-.innovation_offer_wrapper p {
+.innovation_offer_wrapper_text p {
   font-family: Graphik Trial;
   font-size: 24px;
   font-weight: 400;
@@ -1893,7 +1893,7 @@ body {
   margin-bottom: 32px;
 }
 @media screen and (max-width: 768px) {
-  .innovation_offer_wrapper p {
+  .innovation_offer_wrapper_text p {
     width: 95%;
     font-size: 18px;
   }
@@ -1908,6 +1908,11 @@ body {
 @media screen and (max-width: 1024px) {
   .innovation_offer_wrapper_btnFlex {
     width: 90%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .innovation_offer_wrapper_btnFlex {
+    display: none;
   }
 }
 .innovation_offer_wrapper_btnFlex button {
@@ -2200,6 +2205,7 @@ body {
 .innovation_gallery_text {
   width: 589px;
   margin: 0 auto;
+  position: relative;
 }
 @media screen and (max-width: 768px) {
   .innovation_gallery_text {
@@ -2431,14 +2437,40 @@ body {
   border-radius: 8px;
 }
 .innovation_image {
-  max-width: 400px;
+  max-width: 40%;
+  border-radius: 12px;
 }
 .innovation_splideCon {
-  display: flex;
   margin-bottom: 20px;
-  width: 100%;
-  overflow: hidden;
-  transition: transform 1s linear;
+  width: 1440px;
+  overflow-x: -100px;
+}
+.innovation_imageCon {
+  transition: transform 5s linear;
+  display: flex;
+  gap: 10px;
+}
+.innovation_line {
+  position: absolute;
+  top: 50px;
+  right: 35%;
+  z-index: -1;
+}
+@media screen and (max-width: 768px) {
+  .innovation_line {
+    right: 30%;
+  }
+}
+.innovation_line2 {
+  position: absolute;
+  top: 30%;
+  right: 41%;
+}
+@media screen and (max-width: 425px) {
+  .innovation_line2 {
+    right: 25%;
+    top: 25%;
+  }
 }
 
 .tri {

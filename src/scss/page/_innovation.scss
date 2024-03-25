@@ -572,7 +572,7 @@
         border-radius: 8px;
         padding: 15px 0px;
         border: 1px solid #dddddd;
-       color: #fff;
+        color: #fff;
         font-family: Graphik Trial;
         font-size: 18px;
         font-weight: 600;
@@ -586,39 +586,44 @@
 
     &_wrapper {
       width: 1440px;
-      text-align: center;
-      margin: 0 auto;
+      
       @media screen and (max-width: 1440px) {
         width: 100%;
       }
-      @media screen and (max-width: 768px) {
-        display: none;
-      }
-      h5 {
-        font-family: Graphik Trial;
-        font-size: 48px;
-        font-weight: 600;
-        line-height: 72px;
-        color: #333333;
-        margin-bottom: 16px;
-        @media screen and (max-width: 768px) {
-          font-size: 40px;
-          line-height: 65px;
-        }
-      }
-      p {
-        font-family: Graphik Trial;
-        font-size: 24px;
-        font-weight: 400;
-        line-height: 30px;
-        color: #646464;
-
-        width: 842px;
+      
+      &_text {
+        text-align: center;
         margin: 0 auto;
-        margin-bottom: 32px;
-        @media screen and (max-width: 768px) {
-          width: 95%;
-          font-size: 18px;
+        position: relative;
+        h5 {
+          font-family: Graphik Trial;
+          font-size: 48px;
+          font-weight: 600;
+          line-height: 72px;
+          color: #333333;
+          margin-bottom: 16px;
+          position: relative;
+          z-index: 1;
+
+          @media screen and (max-width: 768px) {
+            font-size: 40px;
+            line-height: 65px;
+          }
+        }
+        p {
+          font-family: Graphik Trial;
+          font-size: 24px;
+          font-weight: 400;
+          line-height: 30px;
+          color: #646464;
+
+          width: 842px;
+          margin: 0 auto;
+          margin-bottom: 32px;
+          @media screen and (max-width: 768px) {
+            width: 95%;
+            font-size: 18px;
+          }
         }
       }
 
@@ -631,7 +636,9 @@
         @media screen and (max-width: 1024px) {
           width: 90%;
         }
-
+        @media screen and (max-width: 768px) {
+          display: none;
+        }
         button {
           width: 290px;
           border-radius: 8px;
@@ -895,6 +902,7 @@
     &_text {
       width: 589px;
       margin: 0 auto;
+      position: relative;
       @media screen and (max-width: 768px) {
         width: 90%;
       }
@@ -1105,15 +1113,36 @@
     }
   }
   &_image {
-    max-width: 400px;
-    // border-radius: 12px;
+    max-width: 40%;
+    border-radius: 12px;
     // height: fit-content;
   }
   &_splideCon {
-    display: flex;
     margin-bottom: 20px;
-    width: 100%;
-    overflow: hidden;
-    transition: transform 1s linear;
+    width: 1440px;
+    overflow-x: -100px;
+  }
+  &_imageCon {
+    transition: transform 5s linear;
+    display: flex;
+    gap: 10px;
+  }
+  &_line {
+    position: absolute;
+    top: 50px;
+    right: 35%;
+    z-index: -1;
+    @media screen and (max-width: 768px) {
+      right: 30%;
+    }
+  }
+  &_line2 {
+    position: absolute;
+    top: 30%;
+    right: 41%;
+    @media screen and (max-width: 425px) {
+      right: 25%;
+      top: 25%
+      }
   }
 }
