@@ -2436,20 +2436,6 @@ body {
   border: none;
   border-radius: 8px;
 }
-.innovation_image {
-  max-width: 10%;
-  border-radius: 12px;
-}
-.innovation_splideCon {
-  margin-bottom: 20px;
-}
-.innovation_imageCon {
-  transition: transform 5s linear;
-  display: flex;
-  gap: 10px;
-  max-width: 100%;
-  overflow: hidden;
-}
 .innovation_line {
   position: absolute;
   top: 50px;
@@ -2472,18 +2458,31 @@ body {
     top: 25%;
   }
 }
-.innovation_slide {
-  animation: scrollRight 3s linear infinite;
+.innovation_slider {
   display: flex;
-  width: 2160px;
+  flex-wrap: wrap;
+  margin-right: -20px;
+  margin-left: -20px;
+}
+.innovation_imageCon {
+  height: auto;
+  overflow: hidden;
+  background-color: white !important;
+  position: relative;
+  width: auto;
+}
+.innovation_slide {
+  animation: scroll 30s linear infinite;
+  display: flex;
+  width: 20000px;
   overflow: hidden;
   gap: 10px;
 }
 .innovation_slide2 {
-  overflow: hidden;
-  animation: scroll 3s linear infinite;
+  animation: scroll 20s linear infinite;
   display: flex;
-  width: 1410px;
+  width: 20000px;
+  overflow: hidden;
   gap: 10px;
   margin-bottom: 20px;
 }
@@ -2492,15 +2491,15 @@ body {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-1873.92px);
+    transform: translateX(-1750px);
   }
 }
 @keyframes scrollRight {
   0% {
-    transform: translateX(0);
+    transform: translateX(-100);
   }
   100% {
-    transform: translateX(1873.92px);
+    transform: translateX(1750px);
   }
 }
 

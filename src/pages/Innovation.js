@@ -630,25 +630,24 @@ const Innovation = () => {
     easing: "cubic-bezier(0.5, 0, 0.5, 0.5)",
   };
   const texts = ["productivity", "Creativity"];
-  const images = [avatar, image3];
+  // const images = [avatar, user];
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [currentIndex2, setCurrentIndex2] = useState(0);
-
+  // const [currentIndex2, setCurrentIndex2] = useState(0);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % texts.length);
     }, 2000);
 
-    const Image = setInterval(() => {
-      setCurrentIndex2((prevIndex) => (prevIndex + 1) % images.length);
-    }, 2000);
+    // const Image = setInterval(() => {
+    //   setCurrentIndex2((prevIndex) => (prevIndex + 1) % images.length);
+    // }, 2000);
 
-    return () =>{
-      clearInterval(intervalId)
-      clearInterval(Image)
-    } ;
+    return () => {
+      clearInterval(intervalId);
+      // clearInterval(Image);
+    };
   }, []);
 
   return (
@@ -911,73 +910,94 @@ const Innovation = () => {
 
           <p>Immersive beautiful, co-working space</p>
           <div className="innovation_gallery_text_userFlex">
-            {[currentIndex2]}{" "}
+            <img src={user} alt="image" />
             <span> 20,000+ satisfied & Returning users</span>
           </div>
         </div>
-        <div className="innovation_imageCon">
-          <div div className="innovation_slide2">
-            <div className="innovation_image">
-              <img src={image1} alt="img" />
-            </div>
-            <div className="innovation_image">
-              <img src={image2} alt="img" />
-            </div>
-            <div className="innovation_image">
-              <img src={image3} alt="img" />
-            </div>
-            <div className="innovation_image">
-              <img src={image1} alt="img" />
-            </div>
-            <div className="innovation_image">
-              <img src={image2} alt="img" />
-            </div>
-            <div className="innovation_image">
-              <img src={image3} alt="img" />
-            </div>
-            <div className="innovation_image">
-              <img src={image1} alt="img" />
-            </div>
-            <div className="innovation_image">
-              <img src={image2} alt="img" />
-            </div>
-            <div className="innovation_image">
-              <img src={image3} alt="img" />
-            </div>
-          </div>
-        </div>
-        <div className="innovation_imageCon">
-          <div className="innovation_slide">
-            <div className="innovation_image">
-              <img src={image1} alt="img" />
-            </div>
-            <div className="innovation_image">
-              <img src={image2} alt="img" />
-            </div>
-            <div className="innovation_image">
-              <img src={image3} alt="img" />
-            </div>
-            <div className="innovation_image">
-              <img src={image1} alt="img" />
-            </div>
-            <div className="innovation_image">
-              <img src={image2} alt="img" />
-            </div>
-            <div className="innovation_image">
-              <img src={image3} alt="img" />
-            </div>
-            <div className="innovation_image">
-              <img src={image1} alt="img" />
-            </div>
-            <div className="innovation_image">
-              <img src={image2} alt="img" />
-            </div>
-            <div className="innovation_image">
-              <img src={image3} alt="img" />
+        <div className="innovation_slider">
+          <div className="innovation_imageCon">
+            <div div className="innovation_slide2">
+              <div className="innovation_image">
+                <img src={image1} alt="img" />
+              </div>
+              <div className="innovation_image">
+                <img src={image2} alt="img" />
+              </div>
+              <div className="innovation_image">
+                <img src={image3} alt="img" />
+              </div>
+              <div className="innovation_image">
+                <img src={image1} alt="img" />
+              </div>
+              <div className="innovation_image">
+                <img src={image2} alt="img" />
+              </div>
+              <div className="innovation_image">
+                <img src={image3} alt="img" />
+              </div>
+              <div className="innovation_image">
+                <img src={image1} alt="img" />
+              </div>
+              <div className="innovation_image">
+                <img src={image2} alt="img" />
+              </div>
+              <div className="innovation_image">
+                <img src={image3} alt="img" />
+              </div>
+              <div className="innovation_image">
+                <img src={image1} alt="img" />
+              </div>
+              <div className="innovation_image">
+                <img src={image2} alt="img" />
+              </div>
+              <div className="innovation_image">
+                <img src={image3} alt="img" />
+              </div>
+              <div className="innovation_image">
+                <img src={image1} alt="img" />
+              </div>
+              <div className="innovation_image">
+                <img src={image2} alt="img" />
+              </div>
+              <div className="innovation_image">
+                <img src={image3} alt="img" />
+              </div>
             </div>
           </div>
         </div>
-
+        <div className="innovation_slider">
+          <div className="innovation_imageCon">
+            <div className="innovation_slide">
+              <div className="innovation_image">
+                <img src={image1} alt="img" />
+              </div>
+              <div className="innovation_image">
+                <img src={image2} alt="img" />
+              </div>
+              <div className="innovation_image">
+                <img src={image3} alt="img" />
+              </div>
+              <div className="innovation_image">
+                <img src={image1} alt="img" />
+              </div>
+              <div className="innovation_image">
+                <img src={image2} alt="img" />
+              </div>
+              <div className="innovation_image">
+                <img src={image3} alt="img" />
+              </div>
+              <div className="innovation_image">
+                <img src={image1} alt="img" />
+              </div>
+              <div className="innovation_image">
+                <img src={image2} alt="img" />
+              </div>
+              <div className="innovation_image">
+                <img src={image3} alt="img" />
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="innovation_hero_text">
           <button>Book a tour</button>
         </div>
