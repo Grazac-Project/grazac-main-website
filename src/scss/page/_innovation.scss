@@ -586,7 +586,7 @@
 
     &_wrapper {
       width: 1440px;
-
+      margin: 0 auto;
       @media screen and (max-width: 1440px) {
         width: 100%;
       }
@@ -715,11 +715,14 @@
         }
       }
 
-      img > div {
+      &_image > img {
         width: 100%;
+        height: 100%;
       }
-      img {
+      &_image {
         width: 100%;
+        height: 488px;
+        border-radius: 8px;
       }
     }
     &_executive2 {
@@ -1137,7 +1140,6 @@
     margin-right: -20px;
     margin-left: -20px;
   }
-  
 
   &_imageCon {
     height: auto;
@@ -1147,7 +1149,8 @@
     width: auto;
   }
   &_slide {
-    animation: scroll 30s linear infinite;
+    animation: scrollRight 30s linear infinite;
+    animation-direction: reverse;
     display: flex;
     width: calc(200px * 100);
     overflow: hidden;
@@ -1172,10 +1175,10 @@
 
   @keyframes scrollRight {
     0% {
-      transform: translateX(-100);
+      transform: translateX(0);
     }
     100% {
-      transform: translateX(calc(250px * 7));
+      transform: translateX(calc(-250px * 7));
     }
   }
 }

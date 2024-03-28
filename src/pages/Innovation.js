@@ -578,11 +578,7 @@
 
 // export default Innovation;
 import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import executive from "../images/book/executive.png";
-import icon1 from "../images/book/icon1.svg";
-import icon2 from "../images/book/icon2.svg";
-import icon3 from "../images/book/icon3.svg";
 import icon4 from "../images/book/icon4.svg";
 import user from "../images/book/user.png";
 import image1 from "../images/book/image1.png";
@@ -590,12 +586,18 @@ import image2 from "../images/book/image2.png";
 import image3 from "../images/book/image3.png";
 import avatar from "../images/book/avatar.png";
 import line from "../images/book/underline.png";
-
+import privateoffice from "../images/website/IMG_9865.jpg";
+import even from "../images/website/IMG_9775.jpg";
+import BasicModal from "../components/BasicModal/BasicModal";
+import Tour from "../components/Tour/Tour";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 
 const Innovation = () => {
   const [selectedOffer, setSelectedOffer] = useState(0);
+  const [tour, setTour] = useState(false);
+  const [open, setOpen] = useState(false);
+  
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -614,9 +616,7 @@ const Innovation = () => {
     autoplay: true,
     pauseOnHover: true,
     resetProgress: false,
-    // perPage: 3,
-    // speed: 1000, // Transition speed in milliseconds
-    // easing: "cubic-bezier(0.5, 0, 0.5, 1)", // Easing function for smooth motion
+    
   };
   const options2 = {
     type: "loop",
@@ -630,19 +630,17 @@ const Innovation = () => {
     easing: "cubic-bezier(0.5, 0, 0.5, 0.5)",
   };
   const texts = ["productivity", "Creativity"];
-  // const images = [avatar, user];
+  
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  // const [currentIndex2, setCurrentIndex2] = useState(0);
+  
 
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % texts.length);
     }, 2000);
 
-    // const Image = setInterval(() => {
-    //   setCurrentIndex2((prevIndex) => (prevIndex + 1) % images.length);
-    // }, 2000);
+    
 
     return () => {
       clearInterval(intervalId);
@@ -652,15 +650,18 @@ const Innovation = () => {
 
   return (
     <div className="innovation">
+      {open && <BasicModal setOpen={setOpen} />}
+      <Tour tour={tour} setTour={setTour} />
       <div className="innovation_hero">
         <div className="innovation_hero_text">
           <h4>
             A creative environment that will boost your{" "}
             <span>{texts[currentIndex]}</span>
           </h4>
-          <Link to="/co">
-            <button className="">Book a space</button>
-          </Link>
+
+          <button onClick={() => setOpen(true)} className="">
+            Book a space
+          </button>
         </div>
       </div>
       <div className="innovation_offer">
@@ -726,7 +727,7 @@ const Innovation = () => {
                 makes your event memorable. Relax away from your desks and
                 recharge with drinks and games before taking on your next task.
               </p>
-              <div>
+              <div className="innovation_offer_executive_image">
                 <img src={executive} alt="build" />
               </div>
             </div>
@@ -741,8 +742,8 @@ const Innovation = () => {
                 makes your event memorable. Relax away from your desks and
                 recharge with drinks and games before taking on your next task.
               </p>
-              <div>
-                <img src={executive} alt="build" />
+              <div className="innovation_offer_executive_image">
+                <img src={image1} alt="build" />
               </div>
             </div>
           </div>
@@ -756,8 +757,8 @@ const Innovation = () => {
                 makes your event memorable. Relax away from your desks and
                 recharge with drinks and games before taking on your next task.
               </p>
-              <div>
-                <img src={executive} alt="build" />
+              <div className="innovation_offer_executive_image">
+                <img src={even} alt="build" />
               </div>
             </div>
           </div>
@@ -771,8 +772,8 @@ const Innovation = () => {
                 makes your event memorable. Relax away from your desks and
                 recharge with drinks and games before taking on your next task.
               </p>
-              <div>
-                <img src={executive} alt="build" />
+              <div className="innovation_offer_executive_image">
+                <img src={privateoffice} alt="build" />
               </div>
             </div>
           </div>
@@ -999,7 +1000,7 @@ const Innovation = () => {
           </div>
         </div>
         <div className="innovation_hero_text">
-          <button>Book a tour</button>
+          <button onClick={() => setTour(true)}>Book a tour</button>
         </div>
       </div>
       <div className="innovation_review">
@@ -1072,7 +1073,13 @@ const Innovation = () => {
         <div className="innovation_community_content">
           <h6>Join other founder, freelancer, makers and many-hat wearers</h6>
           <p>Join Grazac Community and take back control of your day</p>
-          <button>Join Community</button>
+          <a
+            href="https://chat.whatsapp.com/GdO3hUgbAdbA7MN2cBOjEz"
+            target="_blank"
+            style={{ textDecorationLine: "none" }}
+          >
+            <button>Join Community</button>
+          </a>
         </div>
       </div>
     </div>
