@@ -1140,13 +1140,26 @@
     margin-right: -20px;
     margin-left: -20px;
   }
-
+&_imageCon {
+    height: auto;
+    overflow: hidden;
+    background-color: white !important;
+    position: relative;
+    width: auto;
+  }
   &_imageCon {
     height: auto;
     overflow: hidden;
     background-color: white !important;
     position: relative;
     width: auto;
+    
+  }
+  &_image{
+    width: 400px;
+    height: 300px;
+    border-radius: 8px;
+    
   }
   &_slide {
     animation: scrollRight 30s linear infinite;
@@ -1169,7 +1182,7 @@
       transform: translateX(0);
     }
     100% {
-      transform: translateX(calc(-250px * 7));
+      transform: translateX(calc(-350px * 7));
     }
   }
 
@@ -1178,7 +1191,7 @@
       transform: translateX(0);
     }
     100% {
-      transform: translateX(calc(-250px * 7));
+      transform: translateX(calc(-350px * 7));
     }
   }
 }

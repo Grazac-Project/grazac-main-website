@@ -577,13 +577,12 @@
 // };
 
 // export default Innovation;
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import executive from "../images/book/executive.png";
 import icon4 from "../images/book/icon4.svg";
 import user from "../images/book/user.png";
 import image1 from "../images/book/image1.png";
-import image2 from "../images/book/image2.png";
-import image3 from "../images/book/image3.png";
+
 import avatar from "../images/book/avatar.png";
 import line from "../images/book/underline.png";
 import privateoffice from "../images/website/IMG_9865.jpg";
@@ -592,12 +591,12 @@ import BasicModal from "../components/BasicModal/BasicModal";
 import Tour from "../components/Tour/Tour";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
+import { Images, Testimony } from "../constants";
 
 const Innovation = () => {
   const [selectedOffer, setSelectedOffer] = useState(0);
   const [tour, setTour] = useState(false);
   const [open, setOpen] = useState(false);
-  
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -616,7 +615,6 @@ const Innovation = () => {
     autoplay: true,
     pauseOnHover: true,
     resetProgress: false,
-    
   };
   const options2 = {
     type: "loop",
@@ -630,17 +628,13 @@ const Innovation = () => {
     easing: "cubic-bezier(0.5, 0, 0.5, 0.5)",
   };
   const texts = ["productivity", "Creativity"];
-  
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  
 
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % texts.length);
     }, 2000);
-
-    
 
     return () => {
       clearInterval(intervalId);
@@ -911,91 +905,35 @@ const Innovation = () => {
 
           <p>Immersive beautiful, co-working space</p>
           <div className="innovation_gallery_text_userFlex">
-            <img src={user} alt="image" />
+            <img src={user} alt="image1" />
             <span> 20,000+ satisfied & Returning users</span>
           </div>
         </div>
         <div className="innovation_slider">
           <div className="innovation_imageCon">
-            <div div className="innovation_slide2">
-              <div className="innovation_image">
-                <img src={image1} alt="img" />
-              </div>
-              <div className="innovation_image">
-                <img src={image2} alt="img" />
-              </div>
-              <div className="innovation_image">
-                <img src={image3} alt="img" />
-              </div>
-              <div className="innovation_image">
-                <img src={image1} alt="img" />
-              </div>
-              <div className="innovation_image">
-                <img src={image2} alt="img" />
-              </div>
-              <div className="innovation_image">
-                <img src={image3} alt="img" />
-              </div>
-              <div className="innovation_image">
-                <img src={image1} alt="img" />
-              </div>
-              <div className="innovation_image">
-                <img src={image2} alt="img" />
-              </div>
-              <div className="innovation_image">
-                <img src={image3} alt="img" />
-              </div>
-              <div className="innovation_image">
-                <img src={image1} alt="img" />
-              </div>
-              <div className="innovation_image">
-                <img src={image2} alt="img" />
-              </div>
-              <div className="innovation_image">
-                <img src={image3} alt="img" />
-              </div>
-              <div className="innovation_image">
-                <img src={image1} alt="img" />
-              </div>
-              <div className="innovation_image">
-                <img src={image2} alt="img" />
-              </div>
-              <div className="innovation_image">
-                <img src={image3} alt="img" />
-              </div>
+            <div className="innovation_slide2">
+              {Images.slice()
+                .reverse()
+                .map((image) => (
+                  <div className="innovation_image">
+                    <img
+                      key={image.id}
+                      src={image.image}
+                      alt="galleryPicture"
+                    />
+                  </div>
+                ))}
             </div>
           </div>
         </div>
         <div className="innovation_slider">
           <div className="innovation_imageCon">
             <div className="innovation_slide">
-              <div className="innovation_image">
-                <img src={image1} alt="img" />
-              </div>
-              <div className="innovation_image">
-                <img src={image2} alt="img" />
-              </div>
-              <div className="innovation_image">
-                <img src={image3} alt="img" />
-              </div>
-              <div className="innovation_image">
-                <img src={image1} alt="img" />
-              </div>
-              <div className="innovation_image">
-                <img src={image2} alt="img" />
-              </div>
-              <div className="innovation_image">
-                <img src={image3} alt="img" />
-              </div>
-              <div className="innovation_image">
-                <img src={image1} alt="img" />
-              </div>
-              <div className="innovation_image">
-                <img src={image2} alt="img" />
-              </div>
-              <div className="innovation_image">
-                <img src={image3} alt="img" />
-              </div>
+              {Images.map((image) => (
+                <div className="innovation_image">
+                  <img key={image.id} src={image.image} alt="galleryPicture" /> 
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -1010,63 +948,21 @@ const Innovation = () => {
 
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
           <Splide options={options}>
-            <SplideSlide className="innovation_review_items">
-              <h5>
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse varius enim in eros elementum tristique. Duis
-                cursus, mi quis viverra ornare."
-              </h5>
-              <div className="innovation_review_items_flex">
-                <img src={avatar} alt="img" />
-                <div>
-                  <h6>Olalekan</h6>
-                  <span>UX Designer</span>
+            {Testimony.map((review) => (
+              <SplideSlide className="innovation_review_items" key={review.id}>
+                <h5>{review.text}</h5>
+                <div className="innovation_review_items_flex">
+                  <img src={review.image} alt="img" />
+                  <div>
+                    <h6>{review.name}</h6>
+                    <span>{review.skill}</span>
+                  </div>
                 </div>
-              </div>
-            </SplideSlide>
-            <SplideSlide className="innovation_review_items">
-              <h5>
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse varius enim in eros elementum tristique. Duis
-                cursus, mi quis viverra ornare."
-              </h5>
-              <div className="innovation_review_items_flex">
-                <img src={avatar} alt="img" />
-                <div>
-                  <h6>Olalekan</h6>
-                  <span>UX Designer</span>
-                </div>
-              </div>
-            </SplideSlide>{" "}
-            <SplideSlide className="innovation_review_items">
-              <h5>
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse varius enim in eros elementum tristique. Duis
-                cursus, mi quis viverra ornare."
-              </h5>
-              <div className="innovation_review_items_flex">
-                <img src={avatar} alt="img" />
-                <div>
-                  <h6>Olalekan</h6>
-                  <span>UX Designer</span>
-                </div>
-              </div>
-            </SplideSlide>
-            <SplideSlide className="innovation_review_items">
-              <h5>
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse varius enim in eros elementum tristique. Duis
-                cursus, mi quis viverra ornare."
-              </h5>
-              <div className="innovation_review_items_flex">
-                <img src={avatar} alt="img" />
-                <div>
-                  <h6>Olalekan</h6>
-                  <span>UX Designer</span>
-                </div>
-              </div>
-            </SplideSlide>
+              </SplideSlide>
+            ))}
+            
           </Splide>
+          
         </div>
       </div>
       <div className="innovation_community">
@@ -1076,6 +972,7 @@ const Innovation = () => {
           <a
             href="https://chat.whatsapp.com/GdO3hUgbAdbA7MN2cBOjEz"
             target="_blank"
+            rel="noreferrer"
             style={{ textDecorationLine: "none" }}
           >
             <button>Join Community</button>

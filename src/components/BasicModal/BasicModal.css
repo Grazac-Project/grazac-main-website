@@ -1,226 +1,324 @@
-.basicModal_overlay{
-    background-color: black;
-    width: 100vw;
-    height: 100vh;
-    opacity: 0.7;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 10001;
+.basicModal_overlay {
+  background-color: black;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.7;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10001;
 }
-.basicModal_space{
-    position: fixed;
-    z-index: 100000;
-    overflow-y: scroll;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: 85vh;
-    width: 740px;
-    border: 1px solid #fff;
-    border-radius: 24px;
-    padding-left: 100px;
-    padding-right: 100px;
-    box-shadow: 24px;
-    font-family: 'Graphik Trial', sans-serif;
-    background-color: #fff;
+.basicModal_space {
+  position: fixed;
+  z-index: 100000;
+  overflow-y: scroll;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-height: 589px;
+  width: 740px;
+  border: 1px solid #fff;
+  border-radius: 24px;
+  padding: 0 100px;
+  box-shadow: 24px;
+  font-family: "Graphik Trial", sans-serif;
+  background-color: #fff;
 }
-.close{
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 30px;
-    cursor: pointer;
+.close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 30px;
+  cursor: pointer;
 }
-.basicModal_space h2{
-    font-size: 40px;
-    font-weight: 600;
-    line-height: 48px;
-    text-align: center;
-    margin-top: 31px;
-    margin-bottom: 16px;
+.basicModal_space h2 {
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 48px;
+  text-align: center;
+  margin-top: 64px;
+  margin-bottom: 16px;
 }
-.basicModal_space .para{
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 21px;
-    text-align: center;
-    color: #333;
-    margin-bottom: 28px;
+.basicModal_space .para {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  text-align: center;
+  color: #8897ae;
+  margin-bottom: 8px;
 }
-.basicModal_space .thirty{
-    color: #773DD3;
-    font-weight: 600;
+.basicModal_space .thirty {
+  color: #773dd3;
+  font-weight: 600;
 }
-.basicModal_dateContainer{
-    width: 430px;
-    display: flex;
-    margin: 0 auto;
-    gap: 16px;
+.basicModal_dateContainer {
+  width: 430px;
+  display: flex;
+  margin: 0 auto;
+  gap: 16px;
 }
-.calendar{
-    width: 430px;
-    margin: 0 auto;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.5s ease-in-out;
+.basicModal_sub {
+  position: relative;
+  /* z-index: 9999; */
 }
-.calendar.visible{
-    opacity: 1;
-    visibility: visible;
+.calendar {
+  position: absolute;
+  z-index: 9999;
+  left: 30%;
+  width: 430px;
+  margin: 0 auto;
+  transition: opacity 0.5s ease-in-out;
 }
-.calendar.hidden{
-    opacity: 0;
-    visibility: hidden;
+/* .calendar.visible {
+  opacity: 1;
+  visibility: visible;
 }
-.basicModal_dateContainer_start, .basicModal_dateContainer_end{
-    width: 207px;
-    background-color: rgba(220, 205, 244, 0.5);
-    border-radius: 4px;
-    padding: 8px;
-    gap: 8px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
+.calendar.hidden {
+  opacity: 0;
+  visibility: hidden;
+} */
+.basicModal_Container {
+  background-color: #fbfbfb;
+  padding-top: 24px;
 }
-.basicModal_dateContainer_start p, .basicModal_dateContainer_end p{
-    margin-bottom: 0px;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 14.4px;
-    color: #333333;
+.basicModal_dateContainer_start,
+.basicModal_dateContainer_end {
+  width: 211px;
+  background-color: transparent;
+  border-radius: 6px;
+  padding: 16px 14px;
+  border: 1px solid #afbaca;
+  gap: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  /* margin-bottom: 32px; */
 }
-.basicModal_dateContainer_start .start-date, .basicModal_dateContainer_end .end-date{
-    line-height: 19.2px;
-    font-size: 16px;
-    font-weight: 500;
-    color:#333333;
-    margin-top: 5px;
+.basicModal_dateContainer_start p,
+.basicModal_dateContainer_end p {
+  margin-bottom: 0px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #8897ae;
+}
+.basicModal_dateContainer_start .start-date,
+.basicModal_dateContainer_end .end-date {
+  line-height: 19.2px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333333;
+  margin-top: 5px;
+}
+.basicModal_sub_con {
+  position: absolute;
+  z-index: 9999;
+  right: 40%;
+  width: 267px;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  background-color: #fff;
+  gap: 8px;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: -2px 2px 12px 2px rgba(21, 30, 42, 0.08);
+  transition: opacity 0.5s ease-in-out;
 
 }
-.checkbox-label{
-    display: flex;
-    align-items: center;
-    width: 430px;
-    margin: 0 auto;
-    margin-top: 8px;
+.basicModal_sub_conFlex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #dddd;
+  cursor: pointer;
 }
-.checkbox-label input, .label{
-    display: block;
+.basicModal_summary {
+  width: 430px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-radius: 8px;
+  padding: 24px;
 }
-.label{
-    color: #787676;
-    font-size: 12px;
-    line-height: 14.4px;
-    font-weight: 400;
-    padding-left: 10px;
+.basicModal_summary h5 {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #3333;
 }
-.basicModal_price{
-    width: 430px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 430px;
-    margin: 0 auto;
+.basicModal_summary p {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #8897ae;
 }
-.basicModal_price_label{
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-    color: #333;
+.basicModal_summary_flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.basicModal_price_total .sum{
-    font-size: 32px;
-    line-height: 48px;
-    font-weight: 700;
-    margin-bottom: 0px;
+.basicModal_sub_con h5 {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  color: #334155;
 }
-.basicModal_price_total .workings{
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 18px;
-    margin-bottom: 20px;
+.basicModal_sub_con p {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #334155;
 }
-.basicModal_form input{
-    border: 1px solid #AFBACA;
-    width: 100%;
-    height: 56px;
-    border-radius: 6px;
-    margin-bottom: 16px;
-    padding: 10px;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 24px;
-    outline: none;
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  width: 430px;
+  margin: 0 auto;
+  margin-top: 8px;
 }
-.basicModal_form button{
-    width: 275px;
-    background-color: #773DD3;
-    color: #fff;
-    border-radius: 8px;
-    height: 56px;
-    display: block;
-    margin: 0 auto;
-    margin-top: 8px;
-    margin-bottom: 22px;
-    border: none;
-    font-size: 16px;
+.checkbox-label input,
+.label {
+  display: block;
+}
+.label {
+  color: #787676;
+  font-size: 12px;
+  line-height: 14.4px;
+  font-weight: 400;
+  padding-left: 10px;
+}
+.basicModal_price {
+  width: 430px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 430px;
+  margin: 0 auto;
+}
+.basicModal_price_label {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #333;
+}
+.basicModal_price_total .sum {
+  font-size: 32px;
+  line-height: 48px;
+  font-weight: 700;
+  margin-bottom: 0px;
+}
+.basicModal_price_total .workings {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  margin-bottom: 20px;
+}
+.basicModal_form {
+  margin-top: 32px;
+}
+.basicModal_form input {
+  border: 1px solid #afbaca;
+  width: 100%;
+  height: 56px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  padding: 10px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  outline: none;
+}
+.basicModal_form button {
+  width: 275px;
+  background-color: #773dd3;
+  color: #fff;
+  border-radius: 8px;
+  height: 56px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 8px;
+  margin-bottom: 64px;
+  border: none;
+  font-size: 16px;
+}
+.react-calendar {
+  border: none;
+  border-radius: 8px;
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+}
+
+.react-calendar__tile {
+  max-width: 100%;
+  padding: 100px;
+  background: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.react-calendar__tile--active {
+  background: red;
+  color: white;
 }
 @media screen and (max-width: 768px) {
-    .basicModal_space{
-        width: 90%;
-        padding-left: 16px;
-        padding-right: 16px;
-    }
-    .close{
-        font-size: 20px;
-    }
-    .basicModal_space h2{
-        font-size: 24px;
-        line-height: 28.8px;
-    }
-    .basicModal_space .para{
-        font-size: 12px;
-        line-height: 18px;
-    }
-    .basicModal_dateContainer{
-        flex-direction: column;
-        width: 100%;
-    }
-    .calendar{
-        width: 100%;
-    }
-    .basicModal_dateContainer_start, .basicModal_dateContainer_end{
-        width: 100%;
-    }
-    .basicModal_dateContainer_start p, .basicModal_dateContainer_end p{
-        font-size: 8px;
-        line-height: 9.6px;
-    }
-    .basicModal_dateContainer_start .start-date, .basicModal_dateContainer_end .end-date{
-        font-size: 14px;
-        line-height: 16.8px;
-    }
-    .basicModal_price{
-        width: 100%;
-    }
-    .checkbox-label{
-        margin: 5px 0px 0px 0px;
-    }
+  .basicModal_space {
+    width: 90%;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .close {
+    font-size: 20px;
+  }
+  .basicModal_space h2 {
+    font-size: 24px;
+    line-height: 28.8px;
+  }
+  .basicModal_space .para {
+    font-size: 12px;
+    line-height: 18px;
+  }
+  .basicModal_dateContainer {
+    flex-direction: column;
+    width: 100%;
+  }
+  .calendar {
+    width: 100%;
+  }
+  .basicModal_dateContainer_start,
+  .basicModal_dateContainer_end {
+    width: 100%;
+  }
+  .basicModal_dateContainer_start p,
+  .basicModal_dateContainer_end p {
+    font-size: 8px;
+    line-height: 9.6px;
+  }
+  .basicModal_dateContainer_start .start-date,
+  .basicModal_dateContainer_end .end-date {
+    font-size: 14px;
+    line-height: 16.8px;
+  }
+  .basicModal_price {
+    width: 100%;
+  }
+  .checkbox-label {
+    margin: 5px 0px 0px 0px;
+  }
 }
 @media screen and (max-width: 468px) {
-    .basicModal_price_total .sum{
-        font-size: 18.01px;
-        line-height: 27.02px;
-    }
-    .basicModal_price_total .workings{
-        font-size: 6.76px;
-        line-height: 10.13px;
-    }
-    .basicModal_form button{
-        width: 100%;
-        margin: 8px 0px 22px 0px;
-        font-size: 16px;
-    }
+  .basicModal_price_total .sum {
+    font-size: 18.01px;
+    line-height: 27.02px;
+  }
+  .basicModal_price_total .workings {
+    font-size: 6.76px;
+    line-height: 10.13px;
+  }
+  .basicModal_form button {
+    width: 100%;
+    margin: 8px 0px 22px 0px;
+    font-size: 16px;
+  }
 }
-

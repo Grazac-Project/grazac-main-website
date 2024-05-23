@@ -2475,6 +2475,18 @@ body {
   position: relative;
   width: auto;
 }
+.innovation_imageCon {
+  height: auto;
+  overflow: hidden;
+  background-color: white !important;
+  position: relative;
+  width: auto;
+}
+.innovation_image {
+  width: 400px;
+  height: 300px;
+  border-radius: 8px;
+}
 .innovation_slide {
   animation: scrollRight 30s linear infinite;
   animation-direction: reverse;
@@ -2496,7 +2508,7 @@ body {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-1750px);
+    transform: translateX(-2450px);
   }
 }
 @keyframes scrollRight {
@@ -2504,7 +2516,7 @@ body {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-1750px);
+    transform: translateX(-2450px);
   }
 }
 
