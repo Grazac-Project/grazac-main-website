@@ -321,13 +321,15 @@ const paymentOptions = [
 ];
 
 const BasicModal = ({ open, setOpen }) => {
+  const options = { month: "long", day: "numeric" };
+  const today = new Date().toLocaleDateString("en-US", options);
+
   const [toggle, setToggle] = useState(false);
   const [toggle2, setToggle2] = useState(false);
   const [selectedPaymentOption, setSelectedPaymentOption] = useState(
     paymentOptions[0]
   );
-  
-  const [startDate, setStartDate] = useState(new Date( ));
+  const [startDate, setStartDate] = useState(today);
   const [endDate, setEndDate] = useState("");
   const [summary, setSummary] = useState([]);
   const [userInfo, setUserInfo] = useState({
@@ -356,8 +358,9 @@ const BasicModal = ({ open, setOpen }) => {
   };
 
   const handleStartDateChange = (newStartDate) => {
-    setStartDate(newStartDate);
-    updateEndDate(newStartDate, selectedPaymentOption);
+    const newDate = newStartDate.toLocaleDateString("en-US", options)
+    setStartDate(newDate);
+    updateEndDate(newDate, selectedPaymentOption);
     setToggle2(!toggle2);
 
     // console.log();
@@ -391,12 +394,11 @@ const BasicModal = ({ open, setOpen }) => {
 
     const options = { month: "long", day: "numeric" };
     const formattedEndDate = endDate.toLocaleDateString("en-US", options);
-    const formattedStartDate = startDate.toLocaleDateString("en-US", options);
+   
 
 
     setEndDate(formattedEndDate);
-    setStartDate(formattedStartDate);
-    updateSummary(selectedPaymentOption, start, formattedEndDate, formattedStartDate);
+    updateSummary(selectedPaymentOption, start, formattedEndDate);
   };
 
   const updateSummary = (paymentOption, startDate, endDate) => {
@@ -422,51 +424,53 @@ const BasicModal = ({ open, setOpen }) => {
   data.set("email", userInfo.email);
   data.set("phoneNumber", userInfo.phoneNumber);
 
-  // const totalAmount = 3000 * calculateNumOfDays();
-  const totalAmount = 3000;
+
+
+
+  const totalAmount = selectedPaymentOption.amount;
 
   const url =
     "https://api-grazacacademy-0358136c0905.herokuapp.com/api/v1/user/bookSpace";
 
-  const SpaceFeeFlutterwaveConfig = {
-    public_key: "FLWPUBK-006bdc82ad878f1518af32f44af6478f-X",
-    tx_ref: Date.now(),
-    amount: totalAmount,
-    currency: "NGN",
-    payment_options: "card,mobilemoney,ussd",
-    customer: {
-      email: userInfo.email,
-      phonenumber: userInfo.phoneNumber,
-      name: `${userInfo.firstName} ${userInfo.lastName}`,
-    },
-    customizations: {
-      title: "Grazac Technologies Limited",
-      description: "Co-working Space Payment",
-      logo: "https://grazac.com.ng/logo.png",
-    },
-  };
+  // const SpaceFeeFlutterwaveConfig = {
+  //   public_key: "FLWPUBK-006bdc82ad878f1518af32f44af6478f-X",
+  //   tx_ref: Date.now(),
+  //   amount: totalAmount,
+  //   currency: "NGN",
+  //   payment_options: "card,mobilemoney,ussd",
+  //   customer: {
+  //     email: userInfo.email,
+  //     phonenumber: userInfo.phoneNumber,
+  //     name: `${userInfo.firstName} ${userInfo.lastName}`,
+  //   },
+  //   customizations: {
+  //     title: "Grazac Technologies Limited",
+  //     description: "Co-working Space Payment",
+  //     logo: "https://grazac.com.ng/logo.png",
+  //   },
+  // };
 
-  const HandleSpacePayFlutterPayment = useFlutterwave(
-    SpaceFeeFlutterwaveConfig
-  );
+  // const HandleSpacePayFlutterPayment = useFlutterwave(
+  //   SpaceFeeFlutterwaveConfig
+  // );
   const handleSubmit = (e) => {
     e.preventDefault();
     axios.post(url, data).then((res) => {
       if (res.data.status === 201) {
-        HandleSpacePayFlutterPayment({
-          callback: (response) => {
-            if (response.status === "completed") {
-              toast.success("Payment successful! Verifying payment...");
-            }
-            closePaymentModal();
-            setInterval(() => {
-              window.location = "/";
-            }, 2500);
-          },
-          onClose: () => {
-            window.location = "/";
-          },
-        });
+        // HandleSpacePayFlutterPayment({
+        //   callback: (response) => {
+        //     if (response.status === "completed") {
+        //       toast.success("Payment successful! Verifying payment...");
+        //     }
+        //     closePaymentModal();
+        //     setInterval(() => {
+        //       window.location = "/";
+        //     }, 2500);
+        //   },
+        //   onClose: () => {
+        //     window.location = "/";
+        //   },
+        // });
       } else {
         toast.error("Form submission not successful");
       }
@@ -479,9 +483,6 @@ const BasicModal = ({ open, setOpen }) => {
       <div className="basicModal">
         <div className="basicModal_space">
           <ToastContainer closeButton={false} />
-          <div className="close" onClick={() => setOpen(false)}>
-            ×
-          </div>
           <h2>Book a Space</h2>
           <p className="para">
             You can now secure your booking for our space at just{" "}
@@ -553,7 +554,7 @@ const BasicModal = ({ open, setOpen }) => {
             <p style={{ textAlign: "center", marginTop: "8px" }}>
               Kindly enter your information here to complete the process
             </p>
-            <div style={{ display: "flex", gap: "8px" }}>
+            <div className="basicModal_form_flex">
               <input
                 type="text"
                 required
@@ -571,7 +572,7 @@ const BasicModal = ({ open, setOpen }) => {
                 value={userInfo.phoneNumber}
               />
             </div>
-            <div style={{ display: "flex", gap: "8px" }}>
+            <div className="basicModal_form_flex">
               <input
                 type="text"
                 required

@@ -1,8 +1,8 @@
 .basicModal_overlay {
   background-color: black;
-  width: 100vw;
-  height: 100vh;
-  opacity: 0.7;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
   position: fixed;
   top: 0;
   left: 0;
@@ -15,7 +15,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  max-height: 589px;
+  max-height: 85vh;
   width: 740px;
   border: 1px solid #fff;
   border-radius: 24px;
@@ -23,6 +23,10 @@
   box-shadow: 24px;
   font-family: "Graphik Trial", sans-serif;
   background-color: #fff;
+ 
+}
+.basicModal_space::-webkit-scrollbar-track{
+  scrollbar-width: 1px;
 }
 .close {
   position: absolute;
@@ -219,6 +223,10 @@
 .basicModal_form {
   margin-top: 32px;
 }
+.basicModal_form_flex {
+  display: flex;
+  gap: 8px;
+}
 .basicModal_form input {
   border: 1px solid #afbaca;
   width: 100%;
@@ -288,7 +296,8 @@
   }
   .basicModal_dateContainer_start,
   .basicModal_dateContainer_end {
-    width: 100%;
+    width: 95%;
+    margin: auto;
   }
   .basicModal_dateContainer_start p,
   .basicModal_dateContainer_end p {
@@ -305,6 +314,12 @@
   }
   .checkbox-label {
     margin: 5px 0px 0px 0px;
+  }
+  .basicModal_summary{
+    max-width: 90%;
+  }
+  .basicModal_form_flex{
+    display: block;
   }
 }
 @media screen and (max-width: 468px) {
