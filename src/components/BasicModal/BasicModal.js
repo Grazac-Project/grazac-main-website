@@ -301,7 +301,7 @@
 
 // export default BasicModal;
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import calendar from "../../images/calendar.png";
 import dropdown from "../../images/drop-icon.svg";
 import "./BasicModal.css";
@@ -322,13 +322,11 @@ const paymentOptions = [
 
 const BasicModal = ({ open, setOpen }) => {
   const options = { month: "long", day: "numeric" };
-  const today = new Date().toLocaleDateString("en-US", options);
+  const today = new Date();
 
   const [toggle, setToggle] = useState(false);
   const [toggle2, setToggle2] = useState(false);
-  const [selectedPaymentOption, setSelectedPaymentOption] = useState(
-    paymentOptions[0]
-  );
+  const [selectedPaymentOption, setSelectedPaymentOption] = useState(null);
   const [startDate, setStartDate] = useState(today);
   const [endDate, setEndDate] = useState("");
   const [summary, setSummary] = useState([]);
@@ -339,38 +337,62 @@ const BasicModal = ({ open, setOpen }) => {
     phoneNumber: "",
   });
 
-  const handleToggle = () => {
+  const modalRef = useRef();
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [setOpen]);
+
+  useEffect(() => {
+    if (selectedPaymentOption) {
+      updateEndDate(startDate, selectedPaymentOption);
+    }
+  }, [startDate, selectedPaymentOption]);
+
+  const handleToggle = (e) => {
+    e.stopPropagation();
     setToggle(!toggle);
-    setToggle2(toggle2);
+    setToggle2(false);
   };
-  const handleToggle2 = () => {
+
+  const handleToggle2 = (e) => {
+    e.stopPropagation();
     setToggle2(!toggle2);
-    setToggle(toggle);
+    setToggle(false);
   };
+
+  const handleOutside = () => {
+    setToggle(false);
+    setToggle2(false);
+  };
+
   const formInputChange = (e) => {
     setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
   };
+
   const handlePaymentOptionChange = (option) => {
     setSelectedPaymentOption(option);
-    updateEndDate(startDate, option);
-    console.log(selectedPaymentOption);
-    setToggle(!toggle);
+    setToggle(false);
   };
 
   const handleStartDateChange = (newStartDate) => {
-    const newDate = newStartDate.toLocaleDateString("en-US", options)
-    setStartDate(newDate);
-    updateEndDate(newDate, selectedPaymentOption);
-    setToggle2(!toggle2);
-
-    // console.log();
+    setStartDate(newStartDate);
+    setToggle2(false);
   };
 
   const updateEndDate = (start, option) => {
     if (!start || !option) return;
 
-    let startDate = new Date(start);
-    let endDate = new Date(startDate);
+    let endDate = new Date(start);
 
     switch (option.value) {
       case "yearly":
@@ -392,85 +414,97 @@ const BasicModal = ({ open, setOpen }) => {
         break;
     }
 
-    const options = { month: "long", day: "numeric" };
-    const formattedEndDate = endDate.toLocaleDateString("en-US", options);
-   
-
-
-    setEndDate(formattedEndDate);
-    updateSummary(selectedPaymentOption, start, formattedEndDate);
+    setEndDate(endDate);
+    updateSummary(option, start, endDate);
   };
 
   const updateSummary = (paymentOption, startDate, endDate) => {
     if (!paymentOption || !startDate || !endDate) return;
 
-    setSummary(
-      // `Package: ${paymentOption.label}, Amount: ₦${paymentOption.amount.toLocaleString()}, Start Date: ${startDate.toLocaleDateString()}, End Date: ${endDate}`
-      [
-        { label: "Subscription Type", value: ` ${paymentOption.label}` },
-        { label: "Start date", value: ` ${startDate}` },
-        { label: "End date", value: ` ${endDate}` },
-        {
-          label: "Total price",
-          value: `₦${paymentOption.amount.toLocaleString()}`,
-        },
-      ]
-    );
-    console.log(summary);
+    setSummary([
+      { label: "Subscription Type", value: paymentOption.label },
+      { label: "Start date", value: formatDateWithSuffix(startDate) },
+      { label: "End date", value: formatDateWithSuffix(endDate) },
+      { label: "Total price", value: `₦${paymentOption.amount.toLocaleString()}` },
+    ]);
   };
+
+  const formatDateWithSuffix = (date) => {
+    const day = date.getDate();
+    const dayWithSuffix = getDayWithSuffix(day);
+    const month = date.toLocaleString("en-US", { month: "long" });
+
+    return `${dayWithSuffix} ${month} `;
+  };
+
+  const getDayWithSuffix = (day) => {
+    if (day >= 11 && day <= 13) {
+      return `${day}th`;
+    }
+    switch (day % 10) {
+      case 1:
+        return `${day}st`;
+      case 2:
+        return `${day}nd`;
+      case 3:
+        return `${day}rd`;
+      default:
+        return `${day}th`;
+    }
+  };
+
+  const tileDisabled = ({ date, view }) => {
+    return view === "month" && date < new Date();
+  };
+
   const data = new FormData();
   data.set("firstName", userInfo.firstName);
   data.set("lastName", userInfo.lastName);
   data.set("email", userInfo.email);
   data.set("phoneNumber", userInfo.phoneNumber);
 
+  const totalAmount = selectedPaymentOption ? selectedPaymentOption.amount : 0;
+  const url = "https://api-grazacacademy-0358136c0905.herokuapp.com/api/v1/user/bookSpace";
 
+  const SpaceFeeFlutterwaveConfig = {
+    public_key: "FLWPUBK-006bdc82ad878f1518af32f44af6478f-X",
+    tx_ref: Date.now(),
+    amount: totalAmount,
+    currency: "NGN",
+    payment_options: "card,mobilemoney,ussd",
+    customer: {
+      email: userInfo.email,
+      phonenumber: userInfo.phoneNumber,
+      name: `${userInfo.firstName} ${userInfo.lastName}`,
+    },
+    customizations: {
+      title: "Grazac Technologies Limited",
+      description: "Co-working Space Payment",
+      logo: "https://grazac.com.ng/logo.png",
+    },
+  };
 
+  const HandleSpacePayFlutterPayment = useFlutterwave(SpaceFeeFlutterwaveConfig);
 
-  const totalAmount = selectedPaymentOption.amount;
-
-  const url =
-    "https://api-grazacacademy-0358136c0905.herokuapp.com/api/v1/user/bookSpace";
-
-  // const SpaceFeeFlutterwaveConfig = {
-  //   public_key: "FLWPUBK-006bdc82ad878f1518af32f44af6478f-X",
-  //   tx_ref: Date.now(),
-  //   amount: totalAmount,
-  //   currency: "NGN",
-  //   payment_options: "card,mobilemoney,ussd",
-  //   customer: {
-  //     email: userInfo.email,
-  //     phonenumber: userInfo.phoneNumber,
-  //     name: `${userInfo.firstName} ${userInfo.lastName}`,
-  //   },
-  //   customizations: {
-  //     title: "Grazac Technologies Limited",
-  //     description: "Co-working Space Payment",
-  //     logo: "https://grazac.com.ng/logo.png",
-  //   },
-  // };
-
-  // const HandleSpacePayFlutterPayment = useFlutterwave(
-  //   SpaceFeeFlutterwaveConfig
-  // );
   const handleSubmit = (e) => {
     e.preventDefault();
     axios.post(url, data).then((res) => {
       if (res.data.status === 201) {
-        // HandleSpacePayFlutterPayment({
-        //   callback: (response) => {
-        //     if (response.status === "completed") {
-        //       toast.success("Payment successful! Verifying payment...");
-        //     }
-        //     closePaymentModal();
-        //     setInterval(() => {
-        //       window.location = "/";
-        //     }, 2500);
-        //   },
-        //   onClose: () => {
-        //     window.location = "/";
-        //   },
-        // });
+        console.log(res)
+        HandleSpacePayFlutterPayment({
+          callback: (response) => {
+            if (response.status === "completed") {
+              toast.success("Payment successful! Verifying payment...");
+            }
+            closePaymentModal();
+            setInterval(() => {
+              window.location = "/";
+            }, 2500);
+          },
+          onClose: () => {
+            window.location = "/";
+          },
+        });
       } else {
         toast.error("Form submission not successful");
       }
@@ -480,8 +514,8 @@ const BasicModal = ({ open, setOpen }) => {
   return (
     <>
       <div className="basicModal_overlay" onClick={() => setOpen(false)}></div>
-      <div className="basicModal">
-        <div className="basicModal_space">
+      <div className="basicModal" ref={modalRef} onClick={handleOutside}>
+        <div className="basicModal_space" onClick={(e) => e.stopPropagation()}>
           <ToastContainer closeButton={false} />
           <h2>Book a Space</h2>
           <p className="para">
@@ -491,29 +525,21 @@ const BasicModal = ({ open, setOpen }) => {
           </p>
           <div className="basicModal_Container">
             <div className="basicModal_dateContainer">
-              <div
-                className="basicModal_dateContainer_start"
-                // onClick={() => setToggle(!toggle)}
-                onClick={handleToggle}
-              >
-                <p>{summary.label || "Subscription Type"}</p>
+              <div className="basicModal_dateContainer_start" onClick={handleToggle}>
+                <p>{selectedPaymentOption ? selectedPaymentOption.label : "Subscription Type"}</p>
                 <div>
-                  <img src={dropdown} alt="calendar" />
+                  <img src={dropdown} alt="dropdown" />
                 </div>
               </div>
-              <div
-                className="basicModal_dateContainer_end"
-                // onClick={() => setToggle2(!toggle2)}
-                onClick={handleToggle2}
-              >
-                <p>Start Date</p>
+              <div className="basicModal_dateContainer_end" onClick={handleToggle2}>
+                <p> Start Date</p>
                 <div>
                   <img src={calendar} alt="calendar" />
                 </div>
               </div>
             </div>
             <div className="basicModal_sub">
-              {toggle ? (
+              {toggle && (
                 <div className="basicModal_sub_con">
                   {paymentOptions.map((option) => (
                     <div
@@ -526,20 +552,21 @@ const BasicModal = ({ open, setOpen }) => {
                     </div>
                   ))}
                 </div>
-              ) : null}
-              {toggle2 ? (
+              )}
+              {toggle2 && (
                 <div className="calendar">
                   <Calendar
                     onChange={handleStartDateChange}
                     value={startDate}
+                    tileDisabled={tileDisabled}
                   />
                 </div>
-              ) : null}
+              )}
             </div>
             <div className="basicModal_summary">
               {summary.length === 4 && (
                 <>
-                  <h5>summary</h5>
+                  <h5>Summary</h5>
                   {summary.map((item, index) => (
                     <div key={index} className="basicModal_summary_flex">
                       <h5>{item.label}</h5>
