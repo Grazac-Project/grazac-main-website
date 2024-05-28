@@ -339,4 +339,10 @@
     margin: 8px 0px 22px 0px;
     font-size: 16px;
   }
+  .basicModal_sub_con{
+    right: 4%;
+  }
+  .calendar{
+    left: 2%;
+  }
 }

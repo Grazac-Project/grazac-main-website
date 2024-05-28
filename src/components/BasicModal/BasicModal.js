@@ -300,7 +300,6 @@
 // };
 
 // export default BasicModal;
-
 import React, { useEffect, useRef, useState } from "react";
 import calendar from "../../images/calendar.png";
 import dropdown from "../../images/drop-icon.svg";
@@ -311,6 +310,7 @@ import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useFormik } from "formik";
 
 const paymentOptions = [
   { label: "Daily", value: "daily", amount: 3000 },
@@ -370,15 +370,6 @@ const BasicModal = ({ open, setOpen }) => {
     setToggle(false);
   };
 
-  const handleOutside = () => {
-    setToggle(false);
-    setToggle2(false);
-  };
-
-  const formInputChange = (e) => {
-    setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
-  };
-
   const handlePaymentOptionChange = (option) => {
     setSelectedPaymentOption(option);
     setToggle(false);
@@ -425,7 +416,10 @@ const BasicModal = ({ open, setOpen }) => {
       { label: "Subscription Type", value: paymentOption.label },
       { label: "Start date", value: formatDateWithSuffix(startDate) },
       { label: "End date", value: formatDateWithSuffix(endDate) },
-      { label: "Total price", value: `₦${paymentOption.amount.toLocaleString()}` },
+      {
+        label: "Total price",
+        value: `₦${paymentOption.amount.toLocaleString()}`,
+      },
     ]);
   };
 
@@ -457,14 +451,9 @@ const BasicModal = ({ open, setOpen }) => {
     return view === "month" && date < new Date();
   };
 
-  const data = new FormData();
-  data.set("firstName", userInfo.firstName);
-  data.set("lastName", userInfo.lastName);
-  data.set("email", userInfo.email);
-  data.set("phoneNumber", userInfo.phoneNumber);
-
   const totalAmount = selectedPaymentOption ? selectedPaymentOption.amount : 0;
-  const url = "https://api-grazacacademy-0358136c0905.herokuapp.com/api/v1/user/bookSpace";
+  const url =
+    "https://grazac-academy-back-end-production.up.railway.app/api/v1/user/book";
 
   const SpaceFeeFlutterwaveConfig = {
     public_key: "FLWPUBK-006bdc82ad878f1518af32f44af6478f-X",
@@ -484,37 +473,56 @@ const BasicModal = ({ open, setOpen }) => {
     },
   };
 
-  const HandleSpacePayFlutterPayment = useFlutterwave(SpaceFeeFlutterwaveConfig);
+  const HandleSpacePayFlutterPayment = useFlutterwave(
+    SpaceFeeFlutterwaveConfig
+  );
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    axios.post(url, data).then((res) => {
-      if (res.data.status === 201) {
-        console.log(res)
-        HandleSpacePayFlutterPayment({
-          callback: (response) => {
-            if (response.status === "completed") {
-              toast.success("Payment successful! Verifying payment...");
-            }
-            closePaymentModal();
-            setInterval(() => {
+  const formik = useFormik({
+    initialValues: userInfo,
+    enableReinitialize: true,
+    onSubmit: async (values, { setSubmitting }) => {
+      const dataValues = {
+        ...values,
+        startDate: startDate.toLocaleDateString(),
+        subscriptionType: selectedPaymentOption?.value || "",
+      };
+      console.log(dataValues)
+      try {
+        const res = await axios.post(url, dataValues);
+        if (res.data.status === 201) {
+          HandleSpacePayFlutterPayment({
+            callback: (response) => {
+              if (response.status === "completed") {
+                toast.success("Payment successful! Verifying payment...");
+              }
+              closePaymentModal();
+              setTimeout(() => {
+                window.location = "/";
+              }, 2500);
+            },
+            onClose: () => {
               window.location = "/";
-            }, 2500);
-          },
-          onClose: () => {
-            window.location = "/";
-          },
-        });
-      } else {
-        toast.error("Form submission not successful");
+            },
+          });
+        } else {
+          toast.error("Form submission not successful");
+        }
+      } catch (error) {
+        toast.error("An error occurred while submitting the form");
+      } finally {
+        setSubmitting(false);
       }
-    });
-  };
+    },
+  });
+
+  useEffect(() => {
+    setUserInfo(formik.values);
+  }, [formik.values]);
 
   return (
     <>
       <div className="basicModal_overlay" onClick={() => setOpen(false)}></div>
-      <div className="basicModal" ref={modalRef} onClick={handleOutside}>
+      <div className="basicModal" ref={modalRef}>
         <div className="basicModal_space" onClick={(e) => e.stopPropagation()}>
           <ToastContainer closeButton={false} />
           <h2>Book a Space</h2>
@@ -525,13 +533,23 @@ const BasicModal = ({ open, setOpen }) => {
           </p>
           <div className="basicModal_Container">
             <div className="basicModal_dateContainer">
-              <div className="basicModal_dateContainer_start" onClick={handleToggle}>
-                <p>{selectedPaymentOption ? selectedPaymentOption.label : "Subscription Type"}</p>
+              <div
+                className="basicModal_dateContainer_start"
+                onClick={handleToggle}
+              >
+                <p>
+                  {selectedPaymentOption
+                    ? selectedPaymentOption.label
+                    : "Subscription Type"}
+                </p>
                 <div>
                   <img src={dropdown} alt="dropdown" />
                 </div>
               </div>
-              <div className="basicModal_dateContainer_end" onClick={handleToggle2}>
+              <div
+                className="basicModal_dateContainer_end"
+                onClick={handleToggle2}
+              >
                 <p> Start Date</p>
                 <div>
                   <img src={calendar} alt="calendar" />
@@ -577,7 +595,7 @@ const BasicModal = ({ open, setOpen }) => {
               )}
             </div>
           </div>
-          <form className="basicModal_form" onSubmit={handleSubmit}>
+          <form className="basicModal_form" onSubmit={formik.handleSubmit}>
             <p style={{ textAlign: "center", marginTop: "8px" }}>
               Kindly enter your information here to complete the process
             </p>
@@ -587,16 +605,17 @@ const BasicModal = ({ open, setOpen }) => {
                 required
                 placeholder="Email Address"
                 name="email"
-                onChange={formInputChange}
-                value={userInfo.email}
+                onChange={formik.handleChange}
+                value={formik.values.email}
               />
               <input
                 type="tel"
+                pattern="[0-9]{11}"
                 required
                 placeholder="Phone Number"
                 name="phoneNumber"
-                onChange={formInputChange}
-                value={userInfo.phoneNumber}
+                onChange={formik.handleChange}
+                value={formik.values.phoneNumber}
               />
             </div>
             <div className="basicModal_form_flex">
@@ -605,16 +624,16 @@ const BasicModal = ({ open, setOpen }) => {
                 required
                 placeholder="First Name"
                 name="firstName"
-                onChange={formInputChange}
-                value={userInfo.firstName}
+                onChange={formik.handleChange}
+                value={formik.values.firstName}
               />
               <input
                 type="text"
                 required
                 placeholder="Last Name"
                 name="lastName"
-                onChange={formInputChange}
-                value={userInfo.lastName}
+                onChange={formik.handleChange}
+                value={formik.values.lastName}
               />
             </div>
             <button type="submit">Book Now</button>
