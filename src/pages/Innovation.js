@@ -625,7 +625,7 @@ const Innovation = () => {
     speed: 1000,
     easing: "cubic-bezier(0.5, 0, 0.5, 0.5)",
   };
-  const texts = ["productivity", "creativity"];git 
+  const texts = ["productivity", "creativity"];
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
