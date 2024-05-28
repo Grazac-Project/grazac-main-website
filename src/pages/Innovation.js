@@ -579,14 +579,12 @@
 // export default Innovation;
 import React, { useEffect, useState } from "react";
 import executive from "../images/book/executive.png";
+import desk from "../images/book/desk.png";
+import meeting from "../images/book/meeting.png";
+import relaxation from "../images/book/relaxation.png";
 import icon4 from "../images/book/icon4.svg";
 import user from "../images/book/user.png";
-import image1 from "../images/book/image1.png";
-
-import avatar from "../images/book/avatar.png";
 import line from "../images/book/underline.png";
-import privateoffice from "../images/website/IMG_9865.jpg";
-import even from "../images/website/IMG_9775.jpg";
 import BasicModal from "../components/BasicModal/BasicModal";
 import Tour from "../components/Tour/Tour";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
@@ -627,7 +625,7 @@ const Innovation = () => {
     speed: 1000,
     easing: "cubic-bezier(0.5, 0, 0.5, 0.5)",
   };
-  const texts = ["productivity", "Creativity"];
+  const texts = ["productivity", "creativity"];git 
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -737,7 +735,7 @@ const Innovation = () => {
                 recharge with drinks and games before taking on your next task.
               </p>
               <div className="innovation_offer_executive_image">
-                <img src={image1} alt="build" />
+                <img src={meeting} alt="build" />
               </div>
             </div>
           </div>
@@ -752,7 +750,7 @@ const Innovation = () => {
                 recharge with drinks and games before taking on your next task.
               </p>
               <div className="innovation_offer_executive_image">
-                <img src={even} alt="build" />
+                <img src={relaxation} alt="build" />
               </div>
             </div>
           </div>
@@ -767,7 +765,7 @@ const Innovation = () => {
                 recharge with drinks and games before taking on your next task.
               </p>
               <div className="innovation_offer_executive_image">
-                <img src={privateoffice} alt="build" />
+                <img src={desk} alt="build" />
               </div>
             </div>
           </div>
