@@ -322,7 +322,7 @@ const paymentOptions = [
 ];
 
 const BasicModal = ({ open, setOpen }) => {
-  const options = { month: "long", day: "numeric" };
+  // const options = { month: "long", day: "numeric" };
   const today = new Date();
 
   const [toggle, setToggle] = useState(false);

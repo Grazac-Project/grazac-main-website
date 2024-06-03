@@ -615,8 +615,9 @@ const Innovation = () => {
     resetProgress: false,
   };
   const options2 = {
+    width: "100%",
     type: "loop",
-    gap: "1rem",
+    gap: "10px",
     autoplay: true,
     pauseOnHover: true,
     resetProgess: false,
@@ -770,85 +771,86 @@ const Innovation = () => {
             </div>
           </div>
         )}
-        <Splide options={options2}>
-          <SplideSlide className="innovation_offer_wrapper2">
-            <div className="innovation_offer_wrapper2_btn">
-              <button>Executive Boardroom</button>
-            </div>
-            <div className="innovation_offer_executive2">
-              <div className="innovation_offer_executive_2text">
-                <h5>Executive Boardroom</h5>
-                <p>
-                  Get a unique experience with stunning interior elements that
-                  makes your event memorable. Relax away from your desks and
-                  recharge with drinks and games before taking on your next
-                  task.
-                </p>
-                <div>
-                  <img src={executive} alt="build" />
+        <div style={{ margin: "auto", display: "flex", flexDirection: "column",justifyContent:"center", width: "90%"}}>
+          <Splide options={options2}>
+            <SplideSlide className="innovation_offer_wrapper2">
+              <div className="innovation_offer_wrapper2_btn">
+                <button>Executive Boardroom</button>
+              </div>
+              <div className="innovation_offer_executive2">
+                <div className="innovation_offer_executive_2text">
+                  <h5>Executive Boardroom</h5>
+                  <p>
+                    Get a unique experience with stunning interior elements that
+                    makes your event memorable. Relax away from your desks and
+                    recharge with drinks and games before taking on your next
+                    task.
+                  </p>
+                  <div>
+                    <img src={executive} alt="build" />
+                  </div>
                 </div>
               </div>
-            </div>
-          </SplideSlide>
-
-          <SplideSlide className="innovation_offer_wrapper2">
-            <div className="innovation_offer_wrapper2_btn">
-              <button>Meeting Rooms</button>
-            </div>
-            <div className="innovation_offer_executive2">
-              <div className="innovation_offer_executive2_text">
-                <h5>Meeting Room</h5>
-                <p>
-                  Get a unique experience with stunning interior elements that
-                  makes your event memorable. Relax away from your desks and
-                  recharge with drinks and games before taking on your next
-                  task.
-                </p>
-                <div>
-                  <img src={executive} alt="build" />
+            </SplideSlide>
+            <SplideSlide className="innovation_offer_wrapper2">
+              <div className="innovation_offer_wrapper2_btn">
+                <button>Meeting Rooms</button>
+              </div>
+              <div className="innovation_offer_executive2">
+                <div className="innovation_offer_executive2_text">
+                  <h5>Meeting Room</h5>
+                  <p>
+                    Get a unique experience with stunning interior elements that
+                    makes your event memorable. Relax away from your desks and
+                    recharge with drinks and games before taking on your next
+                    task.
+                  </p>
+                  <div>
+                    <img src={meeting} alt="build" />
+                  </div>
                 </div>
               </div>
-            </div>
-          </SplideSlide>
-          <SplideSlide className="innovation_offer_wrapper2">
-            <div className="innovation_offer_wrapper2_btn">
-              <button>Relaxation Space</button>
-            </div>
-            <div className="innovation_offer_executive2">
-              <div className="innovation_offer_executive2_text">
-                <h5>Relaxation Space</h5>
-                <p>
-                  Get a unique experience with stunning interior elements that
-                  makes your event memorable. Relax away from your desks and
-                  recharge with drinks and games before taking on your next
-                  task.
-                </p>
-                <div>
-                  <img src={executive} alt="build" />
+            </SplideSlide>
+            <SplideSlide className="innovation_offer_wrapper2">
+              <div className="innovation_offer_wrapper2_btn">
+                <button>Relaxation Space</button>
+              </div>
+              <div className="innovation_offer_executive2">
+                <div className="innovation_offer_executive2_text">
+                  <h5>Relaxation Space</h5>
+                  <p>
+                    Get a unique experience with stunning interior elements that
+                    makes your event memorable. Relax away from your desks and
+                    recharge with drinks and games before taking on your next
+                    task.
+                  </p>
+                  <div>
+                    <img src={relaxation} alt="build" />
+                  </div>
                 </div>
               </div>
-            </div>
-          </SplideSlide>
-          <SplideSlide className="innovation_offer_wrapper2">
-            <div className="innovation_offer_wrapper2_btn">
-              <button>Dedicated Desks</button>
-            </div>
-            <div className="innovation_offer_executive2">
-              <div className="innovation_offer_executive2_text">
-                <h5>Dedicated Desk</h5>
-                <p>
-                  Get a unique experience with stunning interior elements that
-                  makes your event memorable. Relax away from your desks and
-                  recharge with drinks and games before taking on your next
-                  task.
-                </p>
-                <div>
-                  <img src={executive} alt="build" />
+            </SplideSlide>
+            <SplideSlide className="innovation_offer_wrapper2">
+              <div className="innovation_offer_wrapper2_btn">
+                <button>Dedicated Desks</button>
+              </div>
+              <div className="innovation_offer_executive2">
+                <div className="innovation_offer_executive2_text">
+                  <h5>Dedicated Desk</h5>
+                  <p>
+                    Get a unique experience with stunning interior elements that
+                    makes your event memorable. Relax away from your desks and
+                    recharge with drinks and games before taking on your next
+                    task.
+                  </p>
+                  <div>
+                    <img src={desk} alt="build" />
+                  </div>
                 </div>
               </div>
-            </div>
-          </SplideSlide>
-        </Splide>
+            </SplideSlide>
+          </Splide>
+        </div>
       </div>
 
       <div className="innovation_benefit">
@@ -929,7 +931,7 @@ const Innovation = () => {
             <div className="innovation_slide">
               {Images.map((image) => (
                 <div className="innovation_image">
-                  <img key={image.id} src={image.image} alt="galleryPicture" /> 
+                  <img key={image.id} src={image.image} alt="galleryPicture" />
                 </div>
               ))}
             </div>
@@ -958,9 +960,7 @@ const Innovation = () => {
                 </div>
               </SplideSlide>
             ))}
-            
           </Splide>
-          
         </div>
       </div>
       <div className="innovation_community">
