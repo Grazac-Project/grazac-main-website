@@ -73,7 +73,7 @@ const App = () => {
         <Layout>
           <Switch>
             <Route path="/" exact component={LandingPage} />
-            <Route path="/innovation" exact component={InnovationPage} />
+            <Route path="/workspace" exact component={InnovationPage} />
             <Route path="/about" exact component={About} />
             <Route path="/build" exact component={Build} />
             <Route path="/casestudy" exact component={CaseStudy} />

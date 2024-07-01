@@ -401,7 +401,7 @@ const BasicModal = ({ open, setOpen }) => {
         endDate.setDate(endDate.getDate() + 7);
         break;
       case "daily":
-        endDate.setDate(endDate.getDate() + 1);
+        endDate.setDate(endDate.getDate() );
         break;
       default:
         break;

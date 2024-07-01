@@ -664,8 +664,9 @@ const Innovation = () => {
             <img src={line} alt="line" className="innovation_line2" />
 
             <p>
-              We have an inviting workspace with an amiable effect on both
-              clients, partners and visitors
+              Don’t just work, work in an environment that inspires you every
+              day and affords you the luxury of working, relaxing, and
+              networking!
             </p>
           </div>
           <div className="innovation_offer_wrapper_btnFlex">
@@ -716,9 +717,10 @@ const Innovation = () => {
             <div className="innovation_offer_executive_text">
               <h5>Executive Boardroom</h5>
               <p>
-                Get a unique experience with stunning interior elements that
-                makes your event memorable. Relax away from your desks and
-                recharge with drinks and games before taking on your next task.
+                No matter the nature of your work, our executive rooms match
+                your ambition providing you with focus and comfort, either for a
+                business meeting or just needing a quiet environment to think
+                in.
               </p>
               <div className="innovation_offer_executive_image">
                 <img src={executive} alt="build" />
@@ -731,9 +733,9 @@ const Innovation = () => {
             <div className="innovation_offer_executive_text">
               <h5>Meeting Room</h5>
               <p>
-                Get a unique experience with stunning interior elements that
-                makes your event memorable. Relax away from your desks and
-                recharge with drinks and games before taking on your next task.
+                Have productive brainstorming sessions or hold productive
+                training sessions with our state-of-the-art well-furnished
+                meeting rooms fitted to your taste.
               </p>
               <div className="innovation_offer_executive_image">
                 <img src={meeting} alt="build" />
@@ -761,9 +763,9 @@ const Innovation = () => {
             <div className="innovation_offer_executive_text">
               <h5>Dedicated Desk</h5>
               <p>
-                Get a unique experience with stunning interior elements that
-                makes your event memorable. Relax away from your desks and
-                recharge with drinks and games before taking on your next task.
+                Elevate your professionalism with your clients with our
+                dedicated desk designed to give that personalized, reliable, and
+                consistent workspace just for you.
               </p>
               <div className="innovation_offer_executive_image">
                 <img src={desk} alt="build" />
@@ -771,7 +773,15 @@ const Innovation = () => {
             </div>
           </div>
         )}
-        <div style={{ margin: "auto", display: "flex", flexDirection: "column",justifyContent:"center", width: "90%"}}>
+        <div
+          style={{
+            margin: "auto",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            width: "90%",
+          }}
+        >
           <Splide options={options2}>
             <SplideSlide className="innovation_offer_wrapper2">
               <div className="innovation_offer_wrapper2_btn">
@@ -781,10 +791,10 @@ const Innovation = () => {
                 <div className="innovation_offer_executive_2text">
                   <h5>Executive Boardroom</h5>
                   <p>
-                    Get a unique experience with stunning interior elements that
-                    makes your event memorable. Relax away from your desks and
-                    recharge with drinks and games before taking on your next
-                    task.
+                    No matter the nature of your work, our executive rooms match
+                    your ambition providing you with focus and comfort, either
+                    for a business meeting or just needing a quiet environment
+                    to think in.
                   </p>
                   <div>
                     <img src={executive} alt="build" />
@@ -800,10 +810,9 @@ const Innovation = () => {
                 <div className="innovation_offer_executive2_text">
                   <h5>Meeting Room</h5>
                   <p>
-                    Get a unique experience with stunning interior elements that
-                    makes your event memorable. Relax away from your desks and
-                    recharge with drinks and games before taking on your next
-                    task.
+                    Have productive brainstorming sessions or hold productive
+                    training sessions with our state-of-the-art well-furnished
+                    meeting rooms fitted to your taste.
                   </p>
                   <div>
                     <img src={meeting} alt="build" />
@@ -838,10 +847,9 @@ const Innovation = () => {
                 <div className="innovation_offer_executive2_text">
                   <h5>Dedicated Desk</h5>
                   <p>
-                    Get a unique experience with stunning interior elements that
-                    makes your event memorable. Relax away from your desks and
-                    recharge with drinks and games before taking on your next
-                    task.
+                    Elevate your professionalism with your clients with our
+                    dedicated desk designed to give that personalized, reliable,
+                    and consistent workspace just for you.
                   </p>
                   <div>
                     <img src={desk} alt="build" />
@@ -858,42 +866,45 @@ const Innovation = () => {
         <div className="innovation_benefit_grid">
           <div className="innovation_benefit_grid_items">
             <img src={icon4} alt=" img" />
-            <h6>40+ Dedicated Desk</h6>
+            <h6>High-speed Internet</h6>
             <p>
-              Create a world where people work to make a life, not just a
-              living.{" "}
+            Unbeatable internet speed for seamless working and meetings.
             </p>
           </div>
           <div className="innovation_benefit_grid_items">
             <img src={icon4} alt=" img" />
-            <h6>40+ Dedicated Desk</h6>
+            <h6>Cleaning Services</h6>
             <p>
-              Create a world where people work to make a life, not just a
-              living.{" "}
+            A clean work environment makes all the difference and we worry about that on your behalf!
             </p>
           </div>{" "}
           <div className="innovation_benefit_grid_items">
             <img src={icon4} alt=" img" />
-            <h6>24hrs Power Supply</h6>
+            <h6>40+ Dedicated Desk</h6>
             <p>
-              Create a world where people work to make a life, not just a
-              living.{" "}
+            Dedicated desk space for other events of interest you might be considering hosting, ranging from sip and paints to tech hangouts, etc.
+            </p>
+          </div>{" "}
+          <div className="innovation_benefit_grid_items">
+            <img src={icon4} alt=" img" />
+            <h6>24-hour Light</h6>
+            <p>
+            Enjoy eco-friendly uninterrupted power supply throughout your stay.
+
             </p>
           </div>{" "}
           <div className="innovation_benefit_grid_items">
             <img src={icon4} alt=" img" />
             <h6>Conducive Environment</h6>
             <p>
-              Create a world where people work to make a life, not just a
-              living.{" "}
+            Another outstanding thing about our space is the ambience and how conducive our space is, which helps your creative juices flow easily.
             </p>
-          </div>{" "}
+          </div>
           <div className="innovation_benefit_grid_items">
             <img src={icon4} alt=" img" />
-            <h6>500mbps Internet</h6>
+            <h6>Car Parking Space</h6>
             <p>
-              Create a world where people work to make a life, not just a
-              living.{" "}
+            Worried about where to park your car? We have that covered as our workspace comes with secure parking spaces for you.
             </p>
           </div>
         </div>
@@ -946,7 +957,7 @@ const Innovation = () => {
           <h4>Customer testimonials</h4>
           <img src={line} alt="line" className="innovation_line" />
 
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <p>Hear what people have to say about us.</p>
           <Splide options={options}>
             {Testimony.map((review) => (
               <SplideSlide className="innovation_review_items" key={review.id}>
