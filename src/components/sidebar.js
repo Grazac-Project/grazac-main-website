@@ -44,9 +44,9 @@ const Sidebar = ({ animate, setShow, clickContact }) => {
             <li
               onClick={() => setShow(false)}
               className="sidebar__item"
-              to="/innovation"
+              to="/workspace"
             >
-              <NavLink className="sidebar__link" to="/innovation">
+              <NavLink className="sidebar__link" to="/workspace">
                 {" "}
                 Co-working Space
               </NavLink>

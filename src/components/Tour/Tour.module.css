@@ -43,6 +43,10 @@
   margin: 0 auto 16px;
   cursor: pointer;
 }
+.form{
+  width: 100%;
+  height: fit-content;
+}
 .form input,
 select,
 textarea {

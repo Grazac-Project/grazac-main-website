@@ -582,7 +582,13 @@ import executive from "../images/book/executive.png";
 import desk from "../images/book/desk.png";
 import meeting from "../images/book/meeting.png";
 import relaxation from "../images/book/relaxation.png";
+import icon1 from "../images/book/icon1.svg";
+import icon2 from "../images/book/icon2.svg";
+import icon3 from "../images/book/icon3.svg";
 import icon4 from "../images/book/icon4.svg";
+import icon5 from "../images/book/icon5.svg";
+import icon6 from "../images/book/icon6.svg";
+
 import user from "../images/book/user.png";
 import line from "../images/book/underline.png";
 import BasicModal from "../components/BasicModal/BasicModal";
@@ -865,46 +871,49 @@ const Innovation = () => {
         <h5>Benefits of using our co-working space</h5>
         <div className="innovation_benefit_grid">
           <div className="innovation_benefit_grid_items">
-            <img src={icon4} alt=" img" />
-            <h6>High-speed Internet</h6>
+            <img src={icon1} alt=" img" />
+            <h6>40+ Dedicated Desk</h6>
             <p>
-            Unbeatable internet speed for seamless working and meetings.
+            Dedicated desk space for other events of interest you might be considering hosting, ranging from sip and paints to tech hangouts, etc.
             </p>
           </div>
           <div className="innovation_benefit_grid_items">
-            <img src={icon4} alt=" img" />
+            <img src={icon2} alt=" img" />
             <h6>Cleaning Services</h6>
             <p>
             A clean work environment makes all the difference and we worry about that on your behalf!
             </p>
           </div>{" "}
           <div className="innovation_benefit_grid_items">
-            <img src={icon4} alt=" img" />
-            <h6>40+ Dedicated Desk</h6>
-            <p>
-            Dedicated desk space for other events of interest you might be considering hosting, ranging from sip and paints to tech hangouts, etc.
-            </p>
-          </div>{" "}
-          <div className="innovation_benefit_grid_items">
-            <img src={icon4} alt=" img" />
+            <img src={icon3} alt=" img" />
             <h6>24-hour Light</h6>
             <p>
             Enjoy eco-friendly uninterrupted power supply throughout your stay.
 
             </p>
+            
           </div>{" "}
           <div className="innovation_benefit_grid_items">
             <img src={icon4} alt=" img" />
-            <h6>Conducive Environment</h6>
+            
+            <h6>High-speed Internet</h6>
             <p>
-            Another outstanding thing about our space is the ambience and how conducive our space is, which helps your creative juices flow easily.
+            Unbeatable internet speed for seamless working and meetings.
             </p>
-          </div>
+          </div>{" "}
           <div className="innovation_benefit_grid_items">
-            <img src={icon4} alt=" img" />
+            <img src={icon5} alt=" img" />
             <h6>Car Parking Space</h6>
             <p>
             Worried about where to park your car? We have that covered as our workspace comes with secure parking spaces for you.
+            </p>
+          </div>
+          <div className="innovation_benefit_grid_items">
+            <img src={icon6} alt=" img" />
+            
+            <h6>Conducive Environment</h6>
+            <p>
+            Another outstanding thing about our space is the ambience and how conducive our space is, which helps your creative juices flow easily.
             </p>
           </div>
         </div>
@@ -963,7 +972,7 @@ const Innovation = () => {
               <SplideSlide className="innovation_review_items" key={review.id}>
                 <h5>{review.text}</h5>
                 <div className="innovation_review_items_flex">
-                  <img src={review.image} alt="img" />
+                  {/* <img src={review.image} alt="img" /> */}
                   <div>
                     <h6>{review.name}</h6>
                     <span>{review.skill}</span>

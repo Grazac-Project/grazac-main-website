@@ -1,0 +1,40 @@
+.main {
+  text-align: center;
+  padding: 100px 0;
+}
+.main > div {
+  width: 70%;
+  margin: 0 auto;
+}
+.main >img{
+  width: 30%;
+}
+.main h2 {
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 41px;
+  text-align: center;
+  color: #1f1035;
+}
+.main span {
+  display: block;
+  color: #535353;
+}
+.main a {
+  color: #773dd3;
+  text-decoration: none;
+  display: block;
+}
+
+@media screen and (max-width: 768px) {
+  .main > div {
+    width: 90%;
+  }
+  .main > img {
+    width: 40%;
+  }
+  .main h2 {
+    font-size: 30px;
+    line-height: 35px;
+  }
+}

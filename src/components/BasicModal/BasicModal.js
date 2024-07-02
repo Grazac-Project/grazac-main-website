@@ -456,7 +456,7 @@ const BasicModal = ({ open, setOpen }) => {
 
   const totalAmount = selectedPaymentOption ? selectedPaymentOption.amount : 0;
   const url =
-    "https://grazac-academy-back-end-production.up.railway.app/api/v1/user/book";
+    "https://grazac-academy-back-end.onrender.com/api/v1/user/book";
 
   const SpaceFeeFlutterwaveConfig = {
     public_key: "FLWPUBK-006bdc82ad878f1518af32f44af6478f-X",

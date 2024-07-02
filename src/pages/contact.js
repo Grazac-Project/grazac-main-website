@@ -170,7 +170,7 @@ const Contact = ({ setShow, animate }) => {
         <div className="contact__form">
           <div className="contact__form__container">
             {/* <h1>Drop us a line</h1> */}
-            <p>Complete the form or e-mail info@grazac.com.ng</p>
+            <p>Complete the form or e-mail support@grazac.com.ng</p>
 
             <form className="form">
               <div className="form__group">
@@ -279,7 +279,7 @@ const Contact = ({ setShow, animate }) => {
                   </a>
                 </div>
               </div>
-              <p>info@grazac.com.ng</p>
+              <p>support@grazac.com.ng</p>
               <div className="contact__meta-adr">
                 <p>Abeokuta, Nigeria</p>
                 <p>+234 806 836 5951</p>

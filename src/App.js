@@ -3,7 +3,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { Switch, Route, Redirect, useLocation } from "react-router-dom";
 import LandingPage from "./pages/Landing";
-import InnovationPage from "./pages/Innovation";
+import InnovationPage from "./pages/workspace";
 import About from "./pages/About";
 import Build from "./pages/Build";
 import CaseStudy from "./pages/CaseStudy";

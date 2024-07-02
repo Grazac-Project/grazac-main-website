@@ -47,12 +47,12 @@ const Tour = ({ tour, setTour }) => {
         if (resp.status === 201) {
           toast.success("Payment successful! Verifying payment...");
           // alert("Payment successful! Verifying payment...");
-          
+
           // document.querySelector("#bookTour").reset();
           // setTour(false);
           setTimeout(() => {
             setTour(false);
-          }, 4500)
+          }, 4500);
           setDisabled(false);
           setText("Submit");
         } else {
@@ -64,8 +64,6 @@ const Tour = ({ tour, setTour }) => {
       .catch((err) => {
         toast.error("Form submission not successful...");
         setText("Submit");
-
-        
       });
   };
 
@@ -84,14 +82,14 @@ const Tour = ({ tour, setTour }) => {
     <div>
       {tour ? (
         <>
-        <ToastContainer closeButton={false} />
+          <ToastContainer closeButton={false} />
           <div className={Classes.main}>
             <div className={Classes.container}>
               <div className={Classes.innerContainer}>
                 <div className={Classes.close} onClick={() => setTour(false)}>
                   <span>&times;</span>
                 </div>
-                <div className={Classes.text}>
+                {/* <div className={Classes.text}>
                   <h3>Book a Tour</h3>
                   <p>
                     We are ready to take you on a tour of our workspace. Please
@@ -99,9 +97,20 @@ const Tour = ({ tour, setTour }) => {
                     <br />{" "}
                     <span>The tour is available between 9 am and 5 pm.</span>
                   </p>
-                </div>
+                </div> */}
                 <form className={Classes.form} onSubmit={bookTour}>
-                  <input
+                  <iframe
+                    src="https://docs.google.com/forms/d/e/1FAIpQLSePpqQW6duQy2F2Gak1mkfnvUJ04DQvmLQ0gZC-EXfG_XjDDg/viewform?embedded=true"
+                    // width="0"
+                    height="1337"
+                    frameborder="0"
+                    marginheight="0"
+                    marginwidth="0"
+                    style={{width: "100%"}}
+                  >
+                    Loading…
+                  </iframe>
+                  {/* <input
                     type="text"
                     placeholder="First Name"
                     minLength={3}
@@ -199,7 +208,7 @@ const Tour = ({ tour, setTour }) => {
                     type="submit"
                   >
                     {text}
-                  </button>
+                  </button> */}
                 </form>
               </div>
             </div>
