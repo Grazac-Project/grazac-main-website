@@ -596,11 +596,14 @@ import Tour from "../components/Tour/Tour";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import { Images, Testimony } from "../constants";
+import Join from "../components/join/join";
 
 const Innovation = () => {
   const [selectedOffer, setSelectedOffer] = useState(0);
   const [tour, setTour] = useState(false);
   const [open, setOpen] = useState(false);
+  const [join, setJoin] = useState(false);
+
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -668,7 +671,9 @@ const Innovation = () => {
         />
       </Helmet>
       {open && <BasicModal setOpen={setOpen} />}
+      {join && <Join join={join} setJoin={setJoin}/>}
       <Tour tour={tour} setTour={setTour} />
+      
       <div className="innovation_hero">
         <div className="innovation_hero_text">
           <h4>
@@ -1006,12 +1011,12 @@ const Innovation = () => {
           <h6>Join other founder, freelancer, makers and many-hat wearers</h6>
           <p>Join Grazac Community and take back control of your day</p>
           <a
-            href="https://chat.whatsapp.com/GdO3hUgbAdbA7MN2cBOjEz"
-            target="_blank"
-            rel="noreferrer"
+            // href="https://chat.whatsapp.com/GdO3hUgbAdbA7MN2cBOjEz"
+            // target="_blank"
+            // rel="noreferrer"
             style={{ textDecorationLine: "none" }}
           >
-            <button>Join Community</button>
+            <button onClick={() => setJoin(true)}>Join Community</button>
           </a>
         </div>
       </div>
