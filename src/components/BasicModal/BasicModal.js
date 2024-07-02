@@ -401,7 +401,7 @@ const BasicModal = ({ open, setOpen }) => {
         endDate.setDate(endDate.getDate() + 7);
         break;
       case "daily":
-        endDate.setDate(endDate.getDate() );
+        endDate.setDate(endDate.getDate());
         break;
       default:
         break;
@@ -460,8 +460,7 @@ const BasicModal = ({ open, setOpen }) => {
   };
 
   const totalAmount = selectedPaymentOption ? selectedPaymentOption.amount : 0;
-  const url =
-    "https://grazac-academy-back-end.onrender.com/api/v1/user/book";
+  const url = "https://grazac-academy-back-end.onrender.com/api/v1/user/book";
 
   const SpaceFeeFlutterwaveConfig = {
     public_key: "FLWPUBK-006bdc82ad878f1518af32f44af6478f-X",
@@ -533,126 +532,134 @@ const BasicModal = ({ open, setOpen }) => {
     <>
       <div className="basicModal_overlay" onClick={() => setOpen(false)}></div>
       <div className="basicModal" ref={modalRef}>
-        
-          <div
-            className="basicModal_space"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <ToastContainer closeButton={false} />
-            <h2>Book a Space</h2>
-            <p className="para">
-              You can now secure your booking for our space at just{" "}
-              <strike>₦5,000</strike> <span className="thirty">₦3,000</span>{" "}
-              (10% discount) naira daily, from <span>9 am to 5 pm</span>
-            </p>
-            <div className="basicModal_Container">
-              <div className="basicModal_dateContainer">
-                <div
-                  className="basicModal_dateContainer_start"
-                  onClick={handleToggle}
-                >
-                  <p>
-                    {selectedPaymentOption
-                      ? selectedPaymentOption.label
-                      : "Subscription Type"}
-                  </p>
-                  <div>
-                    <img src={dropdown} alt="dropdown" />
-                  </div>
-                </div>
-                <div
-                  className="basicModal_dateContainer_end"
-                  onClick={handleToggle2}
-                >
-                  <p> Start Date</p>
-                  <div>
-                    <img src={calendar} alt="calendar" />
-                  </div>
+        <div className="basicModal_space" onClick={(e) => e.stopPropagation()}>
+          <ToastContainer closeButton={false} />
+          <h2>Book a Space</h2>
+          <p className="para">
+            You can now secure your booking for our space at just{" "}
+            <strike>₦5,000</strike> <span className="thirty">₦3,000</span> (10%
+            discount) naira daily, from <span>9 am to 5 pm</span>
+          </p>
+          <div className="basicModal_Container">
+            <div className="basicModal_dateContainer">
+              <div
+                className="basicModal_dateContainer_start"
+                onClick={handleToggle}
+              >
+                <p>
+                  {selectedPaymentOption
+                    ? selectedPaymentOption.label
+                    : "Subscription Type"}
+                </p>
+                <div>
+                  <img src={dropdown} alt="dropdown" />
                 </div>
               </div>
-              <div className="basicModal_sub">
-                {toggle && (
-                  <div className="basicModal_sub_con">
-                    {paymentOptions.map((option) => (
-                      <div
-                        key={option.value}
-                        onClick={() => handlePaymentOptionChange(option)}
-                        className="basicModal_sub_conFlex"
-                      >
-                        <p>{option.label}</p>
-                        <h5>₦{option.amount.toLocaleString()}</h5>
-                      </div>
-                    ))}
-                  </div>
+              <div
+                className="basicModal_dateContainer_end"
+                onClick={handleToggle2}
+              >
+                {summary.length === 4 ? (
+                  <p> {formatDateWithSuffix(startDate)}</p>
+                ) : (
+                  <p>Start date</p>
                 )}
-                {toggle2 && (
-                  <div className="calendar">
-                    <Calendar
-                      onChange={handleStartDateChange}
-                      value={startDate}
-                      tileDisabled={tileDisabled}
-                    />
-                  </div>
-                )}
-              </div>
-              <div className="basicModal_summary">
-                {summary.length === 4 && (
-                  <>
-                    <h5>Summary</h5>
-                    {summary.map((item, index) => (
-                      <div key={index} className="basicModal_summary_flex">
-                        <h5>{item.label}</h5>
-                        <p>{item.value}</p>
-                      </div>
-                    ))}
-                  </>
-                )}
+                <div>
+
+                  
+                  <img src={calendar} alt="calendar" />
+                </div>
               </div>
             </div>
-            <form className="basicModal_form" onSubmit={formik.handleSubmit}>
-              <p style={{ textAlign: "center", marginTop: "8px" }}>
-                Kindly enter your information here to complete the process
-              </p>
-              <div className="basicModal_form_flex">
-                <input
-                  type="text"
-                  required
-                  placeholder="Email Address"
-                  name="email"
-                  onChange={formik.handleChange}
-                  value={formik.values.email}
-                />
-                <input
-                  type="tel"
-                  pattern="[0-9]{11}"
-                  required
-                  placeholder="Phone Number"
-                  name="phoneNumber"
-                  onChange={formik.handleChange}
-                  value={formik.values.phoneNumber}
-                />
-              </div>
-              <div className="basicModal_form_flex">
-                <input
-                  type="text"
-                  required
-                  placeholder="First Name"
-                  name="firstName"
-                  onChange={formik.handleChange}
-                  value={formik.values.firstName}
-                />
-                <input
-                  type="text"
-                  required
-                  placeholder="Last Name"
-                  name="lastName"
-                  onChange={formik.handleChange}
-                  value={formik.values.lastName}
-                />
-              </div>
-              {isloading ?<div className="loader"><Loader/></div>  :  <button type="submit">Book Now</button>}
-            </form>
+            <div className="basicModal_sub">
+              {toggle && (
+                <div className="basicModal_sub_con">
+                  {paymentOptions.map((option) => (
+                    <div
+                      key={option.value}
+                      onClick={() => handlePaymentOptionChange(option)}
+                      className="basicModal_sub_conFlex"
+                    >
+                      <p>{option.label}</p>
+                      <h5>₦{option.amount.toLocaleString()}</h5>
+                    </div>
+                  ))}
+                </div>
+              )}
+              {toggle2 && (
+                <div className="calendar">
+                  <Calendar
+                    onChange={handleStartDateChange}
+                    value={startDate}
+                    tileDisabled={tileDisabled}
+                  />
+                </div>
+              )}
+            </div>
+            <div className="basicModal_summary">
+              {summary.length === 4 && (
+                <>
+                  <h5>Summary</h5>
+                  {summary.map((item, index) => (
+                    <div key={index} className="basicModal_summary_flex">
+                      <h5>{item.label}</h5>
+                      <p>{item.value}</p>
+                    </div>
+                  ))}
+                </>
+              )}
+            </div>
           </div>
+          <form className="basicModal_form" onSubmit={formik.handleSubmit}>
+            <p style={{ textAlign: "center", marginTop: "8px" }}>
+              Kindly enter your information here to complete the process
+            </p>
+            <div className="basicModal_form_flex">
+              <input
+                type="text"
+                required
+                placeholder="Email Address"
+                name="email"
+                onChange={formik.handleChange}
+                value={formik.values.email}
+              />
+              <input
+                type="tel"
+                pattern="[0-9]{11}"
+                required
+                placeholder="Phone Number"
+                name="phoneNumber"
+                onChange={formik.handleChange}
+                value={formik.values.phoneNumber}
+              />
+            </div>
+            <div className="basicModal_form_flex">
+              <input
+                type="text"
+                required
+                placeholder="First Name"
+                name="firstName"
+                onChange={formik.handleChange}
+                value={formik.values.firstName}
+              />
+              <input
+                type="text"
+                required
+                placeholder="Last Name"
+                name="lastName"
+                onChange={formik.handleChange}
+                value={formik.values.lastName}
+              />
+            </div>
+            {isloading ? (
+              <div className="loader">
+                <Loader />
+              </div>
+            ) : (
+              <button type="submit">Book Now</button>
+            )}
+          </form>
+        </div>
       </div>
     </>
   );
