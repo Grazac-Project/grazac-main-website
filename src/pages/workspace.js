@@ -588,7 +588,7 @@ import icon3 from "../images/book/icon3.svg";
 import icon4 from "../images/book/icon4.svg";
 import icon5 from "../images/book/icon5.svg";
 import icon6 from "../images/book/icon6.svg";
-
+import { Helmet } from "react-helmet";
 import user from "../images/book/user.png";
 import line from "../images/book/underline.png";
 import BasicModal from "../components/BasicModal/BasicModal";
@@ -649,6 +649,24 @@ const Innovation = () => {
 
   return (
     <div className="innovation">
+      <Helmet>
+       <title>Workspace - Grazac</title>
+        <meta
+          name="description"
+          content="A creative environment that will boost your productivity"
+        />
+        <meta name="theme-color" content="#773DD3" />
+        <meta
+          property="og:description"
+          content="A creative environment that will boost your productivity"
+        ></meta>
+        <meta property="og:title" content="GRAZAC TECHNOLOGIES"></meta>
+        <meta name="twitter:title" content="GRAZAC TECHNOLOGIES"></meta>
+        <meta
+          property="og:url"
+          content="https://www.grazac.com.ng/workspace"
+        />
+      </Helmet>
       {open && <BasicModal setOpen={setOpen} />}
       <Tour tour={tour} setTour={setTour} />
       <div className="innovation_hero">

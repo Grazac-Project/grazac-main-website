@@ -277,7 +277,9 @@
   border-radius: 4px;
   cursor: pointer;
 }
-
+.react-calendar__tile--weekend {
+  color: black; 
+}
 .react-calendar__tile--active {
   background: red;
   color: white;

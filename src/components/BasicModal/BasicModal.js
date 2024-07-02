@@ -451,7 +451,12 @@ const BasicModal = ({ open, setOpen }) => {
   };
 
   const tileDisabled = ({ date, view }) => {
-    return view === "month" && date < new Date();
+    if (view === "month") {
+      // Disable weekends (Saturday and Sunday)
+      const day = date.getDay();
+      return date < new Date() || day === 0 || day === 6;
+    }
+    return false;
   };
 
   const totalAmount = selectedPaymentOption ? selectedPaymentOption.amount : 0;
