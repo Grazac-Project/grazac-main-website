@@ -464,7 +464,7 @@ const BasicModal = ({ open, setOpen }) => {
 
   const SpaceFeeFlutterwaveConfig = {
     // public_key: "FLWPUBK-006bdc82ad878f1518af32f44af6478f-X",
-    test_key: "FLWSECK_TEST-51320aadf079e5c4951bf2a6b9e92822-X",
+    public_key: "FLWPUBK_TEST-b6c44d3213f2d2b3c0c3142f3ab81b72-X",
     tx_ref: Date.now(),
     amount: totalAmount,
     currency: "NGN",
