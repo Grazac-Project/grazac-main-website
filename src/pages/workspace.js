@@ -604,7 +604,6 @@ const Innovation = () => {
   const [open, setOpen] = useState(false);
   const [join, setJoin] = useState(false);
 
-
   useEffect(() => {
     const interval = setInterval(() => {
       setSelectedOffer((prevSelectedOffer) => (prevSelectedOffer + 1) % 4);
@@ -649,11 +648,13 @@ const Innovation = () => {
       // clearInterval(Image);
     };
   }, []);
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="innovation">
       <Helmet>
-       <title>Workspace - Grazac</title>
+        <title>Workspace - Grazac</title>
         <meta
           name="description"
           content="A creative environment that will boost your productivity"
@@ -665,15 +666,12 @@ const Innovation = () => {
         ></meta>
         <meta property="og:title" content="GRAZAC TECHNOLOGIES"></meta>
         <meta name="twitter:title" content="GRAZAC TECHNOLOGIES"></meta>
-        <meta
-          property="og:url"
-          content="https://www.grazac.com.ng/workspace"
-        />
+        <meta property="og:url" content="https://www.grazac.com.ng/workspace" />
       </Helmet>
       {open && <BasicModal setOpen={setOpen} />}
-      {join && <Join join={join} setJoin={setJoin}/>}
+      {join && <Join join={join} setJoin={setJoin} />}
       <Tour tour={tour} setTour={setTour} />
-      
+
       <div className="innovation_hero">
         <div className="innovation_hero_text">
           <h4>
@@ -897,46 +895,49 @@ const Innovation = () => {
             <img src={icon1} alt=" img" />
             <h6>40+ Dedicated Desk</h6>
             <p>
-            Dedicated desk space for other events of interest you might be considering hosting, ranging from sip and paints to tech hangouts, etc.
+              Dedicated desk space for other events of interest you might be
+              considering hosting, ranging from sip and paints to tech hangouts,
+              etc.
             </p>
           </div>
           <div className="innovation_benefit_grid_items">
             <img src={icon2} alt=" img" />
             <h6>Cleaning Services</h6>
             <p>
-            A clean work environment makes all the difference and we worry about that on your behalf!
+              A clean work environment makes all the difference and we worry
+              about that on your behalf!
             </p>
           </div>{" "}
           <div className="innovation_benefit_grid_items">
             <img src={icon3} alt=" img" />
             <h6>24-hour Light</h6>
             <p>
-            Enjoy eco-friendly uninterrupted power supply throughout your stay.
-
+              Enjoy eco-friendly uninterrupted power supply throughout your
+              stay.
             </p>
-            
           </div>{" "}
           <div className="innovation_benefit_grid_items">
             <img src={icon4} alt=" img" />
-            
+
             <h6>High-speed Internet</h6>
-            <p>
-            Unbeatable internet speed for seamless working and meetings.
-            </p>
+            <p>Unbeatable internet speed for seamless working and meetings.</p>
           </div>{" "}
           <div className="innovation_benefit_grid_items">
             <img src={icon5} alt=" img" />
             <h6>Car Parking Space</h6>
             <p>
-            Worried about where to park your car? We have that covered as our workspace comes with secure parking spaces for you.
+              Worried about where to park your car? We have that covered as our
+              workspace comes with secure parking spaces for you.
             </p>
           </div>
           <div className="innovation_benefit_grid_items">
             <img src={icon6} alt=" img" />
-            
+
             <h6>Conducive Environment</h6>
             <p>
-            Another outstanding thing about our space is the ambience and how conducive our space is, which helps your creative juices flow easily.
+              Another outstanding thing about our space is the ambience and how
+              conducive our space is, which helps your creative juices flow
+              easily.
             </p>
           </div>
         </div>

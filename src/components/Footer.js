@@ -55,6 +55,8 @@ const Footer = () => {
               </a>
 
               <Link to="/innovation">Innovation Lab</Link>
+              <Link to="/workspace">workspace</Link>
+
               <Link to="/build">Grazac Build</Link>
             </div>
           </div>

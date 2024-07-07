@@ -173,7 +173,7 @@ const Landing = () => {
                     office space, there is no need for an expensive move. All
                     your technology needs are sorted out
                   </p>
-                  <Link to="/innovation" style={{ textDecoration: "none" }}>
+                  <Link to="/workspace" style={{ textDecoration: "none" }}>
                     <p>Learn more</p>
                   </Link>
                 </div>
