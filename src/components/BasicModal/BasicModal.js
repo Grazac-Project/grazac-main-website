@@ -463,7 +463,8 @@ const BasicModal = ({ open, setOpen }) => {
   const url = "https://grazac-academy-back-end.onrender.com/api/v1/user/book";
 
   const SpaceFeeFlutterwaveConfig = {
-    public_key: "FLWPUBK-006bdc82ad878f1518af32f44af6478f-X",
+    // public_key: "FLWPUBK-006bdc82ad878f1518af32f44af6478f-X",
+    test_key: "FLWSECK_TEST-51320aadf079e5c4951bf2a6b9e92822-X",
     tx_ref: Date.now(),
     amount: totalAmount,
     currency: "NGN",
