@@ -314,7 +314,7 @@ import { useFormik } from "formik";
 import Loader from "../Loader";
 
 const paymentOptions = [
-  { label: "Daily", value: "daily", amount: 3000 },
+  { label: "Daily", value: "daily", amount: 100 },
   { label: "Weekly", value: "weekly", amount: 18000 },
   { label: "Monthly", value: "monthly", amount: 40000 },
   { label: "Quarterly", value: "quarterly", amount: 130000 },
@@ -463,8 +463,8 @@ const BasicModal = ({ open, setOpen }) => {
   const url = "https://grazac-academy-back-end.onrender.com/api/v1/user/book";
 
   const SpaceFeeFlutterwaveConfig = {
-    // public_key: "FLWPUBK-006bdc82ad878f1518af32f44af6478f-X",
-    public_key: "FLWPUBK_TEST-b6c44d3213f2d2b3c0c3142f3ab81b72-X",
+    public_key: "FLWPUBK-006bdc82ad878f1518af32f44af6478f-X",
+    // public_key: "FLWPUBK_TEST-b6c44d3213f2d2b3c0c3142f3ab81b72-X",
     tx_ref: Date.now(),
     amount: totalAmount,
     currency: "NGN",
