@@ -664,8 +664,8 @@ const Innovation = () => {
           property="og:description"
           content="A creative environment that will boost your productivity"
         ></meta>
-        <meta property="og:title" content="GRAZAC TECHNOLOGIES"></meta>
-        <meta name="twitter:title" content="GRAZAC TECHNOLOGIES"></meta>
+        <meta property="og:title" content="Workspace - Grazac"></meta>
+        <meta name="twitter:title" content="Workspace - Grazac"></meta>
         <meta property="og:url" content="https://www.grazac.com.ng/workspace" />
       </Helmet>
       {open && <BasicModal setOpen={setOpen} />}
@@ -679,9 +679,17 @@ const Innovation = () => {
             <span>{texts[currentIndex]}</span>
           </h4>
 
-          <button onClick={() => setOpen(true)} className="">
+          {/* <button onClick={() => setOpen(true)} className="">
+            Book a space
+          </button> */}
+          <a href= "https://forms.gle/MmWeLDv9dHLXuAE69"  target="_blank"
+            rel="noreferrer"
+            style={{ textDecorationLine: "none" }}>
+          <button>
             Book a space
           </button>
+          </a>
+
         </div>
       </div>
       <div className="innovation_offer">
