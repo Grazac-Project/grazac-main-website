@@ -918,7 +918,7 @@ const Innovation = () => {
           </div>{" "}
           <div className="innovation_benefit_grid_items">
             <img src={icon3} alt=" img" />
-            <h6>24-hour Light</h6>
+            <h6>24-hours Power Supply</h6>
             <p>
               Enjoy eco-friendly uninterrupted power supply throughout your
               stay.
