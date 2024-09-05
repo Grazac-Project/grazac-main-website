@@ -679,16 +679,16 @@ const Innovation = () => {
             <span>{texts[currentIndex]}</span>
           </h4>
 
-          {/* <button onClick={() => setOpen(true)} className="">
+          <button onClick={() => setOpen(true)} className="">
             Book a space
-          </button> */}
-          <a href= "https://forms.gle/MmWeLDv9dHLXuAE69"  target="_blank"
+          </button>
+          {/* <a href= "https://forms.gle/MmWeLDv9dHLXuAE69"  target="_blank"
             rel="noreferrer"
             style={{ textDecorationLine: "none" }}>
           <button>
             Book a space
           </button>
-          </a>
+          </a> */}
 
         </div>
       </div>
