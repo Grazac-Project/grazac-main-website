@@ -314,7 +314,7 @@ import { useFormik } from "formik";
 import Loader from "../Loader";
 
 const paymentOptions = [
-  { label: "Daily", value: "daily", amount: 100 },
+  { label: "Daily", value: "daily", amount: 3000 },
   { label: "Weekly", value: "weekly", amount: 18000 },
   { label: "Monthly", value: "monthly", amount: 40000 },
   { label: "Quarterly", value: "quarterly", amount: 130000 },
