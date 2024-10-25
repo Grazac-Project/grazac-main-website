@@ -309,9 +309,9 @@ const Landing = () => {
                     rel="noreferrer"
                     key={index}
                   >
-                    <div className="blog__img">
+                    {blog?.thumbnail && <div className="blog__img">
                       <img src={blog.thumbnail} alt="img" />
-                    </div>
+                    </div>}
                     <div className="blog__content">
                       <div className="blog__content-container">
                         {/* <h6 className="blogtitle">press release</h6> */}
