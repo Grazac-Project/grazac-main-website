@@ -19,6 +19,7 @@ const Blog = () => {
         "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@grazac"
       )
       .then((res) => {
+        console.log(res);
         setBlogs(res.data.items);
       });
   }, []);
@@ -60,7 +61,7 @@ const Blog = () => {
                 <div className="blogs__hero-container">
                   <>
                     <div className="blogs__hero-img">
-                      <img src={blogs[0].thumbnail} alt="breath" />
+                      {blogs[0].thumbnail && <img src={blogs[0].thumbnail} alt="breath" />}
                     </div>
                     <div className="blogs__hero-content">
                       {/* <h6 className="blogtitle">Startups</h6> */}
@@ -96,9 +97,9 @@ const Blog = () => {
                       rel="noreferrer"
                       key={index}
                     >
-                      <div className="blog__img">
+                      {blog.thumbnail && <div className="blog__img">
                         <img src={blog.thumbnail} alt="img" />
-                      </div>
+                      </div>}
                       <div className="blog__content">
                         <div className="blog__content-container">
                           {/* <h6 className="blogtitle">press release</h6> */}
