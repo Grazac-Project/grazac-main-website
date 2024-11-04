@@ -679,8 +679,8 @@ const Innovation = () => {
             <span>{texts[currentIndex]}</span>
           </h4>
 
-          {/* <button onClick={() => setOpen(true)} className=""> */}
-          <button className="">
+          <button onClick={() => setOpen(true)} className="">
+          {/* <button className=""> */}
             Book a space
           </button>
           {/* <a href= "https://forms.gle/MmWeLDv9dHLXuAE69"  target="_blank"
