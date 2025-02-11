@@ -43,8 +43,8 @@ const Landing = () => {
 
   const options = {
     width: "100%",
-    // type: "loop",
-    // gap: "10px",
+    type: "loop",
+    gap: "10px",
     autoplay: true,
     pauseOnHover: true,
     resetProgress: false,
@@ -52,10 +52,15 @@ const Landing = () => {
     dots: false,
     perPage: 5,
     breakpoints: {
+      450:{
+        gap: "5px",
+        arrows: true,
+        perPage: 1.5,
+      },
       640: {
         gap: "5px",
         arrows: true,
-        perPage: 2,
+        perPage: 2.5,
       },
       768: {
         gap: "5px",
@@ -297,23 +302,23 @@ const Landing = () => {
               </div>
             </div>
             <Splide options={options}>
-              <SplideSlide >
+              <SplideSlide className="landing__partners-img2" >
                 <img src={tg} alt="pettysave" />
               </SplideSlide>
               
-              <SplideSlide >
+              <SplideSlide className="landing__partners-img2" >
                 <img src={pettysave} alt="pettysave" />
               </SplideSlide>
-              <SplideSlide >
+              <SplideSlide className="landing__partners-img2" >
                 <img src={businessday} alt="pettysave" />
               </SplideSlide>
-              <SplideSlide >
+              <SplideSlide className="landing__partners-img2" >
                 <img src={tg} alt="pettysave" />
               </SplideSlide>
-              <SplideSlide >
+              <SplideSlide className="landing__partners-img2" >
                 <img src={haptic} alt="pettysave" />
               </SplideSlide>
-              <SplideSlide >
+              <SplideSlide className="landing__partners-img2" >
                 <img src={google} alt="pettysave" />
               </SplideSlide>
             </Splide>

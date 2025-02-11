@@ -1767,6 +1767,18 @@ body {
   animation-iteration-count: 1;
 }
 
+.landing__partners-img {
+  display: flex !important;
+  justify-content: center !important;
+  width: 30% !important;
+}
+
+.landing__partners-img img {
+  display: block;
+  width: auto;
+  height: auto;
+}
+
 .innovation_hero {
   background-image: url(/src/images/book/Hero.png);
   background-repeat: no-repeat;

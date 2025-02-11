@@ -799,3 +799,14 @@
   -webkit-animation-iteration-count: 1;
   animation-iteration-count: 1;
 }
+.landing__partners-img {
+  display: flex !important  ;
+  justify-content: center !important;
+  width: 30% !important;
+}
+
+.landing__partners-img img {
+  display: block;
+  width: auto;
+  height: auto;
+}
