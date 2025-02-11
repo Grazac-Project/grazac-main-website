@@ -216,6 +216,7 @@ body {
 
 .footer {
   margin: 70px 0 50px;
+  padding: 0 120px;
   box-sizing: border-box;
 }
 .footer h3 {
@@ -230,6 +231,21 @@ body {
   text-decoration: none;
   margin-bottom: 1rem;
   cursor: pointer;
+}
+@media (max-width: 1280px) {
+  .footer {
+    padding: 0 70px;
+  }
+}
+@media (max-width: 1024px) {
+  .footer {
+    padding: 0 32px;
+  }
+}
+@media (max-width: 600px) {
+  .footer {
+    padding: 0 16px;
+  }
 }
 @media (min-width: 992px) {
   .footer_bodies {
@@ -418,6 +434,12 @@ body {
   background-color: #ffffff;
   position: relative;
   z-index: 10000;
+}
+@media (min-width: 1920px) {
+  .header {
+    max-width: 1920px;
+    margin: 0 auto;
+  }
 }
 .header__container {
   width: 85%;
@@ -2534,28 +2556,68 @@ body {
 .about {
   overflow-x: hidden;
 }
+@media (min-width: 1920px) {
+  .about {
+    max-width: 1920px;
+    margin: 0 auto;
+  }
+}
 .about_top {
   background: rgba(161, 148, 186, 0.1);
   position: relative;
 }
 .about_top-text {
-  padding: 70px 0 15vw;
+  padding: 64px 120px 15vw;
+}
+@media (max-width: 1280px) {
+  .about_top-text {
+    padding: 64px 70px 15vw;
+  }
+}
+@media (max-width: 1024px) {
+  .about_top-text {
+    padding: 64px 32px 15vw;
+  }
+}
+@media (max-width: 600px) {
+  .about_top-text {
+    padding: 64px 16px 15vw;
+  }
 }
 .about_top-text h1 {
-  font-size: 3.7em;
+  font-size: 64px;
+  font-weight: 700;
+  color: #151F10;
+  line-height: 81.66px;
+  letter-spacing: 1%;
+  width: 65%;
+}
+@media (max-width: 1024px) {
+  .about_top-text h1 {
+    width: 75%;
+  }
+}
+@media (max-width: 768px) {
+  .about_top-text h1 {
+    width: 100%;
+  }
 }
 @media (max-width: 600px) {
   .about_top-text h1 {
-    font-size: 4.5rem;
+    font-size: 32px;
+    line-height: 40.83px;
     margin: 0 15px;
   }
 }
 .about_top-text p {
-  font-size: 2rem !important;
+  font-size: 18px !important;
+  font-weight: 500;
+  line-height: 27px;
+  letter-spacing: 0%;
+  color: #575A65;
 }
 @media (max-width: 600px) {
   .about_top-text p {
-    font-size: 2rem;
     margin: 0 15px;
   }
 }
@@ -2599,12 +2661,12 @@ body {
   border-radius: 15px;
 }
 .about_top-images-item .about1 {
-  background: url("../images/website/IMG_8297-2.JPG");
+  background: url("../images/website/newabout1.png");
   background-size: cover;
   background-repeat: no-repeat;
 }
 .about_top-images-item .about2 {
-  background: url("../images/website/IMG_8259-2.JPG");
+  background: url("../images/website/newabout2.png");
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -2621,28 +2683,42 @@ body {
   height: 100%;
 }
 .about_top-images-item .about5 {
-  background: url("../images/website/IMG_8290-2.JPG");
+  background: url("../images/website/newabout5.png");
   background-size: cover;
   background-repeat: no-repeat;
 }
 .about_top-images-item .about6 {
-  background: url("../images/website/IMG_7241.jpg");
+  background: url("../images/website/newabout6.png");
   background-size: cover;
   background-repeat: no-repeat;
 }
 .about_top-images-item .about7 {
-  background: url("../images/website/IMG_8359.JPG");
+  background: url("../images/website/newabout7.png");
   background-size: cover;
   background-repeat: no-repeat;
 }
 .about_top-images-item .about8 {
-  background: url("../images/website/IMG_8403-2.JPG");
+  background: url("../images/website/newabout8.png");
   background-size: cover;
   background-repeat: no-repeat;
 }
 @media (max-width: 700px) {
   .about_top-images .item-hide {
     display: none;
+  }
+}
+.about_space-div {
+  height: 35vh;
+  background: #FAF8FE;
+}
+@media (max-width: 1024px) {
+  .about_space-div {
+    height: 23vh;
+  }
+}
+@media (max-width: 1280px) {
+  .about_space-div {
+    height: 30vh;
   }
 }
 .about_slide {
@@ -2696,11 +2772,36 @@ body {
 }
 .about_define {
   background: rgba(207, 185, 249, 0.1);
-  padding: 70px 0;
-  margin: 100px 0 100px;
+  padding: 70px 120px;
+  margin: 0px 0 100px;
+}
+@media (max-width: 1280px) {
+  .about_define {
+    padding: 70px;
+  }
+}
+@media (max-width: 1024px) {
+  .about_define {
+    padding: 32px;
+  }
+}
+@media (max-width: 600px) {
+  .about_define {
+    padding: 16px;
+  }
+}
+.about_define .sub-text {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 48px;
+  letter-spacing: 3%;
+  color: #575a65;
 }
 .about_define p {
-  font-size: 1rem;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 3%;
   color: #575a65;
 }
 @media (max-width: 600px) {
@@ -2709,16 +2810,19 @@ body {
   }
 }
 .about_define h2 {
-  font-size: 2.5em;
-}
-@media (max-width: 600px) {
-  .about_define h2 {
-    font-size: 3.7rem;
-  }
+  color: #151F10;
+  font-weight: 700;
+  line-height: 50px;
+  font-size: 38px;
+  letter-spacing: 1%;
 }
 .about_define h3 {
-  font-size: 1.4em;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 30.62px;
+  letter-spacing: 3%;
   margin: 15px 0;
+  color: #151F10;
 }
 @media (max-width: 600px) {
   .about_define h3 {
@@ -2733,12 +2837,12 @@ body {
 .about_define-cards-box1 {
   background: white;
   padding: 20px;
-  margin: 20px 10px 10px;
+  margin: 20px 0px 10px;
   border-radius: 10px;
 }
 @media (min-width: 600px) {
   .about_define-cards-box1 {
-    width: 30%;
+    width: 33%;
     margin: 10px;
   }
 }
@@ -2746,35 +2850,58 @@ body {
   display: flex;
 }
 .about-cards-box1 {
-  width: 30%;
+  width: 33%;
   background: white;
   padding: 20px;
   margin: 10px;
   border-radius: 10px;
 }
+.about_work {
+  padding: 0 120px;
+}
+@media screen and (max-width: 1280px) {
+  .about_work {
+    padding: 0 70px;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .about_work {
+    padding: 0 32px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .about_work {
+    padding: 0 16px;
+  }
+}
 .about_work p {
-  font-size: 2rem;
-  color: #575a65;
+  font-size: 38px;
+  font-weight: 700;
+  letter-spacing: 1%;
+  color: #151F10;
+  line-height: 50px;
 }
 @media (max-width: 600px) {
   .about_work p {
-    font-size: 2rem;
+    font-size: 24px;
+    line-height: 30.62px;
   }
 }
 .about_work P:last-of-type {
-  font-size: 1.2rem !important;
+  font-size: 12px !important;
+  font-weight: 500;
+  line-height: 15.31px;
+  letter-spacing: 0%;
 }
 .about_work .options {
   color: #773DD3;
   margin: 3px 0 0 7px;
 }
 .about_work h2 {
-  font-size: 2.3rem;
-}
-@media (max-width: 600px) {
-  .about_work h2 {
-    font-size: 3.2rem;
-  }
+  font-size: 14px;
+  line-height: 48px;
+  letter-spacing: 3%;
+  color: #575A65;
 }
 
 .build-btn {
