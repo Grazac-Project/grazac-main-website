@@ -810,3 +810,10 @@
   width: auto;
   height: auto;
 }
+.landing__partners-wrapper{
+  display: none;
+  margin-top: 30px !important;
+  @media  screen and (max-width:930px) {
+    display: inline;
+  }
+}

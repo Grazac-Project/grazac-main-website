@@ -301,7 +301,7 @@ const Landing = () => {
                 <img src={haptic} alt="haptic" />
               </div>
             </div>
-            <Splide options={options}>
+            <Splide options={options} className="landing__partners-wrapper">
               <SplideSlide className="landing__partners-img2" >
                 <img src={tg} alt="pettysave" />
               </SplideSlide>

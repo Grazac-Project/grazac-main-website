@@ -604,6 +604,7 @@ const Innovation = () => {
   const [open, setOpen] = useState(false);
   const [join, setJoin] = useState(false);
 
+  
   useEffect(() => {
     const interval = setInterval(() => {
       setSelectedOffer((prevSelectedOffer) => (prevSelectedOffer + 1) % 4);
