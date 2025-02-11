@@ -1048,6 +1048,9 @@ body {
 .landing__partners-box p {
   color: #773DD3 !important;
 }
+.landing__partners-text {
+  text-align: center;
+}
 .landing__partners-container {
   display: flex;
   justify-content: space-between;
@@ -1055,10 +1058,7 @@ body {
 }
 @media screen and (max-width: 930px) {
   .landing__partners-container {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    -moz-column-gap: 1rem;
-         column-gap: 1rem;
+    display: none;
   }
 }
 @media screen and (max-width: 848px) {
@@ -1157,6 +1157,26 @@ body {
     margin: 100px auto 70px;
   }
 }
+.landing_hero h6 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+.landing_hero h6:first-child {
+  color: #773DD3;
+}
+.landing_hero h6:last-child {
+  font-size: 1.1rem;
+}
+@media (max-width: 600px) {
+  .landing_hero h6:last-child {
+    font-size: 2rem;
+  }
+}
+@media (max-width: 600px) {
+  .landing_hero h6 {
+    font-size: 2rem;
+  }
+}
 .landing_hero p {
   font-size: 1rem;
 }
@@ -1179,6 +1199,7 @@ body {
 .landing_hero h1 {
   color: #1f1035;
   font-size: 3.5rem;
+  font-weight: 700;
 }
 @media (max-width: 600px) {
   .landing_hero h1 {
@@ -1248,6 +1269,7 @@ body {
 .landing .nextbigthing {
   background: url("../images/nextbigthing.png");
   background-size: cover;
+  background-repeat: no-repeat;
   padding: 70px 0;
   box-sizing: border-box;
   margin-bottom: 10rem;
@@ -1296,6 +1318,15 @@ body {
 .landing_wwd-textpart h1 span {
   text-shadow: 2px 2px #d4dfff;
 }
+.landing_wwd-columns {
+  width: 90%;
+  margin: auto;
+}
+@media (min-width: 1940px) {
+  .landing_wwd-columns {
+    width: 85%;
+  }
+}
 @media (min-width: 450px) {
   .landing_wwd-columns {
     display: flex;
@@ -1315,6 +1346,7 @@ body {
   color: #1f1035;
   margin: 20px 0 10px;
   font-size: 1.4em;
+  font-weight: 700;
 }
 @media (max-width: 600px) {
   .landing_wwd-four h3 {
@@ -1374,6 +1406,7 @@ body {
   color: #1f1035;
   font-size: 2.4em;
   margin: 50px 10px 20px;
+  font-weight: 700;
 }
 @media (max-width: 700px) {
   .landing_wwd-column1 h1 {
