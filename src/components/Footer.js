@@ -7,6 +7,7 @@ const Footer = () => {
   const { reveal, modalReveal } = React.useContext(ShowContext);
   return (
     <div className="footer">
+      {/* <div className="container"> */}
       <div className="container">
         <div className="footer_bodies">
           <div className="section4">

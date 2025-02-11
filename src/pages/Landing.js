@@ -46,6 +46,7 @@ const Landing = () => {
       )
       .then((res) => {
         const result = res.data.items.splice(0, 3);
+        console.log(res)
         setBlogs(result);
       });
   }, []);
