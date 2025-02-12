@@ -22,7 +22,6 @@ const Blog = () => {
         setBlogs(res.data.items);
       });
   }, []);
-
   return (
     <div className="">
       <Helmet>
@@ -60,7 +59,8 @@ const Blog = () => {
                 <div className="blogs__hero-container">
                   <>
                     <div className="blogs__hero-img">
-                      {blogs[0].thumbnail && <img src={blogs[0].thumbnail} alt="breath" />}
+                      {/* {blogs[0].thumbnail && <img src={blogs[0].thumbnail} alt="breath" />} */}
+                      {blogs[0].description.toString().match(/<img[^>]+src="([^">]+)"/)[1] && <img src={blogs[0].description.toString().match(/<img[^>]+src="([^">]+)"/)[1]} alt="breath" />}
                     </div>
                     <div className="blogs__hero-content">
                       {/* <h6 className="blogtitle">Startups</h6> */}
@@ -96,8 +96,8 @@ const Blog = () => {
                       rel="noreferrer"
                       key={index}
                     >
-                      {blog.thumbnail && <div className="blog__img">
-                        <img src={blog.thumbnail} alt="img" />
+                      {blog.description.toString().match(/<img[^>]+src="([^">]+)"/)[1] && <div className="blog__img">
+                        <img src={blog.description.toString().match(/<img[^>]+src="([^">]+)"/)[1]} alt="img" />
                       </div>}
                       <div className="blog__content">
                         <div className="blog__content-container">
