@@ -1,5 +1,6 @@
 .footer {
   margin: 70px 0 50px;
+  padding: 0 120px;
   box-sizing: border-box;
   h3 {
     color: #1f1035;
@@ -14,6 +15,15 @@
     text-decoration: none;
     margin-bottom: 1rem;
     cursor: pointer;
+  }
+  @media (max-width: 1280px) {
+    padding: 0 70px;
+  }
+  @media (max-width: 1024px) {
+    padding: 0 32px;
+  }
+  @media (max-width: 600px) {
+    padding: 0 16px;
   }
   &_bodies {
     @media (min-width: 992px) {
