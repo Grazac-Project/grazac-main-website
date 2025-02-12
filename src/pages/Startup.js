@@ -8,14 +8,34 @@ import { Slide } from "react-reveal";
 import React, { useEffect } from "react";
 import ShowContext from "../showContext";
 import { Link } from "react-router-dom";
-
-
+import btnpurple from "../images/svg/button-arrow-purple.svg";
+import { Splide, SplideSlide } from "@splidejs/react-splide";
 
 const StartUp = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+
+  const options = {
+    width: "100%",
+    type: "loop",
+    gap: "1rem",
+    autoplay: true,
+    pauseOnHover: true,
+    resetProgress: false,
+    arrows: false,
+    dots: false,
+    perPage: 2.5,
+    breakpoints: {
+      600:{
+        gap: "5px",
+        // arrows: true,
+        perPage: 1.3,
+      },
+     
+    },
+  };
   const { reveal } = React.useContext(ShowContext);
   return (
     <div className="startup">
@@ -61,21 +81,44 @@ const StartUp = () => {
       <Slide right duration={4000}>*/}
       <section className="startup__areas">
         <div className="startup__areas-container">
+          <div className="startup__areas-header">
+            <h1 className="subheader subheader-purple">Area of Focus</h1>
+            <p className="muted muted-2">
+              We focus on these 6 key impact sectors in the economy. We receive
+              applications every 6 months for start-ups who are interested in
+              our innovation lab.
+            </p>
+          </div>
           <div className="startup__areas-box">
-            <div className="startup__areas-header">
-              <h1 className="subheader subheader-purple">Area of Focus</h1>
-              <p className="muted muted-2">
-                We focus on these 6 key impact sectors in the economy. We
-                receive applications every 6 months for start-ups who are
-                interested in our innovation lab.
-              </p>
-            </div>
-            {areas.map((focus) => (
+            {areas.slice(0, 4).map((focus) => (
               <div
                 key={focus.id}
                 className={[
                   "startup__areas-item",
-                  `startup__areas-item-${focus.id}`,
+                  `startup__areas-item${focus.id}`,
+                ].join(" ")}
+              >
+                <div className="startup__areas-item-container">
+                  <div
+                    className="startup__areas-item-icon"
+                    style={{ backgroundColor: focus.bgcolor }}
+                  >
+                    <img src={focus.icon} alt={focus.title} />
+                  </div>
+                  <h1 className="name name-1">{focus.title}</h1>
+                  <p className="muted muted-2">{focus.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="startup__areas-box">
+            {areas.slice(-3).map((focus) => (
+              <div
+                key={focus.id}
+                className={[
+                  "startup__areas-item",
+                  `startup__areas-item${focus.id}`,
                 ].join(" ")}
               >
                 <div className="startup__areas-item-container">
@@ -102,12 +145,12 @@ const StartUp = () => {
           </div>
           <div className="startup__values-items">
             {values.map((item) => (
-              <div key={item.id} className="value">
+              <div key={item.id} className="">
                 <div className="value__container">
                   <h2>{item.id}</h2>
                   <div className="value__content">
-                    <h1 className="name name-2">{item.title}</h1>
-                    <p className="muted muted-3">{item.text}</p>
+                    <h1 className=" name-2">{item.title}</h1>
+                    <p className=" muted-3">{item.text}</p>
                   </div>
                 </div>
               </div>
@@ -124,28 +167,34 @@ const StartUp = () => {
           <div className="startup__timeline-list">
             <Slide right duration={4000}>
               <div className="startup__timeline-item">
-                <p>NOV 1ST, 2020</p>
+                <p>Application deadline</p>
+
+                {/* <p>NOV 1ST, 2020</p> */}
                 <div className="startup__timeline-meta">
                   <span></span>
-                  <p>Application Deadline</p>
+                  {/* <p>Application deadline</p> */}
                 </div>
               </div>
             </Slide>
             <Slide right duration={5000}>
               <div className="startup__timeline-item">
-                <p>NOV 1ST, 2020</p>
+                <p>Start of Accelerator</p>
+
+                {/* <p>NOV 1ST, 2020</p> */}
                 <div className="startup__timeline-meta">
                   <span></span>
-                  <p>Start of Accelerator</p>
+                  {/* <p>Start of Accelerator</p> */}
                 </div>
               </div>
             </Slide>
             <Slide right duration={6000}>
               <div className="startup__timeline-item">
-                <p>NOV 1ST, 2020</p>
+                {/* <p>NOV 1ST, 2020</p> */}
+                <p>Alumni Programme</p>
+
                 <div className="startup__timeline-meta">
                   <span></span>
-                  <p>Alumni Programme</p>
+                  {/* <p>Alumni Programme</p> */}
                 </div>
               </div>
             </Slide>
@@ -153,18 +202,20 @@ const StartUp = () => {
               <div className="startup__timeline-item">
                 <div className="startup__timeline-meta">
                   <span></span>
-                  <p>Startups Selected </p>
+                  {/* <p>Startups Selected </p> */}
                 </div>
-                <p>NOV 1ST, 2020</p>
+                {/* <p>NOV 1ST, 2020</p> */}
+                <p>Startups Selected </p>
               </div>
             </Slide>
             <Slide right duration={8000}>
               <div className="startup__timeline-item">
                 <div className="startup__timeline-meta">
                   <span></span>
-                  <p>Demo Day</p>
+                  {/* <p>NOV 1ST, 2020</p> */}
                 </div>
-                <p>NOV 1ST, 2020</p>
+                {/* <p>NOV 1ST, 2020</p> */}
+                <p>Demo Day</p>
               </div>
             </Slide>
             <div className="mobile">
@@ -172,7 +223,7 @@ const StartUp = () => {
                 <span></span>
                 <Slide right delay={1000}>
                   <div className="mobile__meta">
-                    <p>NOV 1ST, 2020</p>
+                    {/* <p>NOV 1ST, 2020</p> */}
                     <p>Application Deadline</p>
                   </div>
                 </Slide>
@@ -183,7 +234,7 @@ const StartUp = () => {
                 <span></span>
                 <Slide right delay={1500}>
                   <div className="mobile__meta">
-                    <p>NOV 1ST, 2020</p>
+                    {/* <p>NOV 1ST, 2020</p> */}
                     <p>Application Deadline</p>
                   </div>
                 </Slide>
@@ -194,7 +245,7 @@ const StartUp = () => {
                 <span></span>
                 <Slide right delay={2000}>
                   <div className="mobile__meta">
-                    <p>NOV 1ST, 2020</p>
+                    {/* <p>NOV 1ST, 2020</p> */}
                     <p>Application Deadline</p>
                   </div>
                 </Slide>
@@ -205,7 +256,7 @@ const StartUp = () => {
                 <span></span>
                 <Slide right delay={2500}>
                   <div className="mobile__meta">
-                    <p>NOV 1ST, 2020</p>
+                    {/* <p>NOV 1ST, 2020</p> */}
                     <p>Application Deadline</p>
                   </div>
                 </Slide>
@@ -216,7 +267,7 @@ const StartUp = () => {
                 <span></span>
                 <Slide right delay={3000}>
                   <div className="mobile__meta">
-                    <p>NOV 1ST, 2020</p>
+                    {/* <p>NOV 1ST, 2020</p> */}
                     <p>Application Deadline</p>
                   </div>
                 </Slide>
@@ -228,42 +279,83 @@ const StartUp = () => {
       {/*<Slide left duration={4000}>*/}
       <section className="startup__involve">
         <div className="startup__involve-container">
-          <div>
+          {/* <div>
             <h3 className="subheader subheader-white">Get Involved</h3>
-          </div>
-          <div className="startup__involve-items">
+          </div> */}
+          <div className="startup__involve-items hide">
             <div className="startup__involve-list">
               <div className="startup__involve-list-container">
-                <h1>Grow your stratup with with Grazac Innovation Lab</h1>
-                <Button extra="button-bg" click={reveal}>
+                <h1>
+                  <span>Grow your startup</span> with Grazac Innovation Lab
+                </h1>
+                <Button extra="button-bg" click={reveal} className="">
                   <span>Apply Now</span>
-                  <img src={btnwhite} alt="arrow" />
+                  <img src={btnpurple} alt="arrow" />
                 </Button>
               </div>
             </div>
 
             <div className="startup__involve-list">
               <div className="startup__involve-list-container">
-                <h1>Support innovative enterprises with expert advice</h1>
+                <h1>
+                  <span>Become a mentor</span> with Grazac Innovation Lab
+                </h1>
                 <Button extra="button-bg" click={reveal}>
-                  <span>Register as a mentor</span>
-                  <img src={btnwhite} alt="arrow" />
+                  <span>Get in touch</span>
+                  <img src={btnpurple} alt="arrow" />
                 </Button>
               </div>
             </div>
             <div className="startup__involve-list">
               <div className="startup__involve-list-container">
                 <h1>
-                  Form strategic partnership with start-ups and make solid
-                  returns as an investor.{" "}
+                  <span>Become a partner</span> with Grazac Innovation Lab
                 </h1>
+
                 <Button extra="button-bg" click={reveal}>
-                  <span>Become an investor</span>
-                  <img src={btnwhite} alt="arrow" />
+                  <span>Apply Now</span>
+                  <img src={btnpurple} alt="arrow" />
                 </Button>
               </div>
             </div>
           </div>
+          <Splide className="startup__involve-items hide2"options={options} >
+            <SplideSlide className="startup__involve-list">
+              <div className="startup__involve-list-container">
+                <h1>
+                  <span>Grow your startup</span> with Grazac Innovation Lab
+                </h1>
+                <Button extra="button-bg" click={reveal} className="">
+                  <span>Apply Now</span>
+                  <img src={btnpurple} alt="arrow" />
+                </Button>
+              </div>
+            </SplideSlide>
+
+            <SplideSlide className="startup__involve-list">
+              <div className="startup__involve-list-container">
+                <h1>
+                  <span>Become a mentor</span> with Grazac Innovation Lab
+                </h1>
+                <Button extra="button-bg" click={reveal}>
+                  <span>Get in touch</span>
+                  <img src={btnpurple} alt="arrow" />
+                </Button>
+              </div>
+            </SplideSlide>
+            <SplideSlide className="startup__involve-list">
+              <div className="startup__involve-list-container">
+                <h1>
+                  <span>Become a partner</span> with Grazac Innovation Lab
+                </h1>
+
+                <Button extra="button-bg" click={reveal}>
+                  <span>Apply Now</span>
+                  <img src={btnpurple} alt="arrow" />
+                </Button>
+              </div>
+            </SplideSlide>
+          </Splide>
         </div>
       </section>
       {/*</Slide>*/}

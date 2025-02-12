@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 //images
 import working from "../images/svg/working.svg";
-import build from "../images/svg/build.svg";
+import build from "../images/svg/gtc.svg";
 import academy from "../images/svg/academy.svg";
 import innovation from "../images/svg/innovation.svg";
 // import business from "../images/svg/business.svg";
@@ -31,6 +31,8 @@ import { Helmet } from "react-helmet";
 import Button from "../components/button";
 import axios from "axios";
 import Loader from "../components/Loader";
+import { Splide, SplideSlide } from "@splidejs/react-splide";
+import "@splidejs/react-splide/css";
 
 const Landing = () => {
   useEffect(() => {
@@ -39,6 +41,39 @@ const Landing = () => {
 
   const [blogs, setBlogs] = useState([]);
 
+  const options = {
+    width: "100%",
+    type: "loop",
+    gap: "10px",
+    autoplay: true,
+    pauseOnHover: true,
+    resetProgress: false,
+    arrows: false,
+    dots: false,
+    perPage: 5,
+    breakpoints: {
+      450:{
+        gap: "5px",
+        arrows: true,
+        perPage: 1.5,
+      },
+      640: {
+        gap: "5px",
+        arrows: true,
+        perPage: 2.5,
+      },
+      768: {
+        gap: "5px",
+        arrows: true,
+        perPage: 3,
+      },
+      1024: {
+        gap: "8px",
+        arrows: true,
+        perPage: 4,
+      },
+    },
+  };
   useEffect(() => {
     axios
       .get(
@@ -71,7 +106,7 @@ const Landing = () => {
         <div className="landing_pattern">
           <div className="container">
             <div className="landing_hero">
-              <p>WELCOME TO GRAZAC</p>
+              <h6>WELCOME TO GRAZAC</h6>
               <h1>
                 <span>IDEAS, PEOPLE AND A SMART FUTURE</span>
               </h1>
@@ -90,7 +125,7 @@ const Landing = () => {
           </div>
         </div>
         <div className="landing_wwd">
-          <div className="container landing_wwd-columns">
+          <div className="landing_wwd-columns">
             <div className="landing_wwd-textpart section1">
               <p>WHAT WE DO</p>
               <h1>We develop, support and scale tech innovations</h1>
@@ -128,16 +163,21 @@ const Landing = () => {
                   <img src={build} alt="illustration" />
                 </div>
                 <div>
-                  <h3>Grazac Build</h3>
+                  <h3>Grazac Talent City</h3>
                   <p>
-                    Grow your business and transform your work with solutions
-                    that meet your software needs. From massive companies to
-                    small businesses, we have perfectly tailored digital
-                    solutions to your industry
+                    A lab where your imagination meets execution. With the right
+                    tools and talents, we propel your idea and drive your vision
+                    forward to become a viable start-up venture in the global
+                    economy
                   </p>
-                  <Link to="/build" style={{ textDecoration: "none" }}>
+                  <a
+                    href="https://grazactalentcity.com/"
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{ textDecoration: "none" }}
+                  >
                     <p>Learn more</p>
-                  </Link>
+                  </a>
                 </div>
               </div>
             </div>
@@ -239,10 +279,12 @@ const Landing = () => {
         </div> */}
         <div className="landing__partners">
           <div className="landing__partners-box">
-            <p className="muted muted-1">Partners </p>
-            <h2 className="subheader subheader-purple">
-              Brands we Partnered with/As seen on
-            </h2>
+            <div className="landing__partners-text">
+              <p className="muted muted-1">Partners </p>
+              <h2 className="subheader subheader-purple">
+                Brands we Partnered with/As seen on
+              </h2>
+            </div>
             <div className="landing__partners-container">
               <div className="landing__partners-img">
                 <img src={pettysave} alt="pettysave" />
@@ -260,6 +302,27 @@ const Landing = () => {
                 <img src={haptic} alt="haptic" />
               </div>
             </div>
+            <Splide options={options} className="landing__partners-wrapper">
+              <SplideSlide className="landing__partners-img2" >
+                <img src={tg} alt="pettysave" />
+              </SplideSlide>
+              
+              <SplideSlide className="landing__partners-img2" >
+                <img src={pettysave} alt="pettysave" />
+              </SplideSlide>
+              <SplideSlide className="landing__partners-img2" >
+                <img src={businessday} alt="pettysave" />
+              </SplideSlide>
+              <SplideSlide className="landing__partners-img2" >
+                <img src={tg} alt="pettysave" />
+              </SplideSlide>
+              <SplideSlide className="landing__partners-img2" >
+                <img src={haptic} alt="pettysave" />
+              </SplideSlide>
+              <SplideSlide className="landing__partners-img2" >
+                <img src={google} alt="pettysave" />
+              </SplideSlide>
+            </Splide>
           </div>
         </div>
         <div className=" nextbigthing">
@@ -310,9 +373,11 @@ const Landing = () => {
                     rel="noreferrer"
                     key={index}
                   >
-                    {blog?.thumbnail && <div className="blog__img">
-                      <img src={blog.thumbnail} alt="img" />
-                    </div>}
+                    {blog?.thumbnail && (
+                      <div className="blog__img">
+                        <img src={blog.thumbnail} alt="img" />
+                      </div>
+                    )}
                     <div className="blog__content">
                       <div className="blog__content-container">
                         {/* <h6 className="blogtitle">press release</h6> */}
