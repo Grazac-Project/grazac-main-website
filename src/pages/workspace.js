@@ -622,6 +622,7 @@ const Innovation = () => {
     autoplay: true,
     pauseOnHover: true,
     resetProgress: false,
+    dots: false,
   };
   const options2 = {
     width: "100%",

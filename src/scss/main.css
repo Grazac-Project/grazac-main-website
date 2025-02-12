@@ -1792,6 +1792,7 @@ body {
 .innovation_hero {
   background-image: url(/src/images/book/Hero.png);
   background-repeat: no-repeat;
+  background-size: cover;
   padding: 200px 0;
   margin: 0 auto;
   width: 1440px;
@@ -2521,7 +2522,6 @@ body {
 .innovation_slider {
   display: flex;
   flex-wrap: wrap;
-  margin-right: -20px;
   margin-left: -20px;
   width: 100vw;
   margin: auto;
@@ -2576,6 +2576,23 @@ body {
   100% {
     transform: translateX(-2450px);
   }
+}
+
+.splide__arrows {
+  position: absolute;
+  bottom: -30px;
+  right: 120px;
+}
+@media screen and (max-width: 768px) {
+  .splide__arrows {
+    right: 30px;
+  }
+}
+
+.splide__pagination {
+  position: absolute;
+  bottom: 10px !important;
+  right: 10px !important;
 }
 
 .tri {
