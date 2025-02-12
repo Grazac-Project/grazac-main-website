@@ -1792,7 +1792,6 @@ body {
 .innovation_hero {
   background-image: url(/src/images/book/Hero.png);
   background-repeat: no-repeat;
-  background-size: cover;
   padding: 200px 0;
   margin: 0 auto;
   width: 1440px;
@@ -1805,6 +1804,8 @@ body {
 @media screen and (max-width: 768px) {
   .innovation_hero {
     padding: 130px 0;
+    background-image: url(/src/images/book/joy-mobile.png);
+    background-size: cover;
   }
 }
 @media screen and (max-width: 430px) {
@@ -2257,6 +2258,7 @@ body {
 .innovation_gallery {
   width: 1440px;
   margin: 0 auto;
+  overflow: hidden;
 }
 @media screen and (max-width: 1440px) {
   .innovation_gallery {
@@ -2557,7 +2559,7 @@ body {
   animation: scroll 20s linear infinite;
   display: flex;
   width: 18000px;
-  overflow: hidden;
+  overflow-x: hidden;
   gap: 10px;
   margin-bottom: 20px;
 }

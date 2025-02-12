@@ -486,7 +486,7 @@
     background-image: url(/src/images/book/Hero.png);
     // background-color: #140e1f;
     background-repeat: no-repeat;
-    background-size: cover;
+    // background-size: contain;
     padding: 200px 0;
     margin: 0 auto;
     // margin-bottom: 80px;
@@ -496,6 +496,8 @@
     }
     @media screen and (max-width: 768px) {
       padding: 130px 0;
+      background-image: url(/src/images/book/joy-mobile.png);
+      background-size: cover;
     }
     @media screen and (max-width: 430px) {
       padding: 57px 0;
@@ -906,6 +908,7 @@
   &_gallery {
     width: 1440px;
     margin: 0 auto;
+    overflow: hidden;
     @media screen and (max-width: 1440px) {
       width: 100%;
     }
@@ -1182,7 +1185,7 @@
     animation: scroll 20s linear infinite;
     display: flex;
     width: calc(200px * 90);
-    overflow: hidden;
+    overflow-x: hidden;
     gap: 10px;
     margin-bottom: 20px;
   }
