@@ -3502,7 +3502,7 @@ body {
     width: 95%;
   }
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   .startup__involve-list-container {
     align-items: center;
     text-align: center;
@@ -3633,6 +3633,21 @@ body {
 }
 .value__content p {
   color: #fff !important;
+}
+
+@media screen and (max-width: 800px) {
+  .hide {
+    display: none;
+  }
+}
+
+.hide2 {
+  display: none;
+}
+@media screen and (max-width: 800px) {
+  .hide2 {
+    display: flex;
+  }
 }
 
 .contact {

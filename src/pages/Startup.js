@@ -26,12 +26,12 @@ const StartUp = () => {
     resetProgress: false,
     arrows: false,
     dots: false,
-    perPage: 3,
+    perPage: 2.5,
     breakpoints: {
-      450:{
+      600:{
         gap: "5px",
         // arrows: true,
-        perPage: 1,
+        perPage: 1.3,
       },
      
     },
@@ -282,7 +282,7 @@ const StartUp = () => {
           {/* <div>
             <h3 className="subheader subheader-white">Get Involved</h3>
           </div> */}
-          <div className="startup__involve-items">
+          <div className="startup__involve-items hide">
             <div className="startup__involve-list">
               <div className="startup__involve-list-container">
                 <h1>
@@ -319,7 +319,7 @@ const StartUp = () => {
               </div>
             </div>
           </div>
-          <Splide className="startup__involve-items"options={options} >
+          <Splide className="startup__involve-items hide2"options={options} >
             <SplideSlide className="startup__involve-list">
               <div className="startup__involve-list-container">
                 <h1>
