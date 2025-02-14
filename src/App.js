@@ -14,6 +14,7 @@ import Layout from "./layout";
 import Application from "./pages/Application";
 import ShowContext from "./showContext";
 import Unsubscribe from "./pages/Unsubscribe";
+import Contact from "./pages/contact";
 
 const App = () => {
   const { pathname } = useLocation();
@@ -79,6 +80,8 @@ const App = () => {
             <Route path="/casestudy" exact component={CaseStudy} />
             <Route path="/startup" exact component={StartUp} />
             <Route path="/blog" exact component={Blog} />
+            <Route path="/contact" exact component={Contact} />
+
             <Route path="*">
               <Redirect to="/" />
             </Route>

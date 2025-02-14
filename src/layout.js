@@ -37,12 +37,12 @@ const Layout = ({ children }) => {
           sidebar ? "animate__slideInDown" : "animate__slideOutUp opacity"
         }
       />
-      <Contact
+      {/* <Contact
         setShow={contactClick}
         animate={
           contact ? "animate__slideInDown" : "animate__slideOutUp opacity"
         }
-      />
+      /> */}
       <Modal
         show={modal}
         close={() => modalClick(false)}

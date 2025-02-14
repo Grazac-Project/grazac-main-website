@@ -8,7 +8,7 @@ import ShowContext from "../showContext";
 import React from "react";
 
 const Header = ({ click }) => {
-  const { reveal } = React.useContext(ShowContext);
+  // const { reveal } = React.useContext(ShowContext);
   return (
     <header className="header">
       <div className="header__container">
@@ -24,12 +24,14 @@ const Header = ({ click }) => {
             <NavItem to="/blog">Blog</NavItem>
           </ul>
         </nav>
-        <div className="header__contact" onClick={reveal}>
+        {/* <div className="header__contact" onClick={reveal}> */}
+        <a href="/contact" className="header__contact">
+
           <span>Contact</span>
           <div>
             <img src={btnpurple} alt="arrow" className="hvr-buzz" />
           </div>
-        </div>
+        </a>
         <div onClick={click} className="header__hamburger">
           <img src={hamburger} alt="icon" />
         </div>
