@@ -1,9 +1,11 @@
 // @ts-nocheck
 import Logo from "../images/logo.png";
-import Twitter from "../images/twitter.png";
-import Facebook from "../images/facebook.png";
-import Linkedin from "../images/linkedin.png";
-import Instagram from "../images/instagram.png";
+import Twitter from "../images/svg/twitter.svg";
+import Facebook from "../images/svg/facebook.svg";
+// import Linkedin from "../images/svg/linkedin.svg";
+import Instagram from "../images/svg/instagram.svg";
+import Youtube from "../images/svg/youtube.svg";
+
 import { Helmet } from "react-helmet";
 import React, { useEffect, useState } from "react";
 import Cancel from "../images/svg/cancel-purple.svg";
@@ -11,7 +13,7 @@ import { validateEmail, required, numberCheck } from "../validation";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const Contact = ({ setShow, animate }) => {
+const Contact = ({  animate }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -46,247 +48,293 @@ const Contact = ({ setShow, animate }) => {
   //     },
   //   });
   // }, []);
-  const [contactForm, setContactForm] = useState({
-    name: {
-      value: "",
-      isValid: false,
-      validations: [required],
-    },
-    phone: {
-      value: "",
-      isValid: false,
-      validations: [numberCheck],
-    },
-    email: {
-      value: "",
-      isValid: false,
-      validations: [validateEmail],
-    },
-    purpose: {
-      value: "",
-      isValid: false,
-      validations: [required],
-    },
-    message: {
-      value: "",
-      isValid: false,
-      validations: [required],
-    },
-  });
-  const [formValid, setFormValid] = useState(false);
+  const [ name, setName ] = useState('');
+    const [ email, setEmail ] = useState('');
+    const [ number, setNumber ] = useState('');
+    const [ subject, setSubject ] = useState('');
+    const [ message, setMessage ] = useState('');
+    
+    const handleSubmit = () => {
+      if(name.length && number.length&& email.length && subject.length && message.length) {
+          const btn = document.querySelector('#submit');
+          btn.setAttribute('disabled', '');
+          btn.textContent = 'Submitting...';
+          axios.post('https://grazac-academy-back-end-ej7s.onrender.com/api/v1/user/contactForm', {
+              name: name,
+              phone: number,
+              purpose: subject,
+              email: email,
+              message: message
+          })
+          .then(resp => resp.data)
+          .then(response => {
+            console.log(response);
+            
+              if(response.success === true) {
+                  // btn.removeAttribute('disabled');
+                  alert(response.msg);
+                  btn.textContent = 'Submitted !';
+                  setName(''); setEmail(''); setSubject(''); setMessage('');
+              } else {
+                btn.textContent = 'Submit';
 
-  const handleChange = (event) => {
-    const {
-      target: { name, value },
-    } = event;
-    let isValid = true;
-    for (let validation of contactForm[name].validations) {
-      isValid = validation(event.target.value).isTrue && isValid;
-    }
-
-    const updatedElement = {
-      ...contactForm[name],
-      value: value,
-      isValid: isValid,
-    };
-
-    const updatedForm = {
-      ...contactForm,
-      [name]: updatedElement,
-    };
-
-    let formIsValid = true;
-
-    for (let name in contactForm) {
-      formIsValid = updatedForm[name].isValid && formIsValid;
-    }
-
-    setContactForm(updatedForm);
-    setFormValid(formIsValid);
-  };
-
-  const handleClick = () => {
-    setSubmitting(true);
-    const contact = new FormData();
-    const { email, message, name, phone, purpose } = contactForm;
-    contact.append("name", name.value);
-    contact.append("email", email.value);
-    contact.append("phone", phone.value);
-    contact.append("purpose", purpose.value);
-    contact.append("message", message.value);
-    contact.append("purpose", purpose.value);
-
-    axios
-      .post("https://grazac.com.ng/forms/contact", contact, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((res) => {
-        console.log(res);
-        setSubmitting(false);
-        setSuccess(true);
-      })
-      .then(() => {
-        for (let key in contactForm) {
-          console.log(key);
-          setContactForm({
-            ...contactForm,
-            [key]: {
-              ...contactForm[key],
-              value: "",
-            },
+              }
+          })
+          .catch((err) => {
+            console.log(err);
+            btn.textContent = 'Submit';
+              
           });
-        }
-      })
-      .catch((err) => err);
-  };
+      } else {
+          alert('Invalid input');
+          // btn.textContent = 'Submit';
 
-  const { email, message, name, phone, purpose } = contactForm;
+      }
+  }
+
+  // const [contactForm, setContactForm] = useState({
+  //   name: {
+  //     value: "",
+  //     isValid: false,
+  //     validations: [required],
+  //   },
+  //   phone: {
+  //     value: "",
+  //     isValid: false,
+  //     validations: [numberCheck],
+  //   },
+  //   email: {
+  //     value: "",
+  //     isValid: false,
+  //     validations: [validateEmail],
+  //   },
+  //   purpose: {
+  //     value: "",
+  //     isValid: false,
+  //     validations: [required],
+  //   },
+  //   message: {
+  //     value: "",
+  //     isValid: false,
+  //     validations: [required],
+  //   },
+  // });
+  // const [formValid, setFormValid] = useState(false);
+
+  // const handleChange = (event) => {
+  //   const {
+  //     target: { name, value },
+  //   } = event;
+  //   let isValid = true;
+  //   for (let validation of contactForm[name].validations) {
+  //     isValid = validation(event.target.value).isTrue && isValid;
+  //   }
+
+  //   const updatedElement = {
+  //     ...contactForm[name],
+  //     value: value,
+  //     isValid: isValid,
+  //   };
+
+  //   const updatedForm = {
+  //     ...contactForm,
+  //     [name]: updatedElement,
+  //   };
+
+  //   let formIsValid = true;
+
+  //   for (let name in contactForm) {
+  //     formIsValid = updatedForm[name].isValid && formIsValid;
+  //   }
+
+  //   setContactForm(updatedForm);
+  //   setFormValid(formIsValid);
+  // };
+
+  // const handleClick = () => {
+  //   setSubmitting(true);
+  //   const contact = new FormData();
+  //   // const { email, message, name, phone, purpose } = contactForm;
+  //   // contact.append("name", name.value);
+  //   // contact.append("email", email.value);
+  //   // contact.append("phone", phone.value);
+  //   // contact.append("purpose", purpose.value);
+  //   // contact.append("message", message.value);
+  //   // contact.append("purpose", purpose.value);
+
+  //   axios
+  //     .post("https://grazac.com.ng/forms/contact",  {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     })
+  //     .then((res) => {
+  //       console.log(res);
+  //       setSubmitting(false);
+  //       setSuccess(true);
+  //     })
+  //     .then(() => {
+  //       for (let key in contactForm) {
+  //         console.log(key);
+  //         setContactForm({
+  //           ...contactForm,
+  //           [key]: {
+  //             ...contactForm[key],
+  //             value: "",
+  //           },
+  //         });
+  //       }
+  //     })
+  //     .catch((err) => err);
+  // };
+
+  // const { email, message, name, phone, purpose } = contactForm;
 
   return (
     <div
-      className={["contact animate__animated animate__slow", animate].join(" ")}
+    // className={["contact animate__animated animate__slow", animate].join(" ")}
     >
       <Helmet>
         <title>Contact - Grazac</title>
         <meta name="description" content="Contact Grazac" />
         <meta name="theme-color" content="#773DD3" />
       </Helmet>
-      <div className="contact__container">
-        <div className="contact__header">
-          <div className="contact__header-logo" onClick={() => setShow(false)}>
-            <Link to="/">
-              <img src={Logo} alt="grazac" />
-            </Link>
-          </div>
-          <div
-            className="contact__header-cancel"
-            onClick={() => setShow(false)}
-          >
-            <img src={Cancel} alt="close" />
-          </div>
-        </div>
-        <div className="contact__form">
-          <div className="contact__form__container">
-            {/* <h1>Drop us a line</h1> */}
-            <p>Complete the form or e-mail support@grazac.com.ng</p>
-
-            <form className="form">
-              <div className="form__group">
-                <label className="form__label">Name</label>
-                <input
-                  className="form__input"
-                  onChange={handleChange}
-                  type="text"
-                  name="name"
-                  value={name.value}
-                  required
-                />
-              </div>
-              <div className="form__group">
-                <label className="form__label">Phone Number</label>
-                <input
-                  className="form__input"
-                  type="text"
-                  name="phone"
-                  onChange={handleChange}
-                  value={phone.value}
-                  required
-                />
-              </div>
-              <div className="form__group">
-                <label className="form__label">Email Address</label>
-                <input
-                  className="form__input"
-                  type="text"
-                  name={"email"}
-                  onChange={handleChange}
-                  value={email.value}
-                  required
-                />
-              </div>
-              <div className="form__group">
-                <label className="form__label">Purpose</label>
-                <select
-                  className="form__input"
-                  value={purpose.value}
-                  onChange={handleChange}
-                  required
-                  name="purpose"
-                >
-                  <option value="">--Please Select One--</option>
-                  <option value="mentor">Mentor</option>
-                  <option value="investors">Investor</option>
-                  <option value="Partner">Partner</option>
-                  <option value="others">Others</option>
-                </select>
-              </div>
-              <div className="form__group">
-                <label className="form__label">Message</label>
-                <textarea
-                  className="form__textarea"
-                  value={message.value}
-                  name="message"
-                  required
-                  onChange={handleChange}
-                ></textarea>
-              </div>
-            </form>
-
-            {success ? (
-              <p>Message Sent Successfully</p>
-            ) : (
-              <button
-                onClick={handleClick}
-                className="contact__button"
-                disabled={!formValid}
-              >
-                {submitting ? "Submitting" : " Send Message"}
-              </button>
-            )}
-            <div className="contact__meta">
-              <div className="contact__meta-sm">
-                <p>Find Us</p>
-                <div>
-                  <a
-                    href="https://www.instagram.com/grazacng "
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <img src={Instagram} alt="instagram" />
-                  </a>
-                  <a
-                    href="https://www.linkedin.com/company/gra-zac"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <img src={Linkedin} alt="instagram" />
-                  </a>
-                  <a
-                    href="https://www.facebook.com/grazacNG"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <img src={Facebook} alt="instagram" />
-                  </a>
-                  <a
-                    href="https://twitter.com/grazacng"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <img src={Twitter} alt="instagram" />
-                  </a>
+      <div className="contact">
+        <div className="contact_layer">
+          <div className="container">
+            <div className="contact_layer-text">
+              <h1>Get In Touch</h1>
+              <p>We want to hear from you. Let us know how we can help</p>
+            </div>
+            {/*<div classname="contact_layer-circles">
+                            <img src={kamala} alt="kamala"  classname="contact_layer-circles-1" />
+                            <img src={kamala} alt="kamala"  classname="contact_layer-circles-2" />
+                            <img src={kamala} alt="kamala"  classname="contact_layer-circles-3" />
+                            <img src={kamala} alt="kamala"  classname="contact_layer-circles-4" />
+                        </div>*/}
+            <div className="contact_hero">
+              <div className="contact_hero-flexdiv">
+                <div className="contact_hero-flexdiv-1">
+                  <label>
+                    Full Name 
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="ex. John Doe"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </div>
+                <div className="contact_hero-flexdiv-1">
+                  <label>
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    placeholder="070xxxxxxx"
+                    value={number}
+                    onChange={(e) => setNumber(e.target.value)}
+                  />
+                </div>
+                <div className="contact_hero-flexdiv-2">
+                  <label>
+                    Email 
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="ex. john@gmail.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
                 </div>
               </div>
-              <p>support@grazac.com.ng</p>
-              <div className="contact__meta-adr">
-                <p>Abeokuta, Nigeria</p>
-                <p>+234 806 836 5951</p>
+              <div>
+                <label>
+                  Purpose
+                </label>
+                <input
+                  type="text"
+                  placeholder="ex. John Doe"
+                  value={subject}
+                  onChange={(e) => setSubject(e.target.value)}
+                />
+              </div>
+              <div>
+                <label>
+                  Message 
+                </label>
+                <textarea
+                  type="text"
+                  placeholder="Describe your task for us"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                />
+              </div>
+              <div className="contact_hero-privacy">
+                <p>
+                  By submitting this form your consent to us emailing you
+                  occasionally about our products and services. You can
+                  unsubscribe from emails at any time, and we will never pass
+                  your email onto third parties. <span>Privacy Policy</span>
+                </p>
+                <button id="submit" onClick={handleSubmit}>
+                {/* <button id="submit" > */}
+
+                  Submit
+                </button>
               </div>
             </div>
           </div>
         </div>
+        <div className="container">
+          <div className="contact_campus">
+            <div className="contact_campus-intro">
+              <p>Connect with Us</p>
+              <h2>Campus Inquiries</h2>
+            </div>
+            <div className="contact_campus-main">
+              <div className="contact_campus-main-div boxes33">
+                <h3>Office</h3>
+                <p>PROHUB, Salawu Olabode Avenue, Ewang Road, </p>
+                <p>Idi-aba, 110124, Abeokuta</p>
+                <p>+234 806 836 5951</p>
+              </div>
+              <div className="contact_campus-main-div boxes33">
+                <h3>Book A Call</h3>
+                <p>We are here to help with any questions. </p>
+                <p>Talk to our programme leads.</p>
+                  <a href="tel:+2348068365951">
+                <button className="btn">
+                  Book a Call
+                </button>
+                  </a>
+              </div>
+              <div className="contact_campus-main-div boxes33">
+                <h3>Social Media</h3>
+                <div className="social">
+                  <img src={Facebook} alt="social" />
+                </div>
+                <div className="social">
+                  <img src={Twitter} alt="social" />
+                </div>
+                <div className="social">
+                  <img src={Youtube} alt="social" />
+                </div>
+                <div className="social">
+                  <img src={Instagram} alt="social" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <iframe
+            src="https://www.google.com/maps/d/embed?mid=16NZ9a9VhKkk2-5nnYEdL93mxq7kjDZLT"
+            width="100%"
+            height="600"
+          ></iframe>
+        </div>
+        {/*<extracomponent/> a component used in the landing page comes here*/}
       </div>
     </div>
   );

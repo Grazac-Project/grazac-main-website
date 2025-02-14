@@ -86,7 +86,7 @@ const Landing = () => {
       });
   }, []);
 
-  const { reveal } = React.useContext(ShowContext);
+  // const { reveal } = React.useContext(ShowContext);
 
   return (
     <div>
@@ -115,7 +115,7 @@ const Landing = () => {
                 entrepreneurship while enhancing economic development
               </p>
               <div className="landing_hero_btn">
-                <Button extra="button button-bg" click={reveal}>
+                <Button extra="button button-bg">
                   Partner With Us
                 </Button>
               </div>
