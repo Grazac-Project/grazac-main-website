@@ -28,10 +28,10 @@ const StartUp = () => {
     dots: false,
     perPage: 2.5,
     breakpoints: {
-      600:{
+      425:{
         gap: "5px",
         // arrows: true,
-        perPage: 1.3,
+        perPage: 1,
       },
      
     },
@@ -159,7 +159,7 @@ const StartUp = () => {
         </div>
       </section>
       <section className="startup__timeline">
-        <div className="startup__timeline-container">
+        <div className="startup__timeline-container container">
           <div className="startup__timeline-header">
             <h5 className="small small-grey">featured & partners </h5>
             <h3 className="subheader subheader-purple">Our Timeline</h3>

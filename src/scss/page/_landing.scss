@@ -32,6 +32,13 @@
     width: 100%;
     margin-bottom: 8rem;
     margin-top: 3rem;
+
+    &-wrapper {
+      &-img2 {
+        width: 100% !important;
+      }
+    }
+
     &-box {
       @include container;
 
@@ -41,6 +48,7 @@
     }
     &-text {
       text-align: center;
+      margin-bottom: 40px;
     }
     &-container {
       display: flex;
@@ -810,10 +818,15 @@
   width: auto;
   height: auto;
 }
-.landing__partners-wrapper{
+.landing__partners-wrapper {
   display: none;
   margin-top: 30px !important;
-  @media  screen and (max-width:930px) {
+  @media screen and (max-width: 930px) {
     display: inline;
+  // padding-top: 40px !important;
+
   }
+}
+.splide__slide{
+  width: auto !important;
 }

@@ -26,7 +26,11 @@ import haptic from "../images/haptic.png";
 import businessday from "../images/businessday.png";
 import pettysave from "../images/pettysave.png";
 import tg from "../images/tg.png";
-
+import google2 from "../images/google2.png";
+import haptic2 from "../images/haptic2.png";
+import businessday2 from "../images/businessday2.png";
+import pettysave2 from "../images/pettysave2.png";
+import tg2 from "../images/tg2.png";
 import { Helmet } from "react-helmet";
 import Button from "../components/button";
 import axios from "axios";
@@ -44,7 +48,7 @@ const Landing = () => {
   const options = {
     width: "100%",
     type: "loop",
-    gap: "10px",
+    gap: "20px",
     autoplay: true,
     pauseOnHover: true,
     resetProgress: false,
@@ -52,18 +56,18 @@ const Landing = () => {
     dots: false,
     perPage: 5,
     breakpoints: {
-      450:{
-        gap: "5px",
-        arrows: true,
-        perPage: 1.5,
-      },
-      640: {
+      450: {
         gap: "5px",
         arrows: true,
         perPage: 2.5,
       },
+      640: {
+        gap: "24px",
+        arrows: true,
+        perPage: 2.5,
+      },
       768: {
-        gap: "5px",
+        gap: "24px",
         arrows: true,
         perPage: 3,
       },
@@ -75,14 +79,22 @@ const Landing = () => {
     },
   };
   useEffect(() => {
+    //   axios
+    //     .get(
+    //       "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@grazac"
+    //     )
+    //     .then((res) => {
+    //       const result = res.data.items.splice(0, 3);
+    //       console.log(res);
+    //       setBlogs(result);
+    //     });
+    // }, []);
     axios
       .get(
         "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@grazac"
       )
       .then((res) => {
-        const result = res.data.items.splice(0, 3);
-        console.log(res)
-        setBlogs(result);
+        setBlogs(res.data.items.splice(0, 3));
       });
   }, []);
 
@@ -115,9 +127,7 @@ const Landing = () => {
                 entrepreneurship while enhancing economic development
               </p>
               <div className="landing_hero_btn">
-                <Button extra="button button-bg">
-                  Partner With Us
-                </Button>
+                <Button extra="button button-bg">Partner With Us</Button>
               </div>
               <img src={pattern1} alt="" className="pattern_1" />
               <img src={pattern2} alt="" className="pattern_2" />
@@ -303,24 +313,24 @@ const Landing = () => {
               </div>
             </div>
             <Splide options={options} className="landing__partners-wrapper">
-              <SplideSlide className="landing__partners-img2" >
-                <img src={tg} alt="pettysave" />
+              {/* <SplideSlide className="landing__partners-img2">
+                <img src={tg2} alt="pettysave" />
+              </SplideSlide> */}
+
+              <SplideSlide className="landing__partners-img2">
+                <img src={pettysave2} alt="pettysave" />
               </SplideSlide>
-              
-              <SplideSlide className="landing__partners-img2" >
-                <img src={pettysave} alt="pettysave" />
+              <SplideSlide className="landing__partners-img2">
+                <img src={businessday2} alt="pettysave" />
               </SplideSlide>
-              <SplideSlide className="landing__partners-img2" >
-                <img src={businessday} alt="pettysave" />
+              <SplideSlide className="landing__partners-img2">
+                <img src={tg2} alt="pettysave" />
               </SplideSlide>
-              <SplideSlide className="landing__partners-img2" >
-                <img src={tg} alt="pettysave" />
+              <SplideSlide className="landing__partners-img2">
+                <img src={haptic2} alt="pettysave" />
               </SplideSlide>
-              <SplideSlide className="landing__partners-img2" >
-                <img src={haptic} alt="pettysave" />
-              </SplideSlide>
-              <SplideSlide className="landing__partners-img2" >
-                <img src={google} alt="pettysave" />
+              <SplideSlide className="landing__partners-img2">
+                <img src={google2} alt="pettysave" />
               </SplideSlide>
             </Splide>
           </div>
@@ -367,15 +377,25 @@ const Landing = () => {
               {blogs.map((blog, index) => {
                 return (
                   <a
-                    href={blog.link}
+                    // href={blog.link}
+                    href={blogs[0].link}
                     className="blog"
                     target="_blank"
                     rel="noreferrer"
                     key={index}
                   >
-                    {blog?.thumbnail && (
+                    {blog.description
+                      .toString()
+                      .match(/<img[^>]+src="([^">]+)"/)[1] && (
                       <div className="blog__img">
-                        <img src={blog.thumbnail} alt="img" />
+                        <img
+                          src={
+                            blog.description
+                              .toString()
+                              .match(/<img[^>]+src="([^">]+)"/)[1]
+                          }
+                          alt="img"
+                        />
                       </div>
                     )}
                     <div className="blog__content">
