@@ -20,7 +20,7 @@ const Header = ({ click }) => {
             <NavItem to="/about">About Us</NavItem>
             <NavItem to="/startup">Startups</NavItem>
             <NavItem to="/workspace">Co-working Space</NavItem>
-            <NavItem to="/build">Build With Grazac</NavItem>
+            <NavItem to="">Grazac Talent City</NavItem>
             <NavItem to="/blog">Blog</NavItem>
           </ul>
         </nav>

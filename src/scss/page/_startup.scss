@@ -325,6 +325,7 @@
 
     &-header {
       margin-bottom: 1rem;
+      text-align: center !important;
     }
 
     &-list {
@@ -431,13 +432,14 @@
 
   &__involve {
     // background: #1f1035;
-    background: #fff;
+    // background: #fff;
 
     margin-top: 5rem;
     &-container {
       @include container;
       // padding: 12rem 0;
       padding: 2.5rem 0;
+      width: 100%;
 
       // & > div:first-child {
       //   margin-bottom: 4rem;
@@ -495,14 +497,17 @@
         }
 
         @media screen and (max-width: 800px) {
-          align-items: center;
+          // align-items: center;
           text-align: center;
-          padding: 5rem 2rem;
-          max-width: 393px; 
-          margin: 0 auto;
+          padding: 5rem 53px;
+          max-width: 393px;
+          margin: auto;
           height: 343px;
         }
-
+        @media screen and (max-width: 450px) {
+          // width : 95%;
+          // margin: 0;
+        }
         & > h1 {
           margin-bottom: 3rem;
           color: white;
@@ -521,9 +526,12 @@
           background-color: #fff !important;
           color: #773dd3;
 
-          @media screen and (max-width: 600px) {
-            align-self: center !important;
+          @media screen and (max-width: 800px) {
+            align-self: center;
           }
+        }
+        button {
+          width: 173px !important;
         }
       }
 
@@ -633,18 +641,14 @@
     }
   }
 }
-.hide{
+.hide {
   @media screen and (max-width: 800px) {
     display: none;
-    
   }
-
 }
-.hide2{
+.hide2 {
   display: none;
   @media screen and (max-width: 800px) {
     display: flex;
-    
   }
-
 }
