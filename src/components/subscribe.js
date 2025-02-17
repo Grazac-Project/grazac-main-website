@@ -59,7 +59,7 @@ const Subscribe = () => {
           <>
             <p>Get weekly updates and ideas on tech in your inbox.</p>
             <div style={{ alignSelf: "stretch", position: "relative" }}>
-              <form style={{ position: "relative" }} onSubmit={handleSubmit}>
+              <form style={{ position: "relative", backgroundColor: "#F8F8F8" }} onSubmit={handleSubmit}>
                 <input
                   type="email"
                   className="subscribe_email"

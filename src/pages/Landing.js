@@ -99,6 +99,9 @@ const Landing = () => {
   }, []);
 
   // const { reveal } = React.useContext(ShowContext);
+  const navigateToContact = () => {
+    window.location.href = "/contact";
+  };
 
   return (
     <div>
@@ -127,7 +130,7 @@ const Landing = () => {
                 entrepreneurship while enhancing economic development
               </p>
               <div className="landing_hero_btn">
-                <Button extra="button button-bg">Partner With Us</Button>
+                <Button extra="button button-bg" click={navigateToContact}>Partner With Us</Button>
               </div>
               <img src={pattern1} alt="" className="pattern_1" />
               <img src={pattern2} alt="" className="pattern_2" />

@@ -5,6 +5,8 @@ import Facebook from "../images/svg/facebook.svg";
 // import Linkedin from "../images/svg/linkedin.svg";
 import Instagram from "../images/svg/instagram.svg";
 import Youtube from "../images/svg/youtube.svg";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { Helmet } from "react-helmet";
 import React, { useEffect, useState } from "react";
@@ -70,12 +72,12 @@ const Contact = ({  animate }) => {
           .then(response => {
             console.log(response);
             
-              if(response.success === true) {
+              if(response.status === 201) {
                   // btn.removeAttribute('disabled');
-                  alert(response.msg);
-                  btn.textContent = 'Submitted !';
-                  setName(''); setEmail(''); setSubject(''); setMessage('');
-              } else {
+                  btn.textContent = 'Submitted';
+                  setName(''); setEmail(''); setNumber(''); setSubject(''); setMessage('');
+                  toast.success(response.message);
+                } else {
                 btn.textContent = 'Submit';
 
               }
@@ -86,7 +88,7 @@ const Contact = ({  animate }) => {
               
           });
       } else {
-          alert('Invalid input');
+          toast.error('Invalid input');
           // btn.textContent = 'Submit';
 
       }
@@ -201,6 +203,7 @@ const Contact = ({  animate }) => {
       </Helmet>
       <div className="contact">
         <div className="contact_layer">
+          <ToastContainer closeButton={false} />
           <div className="container">
             <div className="contact_layer-text">
               <h1>Get In Touch</h1>
