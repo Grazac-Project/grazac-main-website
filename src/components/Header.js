@@ -20,13 +20,21 @@ const Header = ({ click }) => {
             <NavItem to="/about">About Us</NavItem>
             <NavItem to="/startup">Startups</NavItem>
             <NavItem to="/workspace">Co-working Space</NavItem>
-            <NavItem to="">Grazac Talent City</NavItem>
+            <div className="nav__item">
+              <a
+                href="https://www.grazactalentcity.com/"
+                target="_blank"
+                className="nav__link"
+              >
+                Grazac Talent City
+              </a>
+            </div>
+
             <NavItem to="/blog">Blog</NavItem>
           </ul>
         </nav>
         {/* <div className="header__contact" onClick={reveal}> */}
         <a href="/contact" className="header__contact">
-
           <span>Contact</span>
           <div>
             <img src={btnpurple} alt="arrow" className="hvr-buzz" />

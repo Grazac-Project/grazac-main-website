@@ -142,11 +142,11 @@ const About = () => {
         <div className="about_work">
           {/* <div className="container"> */}
           <div className="">
-            <h2>Let’s work together</h2>
-            <p>
+            <p>Let’s work together</p>
+            <h2>
               We are always looking out for talented youths ready to change the
               world with us.
-            </p>
+            </h2>
             {/* <div style={{ display: "flex" }}> */}
             {/* <img src={dot} alt="" /> */}
             {/* <p className="options">See all Options</p> */}

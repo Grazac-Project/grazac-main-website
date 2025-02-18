@@ -293,7 +293,7 @@
     @media screen and (max-width:600px){
       padding: 0 16px;
     }
-    p {
+    h2 {
       font-size: 38px;
       font-weight: 700;
       letter-spacing: 1%;
@@ -305,7 +305,7 @@
       }
     }
     P:last-of-type{
-      font-size: 12px !important;
+      font-size: 15px !important;
       font-weight: 500;
       line-height: 15.31px;
       letter-spacing: 0%;
@@ -314,8 +314,8 @@
       color: $color-main;
       margin: 3px 0 0 7px;
     }
-    h2 {
-      font-size: 14px;
+    p {
+      font-size: 16px;
       line-height: 48px;
       letter-spacing: 3%;
       color: #575A65;
