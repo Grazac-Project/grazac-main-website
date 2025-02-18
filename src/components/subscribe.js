@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import subscribe from "../images/svg/subscription-arrow.svg";
 import Loader from "./Loader";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Subscribe = () => {
   const [email, setEmail] = useState("");
   const [msg, setMsg] = useState("");
@@ -20,18 +21,23 @@ const Subscribe = () => {
     ) {
       setLoading(true);
       setMsg("");
-      const data = new FormData();
-      data.append("email", email);
+      // const data = new FormData();
+      // data.append("email", email);
+      const data = { email: email };
       axios
-        .post("https://grazac.com.ng/newsletter/subscribe", data)
+        .post("https://grazac-academy-back-end-ej7s.onrender.com/api/v1/user/subscribe", data,  {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
         .then(({ data }) => {
           console.log(data);
-          if (!data.success) {
+          if (data.message === false) {
             setLoading(false);
             setMsg(data.msg);
           } else {
             setLoading(false);
-            alert("You have successfully subscribed to our newsletter.");
+            toast.success("You have successfully subscribed to our newsletter.");
             setEmail("");
           }
         })
@@ -52,6 +58,7 @@ const Subscribe = () => {
 
   return (
     <div className="subscribe">
+      <ToastContainer autoClose={3000} />
       <div className="subscribe__container">
         {loading ? (
           <Loader />

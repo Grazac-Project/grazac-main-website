@@ -488,7 +488,12 @@ const Application = () => {
     axios
       .post(
         "https://grazac-academy-back-end-ej7s.onrender.com/api/v1/startup/submit",
-        data
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
       )
       .then((res) => {
         console.log(res.data);
