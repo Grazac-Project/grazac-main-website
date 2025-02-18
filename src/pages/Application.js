@@ -10,6 +10,8 @@ import { inputChangeHandler, handleBlur } from "../handler";
 import Logo from "../images/logo-head.png";
 import ShowContext from "../showContext";
 import { validateEmail, required, numberCheck } from "../validation";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Application = () => {
   const [loading, setLoading] = useState(false);
@@ -89,37 +91,37 @@ const Application = () => {
 
   // Company Form
   const [companyForm, setCompanyForm] = useState({
-    company_name: {
+    name: {
       label: "Company's Name",
       elementType: "input",
-      value: saved ? saved.company_name : "",
+      value: saved ? saved.name : "",
       type: "text",
       validations: [required],
       isValid: false,
       blur: false,
     },
-    company_email: {
+    email: {
       label: "Company's Email Address",
       elementType: "input",
-      value: saved ? saved.company_email : "",
+      value: saved ? saved.email : "",
       type: "email",
       validations: [validateEmail],
       isValid: false,
       blur: false,
     },
-    company_url: {
+    url: {
       label: "Company's URL (if any)",
       elementType: "input",
-      value: saved ? saved.company_url : "",
+      value: saved ? saved.url : "",
       type: "url",
       validations: [],
       isValid: true,
       blur: false,
     },
-    company_address: {
+    location: {
       label: "Company's Location Address",
       elementType: "input",
-      value: saved ? saved.company_address : "",
+      value: saved ? saved.location : "",
       type: "text",
       isValid: true,
       validations: [required],
@@ -159,28 +161,28 @@ const Application = () => {
 
   // Founders Form
   const [foundersForm, setFoundersForm] = useState({
-    founders_count: {
+    teamSize: {
       elementType: "input",
       label: "How many founders are on the team?",
       type: "number",
-      value: saved ? saved.founders_count : "",
+      value: saved ? saved.teamSize : "",
       validations: [required],
       isValid: false,
       blur: false,
     },
-    founder_email: {
+    founderEmail: {
       label: "Email address of the founder who is filling this application",
       elementType: "input",
-      value: saved ? saved.founder_email : "",
+      value: saved ? saved.email : "",
       type: "email",
       validations: [validateEmail],
       isValid: false,
       blur: false,
     },
-    founder_phone: {
+    phoneNumber: {
       type: "text",
       elementType: "input",
-      value: saved ? saved.founder_phone : "",
+      value: saved ? saved.phoneNumber : "",
       label: "Phone Number",
       validations: [numberCheck],
       isValid: false,
@@ -221,58 +223,58 @@ const Application = () => {
 
   // Product Form
   const [productForm, setProductForm] = useState({
-    product_desc: {
+    description: {
       label:
         "What is your company going to make? Please describe your product and what it does or will do.",
       type: "text",
       elementType: "input",
-      value: saved ? saved.product_desc : "",
+      value: saved ? saved.description : "",
       validations: [required],
       isValid: false,
       blur: false,
     },
-    product_solution: {
+    why: {
       label:
         "Why are you making this? What problem did you develop your solution for?",
       type: "text",
       elementType: "input",
-      value: saved ? saved.product_solution : "",
+      value: saved ? saved.why : "",
       validations: [required],
       isValid: false,
       blur: false,
     },
-    best_suite: {
+    uniqueValue: {
       label: "What makes you the best suited to work on this problem?",
       type: "text",
       elementType: "input",
-      value: saved ? saved.best_suite : "",
+      value: saved ? saved.uniqueValue : "",
       validations: [required],
       isValid: false,
       blur: false,
     },
-    product_revenue_stream: {
+    businessModel: {
       label: "How does this product make money",
       type: "text",
       elementType: "input",
-      value: saved ? saved.product_revenue_stream : "",
+      value: saved ? saved.businessModel : "",
       validations: [required],
       isValid: false,
       blur: false,
     },
-    domain_expertise: {
+    ideaSource: {
       label:
         "Why did you pick this idea to work on? Do the founders have domain expertise in this area? How do you know people need what you're making?",
       type: "text",
       elementType: "input",
-      value: saved ? saved.domain_expertise : "",
+      value: saved ? saved.ideaSource : "",
       validations: [required],
       isValid: false,
       blur: false,
     },
-    product_journey: {
+    journey: {
       type: "text",
       elementType: "input",
-      value: saved ? saved.product_journey : "",
+      value: saved ? saved.journey : "",
       label:
         "Please tell us in a few sentences about the journey of building this company, so far:*",
       validations: [required],
@@ -312,7 +314,7 @@ const Application = () => {
 
   // Progress Form
   const [progressForm, setProgressForm] = useState({
-    dev_stage: {
+    stage: {
       label: "What phrase best describes the stage of your development?",
       options: [
         { value: "", displayValue: "--Please Select One--" },
@@ -323,12 +325,12 @@ const Application = () => {
         { value: "developing", displayValue: "Developing" },
         { value: "developed", displayValue: "Developed" },
       ],
-      value: saved ? saved.dev_stage : "",
+      value: saved ? saved.stage : "",
       elementType: "select",
       validations: [required],
       isValid: false,
     },
-    talents_required: {
+    hasRequiredTalent: {
       label: "Do you have all the talents required to build your product?*",
       options: [
         {
@@ -337,12 +339,12 @@ const Application = () => {
         },
         { value: "No", displayValue: "No" },
       ],
-      value: saved ? saved.talents_required : "Yes",
+      value: saved ? saved.hasRequiredTalent : "Yes",
       elementType: "select",
       validations: [],
       isValid: true,
     },
-    generating_income: {
+    isGeneratingIncome: {
       label: "Is your product generating income?",
       options: [
         { value: "No", displayValue: "No" },
@@ -351,12 +353,12 @@ const Application = () => {
           displayValue: "Yes",
         },
       ],
-      value: saved ? saved.generating_income : "No",
+      value: saved ? saved.isGeneratingIncome : "No",
       elementType: "select",
       validations: [],
       isValid: true,
     },
-    monthly_revenue: {
+    monthlyRevenue: {
       label: "What amount of revenue are you generating monthly?",
       options: [
         { value: "", displayValue: " --Please Select One--" },
@@ -367,17 +369,17 @@ const Application = () => {
         { value: ">1,000,000<5,000,000", displayValue: ">1,000,000<5,000,000" },
         { value: ">5,000,000", displayValue: ">5,000,00" },
       ],
-      value: saved ? saved.monthly_revenue : "",
+      value: saved ? saved.monthlyRevenue : "",
       validations: [required],
       elementType: "select",
       isValid: false,
     },
-    achievement: {
+    achievements: {
       label:
         "Summarize your progress and achievements so far in a few bullet points. If you have numbers to support this, please show",
       type: "text",
       elementType: "input",
-      value: saved ? saved.achievement : "",
+      value: saved ? saved.achievements : "",
       validations: [required],
       isValid: false,
     },
@@ -412,24 +414,41 @@ const Application = () => {
       onblur={() => handleBlur(key, progressForm, setProgressForm)}
     />
   ));
+  // const loadData = () => {
+  //   const data = new FormData();
+  //   for (let key in companyForm) {
+  //     data.append(key, companyForm[key].value);
+  //   }
+  //   for (let key in productForm) {
+  //     data.append(key, productForm[key].value);
+  //   }
+  //   for (let key in foundersForm) {
+  //     data.append(key, foundersForm[key].value);
+  //   }
+  //   for (let key in progressForm) {
+  //     data.append(key, progressForm[key].value);
+  //   }
+
+  //   return JSON.stringify(data);
+  // };
   const loadData = () => {
-    const data = new FormData();
+    const data = {};
+
     for (let key in companyForm) {
-      data.append(key, companyForm[key].value);
+      data[key] = companyForm[key].value;
     }
     for (let key in productForm) {
-      data.append(key, productForm[key].value);
+      data[key] = productForm[key].value;
     }
     for (let key in foundersForm) {
-      data.append(key, foundersForm[key].value);
+      data[key] = foundersForm[key].value;
     }
     for (let key in progressForm) {
-      data.append(key, progressForm[key].value);
+      data[key] = progressForm[key].value;
     }
 
-    return data;
+    return JSON.stringify(data);
   };
-
   const valid = {};
   const formValidation = () => {
     for (let key in companyForm) {
@@ -449,6 +468,7 @@ const Application = () => {
       formIsValid = valid[key] && formIsValid;
     }
     setFormValid(formIsValid);
+    console.log(formValid);
   };
   const saveForLater = () => {
     const savedData = loadData();
@@ -462,28 +482,53 @@ const Application = () => {
       setSavedSucess(false);
     }, 3000);
   };
-
   const handleSubmit = () => {
     setLoading(true);
     const data = loadData();
     axios
-      .post("https://grazac.com.ng/forms/startup", data)
+      .post(
+        "https://grazac-academy-back-end-ej7s.onrender.com/api/v1/startup/submit",
+        data
+      )
       .then((res) => {
-        console.log(res.data)
+        console.log(res.data);
         setLoading(false);
-        if (!res.data.success) {
-          setLoading(false)
-          alert(res.data.msg.replace(/(<([^>]+)>)/gi, ""));
+        if (res.status === false) {
+          setLoading(false);
+          toast.error(res.data.msg.replace(/(<([^>]+)>)/gi, ""));
           return;
         } else {
           modalReveal();
         }
       })
       .catch((err) => {
-        setLoading(false)
-        alert("Error!!! Pls, check your inputs again")
+        setLoading(false);
+        toast.error("Error!!! Pls, check your inputs again");
       });
   };
+
+  // const handleSubmit = () => {
+
+  //   setLoading(true);
+  //   const data = loadData();
+  //   axios
+  //     .post("http://localhost:3500/api/v1/startup/submit/api/v1/startup/submit ", data)
+  //     .then((res) => {
+  //       console.log(res.data)
+  //       setLoading(false);
+  //       if (!res.data.success) {
+  //         setLoading(false)
+  //         alert(res.data.msg.replace(/(<([^>]+)>)/gi, ""));
+  //         return;
+  //       } else {
+  //         modalReveal();
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       setLoading(false)
+  //       alert("Error!!! Pls, check your inputs again")
+  //     });
+  // };
   return (
     <div className="apply">
       <Helmet>
@@ -501,6 +546,8 @@ const Application = () => {
         </Modal>
       ) : null}
       <div className="apply__container">
+        {" "}
+        <ToastContainer closeButton={false} />
         <aside className="apply__aside">
           <div className="apply__aside-box">
             <div className="apply__aside-container">
@@ -538,7 +585,7 @@ const Application = () => {
                   </div>
                 </form>
               </div>
-              <div >
+              <div>
                 <h3 className="apply-title">Founders</h3>
                 <form className="apply-form">
                   <div className="apply__form-founders-box apply-form-box">
