@@ -3675,20 +3675,16 @@ body {
   font-weight: 500;
   font-size: 2rem;
   line-height: 3.125rem;
+  text-align: center !important;
   letter-spacing: 0.01em;
 }
 .startup__involve-list-container > h1 span {
   color: #ffc823;
 }
 .startup__involve-list-container > button {
-  align-self: flex-start;
+  align-self: center;
   background-color: #fff !important;
   color: #773dd3;
-}
-@media screen and (max-width: 800px) {
-  .startup__involve-list-container > button {
-    align-self: center;
-  }
 }
 .startup__involve-list-container button {
   width: 173px !important;

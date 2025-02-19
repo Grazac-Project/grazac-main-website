@@ -88,7 +88,7 @@ const Contact = ({ animate }) => {
         .then((resp) => resp.data)
         .then((response) => {
           console.log(response);
-          if (response.status === 201) {
+          if (response.status === true) {
             // alert(response.msg);
             btn.textContent = "Submitted!";
             setName("");
@@ -118,10 +118,10 @@ const Contact = ({ animate }) => {
         <meta name="theme-color" content="#773DD3" />
       </Helmet>
       <div className="contact">
+        <ToastContainer closeButton={false} />
 
         <div className="contact_layer">
           <div className="container">
-        <ToastContainer closeButton={false} />
             <div className="contact_layer-text">
               <h1>Get In Touch</h1>
               <p>We want to hear from you. Let us know how we can help</p>
@@ -236,18 +236,38 @@ const Contact = ({ animate }) => {
               </div>
               <div className="contact_campus-main-div boxes33">
                 <h3>Social Media</h3>
-                <div className="social">
+                <a
+                  href="https://www.facebook.com/grazacng"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="social"
+                >
                   <img src={Facebook} alt="social" />
-                </div>
-                <div className="social">
+                </a>
+                <a
+                  href="https://twitter.com/grazacacademy"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="social"
+                >
                   <img src={Twitter} alt="social" />
-                </div>
-                <div className="social">
+                </a>
+                <a
+                  href="https://www.youtube.com/channel/UCAQ_Q8wYZloETgrdlBbwMtg"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="social"
+                >
                   <img src={Youtube} alt="social" />
-                </div>
-                <div className="social">
+                </a>
+                <a
+                  href="https://www.instagram.com/grazacacademy/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="social"
+                >
                   <img src={Instagram} alt="social" />
-                </div>
+                </a>
               </div>
             </div>
           </div>
