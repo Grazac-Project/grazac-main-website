@@ -219,6 +219,9 @@
       width: 100%;
       box-sizing: border-box;
     }
+    span {
+      color: #ff0a0a;
+    }
     &-flexdiv {
       @media (min-width: 700px) {
         // display: flex;
@@ -228,13 +231,17 @@
           // width: 50%;
         }
       }
-      &-2 {
+      &-2 {                                     
         @media (min-width: 700px) {
           // margin-left: 10px;
           // width: 50%;
         }
       }
+      span {
+        color: #ff0a0a;
+      }
     }
+
     label {
       color: #073041;
       font-size: 14px;
@@ -440,4 +447,7 @@
   padding: 7px 20px;
   font-size: 1.1em;
   border-radius: 10px;
+}
+.span {
+  color: #ff570a;
 }

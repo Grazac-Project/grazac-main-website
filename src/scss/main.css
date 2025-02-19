@@ -634,6 +634,7 @@ body {
   color: #1f1035;
   letter-spacing: 0.01em;
   align-self: stretch;
+  text-align: center;
 }
 .subscribe_email {
   border: 1px solid #f5f6f8;
@@ -3877,6 +3878,12 @@ body {
     box-sizing: border-box;
   }
 }
+.contact_hero span {
+  color: #ff0a0a;
+}
+.contact_hero-flexdiv span {
+  color: #ff0a0a;
+}
 .contact_hero label {
   color: #073041;
   font-size: 14px;
@@ -4072,6 +4079,10 @@ body {
   padding: 7px 20px;
   font-size: 1.1em;
   border-radius: 10px;
+}
+
+.span {
+  color: #ff570a;
 }
 
 .blogs {
