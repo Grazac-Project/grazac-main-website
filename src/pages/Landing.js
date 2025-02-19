@@ -381,7 +381,7 @@ const Landing = () => {
                 return (
                   <a
                     // href={blog.link}
-                    href={blogs[0].link}
+                    href={blogs[index].link}
                     className="blog"
                     target="_blank"
                     rel="noreferrer"

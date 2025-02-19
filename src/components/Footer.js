@@ -27,23 +27,39 @@ const Footer = () => {
               >
                 Careers{" "}
               </a>
-              <p onClick={reveal}>Contact us</p>
+              <Link to="/contact">Contact us</Link>
             </div>
             <div>
               <h3>Events & Community</h3>
-              <p onClick={modalReveal}>Ogun Digital Summit</p>
+              {/* <p onClick={modalReveal}>Ogun Digital Summit</p> */}
+              <a
+                href="https://www.ogundigitalsummit.com/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Ogun Digital Summit
+              </a>
               {/* <p onClick={modalReveal}>Grazac Digital Summit</p>
               <p onClick={modalReveal}>Grazac Javascript Community</p> */}
-              <p onClick={modalReveal}>Design Community</p>
-              <p onClick={modalReveal}>Hackathon</p>
+              {/* <p onClick={modalReveal}>Web3 Community</p> */}
+              {/* <p onClick={modalReveal}>Hackathon</p> 
+              */}
+              <Link to="#">Web3 Community</Link>
+
+              <Link to="#">General Community</Link>
+
             </div>
           </div>
           <div className="footer_bodies-innerflex section5">
             <div className="footer_bodies-innerflex-1">
               <h3>Startup Support</h3>
-              <p onClick={modalReveal}> Become an Investor</p>
+              {/* <p onClick={modalReveal}> Become an Investor</p>
               <p onClick={modalReveal}>Apply as a Mentor</p>
-              <p onClick={modalReveal}>Pitch your Startup</p>
+              <p onClick={modalReveal}>Pitch your Startup</p> */}
+              <Link to="#">Become an Investor</Link>
+              <Link to="#">Apply as a Mentor</Link>
+              <Link to="/startup">General Community</Link>
+
             </div>
             <div>
               <h3>Units</h3>
@@ -57,8 +73,13 @@ const Footer = () => {
 
               <Link to="/innovation">Innovation Lab</Link>
               <Link to="/workspace">Workspace</Link>
-
-              <Link to="/build">Grazac Build</Link>
+              <a
+                href="https://www.grazactalentcity.com"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Grazac Talent City
+              </a>
             </div>
           </div>
         </div>

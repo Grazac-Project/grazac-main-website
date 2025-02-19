@@ -5,8 +5,6 @@ import Facebook from "../images/svg/facebook.svg";
 // import Linkedin from "../images/svg/linkedin.svg";
 import Instagram from "../images/svg/instagram.svg";
 import Youtube from "../images/svg/youtube.svg";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 import { Helmet } from "react-helmet";
 import React, { useEffect, useState } from "react";
@@ -14,213 +12,129 @@ import Cancel from "../images/svg/cancel-purple.svg";
 import { validateEmail, required, numberCheck } from "../validation";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const Contact = ({  animate }) => {
+const Contact = ({ animate }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
-  // useEffect(() => {
-  //   setContactForm({
-  //     name: {
-  //       value: "",
-  //       isValid: false,
-  //       validations: [required],
-  //     },
-  //     phone: {
-  //       value: "",
-  //       isValid: false,
-  //       validations: [numberCheck],
-  //     },
-  //     email: {
-  //       value: "",
-  //       isValid: false,
-  //       validations: [validateEmail],
-  //     },
-  //     purpose: {
-  //       value: "",
-  //       isValid: false,
-  //       validations: [required],
-  //     },
-  //     message: {
-  //       value: "",
-  //       isValid: false,
-  //       validations: [required],
-  //     },
-  //   });
-  // }, []);
-  const [ name, setName ] = useState('');
-    const [ email, setEmail ] = useState('');
-    const [ number, setNumber ] = useState('');
-    const [ subject, setSubject ] = useState('');
-    const [ message, setMessage ] = useState('');
-    
-    const handleSubmit = () => {
-      if(name.length && number.length&& email.length && subject.length && message.length) {
-          const btn = document.querySelector('#submit');
-          btn.setAttribute('disabled', '');
-          btn.textContent = 'Submitting...';
-          axios.post('https://grazac-academy-back-end-ej7s.onrender.com/api/v1/user/contactForm', {
-              name: name,
-              phone: number,
-              purpose: subject,
-              email: email,
-              message: message
-          })
-          .then(resp => resp.data)
-          .then(response => {
-            console.log(response);
-            
-              if(response.status === 201) {
-                  // btn.removeAttribute('disabled');
-                  btn.textContent = 'Submitted';
-                  setName(''); setEmail(''); setNumber(''); setSubject(''); setMessage('');
-                  toast.success(response.message);
-                } else {
-                btn.textContent = 'Submit';
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [number, setNumber] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState({
+    name: "",
+    number: "",
+    subject: "",
+    message: "",
+    email: "",
+  });
 
-              }
-          })
-          .catch((err) => {
-            console.log(err);
-            btn.textContent = 'Submit';
-              
-          });
-      } else {
-          toast.error('Invalid input');
-          // btn.textContent = 'Submit';
+  const validateForm = ({ name, number, email, subject, message }) => {
+    let isValid = true;
+    let errors = {};
 
-      }
-  }
+    if (!name.trim()) {
+      errors.name = "Name is required";
+      isValid = false;
+    }
+    if (!number.trim() || number.length !== 11 || !/^\d+$/.test(number)) {
+      errors.number = "Phone number must be 11 digits";
+      isValid = false;
+    }
+    if (!validateEmail() || !required(email) || !email.trim()) {
+      errors.email = "Email is invalid or missing";
+      console.log(errors.email);
+      isValid = false;
+    }
+    if (!subject.trim()) {
+      errors.subject = "Purpose is required";
+      isValid = false;
+    }
+    if (!message.trim()) {
+      errors.message = "Message is required";
+      isValid = false;
+    } else {
+      setError(false);
+    }
 
-  // const [contactForm, setContactForm] = useState({
-  //   name: {
-  //     value: "",
-  //     isValid: false,
-  //     validations: [required],
-  //   },
-  //   phone: {
-  //     value: "",
-  //     isValid: false,
-  //     validations: [numberCheck],
-  //   },
-  //   email: {
-  //     value: "",
-  //     isValid: false,
-  //     validations: [validateEmail],
-  //   },
-  //   purpose: {
-  //     value: "",
-  //     isValid: false,
-  //     validations: [required],
-  //   },
-  //   message: {
-  //     value: "",
-  //     isValid: false,
-  //     validations: [required],
-  //   },
-  // });
-  // const [formValid, setFormValid] = useState(false);
+    setError(errors);
+    return isValid;
+  };
 
-  // const handleChange = (event) => {
-  //   const {
-  //     target: { name, value },
-  //   } = event;
-  //   let isValid = true;
-  //   for (let validation of contactForm[name].validations) {
-  //     isValid = validation(event.target.value).isTrue && isValid;
-  //   }
-
-  //   const updatedElement = {
-  //     ...contactForm[name],
-  //     value: value,
-  //     isValid: isValid,
-  //   };
-
-  //   const updatedForm = {
-  //     ...contactForm,
-  //     [name]: updatedElement,
-  //   };
-
-  //   let formIsValid = true;
-
-  //   for (let name in contactForm) {
-  //     formIsValid = updatedForm[name].isValid && formIsValid;
-  //   }
-
-  //   setContactForm(updatedForm);
-  //   setFormValid(formIsValid);
-  // };
-
-  // const handleClick = () => {
-  //   setSubmitting(true);
-  //   const contact = new FormData();
-  //   // const { email, message, name, phone, purpose } = contactForm;
-  //   // contact.append("name", name.value);
-  //   // contact.append("email", email.value);
-  //   // contact.append("phone", phone.value);
-  //   // contact.append("purpose", purpose.value);
-  //   // contact.append("message", message.value);
-  //   // contact.append("purpose", purpose.value);
-
-  //   axios
-  //     .post("https://grazac.com.ng/forms/contact",  {
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     })
-  //     .then((res) => {
-  //       console.log(res);
-  //       setSubmitting(false);
-  //       setSuccess(true);
-  //     })
-  //     .then(() => {
-  //       for (let key in contactForm) {
-  //         console.log(key);
-  //         setContactForm({
-  //           ...contactForm,
-  //           [key]: {
-  //             ...contactForm[key],
-  //             value: "",
-  //           },
-  //         });
-  //       }
-  //     })
-  //     .catch((err) => err);
-  // };
-
-  // const { email, message, name, phone, purpose } = contactForm;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validateForm({ name, number, email, subject, message })) {
+      console.log(email);
+      const btn = document.querySelector("#submit");
+      btn.setAttribute("disabled", "");
+      btn.textContent = "Submitting...";
+      axios
+        .post(
+          "https://grazac-academy-back-end-ej7s.onrender.com/api/v1/user/contactForm",
+          {
+            name,
+            phone: number,
+            purpose: subject,
+            email,
+            message,
+          }
+        )
+        .then((resp) => resp.data)
+        .then((response) => {
+          console.log(response);
+          if (response.status === true) {
+            // alert(response.msg);
+            btn.textContent = "Submitted!";
+            setName("");
+            setEmail("");
+            setNumber("");
+            setSubject("");
+            setMessage("");
+            toast.success(response.message);
+          } else {
+            btn.textContent = "Submit";
+            toast.error(response.message);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          btn.textContent = "Submit";
+          toast.error(error);
+        });
+    }
+  };
 
   return (
-    <div
-    // className={["contact animate__animated animate__slow", animate].join(" ")}
-    >
+    <div>
       <Helmet>
         <title>Contact - Grazac</title>
         <meta name="description" content="Contact Grazac" />
         <meta name="theme-color" content="#773DD3" />
       </Helmet>
       <div className="contact">
+        <ToastContainer closeButton={false} />
+
         <div className="contact_layer">
-          <ToastContainer closeButton={false} />
           <div className="container">
             <div className="contact_layer-text">
               <h1>Get In Touch</h1>
               <p>We want to hear from you. Let us know how we can help</p>
             </div>
-            {/*<div classname="contact_layer-circles">
-                            <img src={kamala} alt="kamala"  classname="contact_layer-circles-1" />
-                            <img src={kamala} alt="kamala"  classname="contact_layer-circles-2" />
-                            <img src={kamala} alt="kamala"  classname="contact_layer-circles-3" />
-                            <img src={kamala} alt="kamala"  classname="contact_layer-circles-4" />
-                        </div>*/}
-            <div className="contact_hero">
+            <form className="contact_hero" onSubmit={handleSubmit}>
               <div className="contact_hero-flexdiv">
                 <div className="contact_hero-flexdiv-1">
-                  <label>
-                    Full Name 
-                  </label>
+                  {error.name ? (
+                    <span>{error.name}</span>
+                  ) : (
+                    <label>Full Name</label>
+                  )}
+
                   <input
                     type="text"
                     placeholder="ex. John Doe"
@@ -229,9 +143,12 @@ const Contact = ({  animate }) => {
                   />
                 </div>
                 <div className="contact_hero-flexdiv-1">
-                  <label>
-                    Phone Number
-                  </label>
+                  {error.number ? (
+                    <span>{error.number}</span>
+                  ) : (
+                    <label>Phone Number</label>
+                  )}
+
                   <input
                     type="tel"
                     placeholder="070xxxxxxx"
@@ -240,9 +157,12 @@ const Contact = ({  animate }) => {
                   />
                 </div>
                 <div className="contact_hero-flexdiv-2">
-                  <label>
-                    Email 
-                  </label>
+                  {error.email ? (
+                    <span>{error.email}</span>
+                  ) : (
+                    <label>Email</label>
+                  )}
+
                   <input
                     type="text"
                     placeholder="ex. john@gmail.com"
@@ -252,9 +172,12 @@ const Contact = ({  animate }) => {
                 </div>
               </div>
               <div>
-                <label>
-                  Purpose
-                </label>
+                {error.subject ? (
+                  <span>{error.subject}</span>
+                ) : (
+                  <label>Purpose</label>
+                )}
+
                 <input
                   type="text"
                   placeholder="ex. John Doe"
@@ -263,9 +186,12 @@ const Contact = ({  animate }) => {
                 />
               </div>
               <div>
-                <label>
-                  Message 
-                </label>
+                {error.message ? (
+                  <span>{error.message}</span>
+                ) : (
+                  <label>Message</label>
+                )}
+
                 <textarea
                   type="text"
                   placeholder="Describe your task for us"
@@ -280,13 +206,11 @@ const Contact = ({  animate }) => {
                   unsubscribe from emails at any time, and we will never pass
                   your email onto third parties. <span>Privacy Policy</span>
                 </p>
-                <button id="submit" onClick={handleSubmit}>
-                {/* <button id="submit" > */}
-
+                <button id="submit" type="submit">
                   Submit
                 </button>
               </div>
-            </div>
+            </form>
           </div>
         </div>
         <div className="container">
@@ -306,26 +230,44 @@ const Contact = ({  animate }) => {
                 <h3>Book A Call</h3>
                 <p>We are here to help with any questions. </p>
                 <p>Talk to our programme leads.</p>
-                  <a href="tel:+2348068365951">
-                <button className="btn">
-                  Book a Call
-                </button>
-                  </a>
+                <a href="tel:+2348068365951">
+                  <button className="btn">Book a Call</button>
+                </a>
               </div>
               <div className="contact_campus-main-div boxes33">
                 <h3>Social Media</h3>
-                <div className="social">
+                <a
+                  href="https://www.facebook.com/grazacng"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="social"
+                >
                   <img src={Facebook} alt="social" />
-                </div>
-                <div className="social">
+                </a>
+                <a
+                  href="https://twitter.com/grazacacademy"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="social"
+                >
                   <img src={Twitter} alt="social" />
-                </div>
-                <div className="social">
+                </a>
+                <a
+                  href="https://www.youtube.com/channel/UCAQ_Q8wYZloETgrdlBbwMtg"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="social"
+                >
                   <img src={Youtube} alt="social" />
-                </div>
-                <div className="social">
+                </a>
+                <a
+                  href="https://www.instagram.com/grazacacademy/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="social"
+                >
                   <img src={Instagram} alt="social" />
-                </div>
+                </a>
               </div>
             </div>
           </div>
@@ -337,7 +279,6 @@ const Contact = ({  animate }) => {
             height="600"
           ></iframe>
         </div>
-        {/*<extracomponent/> a component used in the landing page comes here*/}
       </div>
     </div>
   );
