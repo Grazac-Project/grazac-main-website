@@ -314,11 +314,11 @@ body {
   animation: hvr-buzz 1s linear infinite;
 }
 .button-bg {
-  background-color: #773DD3;
-  color: white;
+  background-color: #fff;
+  color: #773DD3;
 }
 .button-bg:hover {
-  color: #ffffff;
+  /* color: #ffffff; */
 }
 .button-nobg {
   border: 1px solid #773dd3;

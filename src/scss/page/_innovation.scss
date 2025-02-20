@@ -558,7 +558,8 @@
     &_wrapper2 {
       display: none;
       width: 80% !important;
-   
+      min-height: 500px !important;
+      align-items: stretch;   
       @media screen and (max-width: 768px) {
         display: flex;
         justify-content: center;
@@ -732,7 +733,6 @@
       }
     }
     &_executive2 {
-      width: 1440px;
       margin:40px auto;
       // margin:  0;
       padding: 32px 40px;
@@ -749,8 +749,13 @@
       padding: 20px 30px;
 
       }
-      @media screen and (max-width: 430px) {
+      @media screen and (max-width: 600px) {
+        height: 500px;
+        
+      }
+      @media screen and (max-width: 450px) {
         padding: 10px 15px;
+        width: 343px !important;
 
       }
 

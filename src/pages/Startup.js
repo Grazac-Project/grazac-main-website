@@ -16,7 +16,6 @@ const StartUp = () => {
     window.scrollTo(0, 0);
   }, []);
 
-
   const options = {
     width: "100%",
     type: "loop",
@@ -28,12 +27,11 @@ const StartUp = () => {
     dots: false,
     perPage: 2.5,
     breakpoints: {
-      425:{
+      425: {
         gap: "5px",
         // arrows: true,
         perPage: 1,
       },
-     
     },
   };
   const { reveal } = React.useContext(ShowContext);
@@ -288,10 +286,12 @@ const StartUp = () => {
                 <h1>
                   <span>Grow your startup</span> with Grazac Innovation Lab
                 </h1>
-                <Button extra="button-bg" click={reveal} className="">
-                  <span>Apply Now</span>
-                  <img src={btnpurple} alt="arrow" />
-                </Button>
+                <Link to="/">
+                  <button className="button-bg2 button">
+                    <span>Apply Now</span>
+                    <img src={btnpurple} alt="arrow" />
+                  </button>
+                </Link>
               </div>
             </div>
 
@@ -300,10 +300,12 @@ const StartUp = () => {
                 <h1>
                   <span>Become a mentor</span> with Grazac Innovation Lab
                 </h1>
-                <Button extra="button-bg" click={reveal}>
-                  <span>Get in touch</span>
-                  <img src={btnpurple} alt="arrow" />
-                </Button>
+                <Link to="/contact">
+                  <button className="button-bg2 button" >
+                    <span>Get in touch</span>
+                    <img src={btnpurple} alt="arrow" />
+                  </button>
+                </Link>
               </div>
             </div>
             <div className="startup__involve-list">
@@ -311,24 +313,27 @@ const StartUp = () => {
                 <h1>
                   <span>Become a partner</span> with Grazac Innovation Lab
                 </h1>
-
-                <Button extra="button-bg" click={reveal}>
-                  <span>Apply Now</span>
-                  <img src={btnpurple} alt="arrow" />
-                </Button>
+                <Link to="/contact">
+                  <button className="button-bg2 button" >
+                    <span>Apply Now</span>
+                    <img src={btnpurple} alt="arrow" />
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
-          <Splide className="startup__involve-items hide2"options={options} >
+          <Splide className="startup__involve-items hide2" options={options}>
             <SplideSlide className="startup__involve-list">
               <div className="startup__involve-list-container">
                 <h1>
                   <span>Grow your startup</span> with Grazac Innovation Lab
                 </h1>
-                <Button extra="button-bg" click={reveal} className="">
-                  <span>Apply Now</span>
-                  <img src={btnpurple} alt="arrow" />
-                </Button>
+                <Link to="/">
+                  <button className="button-bg2 button" >
+                    <span>Apply Now</span>
+                    <img src={btnpurple} alt="arrow" />
+                  </button>
+                </Link>
               </div>
             </SplideSlide>
 
@@ -337,10 +342,12 @@ const StartUp = () => {
                 <h1>
                   <span>Become a mentor</span> with Grazac Innovation Lab
                 </h1>
-                <Button extra="button-bg" click={reveal}>
-                  <span>Get in touch</span>
-                  <img src={btnpurple} alt="arrow" />
-                </Button>
+                <Link to="/contact">
+                  <button className="button-bg2 button" >
+                    <span>Get in touch</span>
+                    <img src={btnpurple} alt="arrow" />
+                  </button>
+                </Link>
               </div>
             </SplideSlide>
             <SplideSlide className="startup__involve-list">
@@ -348,11 +355,12 @@ const StartUp = () => {
                 <h1>
                   <span>Become a partner</span> with Grazac Innovation Lab
                 </h1>
-
-                <Button extra="button-bg" click={reveal}>
-                  <span>Apply Now</span>
-                  <img src={btnpurple} alt="arrow" />
-                </Button>
+                <Link to="/contact">
+                  <button className="button-bg2 button" >
+                    <span>Apply Now</span>
+                    <img src={btnpurple} alt="arrow" />
+                  </button>
+                </Link>
               </div>
             </SplideSlide>
           </Splide>

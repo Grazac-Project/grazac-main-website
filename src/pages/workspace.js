@@ -582,6 +582,11 @@ import executive from "../images/book/executive.png";
 import desk from "../images/book/desk.png";
 import meeting from "../images/book/meeting.png";
 import relaxation from "../images/book/relaxation.png";
+import executive2 from "../images/book/executive2.png";
+import desk2 from "../images/book/desk2.png";
+import meeting2 from "../images/book/meeting2.png";
+import relaxation2 from "../images/book/relaxation2.png";
+
 import icon1 from "../images/book/icon1.svg";
 import icon2 from "../images/book/icon2.svg";
 import icon3 from "../images/book/icon3.svg";
@@ -618,21 +623,18 @@ const Innovation = () => {
   };
   const options = {
     type: "loop",
-    gap: "10px",
+    width: "100%",
+    gap: "10px", 
     autoplay: true,
     pauseOnHover: true,
     resetProgress: false,
     arrows: true,
     dots: false,
-    768:{
-      // gap: "5px",
-      arrows: false,
-      perPage: 1.5,
-    },
-   
+    perPage: 1,
+    
   };
   const options2 = {
-    // width: "100%",
+    width: "100%",
     type: "loop",
     gap: "10px",
     autoplay: true,
@@ -642,6 +644,12 @@ const Innovation = () => {
     dots: false,
     speed: 1000,
     easing: "cubic-bezier(0.5, 0, 0.5, 0.5)",
+    768:{
+      // gap: "5px",
+      arrows: false,
+      perPage: 1,
+    },
+   
   };
   const texts = ["productivity", "creativity"];
 
@@ -824,10 +832,10 @@ const Innovation = () => {
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
-            width: "90%",
+            width: "95%",
           }}
         >
-          <Splide options={options2}>
+          <Splide options={options2} >
             <SplideSlide className="innovation_offer_wrapper2">
               <div className="innovation_offer_wrapper2_btn">
                 <button>Executive Boardroom</button>
@@ -842,7 +850,7 @@ const Innovation = () => {
                     to think in.
                   </p>
                   <div>
-                    <img src={executive} alt="build" />
+                    <img src={executive2} alt="build" />
                   </div>
                 </div>
               </div>
@@ -860,7 +868,7 @@ const Innovation = () => {
                     meeting rooms fitted to your taste.
                   </p>
                   <div>
-                    <img src={meeting} alt="build" />
+                    <img src={meeting2} alt="build" />
                   </div>
                 </div>
               </div>
@@ -879,7 +887,7 @@ const Innovation = () => {
                     task.
                   </p>
                   <div>
-                    <img src={relaxation} alt="build" />
+                    <img src={relaxation2} alt="build" />
                   </div>
                 </div>
               </div>
@@ -897,7 +905,7 @@ const Innovation = () => {
                     and consistent workspace just for you.
                   </p>
                   <div>
-                    <img src={desk} alt="build" />
+                    <img src={desk2} alt="build" />
                   </div>
                 </div>
               </div>
