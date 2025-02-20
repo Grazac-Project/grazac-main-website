@@ -622,10 +622,17 @@ const Innovation = () => {
     autoplay: true,
     pauseOnHover: true,
     resetProgress: false,
+    arrows: true,
     dots: false,
+    768:{
+      // gap: "5px",
+      arrows: false,
+      perPage: 1.5,
+    },
+   
   };
   const options2 = {
-    width: "100%",
+    // width: "100%",
     type: "loop",
     gap: "10px",
     autoplay: true,

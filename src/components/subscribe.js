@@ -10,7 +10,7 @@ const Subscribe = () => {
   const [msg, setMsg] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(event);
     if (
@@ -21,30 +21,35 @@ const Subscribe = () => {
     ) {
       setLoading(true);
       setMsg("");
-      // const data = new FormData();
-      // data.append("email", email);
       const data = { email: email };
-      axios
-        .post("https://grazac-academy-back-end-ej7s.onrender.com/api/v1/user/subscribe", data,  {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-        .then(({ data }) => {
-          console.log(data);
-          if (data.message === false) {
-            setLoading(false);
-            setMsg(data.msg);
-          } else {
-            setLoading(false);
-            toast.success("You have successfully subscribed to our newsletter.");
-            setEmail("");
+
+      try {
+        const res = await axios.post(
+          "https://grazac-academy-back-end-ej7s.onrender.com/api/v1/user/subscribe",
+          data,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
           }
-        })
-        .catch((err) => {
+        );
+        console.log(res);
+        if (res.status === 201) {
           setLoading(false);
-          setMsg("Error subscribing to our newsletter, pls try again");
-        });
+          toast.success("You have successfully subscribed to our newsletter.");
+          setEmail("");
+        } else {
+          setLoading(false);
+          setMsg(res.data.message || "Subscription failed");
+        }
+      } catch (err) {
+        setLoading(false);
+        if (err.message === "Request failed with status code 400") {
+          setMsg("Email already exists");
+        } else {
+          setMsg("Subscription failed");
+        }
+      }
     } else if (email === "") {
       setMsg("Empty input");
     } else if (
@@ -66,7 +71,10 @@ const Subscribe = () => {
           <>
             <p>Get weekly updates and ideas on tech in your inbox.</p>
             <div style={{ alignSelf: "stretch", position: "relative" }}>
-              <form style={{ position: "relative", backgroundColor: "#F8F8F8" }} onSubmit={handleSubmit}>
+              <form
+                style={{ position: "relative", backgroundColor: "#F8F8F8" }}
+                onSubmit={handleSubmit}
+              >
                 <input
                   type="email"
                   className="subscribe_email"

@@ -54,12 +54,12 @@ const Sidebar = ({ animate, setShow, clickContact }) => {
             <li
               onClick={() => setShow(false)}
               className="sidebar__item"
-              to="/build"
+              
             >
-              <NavLink className="sidebar__link" to="/build">
+              <a className="sidebar__link" href="https://www.grazactalentcity.com/" target="_blank" >
                 {" "}
-                Build With Grazac
-              </NavLink>
+                Grazacac Talent City
+              </a>
             </li>
             <li
               onClick={() => setShow(false)}
@@ -88,12 +88,12 @@ const Sidebar = ({ animate, setShow, clickContact }) => {
             </li>
           </ul>
         </nav>
-        <div className="sidebar__contact" onClick={clickContact}>
+        <a className="sidebar__contact" href="/contact" >
           <button className="button button-bg">
             <span>Contact</span>
             <img src={btnwhite} alt="Arrow" />
           </button>
-        </div>
+        </a>
       </div>
     </div>
   );

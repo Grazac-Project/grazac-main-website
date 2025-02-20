@@ -88,7 +88,7 @@ const Contact = ({ animate }) => {
         .then((resp) => resp.data)
         .then((response) => {
           console.log(response);
-          if (response.status === true) {
+          if (response.status === 201) {
             // alert(response.msg);
             btn.textContent = "Submitted!";
             setName("");
