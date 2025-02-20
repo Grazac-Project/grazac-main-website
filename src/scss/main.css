@@ -333,8 +333,9 @@ body {
   background-color: #773DD3;
   color: white;
 }
-.button-bg:hover {
-  color: #ffffff;
+.button-bg2 {
+  background-color: #ffffff;
+  color: #773dd3;
 }
 .button-nobg {
   border: 1px solid #773dd3;
@@ -1913,6 +1914,8 @@ body {
 .innovation_offer_wrapper2 {
   display: none;
   width: 80% !important;
+  min-height: 500px !important;
+  align-items: stretch;
 }
 @media screen and (max-width: 768px) {
   .innovation_offer_wrapper2 {
@@ -2100,7 +2103,6 @@ body {
   border-radius: 8px;
 }
 .innovation_offer_executive2 {
-  width: 1440px;
   margin: 40px auto;
   padding: 32px 40px;
   border-radius: 20.04px;
@@ -2119,9 +2121,15 @@ body {
     padding: 20px 30px;
   }
 }
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 600px) {
+  .innovation_offer_executive2 {
+    height: 500px;
+  }
+}
+@media screen and (max-width: 450px) {
   .innovation_offer_executive2 {
     padding: 10px 15px;
+    width: 343px !important;
   }
 }
 .innovation_offer_executive2_text {
@@ -3673,6 +3681,12 @@ body {
   background-image: url("../images/svg/stroke.svg");
   border-radius: 16px;
   padding: 67.5px;
+}
+.startup__involve-list-container a {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  text-decoration: none;
 }
 @media (max-width: 75em) {
   .startup__involve-list-container {

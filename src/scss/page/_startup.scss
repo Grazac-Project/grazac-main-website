@@ -488,6 +488,12 @@
         background-image: url("../images/svg/stroke.svg");
         border-radius: 16px;
         padding: 67.5px;
+        a {
+          display: flex;
+          align-self: center;
+          justify-content: center;
+          text-decoration: none;
+        }
         @include respond(tab-land) {
           width: 85%;
         }
