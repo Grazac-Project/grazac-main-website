@@ -1912,6 +1912,7 @@ body {
 }
 .innovation_offer_wrapper2 {
   display: none;
+  width: 80% !important;
 }
 @media screen and (max-width: 768px) {
   .innovation_offer_wrapper2 {
@@ -2432,6 +2433,29 @@ body {
   gap: 48px;
   border-radius: 8px;
   border: 1px solid #d5d5d5;
+}
+@media screen and (max-width: 768px) {
+  .innovation_review_items {
+    padding: 24px 16px;
+    width: 80% !important;
+  }
+}
+.innovation_review_items img {
+  width: 100%;
+  height: auto;
+}
+.innovation_review_items h4 {
+  font-family: Graphik Trial;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 27px;
+  text-align: left;
+  color: #333333;
+}
+@media screen and (max-width: 430px) {
+  .innovation_review_items h4 {
+    font-size: 16px;
+  }
 }
 .innovation_review_items h5 {
   font-family: Graphik Trial;
@@ -3717,23 +3741,14 @@ body {
 }
 
 .mobile {
-  height: 130px;
   position: relative;
   display: none;
+  margin-bottom: 16px;
 }
 @media screen and (max-width: 800px) {
   .mobile {
     display: block;
   }
-}
-.mobile:not(:last-child) > div > span::before {
-  width: 3px;
-  height: 114px;
-  background-color: hsl(0, 0%, 98%);
-  left: 8.3px;
-  top: 46px;
-  content: "";
-  position: absolute;
 }
 .mobile__container {
   display: flex;
@@ -3745,8 +3760,8 @@ body {
   height: 20px;
   display: inline-block;
   border-radius: 50%;
-  background: #1f1035;
-  border: 4px solid #f3efff;
+  background: #773DD3;
+  border: 4px solid #F3EFFF;
   box-sizing: border-box;
 }
 .mobile__meta {
@@ -3766,9 +3781,9 @@ body {
   font-family: Graphik;
   font-style: normal;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 18px;
   letter-spacing: 0.03em;
-  color: #1f1035;
+  color: #773DD3;
 }
 
 @media (max-width: 800px) {
@@ -4048,7 +4063,6 @@ body {
   width: 30px;
   height: 30px;
   padding: 3px;
-  border: 1px solid #e9ecf5;
   border-radius: 4px;
   margin: 0 10px 10px 0;
   display: inline-block;

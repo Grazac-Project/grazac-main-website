@@ -563,21 +563,22 @@
 }
 
 .mobile {
-  height: 130px;
+  // height: 130px;
   position: relative;
   display: none;
+  margin-bottom: 16px;
 
   @media screen and (max-width: 800px) {
     display: block;
   }
   &:not(:last-child) > div > span::before {
-    width: 3px;
-    height: 114px;
-    background-color: hsl(0, 0%, 98%);
-    left: 8.3px;
-    top: 46px;
-    content: "";
-    position: absolute;
+    // width: 3px;
+    // height: 114px;
+    // background-color: hsl(0, 0%, 98%);
+    // left: 8.3px;
+    // top: 46px;
+    // content: "";
+    // position: absolute;
   }
   &__container {
     display: flex;
@@ -588,8 +589,8 @@
       height: 20px;
       display: inline-block;
       border-radius: 50%;
-      background: #1f1035;
-      border: 4px solid #f3efff;
+      background: #773DD3;
+      border: 4px solid #F3EFFF;
       box-sizing: border-box;
     }
   }
@@ -610,9 +611,9 @@
       font-family: Graphik;
       font-style: normal;
       font-weight: 500;
-      font-size: 14px;
+      font-size: 18px;
       letter-spacing: 0.03em;
-      color: #1f1035;
+      color: #773DD3;
     }
   }
 }
