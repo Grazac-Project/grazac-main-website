@@ -627,13 +627,13 @@ const Application = () => {
                   Submit Application
                 </button>
               )}
-              <button
+              {/* <button
                 className="apply__btn"
                 onClick={saveForLater}
                 disabled={savedSuccess ? true : false}
               >
                 {savedSuccess ? "Saved" : " Save for later"}
-              </button>
+              </button> */}
             </div>
           </div>
         </div>

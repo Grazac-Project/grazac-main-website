@@ -4,7 +4,7 @@ const Modal = ({ animate, close, children }) => {
   return (
     <div
       className={["popup animate__animated animate__fast", animate].join(" ")}
-      onClick={close}
+      // onClick={close}
     >
       <div className="popup__container">
         <div className="popup__box">
@@ -14,9 +14,9 @@ const Modal = ({ animate, close, children }) => {
               Back to Home
             </Link>
           </div>
-          <div onClick={close} className="popup__cancel">
+          {/* <div onClick={close} className="popup__cancel">
             <span>X</span>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

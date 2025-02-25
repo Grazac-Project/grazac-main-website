@@ -15,10 +15,11 @@
 
   &__box {
     background-color: $color-white;
-    width: 50%;
+    width: 497px;
+    height: 347px;
     margin: auto;
     text-align: center;
-    padding: 10rem 0;
+    // padding: 10rem 0;
     position: relative;
 
     @include respond(tab-land){
@@ -56,7 +57,7 @@
       color: #783dd3;
     }
     p {
-      width: 50%;
+      width: 90%;
       margin: auto;
       line-height: 34px;
       margin-bottom: 2rem;
