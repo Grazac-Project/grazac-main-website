@@ -31,12 +31,17 @@
   &-bg {
     background-color: $color-main;
     color: white;
+    &:hover {
+      color: white;
+    }
   }
   &-bg2 {
     background-color: #ffffff;
     color: #773dd3;
 
-    
+    &:hover {
+      color: #773dd3;
+    }
   }
   &-nobg {
     border: 1px solid #773dd3;

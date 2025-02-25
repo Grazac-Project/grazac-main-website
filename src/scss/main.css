@@ -333,8 +333,14 @@ body {
   background-color: #773DD3;
   color: white;
 }
+.button-bg:hover {
+  color: white;
+}
 .button-bg2 {
   background-color: #ffffff;
+  color: #773dd3;
+}
+.button-bg2:hover {
   color: #773dd3;
 }
 .button-nobg {
@@ -833,10 +839,10 @@ body {
 }
 .popup__box {
   background-color: #ffffff;
-  width: 50%;
+  width: 497px;
+  height: 347px;
   margin: auto;
   text-align: center;
-  padding: 10rem 0;
   position: relative;
 }
 @media (max-width: 75em) {
@@ -876,7 +882,7 @@ body {
   color: #783dd3;
 }
 .popup__content p {
-  width: 50%;
+  width: 90%;
   margin: auto;
   line-height: 34px;
   margin-bottom: 2rem;
