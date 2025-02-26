@@ -160,8 +160,8 @@
 
     &:last-child {
       border: 1px solid #773dd3;
-      background-color: transparent;
-      color: #773dd3;
+      background-color: #773dd3;
+      color: #ffff;
       &:disabled {
         @include disabled;
       }
