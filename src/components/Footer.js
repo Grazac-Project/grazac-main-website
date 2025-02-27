@@ -42,12 +42,17 @@ const Footer = () => {
               {/* <p onClick={modalReveal}>Grazac Digital Summit</p>
               <p onClick={modalReveal}>Grazac Javascript Community</p> */}
               {/* <p onClick={modalReveal}>Web3 Community</p> */}
-              {/* <p onClick={modalReveal}>Hackathon</p> 
-              */}
-              <Link to="#">Web3 Community</Link>
-
+              {/* <p onClick={modalReveal}>Hackathon</p>
+               */}
+              {/* <Link to="#">Web3 Community</Link> */}
+              <a
+                href="https://discord.gg/jVhfxsSC"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Web3 Community
+              </a>
               <Link to="#">General Community</Link>
-
             </div>
           </div>
           <div className="footer_bodies-innerflex section5">
@@ -59,7 +64,6 @@ const Footer = () => {
               <Link to="#">Become an Investor</Link>
               <Link to="#">Apply as a Mentor</Link>
               <Link to="/startup">General Community</Link>
-
             </div>
             <div>
               <h3>Units</h3>
