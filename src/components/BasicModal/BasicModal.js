@@ -314,7 +314,7 @@ import { useFormik } from "formik";
 import Loader from "../Loader";
 
 const paymentOptions = [
-  { label: "Daily", value: "daily", amount: 3000 },
+  { label: "Daily", value: "daily", amount: 200 },
   { label: "Weekly", value: "weekly", amount: 18000 },
   { label: "Monthly", value: "monthly", amount: 40000 },
   { label: "Quarterly", value: "quarterly", amount: 130000 },
@@ -460,7 +460,8 @@ const BasicModal = ({ open, setOpen }) => {
   };
 
   const totalAmount = selectedPaymentOption ? selectedPaymentOption.amount : 0;
-  const url = "https://grazac-academy-back-end-ej7s.onrender.com/api/v1/user/book";
+  const url =
+    "https://grazac-academy-back-end-ej7s.onrender.com/api/v1/user/book";
 
   const SpaceFeeFlutterwaveConfig = {
     public_key: "FLWPUBK-006bdc82ad878f1518af32f44af6478f-X",
@@ -498,7 +499,8 @@ const BasicModal = ({ open, setOpen }) => {
       setIsLoading(true);
       try {
         const res = await axios.post(url, dataValues);
-        if (res.data.status === 201) {
+        console.log(res)
+        if (res.status === 200) {
           setIsLoading(true);
           HandleSpacePayFlutterPayment({
             callback: (response) => {
@@ -515,16 +517,18 @@ const BasicModal = ({ open, setOpen }) => {
             },
           });
         } else {
-        setSubmitting(false);
-
+          setSubmitting(false);
+          setIsLoading(false);
           toast.error("Form submission not successful");
         }
       } catch (error) {
         setSubmitting(false);
+        setIsLoading(false);
 
         toast.error("An error occurred while submitting the form");
       } finally {
         setSubmitting(false);
+        setIsLoading(false);
       }
     },
   });
@@ -570,8 +574,6 @@ const BasicModal = ({ open, setOpen }) => {
                   <p>Start date</p>
                 )}
                 <div>
-
-                  
                   <img src={calendar} alt="calendar" />
                 </div>
               </div>
