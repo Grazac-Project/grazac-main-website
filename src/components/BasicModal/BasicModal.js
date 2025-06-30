@@ -495,15 +495,14 @@ const BasicModal = ({ open, setOpen }) => {
         startDate: startDate.toLocaleDateString(),
         subscriptionType: selectedPaymentOption?.value || "",
       };
-      console.log(dataValues);
       setIsLoading(true);
       try {
         const res = await axios.post(url, dataValues);
-        console.log(res)
-        if (res.status === 200) {
-          setIsLoading(true);
+        if (res.status === 201 || res.status === 200) {
+          // setIsLoading(true);
           HandleSpacePayFlutterPayment({
             callback: (response) => {
+              console.log(response)
               if (response.status === "completed") {
                 toast.success("Payment successful! Verifying payment...");
               }
