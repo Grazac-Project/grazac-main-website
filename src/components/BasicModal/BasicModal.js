@@ -325,6 +325,7 @@ const BasicModal = ({ open, setOpen }) => {
   // const options = { month: "long", day: "numeric" };
   const today = new Date();
 
+  const [showModal, setShowModal] = useState(null);
   const [toggle, setToggle] = useState(false);
   const [toggle2, setToggle2] = useState(false);
   const [isloading, setIsLoading] = useState(false);
@@ -492,6 +493,7 @@ const BasicModal = ({ open, setOpen }) => {
     onSubmit: async (values, { setSubmitting }) => {
       const dataValues = {
         ...values,
+        code: values.code || "",
         startDate: startDate.toLocaleDateString(),
         subscriptionType: selectedPaymentOption?.value || "",
       };
@@ -502,7 +504,7 @@ const BasicModal = ({ open, setOpen }) => {
           // setIsLoading(true);
           HandleSpacePayFlutterPayment({
             callback: (response) => {
-              console.log(response)
+              console.log(response);
               if (response.status === "completed") {
                 toast.success("Payment successful! Verifying payment...");
               }
@@ -548,6 +550,101 @@ const BasicModal = ({ open, setOpen }) => {
             <strike>₦5,000</strike> <span className="thirty">₦3,000</span> (10%
             discount) naira daily, from <span>9 am to 5 pm</span>
           </p>
+
+          <div>
+            <h1 className="workspace_id">
+              Do you have a Grazac Workspace ID? <span>*</span>
+            </h1>
+            <div className="workspace_id_buttons">
+              <div>
+                <button
+                  className="workspace-button1"
+                  onClick={() => setShowModal("id")}
+                >
+                  Yes, I have an ID{" "}
+                </button>
+              </div>
+              <div>
+                <button
+                  className="workspace-button2"
+                  onClick={() => setShowModal("generate")}
+                >
+                  No, generate one for me{" "}
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <form className="basicModal_form" id="bookingForm" onSubmit={formik.handleSubmit}>
+            {showModal === "id" && (
+              <>
+                {/* <p style={{ textAlign: "center", marginTop: "8px" }}>Enter your Grazac Workspace ID</p> */}
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    height: "54px",
+                  }}
+                >
+                  <input
+                    type="text"
+                    required
+                    placeholder="Workspace ID"
+                    name="code"
+                    onChange={formik.handleChange}
+                    value={formik.values.code}
+                    style={{ width: "251px", }}
+                  />
+                </div>
+              </>
+            )}
+
+            {showModal === "generate" && (
+              <>
+                <p style={{ textAlign: "center", marginTop: "8px" }}>
+                  Kindly enter your information here to complete the process
+                </p>
+                <div className="basicModal_form_flex">
+                  <input
+                    type="text"
+                    required
+                    placeholder="Email Address"
+                    name="email"
+                    onChange={formik.handleChange}
+                    value={formik.values.email}
+                  />
+                  <input
+                    type="tel"
+                    pattern="[0-9]{11}"
+                    required
+                    placeholder="Phone Number"
+                    name="phoneNumber"
+                    onChange={formik.handleChange}
+                    value={formik.values.phoneNumber}
+                  />
+                </div>
+                <div className="basicModal_form_flex">
+                  <input
+                    type="text"
+                    required
+                    placeholder="First Name"
+                    name="firstName"
+                    onChange={formik.handleChange}
+                    value={formik.values.firstName}
+                  />
+                  <input
+                    type="text"
+                    required
+                    placeholder="Last Name"
+                    name="lastName"
+                    onChange={formik.handleChange}
+                    value={formik.values.lastName}
+                  />
+                </div>
+              </>
+            )}
+          </form>
           <div className="basicModal_Container">
             <div className="basicModal_dateContainer">
               <div
@@ -616,55 +713,17 @@ const BasicModal = ({ open, setOpen }) => {
               )}
             </div>
           </div>
-          <form className="basicModal_form" onSubmit={formik.handleSubmit}>
-            <p style={{ textAlign: "center", marginTop: "8px" }}>
-              Kindly enter your information here to complete the process
-            </p>
-            <div className="basicModal_form_flex">
-              <input
-                type="text"
-                required
-                placeholder="Email Address"
-                name="email"
-                onChange={formik.handleChange}
-                value={formik.values.email}
-              />
-              <input
-                type="tel"
-                pattern="[0-9]{11}"
-                required
-                placeholder="Phone Number"
-                name="phoneNumber"
-                onChange={formik.handleChange}
-                value={formik.values.phoneNumber}
-              />
+
+          {isloading ? (
+            <div className="loader">
+              <Loader />
             </div>
-            <div className="basicModal_form_flex">
-              <input
-                type="text"
-                required
-                placeholder="First Name"
-                name="firstName"
-                onChange={formik.handleChange}
-                value={formik.values.firstName}
-              />
-              <input
-                type="text"
-                required
-                placeholder="Last Name"
-                name="lastName"
-                onChange={formik.handleChange}
-                value={formik.values.lastName}
-              />
-            </div>
-            {isloading ? (
-              <div className="loader">
-                <Loader />
-              </div>
-            ) : (
-              <button type="submit">Book Now</button>
-            )}
-          </form>
+          ) : (
+            <button type="submit" form="bookingForm" className="basicModal_button">
+              Book Now
+            </button>
+          )}
+        <p className="basicModal_workspaceInfo">*An Grazac Workspace ID gives you access to exclusive discounts and allows for faster booking in the future</p>
         </div>
       </div>
     </>

@@ -55,6 +55,48 @@
   color: #773dd3;
   font-weight: 600;
 }
+.workspace_id{
+  font-weight: 500;
+  font-size: 14px;
+  text-align: center;
+  line-height: 140%;
+  letter-spacing: 2%;
+  color:#212529;
+  margin-bottom: 10px;
+}
+.workspace_id span {
+  font-weight: 700;
+  font-size: 14px;
+  color:#212529;
+}
+.workspace_id_buttons{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom:30px;
+}
+.workspace-button1{
+  border: 1px solid #773dd3;
+  border-radius: 8px;
+  padding: 10px 51px;
+  font-weight: 600;
+  font-size:14px;
+  text-align:center;
+  color:#773dd3;
+}
+.workspace-button2{
+  /* border: 1px solid #773dd3; */
+  border:none;
+  border-radius: 8px;
+  padding: 10px 27.5px;
+  font-weight: 600;
+  font-size:14px;
+  text-align:center;
+  background-color:#773dd3;
+  color: #FFFFFF;
+}
+
 .basicModal_dateContainer {
   width: 430px;
   display: flex;
@@ -223,8 +265,7 @@
   line-height: 18px;
   margin-bottom: 20px;
 }
-.loader {
-
+.basicModal_Container.loader {
   width: 275px;
   height: 56px;
   margin: 0 auto;
@@ -250,8 +291,9 @@
   font-size: 14px;
   line-height: 24px;
   outline: none;
+  color:#8897AE;
 }
-.basicModal_form button {
+.basicModal_button {
   width: 275px;
   background-color: #773dd3;
   color: #fff;
@@ -264,6 +306,15 @@
   border: none;
   font-size: 16px;
 }
+.basicModal_workspaceInfo{
+font-weight: 700;
+font-size: 10px;
+line-height: 140%;
+letter-spacing: 2%;
+text-align: center;
+color: #212529;
+margin-bottom:40px
+}
 .react-calendar {
   border: none;
   border-radius: 8px;
@@ -272,7 +323,7 @@
 
 .react-calendar__tile {
   max-width: 100%;
-  padding: 100px;
+  /* padding: 100px; */
   background: white;
   border-radius: 4px;
   cursor: pointer;
@@ -310,12 +361,12 @@
   }
   .basicModal_dateContainer_start,
   .basicModal_dateContainer_end {
-    width: 95%;
+    width: 100%;
     margin: auto;
   }
   .basicModal_dateContainer_start p,
   .basicModal_dateContainer_end p {
-    font-size: 8px;
+    font-size: 14px;
     line-height: 9.6px;
   }
   .basicModal_dateContainer_start .start-date,
@@ -345,7 +396,7 @@
     font-size: 6.76px;
     line-height: 10.13px;
   }
-  .basicModal_form button {
+  .basicModal_button {
     width: 100%;
     margin: 8px 0px 22px 0px;
     font-size: 16px;
@@ -355,5 +406,18 @@
   }
   .calendar{
     left: 2%;
+  }
+  .workspace-button1,
+  .workspace-button2 {
+  padding: 10px 15px;
+  font-size:14px;
+}
+}
+
+@media screen and (max-width: 320px) {
+  .workspace-button1,
+  .workspace-button2 {
+    padding: 8px 8px;
+    font-size: 12px;
   }
 }
