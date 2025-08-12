@@ -338,6 +338,7 @@ const BasicModal = ({ open, setOpen }) => {
     lastName: "",
     email: "",
     phoneNumber: "",
+    code: "",
   });
 
   const modalRef = useRef();
@@ -491,12 +492,20 @@ const BasicModal = ({ open, setOpen }) => {
     initialValues: userInfo,
     enableReinitialize: true,
     onSubmit: async (values, { setSubmitting }) => {
-      const dataValues = {
-        ...values,
-        code: values.code || "",
-        startDate: startDate.toLocaleDateString(),
-        subscriptionType: selectedPaymentOption?.value || "",
-      };
+      let dataValues = {};
+      if (values.code){
+        dataValues = {
+          code: values.code,
+          startDate: startDate.toLocaleDateString(),
+          subscriptionType: selectedPaymentOption?.value || "",
+        }
+      }else{
+        dataValues = {
+         ...values,
+         startDate: startDate.toLocaleDateString(),
+         subscriptionType: selectedPaymentOption?.value || "",
+       };
+      }
       setIsLoading(true);
       try {
         const res = await axios.post(url, dataValues);
