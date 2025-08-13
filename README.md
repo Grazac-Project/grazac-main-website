@@ -1,4 +1,4 @@
-# Geazac Main Website
+# Grazac Main Website
 
 
 Built with ReactJS
