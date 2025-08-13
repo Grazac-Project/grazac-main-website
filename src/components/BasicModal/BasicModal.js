@@ -312,9 +312,10 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useFormik } from "formik";
 import Loader from "../Loader";
+import { FiArrowLeftCircle } from "react-icons/fi";
 
 const paymentOptions = [
-  { label: "Daily", value: "daily", amount: 3000 },
+  { label: "Daily", value: "daily", amount: 100 },
   { label: "Weekly", value: "weekly", amount: 18000 },
   { label: "Monthly", value: "monthly", amount: 40000 },
   { label: "Quarterly", value: "quarterly", amount: 130000 },
@@ -553,6 +554,8 @@ const BasicModal = ({ open, setOpen }) => {
       <div className="basicModal" ref={modalRef}>
         <div className="basicModal_space" onClick={(e) => e.stopPropagation()}>
           <ToastContainer closeButton={false} />
+
+          {/* < FiArrowLeftCircle className="close-btn"/> */}
           <h2>Book a Space</h2>
           <p className="para">
             You can now secure your booking for our space at just{" "}
