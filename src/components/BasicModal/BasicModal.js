@@ -300,6 +300,7 @@
 // };
 
 // export default BasicModal;
+
 import React, { useEffect, useRef, useState } from "react";
 import calendar from "../../images/calendar.png";
 import dropdown from "../../images/drop-icon.svg";
@@ -312,10 +313,10 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useFormik } from "formik";
 import Loader from "../Loader";
-import { FiArrowLeftCircle } from "react-icons/fi";
+// import { FiArrowLeftCircle } from "react-icons/fi";
 
 const paymentOptions = [
-  { label: "Daily", value: "daily", amount: 100 },
+  { label: "Daily", value: "daily", amount: 3000 },
   { label: "Weekly", value: "weekly", amount: 18000 },
   { label: "Monthly", value: "monthly", amount: 40000 },
   { label: "Quarterly", value: "quarterly", amount: 130000 },
@@ -326,7 +327,7 @@ const BasicModal = ({ open, setOpen }) => {
   // const options = { month: "long", day: "numeric" };
   const today = new Date();
 
-  const [showModal, setShowModal] = useState(null);
+  const [showModal, setShowModal] = useState("id");
   const [toggle, setToggle] = useState(false);
   const [toggle2, setToggle2] = useState(false);
   const [isloading, setIsLoading] = useState(false);
@@ -494,23 +495,40 @@ const BasicModal = ({ open, setOpen }) => {
     enableReinitialize: true,
     onSubmit: async (values, { setSubmitting }) => {
       let dataValues = {};
-      if (values.code){
+      if (values.code) {
         dataValues = {
           code: values.code,
           startDate: startDate.toLocaleDateString(),
           subscriptionType: selectedPaymentOption?.value || "",
-        }
-      }else{
+        };
+      } else {
         dataValues = {
-         ...values,
-         startDate: startDate.toLocaleDateString(),
-         subscriptionType: selectedPaymentOption?.value || "",
-       };
+          ...values,
+          startDate: startDate.toLocaleDateString(),
+          subscriptionType: selectedPaymentOption?.value || "",
+        };
       }
       setIsLoading(true);
       try {
         const res = await axios.post(url, dataValues);
         if (res.status === 201 || res.status === 200) {
+          if (showModal === "generate") {
+            toast.info(
+              "Success, an ID has been generated successfully and sent to your email",
+              {
+                position: "bottom-right",
+                style: {
+                  color: "#461199",
+                  fontWeight: "500",
+                  textAlign: "center",
+                  fontStyle: "italic",
+                  fontSize: "14px",
+                  fontText: "inter",
+                },
+              }
+            );
+            await new Promise((resolve) => setTimeout(resolve, 5000));
+          }
           // setIsLoading(true);
           HandleSpacePayFlutterPayment({
             callback: (response) => {
@@ -570,7 +588,9 @@ const BasicModal = ({ open, setOpen }) => {
             <div className="workspace_id_buttons">
               <div>
                 <button
-                  className="workspace-button1"
+                  className={`workspace-button1 ${
+                    showModal === "id" ? "active" : ""
+                  }`}
                   onClick={() => setShowModal("id")}
                 >
                   Yes, I have an ID{" "}
@@ -578,7 +598,9 @@ const BasicModal = ({ open, setOpen }) => {
               </div>
               <div>
                 <button
-                  className="workspace-button2"
+                  className={`workspace-button2 ${
+                    showModal === "generate" ? "active" : ""
+                  }`}
                   onClick={() => setShowModal("generate")}
                 >
                   No, generate one for me{" "}
@@ -587,7 +609,11 @@ const BasicModal = ({ open, setOpen }) => {
             </div>
           </div>
 
-          <form className="basicModal_form" id="bookingForm" onSubmit={formik.handleSubmit}>
+          <form
+            className="basicModal_form"
+            id="bookingForm"
+            onSubmit={formik.handleSubmit}
+          >
             {showModal === "id" && (
               <>
                 {/* <p style={{ textAlign: "center", marginTop: "8px" }}>Enter your Grazac Workspace ID</p> */}
@@ -606,7 +632,7 @@ const BasicModal = ({ open, setOpen }) => {
                     name="code"
                     onChange={formik.handleChange}
                     value={formik.values.code}
-                    style={{ width: "251px", }}
+                    style={{ width: "251px" }}
                   />
                 </div>
               </>
@@ -731,11 +757,18 @@ const BasicModal = ({ open, setOpen }) => {
               <Loader />
             </div>
           ) : (
-            <button type="submit" form="bookingForm" className="basicModal_button">
+            <button
+              type="submit"
+              form="bookingForm"
+              className="basicModal_button"
+            >
               Book Now
             </button>
           )}
-        <p className="basicModal_workspaceInfo">*An Grazac Workspace ID gives you access to exclusive discounts and allows for faster booking in the future</p>
+          <p className="basicModal_workspaceInfo">
+            * Grazac Workspace ID gives you access to exclusive discounts and
+            allows for faster booking in the future
+          </p>
         </div>
       </div>
     </>
