@@ -35,7 +35,7 @@
   font-size: 30px;
   cursor: pointer;
 }
-.close-btn {
+/* .close-btn {
   position: absolute;
   top: 50px;
   left: 40px;
@@ -43,7 +43,7 @@
   width:30px;
   height:30px;
   cursor: pointer;
-}
+} */
 .basicModal_space h2 {
   font-size: 40px;
   font-weight: 600;
@@ -95,15 +95,17 @@
   color:#773dd3;
 }
 .workspace-button2{
-  /* border: 1px solid #773dd3; */
-  border:none;
+  border: 1px solid #773dd3;
   border-radius: 8px;
   padding: 10px 27.5px;
   font-weight: 600;
   font-size:14px;
   text-align:center;
-  background-color:#773dd3;
-  color: #FFFFFF;
+  color: #773dd3;
+}
+.workspace_id_buttons button.active {
+  background-color: #773dd3;
+  color: white;
 }
 
 .basicModal_dateContainer {
