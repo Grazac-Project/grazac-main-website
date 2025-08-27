@@ -398,7 +398,7 @@ margin-bottom:40px
     display: block;
   }
 }
-@media screen and (max-width: 468px) {
+@media screen and (max-width: 480px) {
   .basicModal_price_total .sum {
     font-size: 18.01px;
     line-height: 27.02px;
