@@ -350,6 +350,16 @@ const BasicModal = ({ open, setOpen }) => {
       if (modalRef.current && !modalRef.current.contains(event.target)) {
         setOpen(false);
       }
+
+        if (
+      modalRef.current &&
+      modalRef.current.contains(event.target) &&
+      !event.target.closest(".basicModal_sub_con") && 
+      !event.target.closest(".calendar")             
+    ) {
+      setToggle(false);
+      setToggle2(false);
+    }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
