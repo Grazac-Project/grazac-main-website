@@ -313,6 +313,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useFormik } from "formik";
 import Loader from "../Loader";
+import { AiOutlineClose } from "react-icons/ai";
 // import { FiArrowLeftCircle } from "react-icons/fi";
 
 const paymentOptions = [
@@ -351,15 +352,15 @@ const BasicModal = ({ open, setOpen }) => {
         setOpen(false);
       }
 
-        if (
-      modalRef.current &&
-      modalRef.current.contains(event.target) &&
-      !event.target.closest(".basicModal_sub_con") && 
-      !event.target.closest(".calendar")             
-    ) {
-      setToggle(false);
-      setToggle2(false);
-    }
+      if (
+        modalRef.current &&
+        modalRef.current.contains(event.target) &&
+        !event.target.closest(".basicModal_sub_con") &&
+        !event.target.closest(".calendar")
+      ) {
+        setToggle(false);
+        setToggle2(false);
+      }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
@@ -584,6 +585,17 @@ const BasicModal = ({ open, setOpen }) => {
           <ToastContainer closeButton={false} />
 
           {/* < FiArrowLeftCircle className="close-btn"/> */}
+          <p
+            style={{
+              position: "absolute",
+              top: "20px",
+              right: "20px",
+              fontSize: "30px",
+            }}
+            onClick={() => setOpen(false)}
+          >
+            <AiOutlineClose />
+          </p>
           <h2>Book a Space</h2>
           <p className="para">
             You can now secure your booking for our space at just{" "}
