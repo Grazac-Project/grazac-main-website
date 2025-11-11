@@ -1,5 +1,5 @@
 // @ts-nocheck
-import Logo from "../images/logo.png";
+// import Logo from "../images/logo.png";
 import Twitter from "../images/svg/twitter.svg";
 import Facebook from "../images/svg/facebook.svg";
 // import Linkedin from "../images/svg/linkedin.svg";
@@ -8,10 +8,10 @@ import Youtube from "../images/svg/youtube.svg";
 
 import { Helmet } from "react-helmet";
 import React, { useEffect, useState } from "react";
-import Cancel from "../images/svg/cancel-purple.svg";
-import { validateEmail, required, numberCheck } from "../validation";
+// import Cancel from "../images/svg/cancel-purple.svg";
+import { validateEmail, required } from "../validation";
 import axios from "axios";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -20,8 +20,8 @@ const Contact = ({ animate }) => {
     window.scrollTo(0, 0);
   }, []);
 
-  const [submitting, setSubmitting] = useState(false);
-  const [success, setSuccess] = useState(false);
+  // const [submitting, setSubmitting] = useState(false);
+  // const [success, setSuccess] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [number, setNumber] = useState("");
@@ -277,6 +277,7 @@ const Contact = ({ animate }) => {
             src="https://www.google.com/maps/d/embed?mid=16NZ9a9VhKkk2-5nnYEdL93mxq7kjDZLT"
             width="100%"
             height="600"
+            title="Grazac Location Map"
           ></iframe>
         </div>
       </div>

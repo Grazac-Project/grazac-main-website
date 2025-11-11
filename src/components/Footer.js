@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import blacklogo from "../images/svg/grazac-logos/black-logo.svg";
-import ShowContext from "../showContext";
+// import ShowContext from "../showContext";
 
 const Footer = () => {
-  const { reveal, modalReveal } = React.useContext(ShowContext);
+  // const { reveal, modalReveal } = React.useContext(ShowContext);
   return (
     <div className="footer">
       {/* <div className="container"> */}

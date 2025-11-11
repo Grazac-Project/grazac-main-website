@@ -1,7 +1,7 @@
 // @ts-nocheck
 // components
 import React, { useEffect, useState } from "react";
-import ShowContext from "../showContext";
+// import ShowContext from "../showContext";
 // import Footer from "../components/Footer";
 import Subscribe from "../components/subscribe";
 import { Link } from "react-router-dom";
@@ -34,7 +34,7 @@ import tg2 from "../images/tg2.png";
 import { Helmet } from "react-helmet";
 import Button from "../components/button";
 import axios from "axios";
-import Loader from "../components/Loader";
+// import Loader from "../components/Loader";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 

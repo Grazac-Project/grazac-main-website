@@ -1,10 +1,10 @@
 // @ts-nocheck
-import React, { useState } from "react";
+import React from "react";
 
 import Classes from "./Tour.module.css";
 import "react-calendar/dist/Calendar.css";
 
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Join = ({ join, setJoin }) => {
@@ -37,6 +37,7 @@ const Join = ({ join, setJoin }) => {
                     frameborder="0"
 
                     style={{ width: "100%" }}
+                    title="Book A Space Newsletter"
                     src="https://forms.zohopublic.com/grazac/form/BookASpaceNewsletter/formperma/-zdzLA8_2xqVRXw7FFvvfRr_5iFt6z0SoH5xUGElMwA"
                   ></iframe>
                 </form>
