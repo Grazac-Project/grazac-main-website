@@ -1,12 +1,12 @@
 // @ts-nocheck
-import Button from "../components/button";
+// import Button from "../components/button";
 import { Helmet } from "react-helmet";
 import { values, areas } from "../constants";
 import Subscribe from "../components/subscribe";
 import btnwhite from "../images/svg/button-arrow.svg";
 import { Slide } from "react-reveal";
 import React, { useEffect } from "react";
-import ShowContext from "../showContext";
+// import ShowContext from "../showContext";
 import { Link } from "react-router-dom";
 import btnpurple from "../images/svg/button-arrow-purple.svg";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
@@ -34,7 +34,7 @@ const StartUp = () => {
       },
     },
   };
-  const { reveal } = React.useContext(ShowContext);
+  // const { reveal } = React.useContext(ShowContext);
   return (
     <div className="startup">
       <Helmet>

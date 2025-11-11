@@ -5,7 +5,7 @@ import Header from "./components/Header";
 import Modal from "./components/modal";
 import Scroll from "./components/Scroll";
 import Sidebar from "./components/sidebar";
-import Contact from "./pages/contact";
+// import Contact from "./pages/contact";
 import ShowContext from "./showContext";
 import BasicModal from "./components/BasicModal/BasicModal";
 
@@ -14,8 +14,8 @@ const Layout = ({ children }) => {
   const {
     sidebar,
     sidebarClick,
-    contact,
-    contactClick,
+    // contact,
+    // contactClick,
     reveal,
     modal,
     modalClick,
