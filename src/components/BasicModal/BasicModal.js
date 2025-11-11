@@ -318,7 +318,7 @@ import { AiOutlineClose } from "react-icons/ai";
 
 const paymentOptions = [
   { label: "Daily", value: "daily", amount: 3000 },
-  { label: "Weekly", value: "weekly", amount: 18000 },
+  { label: "Weekly", value: "weekly", amount: 15000 },
   { label: "Monthly", value: "monthly", amount: 40000 },
   { label: "Quarterly", value: "quarterly", amount: 130000 },
   { label: "Yearly", value: "yearly", amount: 400000 },
