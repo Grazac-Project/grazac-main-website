@@ -368,48 +368,54 @@ const BasicModal = ({ open, setOpen }) => {
     return `${dayWithSuffix} ${month} ${year} `;
   }, []);
 
-  const updateSummary = useCallback((paymentOption, startDateParam, endDateParam) => {
-    if (!paymentOption || !startDateParam || !endDateParam) return;
+  const updateSummary = useCallback(
+    (paymentOption, startDateParam, endDateParam) => {
+      if (!paymentOption || !startDateParam || !endDateParam) return;
 
-    setSummary([
-      { label: "Subscription Type", value: paymentOption.label },
-      { label: "Start date", value: formatDateWithSuffix(startDateParam) },
-      { label: "End date", value: formatDateWithSuffix(endDateParam) },
-      {
-        label: "Total price",
-        value: `₦${paymentOption.amount.toLocaleString()}`,
-      },
-    ]);
-  }, [formatDateWithSuffix]);
+      setSummary([
+        { label: "Subscription Type", value: paymentOption.label },
+        { label: "Start date", value: formatDateWithSuffix(startDateParam) },
+        { label: "End date", value: formatDateWithSuffix(endDateParam) },
+        {
+          label: "Total price",
+          value: `₦${paymentOption.amount.toLocaleString()}`,
+        },
+      ]);
+    },
+    [formatDateWithSuffix]
+  );
 
-  const updateEndDateAndSummary = useCallback((start, option) => {
-    if (!start || !option) return;
+  const updateEndDateAndSummary = useCallback(
+    (start, option) => {
+      if (!start || !option) return;
 
-    const calculatedEndDate = new Date(start);
+      const calculatedEndDate = new Date(start);
 
-    switch (option.value) {
-      case "yearly":
-        calculatedEndDate.setDate(calculatedEndDate.getDate() + 365);
-        break;
-      case "monthly":
-        calculatedEndDate.setDate(calculatedEndDate.getDate() + 31);
-        break;
-      case "quarterly":
-        calculatedEndDate.setDate(calculatedEndDate.getDate() + 91);
-        break;
-      case "weekly":
-        calculatedEndDate.setDate(calculatedEndDate.getDate() + 7);
-        break;
-      case "daily":
-        calculatedEndDate.setDate(calculatedEndDate.getDate());
-        break;
-      default:
-        break;
-    }
+      switch (option.value) {
+        case "yearly":
+          calculatedEndDate.setDate(calculatedEndDate.getDate() + 365);
+          break;
+        case "monthly":
+          calculatedEndDate.setDate(calculatedEndDate.getDate() + 31);
+          break;
+        case "quarterly":
+          calculatedEndDate.setDate(calculatedEndDate.getDate() + 91);
+          break;
+        case "weekly":
+          calculatedEndDate.setDate(calculatedEndDate.getDate() + 7);
+          break;
+        case "daily":
+          calculatedEndDate.setDate(calculatedEndDate.getDate());
+          break;
+        default:
+          break;
+      }
 
-    // Update summary directly without storing endDate in state
-    updateSummary(option, start, calculatedEndDate);
-  }, [updateSummary]);
+      // Update summary directly without storing endDate in state
+      updateSummary(option, start, calculatedEndDate);
+    },
+    [updateSummary]
+  );
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -475,7 +481,8 @@ const BasicModal = ({ open, setOpen }) => {
     "https://grazac-academy-back-end-ej7s.onrender.com/api/v1/user/book";
 
   const SpaceFeeFlutterwaveConfig = {
-    public_key: "FLWPUBK-006bdc82ad878f1518af32f44af6478f-X",
+    public_key: "FLWPUBK-b765ab41a14a9a8258992eafe205259f-X",
+    // public_key: "FLWPUBK_TEST-b6c44d3213f2d2b3c0c3142f3ab81b72-X",
     tx_ref: Date.now(),
     amount: totalAmount,
     currency: "NGN",
