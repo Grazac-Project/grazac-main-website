@@ -4,7 +4,7 @@ import Logo from "../images/logo-full.png";
 import NavItem from "./Nav";
 import hamburger from "../images/svg/hamburger.svg";
 import btnpurple from "../images/svg/button-arrow-purple.svg";
-import ShowContext from "../showContext";
+// import ShowContext from "../showContext";
 import React from "react";
 
 const Header = ({ click }) => {
@@ -24,6 +24,7 @@ const Header = ({ click }) => {
               <a
                 href="https://www.grazactalentcity.com/"
                 target="_blank"
+                rel="noreferrer"
                 className="nav__link"
               >
                 Grazac Talent City

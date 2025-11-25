@@ -21,7 +21,7 @@ import Pic13 from "./images/book/pic13.png";
 import Pic14 from "./images/book/pic14.png";
 import Pic15 from "./images/book/pic15.png";
 import Pic16 from "./images/book/pic16.png";
-import Customer1 from "./images/book/avatar.png";
+
 
 export const values = [
   {

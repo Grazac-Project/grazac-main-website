@@ -301,7 +301,7 @@
 
 // export default BasicModal;
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import calendar from "../../images/calendar.png";
 import dropdown from "../../images/drop-icon.svg";
 import "./BasicModal.css";
@@ -314,18 +314,32 @@ import "react-toastify/dist/ReactToastify.css";
 import { useFormik } from "formik";
 import Loader from "../Loader";
 import { AiOutlineClose } from "react-icons/ai";
-// import { FiArrowLeftCircle } from "react-icons/fi";
 
 const paymentOptions = [
   { label: "Daily", value: "daily", amount: 3000 },
-  { label: "Weekly", value: "weekly", amount: 18000 },
+  { label: "Weekly", value: "weekly", amount: 15000 },
   { label: "Monthly", value: "monthly", amount: 40000 },
   { label: "Quarterly", value: "quarterly", amount: 130000 },
   { label: "Yearly", value: "yearly", amount: 400000 },
 ];
 
+const getDayWithSuffix = (day) => {
+  if (day >= 11 && day <= 13) {
+    return `${day}th`;
+  }
+  switch (day % 10) {
+    case 1:
+      return `${day}st`;
+    case 2:
+      return `${day}nd`;
+    case 3:
+      return `${day}rd`;
+    default:
+      return `${day}th`;
+  }
+};
+
 const BasicModal = ({ open, setOpen }) => {
-  // const options = { month: "long", day: "numeric" };
   const today = new Date();
 
   const [showModal, setShowModal] = useState("id");
@@ -334,7 +348,6 @@ const BasicModal = ({ open, setOpen }) => {
   const [isloading, setIsLoading] = useState(false);
   const [selectedPaymentOption, setSelectedPaymentOption] = useState(null);
   const [startDate, setStartDate] = useState(today);
-  const [endDate, setEndDate] = useState("");
   const [summary, setSummary] = useState([]);
   const [userInfo, setUserInfo] = useState({
     firstName: "",
@@ -345,6 +358,64 @@ const BasicModal = ({ open, setOpen }) => {
   });
 
   const modalRef = useRef();
+
+  const formatDateWithSuffix = useCallback((date) => {
+    const day = date.getDate();
+    const dayWithSuffix = getDayWithSuffix(day);
+    const month = date.toLocaleString("en-US", { month: "long" });
+    const year = date.toLocaleString("en-US", { year: "numeric" });
+
+    return `${dayWithSuffix} ${month} ${year} `;
+  }, []);
+
+  const updateSummary = useCallback(
+    (paymentOption, startDateParam, endDateParam) => {
+      if (!paymentOption || !startDateParam || !endDateParam) return;
+
+      setSummary([
+        { label: "Subscription Type", value: paymentOption.label },
+        { label: "Start date", value: formatDateWithSuffix(startDateParam) },
+        { label: "End date", value: formatDateWithSuffix(endDateParam) },
+        {
+          label: "Total price",
+          value: `₦${paymentOption.amount.toLocaleString()}`,
+        },
+      ]);
+    },
+    [formatDateWithSuffix]
+  );
+
+  const updateEndDateAndSummary = useCallback(
+    (start, option) => {
+      if (!start || !option) return;
+
+      const calculatedEndDate = new Date(start);
+
+      switch (option.value) {
+        case "yearly":
+          calculatedEndDate.setDate(calculatedEndDate.getDate() + 365);
+          break;
+        case "monthly":
+          calculatedEndDate.setDate(calculatedEndDate.getDate() + 31);
+          break;
+        case "quarterly":
+          calculatedEndDate.setDate(calculatedEndDate.getDate() + 91);
+          break;
+        case "weekly":
+          calculatedEndDate.setDate(calculatedEndDate.getDate() + 7);
+          break;
+        case "daily":
+          calculatedEndDate.setDate(calculatedEndDate.getDate());
+          break;
+        default:
+          break;
+      }
+
+      // Update summary directly without storing endDate in state
+      updateSummary(option, start, calculatedEndDate);
+    },
+    [updateSummary]
+  );
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -371,9 +442,9 @@ const BasicModal = ({ open, setOpen }) => {
 
   useEffect(() => {
     if (selectedPaymentOption) {
-      updateEndDate(startDate, selectedPaymentOption);
+      updateEndDateAndSummary(startDate, selectedPaymentOption);
     }
-  }, [startDate, selectedPaymentOption]);
+  }, [startDate, selectedPaymentOption, updateEndDateAndSummary]);
 
   const handleToggle = (e) => {
     e.stopPropagation();
@@ -397,77 +468,8 @@ const BasicModal = ({ open, setOpen }) => {
     setToggle2(false);
   };
 
-  const updateEndDate = (start, option) => {
-    if (!start || !option) return;
-
-    let endDate = new Date(start);
-
-    switch (option.value) {
-      case "yearly":
-        endDate.setDate(endDate.getDate() + 365);
-        break;
-      case "monthly":
-        endDate.setDate(endDate.getDate() + 31);
-        break;
-      case "quarterly":
-        endDate.setDate(endDate.getDate() + 91);
-        break;
-      case "weekly":
-        endDate.setDate(endDate.getDate() + 7);
-        break;
-      case "daily":
-        endDate.setDate(endDate.getDate());
-        break;
-      default:
-        break;
-    }
-
-    setEndDate(endDate);
-    updateSummary(option, start, endDate);
-  };
-
-  const updateSummary = (paymentOption, startDate, endDate) => {
-    if (!paymentOption || !startDate || !endDate) return;
-
-    setSummary([
-      { label: "Subscription Type", value: paymentOption.label },
-      { label: "Start date", value: formatDateWithSuffix(startDate) },
-      { label: "End date", value: formatDateWithSuffix(endDate) },
-      {
-        label: "Total price",
-        value: `₦${paymentOption.amount.toLocaleString()}`,
-      },
-    ]);
-  };
-
-  const formatDateWithSuffix = (date) => {
-    const day = date.getDate();
-    const dayWithSuffix = getDayWithSuffix(day);
-    const month = date.toLocaleString("en-US", { month: "long" });
-    const year = date.toLocaleString("en-US", { year: "numeric" });
-
-    return `${dayWithSuffix} ${month} ${year} `;
-  };
-
-  const getDayWithSuffix = (day) => {
-    if (day >= 11 && day <= 13) {
-      return `${day}th`;
-    }
-    switch (day % 10) {
-      case 1:
-        return `${day}st`;
-      case 2:
-        return `${day}nd`;
-      case 3:
-        return `${day}rd`;
-      default:
-        return `${day}th`;
-    }
-  };
-
   const tileDisabled = ({ date, view }) => {
     if (view === "month") {
-      // Disable weekends (Saturday and Sunday)
       const day = date.getDay();
       return date < new Date() || day === 0 || day === 6;
     }
@@ -540,7 +542,6 @@ const BasicModal = ({ open, setOpen }) => {
             );
             await new Promise((resolve) => setTimeout(resolve, 5000));
           }
-          // setIsLoading(true);
           HandleSpacePayFlutterPayment({
             callback: (response) => {
               console.log(response);
@@ -564,7 +565,6 @@ const BasicModal = ({ open, setOpen }) => {
       } catch (error) {
         setSubmitting(false);
         setIsLoading(false);
-
         toast.error("An error occurred while submitting the form");
       } finally {
         setSubmitting(false);
@@ -584,7 +584,6 @@ const BasicModal = ({ open, setOpen }) => {
         <div className="basicModal_space" onClick={(e) => e.stopPropagation()}>
           <ToastContainer closeButton={false} />
 
-          {/* < FiArrowLeftCircle className="close-btn"/> */}
           <p
             style={{
               position: "absolute",
@@ -637,27 +636,24 @@ const BasicModal = ({ open, setOpen }) => {
             onSubmit={formik.handleSubmit}
           >
             {showModal === "id" && (
-              <>
-                {/* <p style={{ textAlign: "center", marginTop: "8px" }}>Enter your Grazac Workspace ID</p> */}
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    height: "54px",
-                  }}
-                >
-                  <input
-                    type="text"
-                    required
-                    placeholder="Workspace ID"
-                    name="code"
-                    onChange={formik.handleChange}
-                    value={formik.values.code}
-                    style={{ width: "251px" }}
-                  />
-                </div>
-              </>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  height: "54px",
+                }}
+              >
+                <input
+                  type="text"
+                  required
+                  placeholder="Workspace ID"
+                  name="code"
+                  onChange={formik.handleChange}
+                  value={formik.values.code}
+                  style={{ width: "251px" }}
+                />
+              </div>
             )}
 
             {showModal === "generate" && (

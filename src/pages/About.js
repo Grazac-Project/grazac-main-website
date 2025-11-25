@@ -4,8 +4,8 @@ import Subscribe from "../components/subscribe";
 
 // import work from "../images/website/IMG_8304-2.JPG";
 import work from "../images/website/about-spread.png";
-import impact from "../images/impact.png";
-import dot from "../images/svg/dot.svg";
+// import impact from "../images/impact.png";
+// import dot from "../images/svg/dot.svg";
 // import about3 from "../images/website/IMG_7513.jpg";
 import about3 from "../images/website/newabout3.png";
 // import about4 from "../images/website/IMG_8350-2.jpg";

@@ -664,7 +664,7 @@ const Innovation = () => {
       clearInterval(intervalId);
       // clearInterval(Image);
     };
-  }, []);
+  }, [texts.length]);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -1037,14 +1037,14 @@ const Innovation = () => {
         <div className="innovation_community_content">
           <h6>Join other founder, freelancer, makers and many-hat wearers</h6>
           <p>Join Grazac Community and take back control of your day</p>
-          <a
+          <div
             // href="https://chat.whatsapp.com/GdO3hUgbAdbA7MN2cBOjEz"
             // target="_blank"
             // rel="noreferrer"
             style={{ textDecorationLine: "none" }}
           >
             <button onClick={() => setJoin(true)}>Join Community</button>
-          </a>
+          </div>
         </div>
       </div>
     </div>

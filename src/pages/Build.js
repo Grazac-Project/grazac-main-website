@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React, { useState } from "react";
 import axios from 'axios';
-import study1 from "../images/study1.png";
+// import study1 from "../images/study1.png";
 import buildvideo from "../images/buildvideo.png";
 
 import Subscribe from "../components/subscribe";
@@ -233,7 +233,7 @@ const Build = () => {
                 />
               </div>
             </div>
-            <button type="submit" role="submit">{text}</button>
+            <button type="submit" >{text}</button>
             </form>
           </div>
         </div>

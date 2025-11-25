@@ -17,7 +17,7 @@ const Application = () => {
   const [loading, setLoading] = useState(false);
   const { modalReveal, modal, modalClick } = React.useContext(ShowContext);
   const [formValid, setFormValid] = useState(false);
-  const [error, setError] = useState("");
+  // const [error, setError] = useState("");
   // Sidebar
   const [content, setContent] = useState([
     { id: "1.", name: "Company", active: true },
@@ -87,7 +87,7 @@ const Application = () => {
   // LocalStorage
 
   const [saved] = useState(JSON.parse(localStorage.getItem("saved")));
-  const [savedSuccess, setSavedSucess] = useState(false);
+  // const [savedSuccess, setSavedSucess] = useState(false);
 
   // Company Form
   const [companyForm, setCompanyForm] = useState({
@@ -470,18 +470,18 @@ const Application = () => {
     setFormValid(formIsValid);
     console.log(formValid);
   };
-  const saveForLater = () => {
-    const savedData = loadData();
-    const save = {};
-    for (var value of savedData) {
-      save[value[0]] = value[1];
-    }
-    localStorage.setItem("saved", JSON.stringify(savedData));
-    setSavedSucess(true);
-    setTimeout(() => {
-      setSavedSucess(false);
-    }, 3000);
-  };
+  // const saveForLater = () => {
+  //   const savedData = loadData();
+  //   const save = {};
+  //   for (var value of savedData) {
+  //     save[value[0]] = value[1];
+  //   }
+  //   localStorage.setItem("saved", JSON.stringify(savedData));
+  //   setSavedSucess(true);
+  //   setTimeout(() => {
+  //     setSavedSucess(false);
+  //   }, 3000);
+  // };
   const handleSubmit = () => {
     setLoading(true);
     const data = loadData();
