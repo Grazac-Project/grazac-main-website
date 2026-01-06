@@ -471,7 +471,7 @@ const BasicModal = ({ open, setOpen }) => {
   const tileDisabled = ({ date, view }) => {
     if (view === "month") {
       const day = date.getDay();
-      return date < new Date() || day === 0 || day === 6;
+      return date < new Date() || day === 0 || day === 7;
     }
     return false;
   };
