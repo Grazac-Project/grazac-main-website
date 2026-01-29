@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import calendar from "../images/calendar.png";
-import dropdown from "../images/drop-icon.svg";
+// import dropdown from "../images/drop-icon.svg";
 import "./BookSpace/BookSpace.css";
 import "react-calendar/dist/Calendar.css";
 import Calendar from "react-calendar";
 import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
-import axios from "axios";
+// import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useFormik } from "formik";
@@ -15,7 +15,7 @@ import workspace from "../images/workspace/workspace.png";
 import returningUser from "../images/workspace/returning-user.png";
 import firstTimeUser from "../images/workspace/first-time-user.png";
 import backIcon from "../images/workspace/arrowleft.png";
-import people2 from "../images/workspace/people-2.png";
+import joy from "../images/workspace/joy-img.png";
 
 const paymentOptions = [
   { label: "Daily", value: "daily", amount: 3000 },
@@ -51,6 +51,7 @@ const BookSpace = () => {
   const [isloading, setIsLoading] = useState(false);
   const [selectedPaymentOption, setSelectedPaymentOption] = useState(null);
   const [startDate, setStartDate] = useState(today);
+  const [endDate, setEndDate] = useState(null);
   const [summary, setSummary] = useState([]);
   const [userInfo, setUserInfo] = useState({
     firstName: "",
@@ -73,6 +74,8 @@ const BookSpace = () => {
 
   const updateSummary = useCallback((paymentOption, startDateParam, endDateParam) => {
     if (!paymentOption || !startDateParam || !endDateParam) return;
+    setEndDate(formatDateWithSuffix(endDateParam)); // Save formatted end date
+
 
     setSummary([
       { label: "Subscription Type", value: paymentOption.label },
@@ -190,69 +193,14 @@ const BookSpace = () => {
     initialValues: userInfo,
     enableReinitialize: true,
     onSubmit: async (values, { setSubmitting }) => {
-      let dataValues = {};
-      if (values.code) {
-        dataValues = {
-          code: values.code,
-          startDate: startDate.toLocaleDateString(),
-          subscriptionType: selectedPaymentOption?.value || "",
-        };
-      } else {
-        dataValues = {
-          ...values,
-          startDate: startDate.toLocaleDateString(),
-          subscriptionType: selectedPaymentOption?.value || "",
-        };
-      }
-      setIsLoading(true);
-      try {
-        const res = await axios.post(url, dataValues);
-        if (res.status === 201 || res.status === 200) {
-          if (showModal === "generate") {
-            toast.info(
-              "Success, an ID has been generated successfully and sent to your email",
-              {
-                position: "bottom-right",
-                style: {
-                  color: "#461199",
-                  fontWeight: "500",
-                  textAlign: "center",
-                  fontStyle: "italic",
-                  fontSize: "14px",
-                  fontText: "inter",
-                },
-              }
-            );
-            await new Promise((resolve) => setTimeout(resolve, 5000));
-          }
-          HandleSpacePayFlutterPayment({
-            callback: (response) => {
-              console.log(response);
-              if (response.status === "completed") {
-                toast.success("Payment successful! Verifying payment...");
-              }
-              closePaymentModal();
-              setTimeout(() => {
-                history.push("/"); // Use history.push instead of window.location
-              }, 2500);
-            },
-            onClose: () => {
-              history.push("/");
-            },
-          });
-        } else {
-          setSubmitting(false);
-          setIsLoading(false);
-          toast.error("Form submission not successful");
-        }
-      } catch (error) {
-        setSubmitting(false);
-        setIsLoading(false);
-        toast.error("An error occurred while submitting the form");
-      } finally {
-        setSubmitting(false);
-        setIsLoading(false);
-      }
+      history.push("/booking-summary", {
+        userInfo: values,
+        selectedPaymentOption,
+        startDate: startDate.toLocaleDateString(),
+        endDate: endDate,
+        showModal
+      });
+      setSubmitting(false);
     },
   });
 
@@ -264,8 +212,8 @@ const BookSpace = () => {
     <>
       {/* Removed basicModal_overlay */}
       <div className="basicModal_space">
-        <div>
-          <img src={showModal === "generate" ? people2 : workspace} alt="" />
+        <div className="left-side-content">
+          <img src={showModal === "generate" ? joy : workspace} alt="" />
         </div>
 
         <div className="right-side-content">
@@ -451,6 +399,8 @@ const BookSpace = () => {
                   onChange={handleStartDateChange}
                   value={startDate}
                   tileDisabled={tileDisabled}
+                  prev2Label={null}
+                  next2Label={null}
                 />
               </div>
             )}

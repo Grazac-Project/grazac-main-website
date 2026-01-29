@@ -1,9 +1,9 @@
 .basicModal_space {
   display: flex;
-  justify-content: center;
+  padding-left: 120px;
+  padding-right: 120px;
   gap: 10px;
   background-color: #fff;
-  position: relative;
 }
 .right-side-content {
   width: 621px;
@@ -41,14 +41,14 @@
   font-size: 32px;
   font-weight: 700;
   line-height: 100%;
-  color: #1F1035;
+  color: #1f1035;
   margin-top: 15px;
 }
-.para{
+.para {
   font-size: 16px;
   font-weight: 500;
   line-height: 150%;
-  color: #575A65;
+  color: #575a65;
 }
 .basicModal_space .thirty {
   color: #773dd3;
@@ -57,6 +57,7 @@
 .workspace_id {
   background-color: #fafafa;
   padding: 32px;
+  margin-bottom: 16px;
 }
 .workspace_id h1 {
   font-weight: 600;
@@ -398,444 +399,215 @@ label {
   margin-bottom: 40px;
 }
 .react-calendar {
-  border: none;
-  border-radius: 8px;
-}
-
-.react-calendar__tile {
+  width: 100%;
   max-width: 100%;
   background: white;
-  border-radius: 4px;
-  cursor: pointer;
-}
-.react-calendar__tile--weekend {
-  color: black;
-}
-.react-calendar__tile--active {
-  background: red;
-  color: white;
-}
-@media screen and (max-width: 768px) {
-  .basicModal_space {
-    width: 90%;
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-  .close {
-    font-size: 20px;
-  }
-  .basicModal_space h2 {
-    font-size: 24px;
-    line-height: 28.8px;
-  }
-  .basicModal_space .para {
-    font-size: 12px;
-    line-height: 18px;
-  }
-  .basicModal_dateContainer {
-    flex-direction: column;
-    width: 100%;
-  }
-  .calendar {
-    width: 100%;
-  }
-  .basicModal_dateContainer_start,
-  .basicModal_dateContainer_end {
-    width: 100%;
-    margin: auto;
-  }
-  .basicModal_dateContainer_start p,
-  .basicModal_dateContainer_end p {
-    font-size: 14px;
-    line-height: 9.6px;
-  }
-  .basicModal_dateContainer_start .start-date,
-  .basicModal_dateContainer_end .end-date {
-    font-size: 14px;
-    line-height: 16.8px;
-  }
-  .basicModal_price {
-    width: 100%;
-  }
-  .checkbox-label {
-    margin: 5px 0px 0px 0px;
-  }
-  .basicModal_summary {
-    max-width: 90%;
-  }
-  .basicModal_form_flex {
-    display: block;
-  }
-}
-@media screen and (max-width: 480px) {
-  .basicModal_price_total .sum {
-    font-size: 18.01px;
-    line-height: 27.02px;
-  }
-  .basicModal_price_total .workings {
-    font-size: 6.76px;
-    line-height: 10.13px;
-  }
-  .basicModal_button {
-    width: 100%;
-    margin: 8px 0px 22px 0px;
-    font-size: 16px;
-  }
-  .basicModal_sub_con {
-    right: 4%;
-  }
-  .calendar {
-    left: 2%;
-  }
-  .workspace-button1,
-  .workspace-button2 {
-    padding: 10px 15px;
-    font-size: 14px;
-  }
-}
-
-@media screen and (max-width: 320px) {
-  .workspace-button1,
-  .workspace-button2 {
-    padding: 8px 8px;
-    font-size: 12px;
-  }
-}
-
-/* .basicModal_overlay {
-  display: none;
-}
-.basicModal_space {
-  margin: 100px auto;
-  min-height: 80vh;
-  width: 100%;
-  max-width: 800px;
-  border: 1px solid #eee;
-  border-radius: 24px;
-  padding: 40px;
-  font-family: "Graphik Trial", sans-serif;
-  background-color: #fff;
-  position: relative;
-}
-.basicModal_space::-webkit-scrollbar-track {
-  scrollbar-width: 1px;
-}
-.close {
-  display: none;
-}
-
-.basicModal_space h2 {
-  font-size: 40px;
-  font-weight: 600;
-  line-height: 48px;
-  text-align: center;
-  margin-top: 0px;
-  margin-bottom: 16px;
-}
-.basicModal_space .para {
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 21px;
-  text-align: center;
-  color: #8897ae;
-  margin-bottom: 8px;
-}
-.basicModal_space .thirty {
-  color: #773dd3;
-  font-weight: 600;
-}
-.workspace_id {
-  font-weight: 500;
-  font-size: 14px;
-  text-align: center;
-  line-height: 140%;
-  letter-spacing: 2%;
-  color: #212529;
-  margin-bottom: 10px;
-}
-.workspace_id span {
-  font-weight: 700;
-  font-size: 14px;
-  color: #212529;
-}
-.workspace_id_buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  margin-bottom: 30px;
-}
-.workspace-button1 {
-  border: 1px solid #773dd3;
+  border: none;
+  font-family: inherit;
+  line-height: 1.125em;
+  padding: 20px;
   border-radius: 8px;
-  padding: 10px 51px;
-  font-weight: 600;
-  font-size: 14px;
-  text-align: center;
-  color: #773dd3;
-  background: white;
-  cursor: pointer;
-}
-.workspace-button2 {
-  border: 1px solid #773dd3;
-  border-radius: 8px;
-  padding: 10px 27.5px;
-  font-weight: 600;
-  font-size: 14px;
-  text-align: center;
-  color: #773dd3;
-  background: white;
-  cursor: pointer;
-}
-.workspace_id_buttons button.active {
-  background-color: #773dd3;
-  color: white;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-.basicModal_dateContainer {
-  width: 100%;
-  max-width: 430px;
-  display: flex;
-  margin: 0 auto;
-  gap: 16px;
-}
-.basicModal_sub {
-  position: relative;
-}
-.calendar {
-  position: absolute;
-  z-index: 9999;
-  left: 0;
-  right: 0;
-  width: 100%;
-  max-width: 430px;
-  margin: 0 auto;
-  transition: opacity 0.5s ease-in-out;
+.react-calendar--doubleView {
+  width: 700px;
 }
 
-.basicModal_Container {
-  background-color: #fbfbfb;
-  padding-top: 24px;
-  border-radius: 12px;
-  padding-bottom: 24px;
-  margin-bottom: 24px;
-}
-.basicModal_dateContainer_start,
-.basicModal_dateContainer_end {
-  width: 211px;
-  background-color: transparent;
-  border-radius: 6px;
-  height: 56px;
-  padding: 14px;
-  border: 1px solid #afbaca;
-  gap: 8px;
+.react-calendar--doubleView .react-calendar__viewContainer {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-  background: white;
+  margin: -0.5em;
 }
-.basicModal_dateContainer_start p,
-.basicModal_dateContainer_end p {
-  margin-bottom: 0px;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 24px;
-  color: #8897ae;
+
+.react-calendar--doubleView .react-calendar__viewContainer > * {
+  width: 50%;
+  margin: 0.5em;
 }
-.basicModal_dateContainer_start .start-date,
-.basicModal_dateContainer_end .end-date {
-  line-height: 19.2px;
-  font-size: 16px;
-  font-weight: 500;
-  color: #333333;
-  margin-top: 5px;
+
+.react-calendar,
+.react-calendar *,
+.react-calendar *:before,
+.react-calendar *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
-.basicModal_sub_con {
-  position: absolute;
-  z-index: 9999;
-  left: 0;
-  right: 0;
-  width: 100%;
-  max-width: 300px;
+
+/* Navigation */
+.react-calendar__navigation {
   display: flex;
-  flex-direction: column;
-  margin: auto;
-  background-color: #fff;
-  gap: 8px;
-  border-radius: 8px;
-  padding: 24px;
-  box-shadow: -2px 2px 12px 2px rgba(21, 30, 42, 0.08);
-  transition: opacity 0.5s ease-in-out;
-}
-.basicModal_sub_conFlex {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid #dddd;
-  cursor: pointer;
-}
-.basicModal_summary {
-  width: 100%;
-  max-width: 430px;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  border-radius: 8px;
-  padding: 24px;
-}
-.basicModal_summary h5 {
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 24px;
-  color: black;
-}
-.basicModal_summary p {
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 24px;
-  color: black;
-  margin-bottom: 0;
-}
-.basicModal_summary_flex {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2px;
-}
-.basicModal_sub_con h5 {
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 20px;
-  color: #334155;
-}
-.basicModal_sub_con p {
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
-  color: #334155;
-}
-.checkbox-label {
-  display: flex;
-  align-items: center;
-  width: 430px;
-  margin: 0 auto;
-  margin-top: 8px;
-}
-.checkbox-label input,
-.label {
-  display: block;
-}
-.label {
-  color: #787676;
-  font-size: 12px;
-  line-height: 14.4px;
-  font-weight: 400;
-  padding-left: 10px;
-}
-.basicModal_price {
-  width: 430px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 430px;
-  margin: 0 auto;
-}
-.basicModal_price_label {
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  color: #333;
-}
-.basicModal_price_total .sum {
-  font-size: 32px;
-  line-height: 48px;
-  font-weight: 700;
-  margin-bottom: 0px;
-}
-.basicModal_price_total .workings {
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 18px;
+  height: 44px;
   margin-bottom: 20px;
 }
-.loader {
-  width: 275px;
-  height: 56px;
-  margin: 0 auto;
+
+.react-calendar__navigation button {
+  min-width: 44px;
+  background: none;
+  font-size: 24px;
+  /* larger arrows */
   margin-top: 8px;
-  margin-bottom: 64px;
-  font-size: 16px;
-  display: flex;
-  justify-content: center;
-}
-.basicModal_form_flex {
-  display: flex;
-  gap: 8px;
-}
-.basicModal_form input {
-  border: 1px solid #afbaca;
-  width: 100%;
-  height: 56px;
-  border-radius: 6px;
-  margin-bottom: 16px;
-  padding: 10px;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 24px;
-  outline: none;
-  color: #8897ae;
-}
-.basicModal_button {
-  width: 275px;
-  background-color: #773dd3;
-  color: #fff;
-  border-radius: 8px;
-  height: 56px;
-  display: block;
-  margin: 0 auto;
-  margin-top: 8px;
-  margin-bottom: 64px;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-}
-.basicModal_workspaceInfo {
-  font-weight: 700;
-  font-size: 10px;
-  line-height: 140%;
-  letter-spacing: 2%;
-  text-align: center;
-  color: #212529;
-  margin-bottom: 40px;
-}
-.react-calendar {
-  border: none;
-  border-radius: 8px;
 }
 
+.react-calendar__navigation button:disabled {
+  background-color: #f0f0f0;
+}
+
+.react-calendar__navigation button:enabled:hover,
+.react-calendar__navigation button:enabled:focus {
+  background-color: #e6e6e6;
+}
+
+.react-calendar__navigation__label {
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 18px;
+  color: #1f1035;
+  text-align: left;
+  padding-left: 0;
+  pointer-events: none;
+  /* Disable click on month/year to prevent view change if desired, or keep enabled */
+  flex-grow: 1 !important;
+}
+
+/* Arrange items: Label first (left), then arrows (right) */
+/* By default react-calendar uses order, but because we hid prev2/next2, we effectively have: Prev, Label, Next. we want Label, Prev, Next */
+.react-calendar__navigation__label {
+  order: 1;
+}
+
+.react-calendar__navigation__prev-button {
+  order: 2;
+}
+
+.react-calendar__navigation__next-button {
+  order: 3;
+}
+
+/* Weekdays */
+.react-calendar__month-view__weekdays {
+  text-align: center;
+  text-transform: capitalize;
+  font-weight: 400;
+  font-size: 14px;
+  color: #575a65;
+  text-decoration: none !important;
+  margin-bottom: 10px;
+}
+
+.react-calendar__month-view__weekdays__weekday {
+  padding: 0.5em;
+}
+.react-calendar__month-view__weekdays__weekday abbr {
+  text-decoration: none;
+  cursor: default;
+}
+
+/* Numbers (Tiles) */
 .react-calendar__tile {
   max-width: 100%;
-  background: white;
-  border-radius: 4px;
-  cursor: pointer;
+  padding: 10px 6.6667px;
+  background: none;
+  text-align: center;
+  line-height: 24px;
+  font-size: 14px;
+  color: #575a65;
+  border-radius: 6px;
+  margin-bottom: 5px;
+  height: 45px;
+  width: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.react-calendar__tile--weekend {
-  color: black;
+
+.react-calendar__tile:disabled {
+  background-color: #f8f8f8;
+  color: #bdbdbd;
 }
-.react-calendar__tile--active {
-  background: red;
+
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+  background-color: #e6e6e6;
+  color: #1f1035;
+}
+
+/* Active Tile (Selected Date) */
+.react-calendar__tile--active,
+.react-calendar__tile--active:enabled:hover,
+.react-calendar__tile--active:enabled:focus {
+  background: #773dd3;
   color: white;
 }
+
+/* Current Day (Now) */
+.react-calendar__tile--now {
+  background: #ffff76;
+  /* default highlight for today? or remove */
+  background: transparent;
+  font-weight: bold;
+  color: #773dd3;
+}
+
+.react-calendar__tile--now:enabled:hover,
+.react-calendar__tile--now:enabled:focus {
+  background: #ffffa9;
+  background: #f0f0f0;
+}
+
+.react-calendar__tile--hasActive {
+  background: #76baff;
+}
+
+.react-calendar__tile--hasActive:enabled:hover,
+.react-calendar__tile--hasActive:enabled:focus {
+  background: #a9d4ff;
+}
+
+.react-calendar__tile--active {
+  background: #773dd3;
+  color: white;
+  border-radius: 6px;
+}
+
+/* this is the css for booking summary  */
+.summary-details {
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 16px 24px;
+  background-color: #fafafa;
+}
+.summary-item h5 {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 160%;
+  letter-spacing: 0%;
+  color: #787878;
+}
+.summary-item p {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 160%;
+  letter-spacing: 0%;
+  color: #292d32;
+}
+
 @media screen and (max-width: 768px) {
   .basicModal_space {
     width: 90%;
-    padding-left: 16px;
+    padding-left: 70px;
     padding-right: 16px;
   }
-  .close {
-    font-size: 20px;
+  .right-side-content {
+    width: 100%;
+    padding: 20px;
+  }
+  .left-side-content {
+    display: none;
+  }
+  .subscription_type {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
   }
   .basicModal_space h2 {
     font-size: 24px;
@@ -879,11 +651,51 @@ label {
   .basicModal_form_flex {
     display: block;
   }
+  .basicModal_form_flex_input {
+    width: 100%;
+  }
 }
 @media screen and (max-width: 480px) {
-  .basicModal_price_total .sum {
-    font-size: 18.01px;
-    line-height: 27.02px;
+  .basicModal_space {
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .right-side-content {
+    width: 100%;
+    padding: 10px;
+  }
+  .workspace_id {
+    padding: 10px;
+  }
+  .workspace_id_button {
+    padding: 10px 15px;
+  }
+  .workspace-button2 {
+    padding: 10px;
+  }
+  .workspace_id_button img {
+  width: 30px;
+  height: 30px;
+}
+.workspace-button2 img {
+  width: 30px;
+  height: 30px;
+}
+.workspace-button2 p {
+  padding-top: 10px;
+}
+.workspace_id_button p {
+  padding-top: 10px;
+}
+  .subscription_type {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .subscription-option {
+    width: 100%;
+    /* height: auto; optional, if needed to fit content */
   }
   .basicModal_price_total .workings {
     font-size: 6.76px;
@@ -905,12 +717,43 @@ label {
     padding: 10px 15px;
     font-size: 14px;
   }
+  .basicModal_form_flex_input {
+    display: block;
+    width: 100%;
+  }
 }
 
-@media screen and (max-width: 320px) {
-  .workspace-button1,
-  .workspace-button2 {
-    padding: 8px 8px;
-    font-size: 12px;
+@media screen and (max-width: 375px) {
+  .basicModal_space {
+    width: 100%;
+    padding-left: 5px;
+    padding-right: 5px;
   }
-} */
+  .workspace_id {
+    padding: 5px;
+  }
+  .workspace_id_button {
+    padding: 5px;
+    gap: 5px;
+  }
+  .workspace-button2 {
+    padding: 5px;
+    gap: 5px;
+  }
+  .workspace_id_button img {
+  width: 20px;
+  height: 20px;
+}
+.workspace-button2 img {
+  width: 20px;
+  height: 20px;
+}
+.workspace-button2 p {
+  font-size: 12px;
+  padding-top: 10px;
+}
+.workspace_id_button p {
+  font-size: 12px;
+  padding-top: 10px;
+}
+}

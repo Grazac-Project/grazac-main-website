@@ -16,6 +16,7 @@ import ShowContext from "./showContext";
 import Unsubscribe from "./pages/Unsubscribe";
 import Contact from "./pages/contact";
 import BookSpace from "./components/bookSpace";
+import BookingSummary from "./components/BookingSummary";
 
 const App = () => {
   const { pathname } = useLocation();
@@ -83,6 +84,7 @@ const App = () => {
             <Route path="/blog" exact component={Blog} />
             <Route path="/contact" exact component={Contact} />
             <Route path="/bookSpace" exact component={BookSpace} />
+            <Route path="/booking-summary" exact component={BookingSummary} />
 
             <Route path="*">
               <Redirect to="/" />
