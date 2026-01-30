@@ -156,58 +156,92 @@ const BookingSummary = () => {
         </p>
 
         <div className="summary-details">
-          <div className="summary-item">
-            {showModal === "id" ? (
-              <>
-                <h5>Username/Email</h5>
-                <p>{userInfo.code}</p>
-              </>
-            ) : (
-              <>
-                <h5>Full Name</h5>
-                <p>{userInfo.firstName} {userInfo.lastName}</p>
-              </>
-            )}
-          </div>
-
-          <div className="summary-item">
-            <h5>Subscription Type</h5>
-            <p>{selectedPaymentOption?.label}</p>
-          </div>
-
-          <div className="summary-item total-section">
-            <h5>Total Amount</h5>
-            <p>
-              ₦{totalAmount.toLocaleString()}
-            </p>
-          </div>
-
-          <div className="summary-item">
-            <h5>Start Date</h5>
-            <p>{startDate}</p>
-          </div>
-
-          <div className="summary-item">
-            <h5>End Date</h5>
-            <p>{endDate || "N/A"}</p>
-          </div>
-
-          {state.customDates && state.customDates.length > 0 && (
-            <div className="summary-item" style={{ flexDirection: 'column', alignItems: 'flex-start' }}>
-              <h5>Selected Dates</h5>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '8px' }}>
-                {state.customDates.map((date, index) => (
-                  <span key={index} style={{
-                    background: '#f0f0f0',
-                    padding: '4px 8px',
-                    borderRadius: '4px',
-                    fontSize: '14px'
-                  }}>
-                    {date}
-                  </span>
-                ))}
+          {selectedPaymentOption?.value === "custom" || (state.customDates && state.customDates.length > 0) ? (
+            // Custom Plan Layout
+            <>
+              <div className="summary-item">
+                 <h5>Username/Email</h5>
+                    <p>{userInfo.email}</p>
               </div>
-            </div>
+
+              <div className="summary-item">
+                <h5>Subscription Type</h5>
+                <p>{selectedPaymentOption?.label}</p>
+              </div>
+
+              <div className="summary-item">
+                <h5>Total Days Selected</h5>
+                <p>{state.customDates ? state.customDates.length : 0} days</p>
+              </div>
+
+              <div className="summary-item total-section">
+                <h5>Total Amount</h5>
+                <p>₦{totalAmount.toLocaleString()}</p>
+              </div>
+
+              <div className="summary-item" style={{ flexDirection: 'column', alignItems: 'flex-start' }}>
+                <h5>Selected Dates</h5>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '8px' }}>
+                  {state.customDates && state.customDates.map((dateString, index) => {
+                    // Parse YYYY-MM-DD safely to local time
+                    const [year, month, day] = dateString.split('-').map(Number);
+                    const dateObj = new Date(year, month - 1, day);
+                    const weekday = dateObj.toLocaleDateString('en-US', { weekday: 'short' });
+
+                    return (
+                      <span key={index} style={{
+                        background: '#FFFFFF',
+                        padding: '8px',
+                        borderRadius: '8px',
+                        fontSize: '14px',
+                        color: "#292D32",
+                        fontWeight: "600",
+                        border: "1px solid #EAEAEA"
+                      }}>
+                        {weekday}, {dateString}
+                      </span>
+                    );
+                  })}
+                </div>
+              </div>
+            </>
+          ) : (
+            // Standard Layout (Daily, Weekly, Monthly, etc.)
+            <>
+              <div className="summary-item">
+                {showModal === "id" ? (
+                  <>
+                    <h5>Username/Email</h5>
+                    <p>{userInfo.code}</p>
+                  </>
+                ) : (
+                  <>
+                    <h5>Full Name</h5>
+                    <p>{userInfo.firstName} {userInfo.lastName}</p>
+                  </>
+                )}
+              </div>
+
+              <div className="summary-item">
+                <h5>Subscription Type</h5>
+                <p>{selectedPaymentOption?.label}</p>
+              </div>
+
+              <div className="summary-item total-section">
+                <h5>Total Amount</h5>
+                <p>₦{totalAmount.toLocaleString()}</p>
+              </div>
+
+              <div className="summary-item">
+                <h5>Start Date</h5>
+                <p>{startDate}</p>
+              </div>
+
+              <div className="summary-item">
+                <h5>End Date</h5>
+                <p>{endDate || "N/A"}</p>
+              </div>
+            </>
           )}
         </div>
 
