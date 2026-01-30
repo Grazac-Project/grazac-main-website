@@ -191,6 +191,24 @@ const BookingSummary = () => {
             <h5>End Date</h5>
             <p>{endDate || "N/A"}</p>
           </div>
+
+          {state.customDates && state.customDates.length > 0 && (
+            <div className="summary-item" style={{ flexDirection: 'column', alignItems: 'flex-start' }}>
+              <h5>Selected Dates</h5>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '8px' }}>
+                {state.customDates.map((date, index) => (
+                  <span key={index} style={{
+                    background: '#f0f0f0',
+                    padding: '4px 8px',
+                    borderRadius: '4px',
+                    fontSize: '14px'
+                  }}>
+                    {date}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
         {isloading ? (

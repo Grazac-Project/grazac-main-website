@@ -58,7 +58,10 @@ const BookSpace = () => {
     lastName: "",
     email: "",
     phoneNumber: "",
-    code: "",
+    username: "",
+    startDate: "",
+    subscriptionType: "",
+    customDates: []
   });
 
   // const modalRef = useRef();
@@ -139,17 +142,68 @@ const BookSpace = () => {
 
   const handlePaymentOptionChange = (option) => {
     setSelectedPaymentOption(option);
+    setUserInfo(prev => ({
+      ...prev,
+      subscriptionType: option.label,
+      customDates: option.value !== "custom" ? [] : prev.customDates,
+    }));
     setToggle(false);
   };
 
-  const handleStartDateChange = (newStartDate) => {
-    setStartDate(newStartDate);
-    setToggle2(false);
+  const handleStartDateChange = (date) => {
+    if (selectedPaymentOption?.value === "custom") {
+      const dateString = date.toLocaleDateString('en-CA'); // YYYY-MM-DD
+      let updatedDates = [...userInfo.customDates];
+
+      if (updatedDates.includes(dateString)) {
+        updatedDates = updatedDates.filter((d) => d !== dateString);
+      } else {
+        updatedDates.push(dateString);
+      }
+
+      // Smart Pricing Logic
+      let newTotal = 0;
+      const count = updatedDates.length;
+
+      if (count === 7) {
+        newTotal = 15000; // Weekly
+      } else if (count === 31) {
+        newTotal = 60000; // Monthly
+      } else if (count === 91) {
+        newTotal = 165000; // Quarterly
+      } else if (count === 365) {
+        newTotal = 600000; // Yearly
+      } else {
+        newTotal = count * 3000; // Daily rate
+      }
+
+      setSelectedPaymentOption((prev) => ({
+        ...prev,
+        amount: newTotal,
+      }));
+
+      setUserInfo((prev) => ({ ...prev, customDates: updatedDates }));
+    } else {
+      setStartDate(date);
+      setToggle2(false);
+    }
+  };
+
+  const tileClassName = ({ date, view }) => {
+    if (view === "month" && selectedPaymentOption?.value === "custom") {
+      const dateString = date.toLocaleDateString('en-CA');
+      return userInfo.customDates.includes(dateString)
+        ? "selected-day"
+        : null;
+    }
+    return null;
   };
 
   const handleCustomDateClick = (e) => {
     e.stopPropagation();
-    setSelectedPaymentOption({ value: "custom", label: "Custom", amount: 0 }); // Set a dummy option for custom
+    const option = { value: "custom", label: "Custom", amount: 0 };
+    setSelectedPaymentOption(option);
+    setUserInfo(prev => ({ ...prev, subscriptionType: "Custom", customDates: [] }));
     setToggle2(!toggle2); // Toggle calendar
     setToggle(false);
   };
@@ -193,19 +247,34 @@ const BookSpace = () => {
     initialValues: userInfo,
     enableReinitialize: true,
     onSubmit: async (values, { setSubmitting }) => {
-      history.push("/booking-summary", {
-        userInfo: values,
-        selectedPaymentOption,
-        startDate: startDate.toLocaleDateString(),
-        endDate: endDate,
-        showModal
-      });
+      const formatDate = (date) => date.toLocaleDateString('en-CA');
+      const payload = {
+        ...values,
+        subscriptionType: selectedPaymentOption?.label || "Custom",
+        startDate: selectedPaymentOption?.value === "custom"
+          ? values.customDates[0] || formatDate(new Date())
+          : formatDate(startDate),
+        customDates: selectedPaymentOption?.value === "custom" ? values.customDates : []
+      };
+
+      try {
+        history.push("/booking-summary", {
+          userInfo: values,
+          selectedPaymentOption,
+          startDate: payload.startDate,
+          endDate: endDate,
+          showModal,
+          customDates: payload.customDates
+        });
+      } catch (error) {
+        console.error(error);
+      }
       setSubmitting(false);
     },
   });
 
   useEffect(() => {
-    setUserInfo(formik.values);
+    setUserInfo(prev => ({ ...prev, ...formik.values, customDates: prev.customDates }));
   }, [formik.values]);
 
   return (
@@ -217,7 +286,7 @@ const BookSpace = () => {
         </div>
 
         <div className="right-side-content">
-          
+
           <div className="book-space-header">
             <img src={backIcon} alt="" onClick={() => history.goBack()} className="back-icon" />
             <h2>Book a Space</h2>
@@ -387,11 +456,12 @@ const BookSpace = () => {
               </div>
             )}
             {toggle2 && (
-              <div className="calendar">
+              <div className="calendar" onClick={(e) => e.stopPropagation()}>
                 <Calendar
                   onChange={handleStartDateChange}
                   value={startDate}
                   tileDisabled={tileDisabled}
+                  tileClassName={tileClassName}
                   prev2Label={null}
                   next2Label={null}
                 />

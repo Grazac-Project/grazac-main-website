@@ -39,7 +39,6 @@
   margin-bottom: 32px;
 }
 
-
 .back-icon {
   cursor: pointer;
 }
@@ -559,19 +558,18 @@ label {
     width: 100%;
     padding: 10px;
   }
-  .workspace_id{
+  .workspace_id {
     padding: 15px;
   }
   .subscription_type {
-  gap: 8px;
-}
-.subscription-option {
-  width: 200px;
-}
-.basicModal_Container {
-  padding: 25px 25px;
- 
-}
+    gap: 8px;
+  }
+  .subscription-option {
+    width: 200px;
+  }
+  .basicModal_Container {
+    padding: 25px 25px;
+  }
 }
 @media screen and (max-width: 1114px) {
   .basicModal_space {
@@ -587,19 +585,18 @@ label {
     width: 100%;
     padding: 10px;
   }
-  .workspace_id{
+  .workspace_id {
     padding: 15px;
   }
   .subscription_type {
-  gap: 8px;
-}
-.subscription-option {
-  width: 150px;
-}
-.basicModal_Container {
-  padding: 20px 20px;
- 
-}
+    gap: 8px;
+  }
+  .subscription-option {
+    width: 150px;
+  }
+  .basicModal_Container {
+    padding: 20px 20px;
+  }
 }
 @media screen and (max-width: 1024px) {
   .basicModal_space {
@@ -615,19 +612,18 @@ label {
     width: 100%;
     padding: 10px;
   }
-  .workspace_id{
+  .workspace_id {
     padding: 15px;
   }
   .subscription_type {
-  gap: 8px;
-}
-.subscription-option {
-  width: 150px;
-}
-.basicModal_Container {
-  padding: 20px 20px;
- 
-}
+    gap: 8px;
+  }
+  .subscription-option {
+    width: 150px;
+  }
+  .basicModal_Container {
+    padding: 20px 20px;
+  }
 }
 @media screen and (max-width: 900px) {
   .basicModal_space {
@@ -694,7 +690,7 @@ label {
   .basicModal_form_flex_input {
     width: 100%;
   }
-  .people-image{
+  .people-image {
     display: none;
   }
 }
@@ -718,19 +714,19 @@ label {
     padding: 10px;
   }
   .workspace_id_button img {
-  width: 30px;
-  height: 30px;
-}
-.workspace-button2 img {
-  width: 30px;
-  height: 30px;
-}
-.workspace-button2 p {
-  padding-top: 10px;
-}
-.workspace_id_button p {
-  padding-top: 10px;
-}
+    width: 30px;
+    height: 30px;
+  }
+  .workspace-button2 img {
+    width: 30px;
+    height: 30px;
+  }
+  .workspace-button2 p {
+    padding-top: 10px;
+  }
+  .workspace_id_button p {
+    padding-top: 10px;
+  }
   .subscription_type {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -772,9 +768,8 @@ label {
     padding-right: 5px;
     padding-top: 32px;
   }
-  .right-side-content{
+  .right-side-content {
     border: none;
-
   }
   .workspace_id {
     padding: 5px;
@@ -788,19 +783,28 @@ label {
     gap: 5px;
   }
   .workspace_id_button img {
-  width: 20px;
-  height: 20px;
+    width: 20px;
+    height: 20px;
+  }
+  .workspace-button2 img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .workspace_id_button p {
+    font-size: 12px;
+    padding-top: 10px;
+  }
 }
-.workspace-button2 img {
-  width: 20px;
-  height: 20px;
+
+/* Selected custom dates - Global Style */
+.selected-day {
+  background: #773dd3 !important;
+  color: white !important;
+  border-radius: 6px;
 }
-.workspace-button2 p {
-  font-size: 12px;
-  padding-top: 10px;
-}
-.workspace_id_button p {
-  font-size: 12px;
-  padding-top: 10px;
-}
+
+.selected-day:enabled:hover,
+.selected-day:enabled:focus {
+  background: #6a35bd !important;
 }
