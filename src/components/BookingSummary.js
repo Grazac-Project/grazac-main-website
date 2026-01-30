@@ -145,7 +145,7 @@ const BookingSummary = () => {
   return (
     <div className="basicModal_space">
       <ToastContainer />
-      <img src={people} alt="people" />
+      <img src={people} alt="people" className="people-image" />
       <div className="right-side-content">
         <div className="book-space-header">
           <img src={backIcon} alt="back" onClick={() => history.goBack()} className="back-icon" />

@@ -217,6 +217,7 @@ const BookSpace = () => {
         </div>
 
         <div className="right-side-content">
+          
           <div className="book-space-header">
             <img src={backIcon} alt="" onClick={() => history.goBack()} className="back-icon" />
             <h2>Book a Space</h2>
@@ -332,34 +333,26 @@ const BookSpace = () => {
               : "Subscription Type"}
           </p>
           <div className="basicModal_Container">
-            <div className="basicModal_dateContainer">
-              <div
-                className="basicModal_dateContainer_start"
-              // onClick={handleToggle}
-              >
-                <div className="subscription_type">
-                  {paymentOptions.map((option) => (
-                    <div
-                      key={option.value}
-                      className={`subscription-option ${selectedPaymentOption?.value === option.value ? "active" : ""
-                        }`}
-                      onClick={() => handlePaymentOptionChange(option)}
-                    >
-                      {option.label} <br />
-                      <span>₦{option.amount.toLocaleString()}</span>
-                    </div>
-                  ))}
-                  <div
-                    className={`subscription-option ${selectedPaymentOption?.value === "custom" ? "active" : ""
-                      }`}
-                    onClick={handleCustomDateClick}
-                  >
-                    Custom
-                  </div>
+            <div className="subscription_type">
+              {paymentOptions.map((option) => (
+                <div
+                  key={option.value}
+                  className={`subscription-option ${selectedPaymentOption?.value === option.value ? "active" : ""
+                    }`}
+                  onClick={() => handlePaymentOptionChange(option)}
+                >
+                  {option.label} <br />
+                  <span>₦{option.amount.toLocaleString()}</span>
                 </div>
+              ))}
+              <div
+                className={`subscription-option ${selectedPaymentOption?.value === "custom" ? "active" : ""
+                  }`}
+                onClick={handleCustomDateClick}
+              >
+                Custom
               </div>
             </div>
-
           </div>
           <div>
             <h1 className="start-date">Start Date</h1>
@@ -408,19 +401,6 @@ const BookSpace = () => {
           <div>
             <p className="workspaceinfo">Grazac Workspace gives you access to exclusive discounts and allows for faster booking in the future</p>
           </div>
-          {/* <div className="basicModal_summary">
-            {summary.length === 4 && (
-              <>
-                <h5>Summary</h5>
-                {summary.map((item, index) => (
-                  <div key={index} className="basicModal_summary_flex">
-                    <h5>{item.label}</h5>
-                    <p>{item.value}</p>
-                  </div>
-                ))}
-              </>
-            )}
-          </div> */}
 
           {isloading ? (
             <div className="loader">

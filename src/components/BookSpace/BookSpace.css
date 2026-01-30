@@ -1,15 +1,27 @@
 .basicModal_space {
   display: flex;
   padding-left: 120px;
+  padding-top: 80px;
   padding-right: 120px;
   gap: 10px;
   background-color: #fff;
+  max-width: 1440px;
+  margin: 0 auto;
 }
+/* .left-side-content img {
+  width: 621px;
+} */
 .right-side-content {
   width: 621px;
   border: 2px solid #eaeaea;
   border-radius: 16px;
   padding: 32px;
+}
+.book-space-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
 }
 .basicModal_space h2 {
   font-size: 40px;
@@ -17,22 +29,16 @@
   line-height: 48px;
   text-align: center;
   margin-top: 0px;
-  margin-bottom: 16px;
-}
-.basicModal_space .para {
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 21px;
-  text-align: center;
-  color: #8897ae;
   margin-bottom: 8px;
 }
-.book-space-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 16px;
+.para {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 21px;
+  color: #8897ae;
+  margin-bottom: 32px;
 }
+
 
 .back-icon {
   cursor: pointer;
@@ -44,20 +50,12 @@
   color: #1f1035;
   margin-top: 15px;
 }
-.para {
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 150%;
-  color: #575a65;
-}
-.basicModal_space .thirty {
-  color: #773dd3;
-  font-weight: 600;
-}
+
 .workspace_id {
   background-color: #fafafa;
   padding: 32px;
   margin-bottom: 16px;
+  border-radius: 8px;
 }
 .workspace_id h1 {
   font-weight: 600;
@@ -228,7 +226,6 @@
   background-color: #fbfbfb;
   padding: 32px 12px;
   border-radius: 12px;
-  padding-bottom: 24px;
   margin-bottom: 24px;
   border: 1px solid #eaeaea;
 }
@@ -297,50 +294,7 @@
   line-height: 20px;
   color: #334155;
 }
-.checkbox-label {
-  display: flex;
-  align-items: center;
-  width: 430px;
-  margin: 0 auto;
-  margin-top: 8px;
-}
-.checkbox-label input,
-.label {
-  display: block;
-}
-.label {
-  color: #787676;
-  font-size: 12px;
-  line-height: 14.4px;
-  font-weight: 400;
-  padding-left: 10px;
-}
-.basicModal_price {
-  width: 430px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 430px;
-  margin: 0 auto;
-}
-.basicModal_price_label {
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  color: #333;
-}
-.basicModal_price_total .sum {
-  font-size: 32px;
-  line-height: 48px;
-  font-weight: 700;
-  margin-bottom: 0px;
-}
-.basicModal_price_total .workings {
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 18px;
-  margin-bottom: 20px;
-}
+
 .loader {
   width: 275px;
   height: 56px;
@@ -591,7 +545,91 @@ label {
   color: #292d32;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1280px) {
+  .basicModal_space {
+    width: 90%;
+    padding-left: 50px;
+    padding-right: 0px;
+  }
+  .left-side-content img {
+    width: 100%;
+    height: auto;
+  }
+  .right-side-content {
+    width: 100%;
+    padding: 10px;
+  }
+  .workspace_id{
+    padding: 15px;
+  }
+  .subscription_type {
+  gap: 8px;
+}
+.subscription-option {
+  width: 200px;
+}
+.basicModal_Container {
+  padding: 25px 25px;
+ 
+}
+}
+@media screen and (max-width: 1114px) {
+  .basicModal_space {
+    width: 90%;
+    padding-left: 50px;
+    padding-right: 0px;
+  }
+  .left-side-content img {
+    width: 100%;
+    height: auto;
+  }
+  .right-side-content {
+    width: 100%;
+    padding: 10px;
+  }
+  .workspace_id{
+    padding: 15px;
+  }
+  .subscription_type {
+  gap: 8px;
+}
+.subscription-option {
+  width: 150px;
+}
+.basicModal_Container {
+  padding: 20px 20px;
+ 
+}
+}
+@media screen and (max-width: 1024px) {
+  .basicModal_space {
+    width: 90%;
+    padding-left: 50px;
+    padding-right: 0px;
+  }
+  .left-side-content img {
+    width: 100%;
+    height: auto;
+  }
+  .right-side-content {
+    width: 100%;
+    padding: 10px;
+  }
+  .workspace_id{
+    padding: 15px;
+  }
+  .subscription_type {
+  gap: 8px;
+}
+.subscription-option {
+  width: 150px;
+}
+.basicModal_Container {
+  padding: 20px 20px;
+ 
+}
+}
+@media screen and (max-width: 900px) {
   .basicModal_space {
     width: 90%;
     padding-left: 70px;
@@ -600,6 +638,8 @@ label {
   .right-side-content {
     width: 100%;
     padding: 20px;
+    border: none;
+    /* margin-top: 20px; */
   }
   .left-side-content {
     display: none;
@@ -654,6 +694,9 @@ label {
   .basicModal_form_flex_input {
     width: 100%;
   }
+  .people-image{
+    display: none;
+  }
 }
 @media screen and (max-width: 480px) {
   .basicModal_space {
@@ -695,7 +738,6 @@ label {
   }
   .subscription-option {
     width: 100%;
-    /* height: auto; optional, if needed to fit content */
   }
   .basicModal_price_total .workings {
     font-size: 6.76px;
@@ -723,11 +765,16 @@ label {
   }
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 428px) {
   .basicModal_space {
     width: 100%;
     padding-left: 5px;
     padding-right: 5px;
+    padding-top: 32px;
+  }
+  .right-side-content{
+    border: none;
+
   }
   .workspace_id {
     padding: 5px;
