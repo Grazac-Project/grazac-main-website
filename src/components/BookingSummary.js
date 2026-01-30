@@ -35,7 +35,7 @@ const BookingSummary = () => {
 
   // Always compute or use defaults so hook can run unconditionally
   const totalAmount = selectedPaymentOption ? selectedPaymentOption.amount : 0;
-  const url = "https://grazac-academy-back-end-ej7s.onrender.com/api/v1/user/book";
+  const url = "https://grazac-academy-back-end-ej7s.onrender.com/api/v1/user/book-space";
 
   // Provide safe defaults for the config object
   const SpaceFeeFlutterwaveConfig = {
@@ -82,15 +82,15 @@ const BookingSummary = () => {
     let payload = {};
     if (showModal === "id") {
       payload = {
-        code: userInfo.code,
+        email: userInfo.code,
         startDate: startDate,
-        subscriptionType: selectedPaymentOption?.value || "",
+        subscriptionType: selectedPaymentOption?.label || "Custom",
       }
     } else {
       payload = {
         ...userInfo,
         startDate: startDate,
-        subscriptionType: selectedPaymentOption?.value || "",
+        subscriptionType: selectedPaymentOption?.label || "Custom",
       }
     }
 
@@ -160,8 +160,8 @@ const BookingSummary = () => {
             // Custom Plan Layout
             <>
               <div className="summary-item">
-                 <h5>Username/Email</h5>
-                    <p>{userInfo.email}</p>
+                <h5>Username/Email</h5>
+                <p>{userInfo.email}</p>
               </div>
 
               <div className="summary-item">

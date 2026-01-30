@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback } from "react";
 import calendar from "../images/calendar.png";
 // import dropdown from "../images/drop-icon.svg";
 import "./BookSpace/BookSpace.css";
@@ -6,7 +6,7 @@ import "react-calendar/dist/Calendar.css";
 import Calendar from "react-calendar";
 import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
 // import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
+// import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useFormik } from "formik";
 import Loader from "./Loader";
@@ -128,11 +128,11 @@ const BookSpace = () => {
     }
   }, [startDate, selectedPaymentOption, updateEndDateAndSummary]);
 
-  const handleToggle = (e) => {
-    e.stopPropagation();
-    setToggle(!toggle);
-    setToggle2(false);
-  };
+  // const handleToggle = (e) => {
+  //   e.stopPropagation();
+  //   setToggle(!toggle);
+  //   setToggle2(false);
+  // };
 
   const handleToggle2 = (e) => {
     e.stopPropagation();
