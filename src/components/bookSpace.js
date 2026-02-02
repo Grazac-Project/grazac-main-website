@@ -128,11 +128,11 @@ const BookSpace = () => {
     }
   }, [startDate, selectedPaymentOption, updateEndDateAndSummary]);
 
-  // const handleToggle = (e) => {
-  //   e.stopPropagation();
-  //   setToggle(!toggle);
-  //   setToggle2(false);
-  // };
+  const handleToggle = (e) => {
+    e.stopPropagation();
+    setToggle(!toggle);
+    setToggle2(false);
+  };
 
   const handleToggle2 = (e) => {
     e.stopPropagation();
@@ -441,20 +441,6 @@ const BookSpace = () => {
           </div>
 
           <div className="basicModal_sub">
-            {toggle && (
-              <div className="basicModal_sub_con">
-                {paymentOptions.map((option) => (
-                  <div
-                    key={option.value}
-                    onClick={() => handlePaymentOptionChange(option)}
-                    className="basicModal_sub_conFlex"
-                  >
-                    <p>{option.label}</p>
-                    <h5>₦{option.amount.toLocaleString()}</h5>
-                  </div>
-                ))}
-              </div>
-            )}
             {toggle2 && (
               <div className="calendar" onClick={(e) => e.stopPropagation()}>
                 <Calendar

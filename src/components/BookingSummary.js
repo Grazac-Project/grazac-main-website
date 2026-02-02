@@ -39,13 +39,14 @@ const BookingSummary = () => {
 
   // Provide safe defaults for the config object
   const SpaceFeeFlutterwaveConfig = {
-    public_key: "FLWPUBK-006bdc82ad878f1518af32f44af6478f-X",
+    // public_key: "FLWPUBK-006bdc82ad878f1518af32f44af6478f-X",
+    public_key: "FLWPUBK_TEST-b6c44d3213f2d2b3c0c3142f3ab81b72-X",
     tx_ref: Date.now(),
     amount: totalAmount,
     currency: "NGN",
     payment_options: "card,mobilemoney,ussd",
     customer: {
-      email: userInfo.email || "",
+      email: userInfo.email || userInfo.code || "",
       phonenumber: userInfo.phoneNumber || "",
       name: `${userInfo.firstName || ""} ${userInfo.lastName || ""}`,
     },
@@ -69,28 +70,23 @@ const BookingSummary = () => {
 
     const dataValues = {
       ...userInfo,
-      startDate: startDate, // Assuming startDate is already string if processed, or Date obj
-      // Note: in BookSpace it was `startDate.toLocaleDateString()` before nav
+      startDate: startDate,
       subscriptionType: selectedPaymentOption?.value || "",
     };
-
-    // Note: The logic in BookSpace handled 'id' vs 'generate' slightly differently for backend
-    // 'id' mode only sent code, startDate, subscriptionType.
-    // We should replicate that payload structure construction here or rely on what was passed.
-
-    // Let's ensure we construct the payload exactly as the backend expects based on showModal type.
     let payload = {};
     if (showModal === "id") {
       payload = {
         email: userInfo.code,
         startDate: startDate,
         subscriptionType: selectedPaymentOption?.label || "Custom",
+        customDates: state.customDates || [],
       }
     } else {
       payload = {
         ...userInfo,
         startDate: startDate,
         subscriptionType: selectedPaymentOption?.label || "Custom",
+        customDates: state.customDates || [],
       }
     }
 
@@ -138,7 +134,10 @@ const BookingSummary = () => {
       }
     } catch (error) {
       setIsLoading(false);
-      toast.error("An error occurred while submitting");
+      const errorMessage = error.response && error.response.data && error.response.data.message
+        ? error.response.data.message
+        : "An error occurred while submitting";
+      toast.error(errorMessage);
     }
   };
 
@@ -161,7 +160,7 @@ const BookingSummary = () => {
             <>
               <div className="summary-item">
                 <h5>Username/Email</h5>
-                <p>{userInfo.email}</p>
+                <p>{userInfo.code}</p>
               </div>
 
               <div className="summary-item">
