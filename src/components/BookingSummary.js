@@ -159,8 +159,17 @@ const BookingSummary = () => {
             // Custom Plan Layout
             <>
               <div className="summary-item">
-                <h5>Username/Email</h5>
-                <p>{userInfo.code}</p>
+                {showModal === "id" ? (
+                  <>
+                    <h5>Username/Email</h5>
+                    <p>{userInfo.code}</p>
+                  </>
+                ) : (
+                  <>
+                    <h5>Full Name</h5>
+                    <p>{userInfo.firstName} {userInfo.lastName}</p>
+                  </>
+                )}
               </div>
 
               <div className="summary-item">
