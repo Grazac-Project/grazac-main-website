@@ -4,7 +4,7 @@ import calendar from "../images/calendar.png";
 import "./BookSpace/BookSpace.css";
 import "react-calendar/dist/Calendar.css";
 import Calendar from "react-calendar";
-import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
+// import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
 // import axios from "axios";
 // import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -128,11 +128,6 @@ const BookSpace = () => {
     }
   }, [startDate, selectedPaymentOption, updateEndDateAndSummary]);
 
-  const handleToggle = (e) => {
-    e.stopPropagation();
-    setToggle(!toggle);
-    setToggle2(false);
-  };
 
   const handleToggle2 = (e) => {
     e.stopPropagation();
@@ -204,8 +199,9 @@ const BookSpace = () => {
     const option = { value: "custom", label: "Custom", amount: 0 };
     setSelectedPaymentOption(option);
     setUserInfo(prev => ({ ...prev, subscriptionType: "Custom", customDates: [] }));
-    setToggle2(!toggle2); // Toggle calendar
+    // setToggleCustom(!toggleCustom); // Optional: if we want to auto-open
     setToggle(false);
+    setToggle2(false);
   };
 
 
@@ -217,31 +213,31 @@ const BookSpace = () => {
     return false;
   };
 
-  const totalAmount = selectedPaymentOption ? selectedPaymentOption.amount : 0;
-  const url =
-    "https://grazac-academy-back-end-ej7s.onrender.com/api/v1/user/book";
+  // const totalAmount = selectedPaymentOption ? selectedPaymentOption.amount : 0;
+  // const url =
+  //   "https://grazac-academy-back-end-ej7s.onrender.com/api/v1/user/book";
 
-  const SpaceFeeFlutterwaveConfig = {
-    public_key: "FLWPUBK-006bdc82ad878f1518af32f44af6478f-X",
-    tx_ref: Date.now(),
-    amount: totalAmount,
-    currency: "NGN",
-    payment_options: "card,mobilemoney,ussd",
-    customer: {
-      email: userInfo.email,
-      phonenumber: userInfo.phoneNumber,
-      name: `${userInfo.firstName} ${userInfo.lastName}`,
-    },
-    customizations: {
-      title: "Grazac Technologies Limited",
-      description: "Co-working Space Payment",
-      logo: "https://grazac.com.ng/logo.png",
-    },
-  };
+  // const SpaceFeeFlutterwaveConfig = {
+  //   public_key: "FLWPUBK-006bdc82ad878f1518af32f44af6478f-X",
+  //   tx_ref: Date.now(),
+  //   amount: totalAmount,
+  //   currency: "NGN",
+  //   payment_options: "card,mobilemoney,ussd",
+  //   customer: {
+  //     email: userInfo.email,
+  //     phonenumber: userInfo.phoneNumber,
+  //     name: `${userInfo.firstName} ${userInfo.lastName}`,
+  //   },
+  //   customizations: {
+  //     title: "Grazac Technologies Limited",
+  //     description: "Co-working Space Payment",
+  //     logo: "https://grazac.com.ng/logo.png",
+  //   },
+  // };
 
-  const HandleSpacePayFlutterPayment = useFlutterwave(
-    SpaceFeeFlutterwaveConfig
-  );
+  // const HandleSpacePayFlutterPayment = useFlutterwave(
+  //   SpaceFeeFlutterwaveConfig
+  // );
 
   const formik = useFormik({
     initialValues: userInfo,
@@ -423,22 +419,42 @@ const BookSpace = () => {
               </div>
             </div>
           </div>
-          <div>
-            <h1 className="start-date">Start Date</h1>
-          </div>
-          <div
-            className="basicModal_dateContainer_end"
-            onClick={handleToggle2}
-          >
-            {summary.length === 4 ? (
-              <p> {formatDateWithSuffix(startDate)}</p>
-            ) : (
-              <p>Select Date</p>
-            )}
-            <div>
-              <img src={calendar} alt="calendar" />
+
+          {selectedPaymentOption?.value === "custom" ? (
+            // Custom Date UI - Inline Calendar
+            <div style={{ marginTop: '20px', marginBottom: '20px' }}>
+              <div>
+                <h1 className="start-date">Select Custom Dates</h1>
+              </div>
+              <Calendar
+                onChange={handleStartDateChange}
+                tileClassName={tileClassName}
+                tileDisabled={tileDisabled}
+                prev2Label={null}
+                next2Label={null}
+              />
             </div>
-          </div>
+          ) : (
+            // Standard Start Date UI
+            <>
+              <div>
+                <h1 className="start-date">Start Date</h1>
+              </div>
+              <div
+                className="basicModal_dateContainer_end"
+                onClick={handleToggle2}
+              >
+                {summary.length === 4 ? (
+                  <p> {formatDateWithSuffix(startDate)}</p>
+                ) : (
+                  <p>Select Date</p>
+                )}
+                <div>
+                  <img src={calendar} alt="calendar" />
+                </div>
+              </div>
+            </>
+          )}
 
           <div className="basicModal_sub">
             {toggle2 && (
@@ -447,7 +463,6 @@ const BookSpace = () => {
                   onChange={handleStartDateChange}
                   value={startDate}
                   tileDisabled={tileDisabled}
-                  tileClassName={tileClassName}
                   prev2Label={null}
                   next2Label={null}
                 />

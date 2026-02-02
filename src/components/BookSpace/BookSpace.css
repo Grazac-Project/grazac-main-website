@@ -369,12 +369,12 @@ label {
 
 .react-calendar--doubleView .react-calendar__viewContainer {
   display: flex;
-  margin: -0.5em;
+  margin: 31px;
 }
 
 .react-calendar--doubleView .react-calendar__viewContainer > * {
   width: 50%;
-  margin: 0.5em;
+  margin: 31px;
 }
 
 .react-calendar,
@@ -418,12 +418,9 @@ label {
   text-align: left;
   padding-left: 0;
   pointer-events: none;
-  /* Disable click on month/year to prevent view change if desired, or keep enabled */
   flex-grow: 1 !important;
 }
 
-/* Arrange items: Label first (left), then arrows (right) */
-/* By default react-calendar uses order, but because we hid prev2/next2, we effectively have: Prev, Label, Next. we want Label, Prev, Next */
 .react-calendar__navigation__label {
   order: 1;
 }
@@ -436,37 +433,51 @@ label {
   order: 3;
 }
 
-/* Weekdays */
+/* Weekdays - Apply Grid to match days */
 .react-calendar__month-view__weekdays {
   text-align: center;
   text-transform: capitalize;
-  font-weight: 400;
-  font-size: 14px;
-  color: #575a65;
+  font-weight: 500;
+  font-size: 16px;
+  color: #333333;
   text-decoration: none !important;
   margin-bottom: 10px;
+  display: grid !important;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 15px;
 }
 
 .react-calendar__month-view__weekdays__weekday {
-  padding: 0.5em;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .react-calendar__month-view__weekdays__weekday abbr {
   text-decoration: none;
   cursor: default;
 }
 
+/* Use Grid for the days container to support gap */
+.react-calendar__month-view__days {
+  display: grid !important;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 15px;
+}
+
 /* Numbers (Tiles) */
 .react-calendar__tile {
   max-width: 100%;
-  padding: 10px 6.6667px;
+  padding: 0px !important;
   background: none;
   text-align: center;
-  line-height: 24px;
-  font-size: 14px;
-  color: #575a65;
+  line-height: normal;
+  font-weight: 500;
+  font-size: 16px;
+  color: #7d7d7d;
   border-radius: 6px;
   margin-bottom: 5px;
-  height: 45px;
+  height: 50px;
   width: 45px;
   display: flex;
   align-items: center;
@@ -474,8 +485,8 @@ label {
 }
 
 .react-calendar__tile:disabled {
-  background-color: #f8f8f8;
-  color: #bdbdbd;
+  background-color: #ededed;
+  color: #7d7d7d;
 }
 
 .react-calendar__tile:enabled:hover,
@@ -488,17 +499,17 @@ label {
 .react-calendar__tile--active,
 .react-calendar__tile--active:enabled:hover,
 .react-calendar__tile--active:enabled:focus {
-  background: #773dd3;
+  border: 1px solid #773dd3;
   color: white;
 }
 
 /* Current Day (Now) */
 .react-calendar__tile--now {
-  background: #ffff76;
+  background: #773dd3 !important;
   /* default highlight for today? or remove */
   background: transparent;
   font-weight: bold;
-  color: #773dd3;
+  color: #ffffff !important;
 }
 
 .react-calendar__tile--now:enabled:hover,
@@ -517,9 +528,21 @@ label {
 }
 
 .react-calendar__tile--active {
-  background: #773dd3;
-  color: white;
+  border: 1px solid #773dd3;
+  color: #773dd3;
   border-radius: 6px;
+}
+/* Selected custom dates - Global Style */
+.selected-day {
+  border: 1px solid #773dd3 !important;
+  color: #773dd3 !important;
+  border-radius: 6px;
+}
+
+.selected-day:enabled:hover,
+.selected-day:enabled:focus {
+  border: 1px solid #6a35bd !important;
+  color: #6a35bd !important;
 }
 
 /* this is the css for booking summary  */
@@ -548,7 +571,7 @@ label {
   .basicModal_space {
     width: 90%;
     padding-left: 50px;
-    padding-right: 0px;
+    padding-right: 50px;
   }
   .left-side-content img {
     width: 100%;
@@ -575,7 +598,7 @@ label {
   .basicModal_space {
     width: 90%;
     padding-left: 50px;
-    padding-right: 0px;
+    padding-right: 50px;
   }
   .left-side-content img {
     width: 100%;
@@ -596,6 +619,10 @@ label {
   }
   .basicModal_Container {
     padding: 20px 20px;
+  }
+  .react-calendar__month-view__weekdays,
+  .react-calendar__month-view__days {
+    gap: 15px !important;
   }
 }
 @media screen and (max-width: 1024px) {
@@ -639,6 +666,10 @@ label {
   }
   .left-side-content {
     display: none;
+  }
+  .react-calendar__month-view__weekdays,
+  .react-calendar__month-view__days {
+    gap: 14px !important;
   }
   .subscription_type {
     display: grid;
@@ -744,6 +775,10 @@ label {
     margin: 8px 0px 22px 0px;
     font-size: 16px;
   }
+  .react-calendar__month-view__weekdays,
+  .react-calendar__month-view__days {
+    gap: 10px !important;
+  }
   .basicModal_sub_con {
     right: 4%;
   }
@@ -795,16 +830,45 @@ label {
     font-size: 12px;
     padding-top: 10px;
   }
+  .react-calendar__month-view__weekdays,
+  .react-calendar__month-view__days {
+    gap: 4px !important;
+  }
 }
 
-/* Selected custom dates - Global Style */
-.selected-day {
-  background: #773dd3 !important;
-  color: white !important;
-  border-radius: 6px;
+@media screen and (max-width: 375px) {
+  .basicModal_space {
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+  .react-calendar__month-view__weekdays,
+  .react-calendar__month-view__days {
+    gap: 2px !important;
+  }
+  .react-calendar__tile {
+    font-size: 13px !important;
+    height: 40px !important;
+  }
+  .react-calendar__month-view__weekdays {
+    font-size: 14px;
+  }
 }
 
-.selected-day:enabled:hover,
-.selected-day:enabled:focus {
-  background: #6a35bd !important;
+@media screen and (max-width: 330px) {
+  .basicModal_space {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .react-calendar__month-view__weekdays,
+  .react-calendar__month-view__days {
+    gap: 1px !important;
+  }
+  .react-calendar__tile {
+    font-size: 12px !important;
+    height: 35px !important;
+    width: 35px !important;
+  }
+  .react-calendar__month-view__weekdays {
+    font-size: 12px;
+  }
 }
