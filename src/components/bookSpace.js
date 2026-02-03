@@ -41,21 +41,38 @@ const BookSpace = () => {
   const todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
   const history = useHistory(); // Use history for navigation
 
-  const [showModal, setShowModal] = useState("id");
+  const [showModal, setShowModal] = useState(() => {
+    const saved = sessionStorage.getItem("bookSpace_showModal");
+    return saved || "id";
+  });
   const [toggle2, setToggle2] = useState(false);
-  const [selectedPaymentOption, setSelectedPaymentOption] = useState(null);
-  const [startDate, setStartDate] = useState(today);
-  const [endDate, setEndDate] = useState(null);
-  const [summary, setSummary] = useState([]);
-  const [userInfo, setUserInfo] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phoneNumber: "",
-    username: "",
-    startDate: "",
-    subscriptionType: "",
-    customDates: []
+  const [selectedPaymentOption, setSelectedPaymentOption] = useState(() => {
+    const saved = sessionStorage.getItem("bookSpace_selectedPaymentOption");
+    return saved ? JSON.parse(saved) : null;
+  });
+  const [startDate, setStartDate] = useState(() => {
+    const saved = sessionStorage.getItem("bookSpace_startDate");
+    return saved ? new Date(saved) : today;
+  });
+  const [endDate, setEndDate] = useState(() => {
+    return sessionStorage.getItem("bookSpace_endDate") || null;
+  });
+  const [summary, setSummary] = useState(() => {
+    const saved = sessionStorage.getItem("bookSpace_summary");
+    return saved ? JSON.parse(saved) : [];
+  });
+  const [userInfo, setUserInfo] = useState(() => {
+    const saved = sessionStorage.getItem("bookSpace_userInfo");
+    return saved ? JSON.parse(saved) : {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phoneNumber: "",
+      username: "",
+      startDate: "",
+      subscriptionType: "",
+      customDates: []
+    };
   });
 
   // const modalRef = useRef();
@@ -202,7 +219,7 @@ const BookSpace = () => {
   const tileDisabled = ({ date, view }) => {
     if (view === "month") {
       const day = date.getDay();
-      return date < todayMidnight || day === 0 || day === 6;
+      return date < todayMidnight || day === 0 || day === 7;
     }
     return false;
   };
@@ -240,6 +257,31 @@ const BookSpace = () => {
   useEffect(() => {
     setUserInfo(prev => ({ ...prev, ...formik.values, customDates: prev.customDates }));
   }, [formik.values]);
+
+  // Persist state to sessionStorage
+  useEffect(() => {
+    sessionStorage.setItem("bookSpace_showModal", showModal);
+  }, [showModal]);
+
+  useEffect(() => {
+    sessionStorage.setItem("bookSpace_selectedPaymentOption", JSON.stringify(selectedPaymentOption));
+  }, [selectedPaymentOption]);
+
+  useEffect(() => {
+    sessionStorage.setItem("bookSpace_startDate", startDate.toISOString());
+  }, [startDate]);
+
+  useEffect(() => {
+    if (endDate) sessionStorage.setItem("bookSpace_endDate", endDate);
+  }, [endDate]);
+
+  useEffect(() => {
+    sessionStorage.setItem("bookSpace_summary", JSON.stringify(summary));
+  }, [summary]);
+
+  useEffect(() => {
+    sessionStorage.setItem("bookSpace_userInfo", JSON.stringify(userInfo));
+  }, [userInfo]);
 
   return (
     <>
@@ -440,13 +482,13 @@ const BookSpace = () => {
           <div>
             <p className="workspaceinfo">Grazac Workspace gives you access to exclusive discounts and allows for faster booking in the future</p>
           </div>
-            <button
-              type="submit"
-              form="bookingForm"
-              className="basicModal_button"
-            >
-              Book Now
-            </button>
+          <button
+            type="submit"
+            form="bookingForm"
+            className="basicModal_button"
+          >
+            Book Now
+          </button>
         </div>
       </div>
     </>
