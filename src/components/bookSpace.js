@@ -38,6 +38,7 @@ const getDayWithSuffix = (day) => {
 
 const BookSpace = () => {
   const today = new Date();
+  const todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
   const history = useHistory(); // Use history for navigation
 
   const [showModal, setShowModal] = useState("id");
@@ -201,7 +202,7 @@ const BookSpace = () => {
   const tileDisabled = ({ date, view }) => {
     if (view === "month") {
       const day = date.getDay();
-      return date < new Date() || day === 0 || day === 7;
+      return date < todayMidnight || day === 0 || day === 6;
     }
     return false;
   };
