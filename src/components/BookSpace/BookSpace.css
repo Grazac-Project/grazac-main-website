@@ -1,0 +1,872 @@
+.basicModal_space {
+  display: flex;
+  padding-left: 120px;
+  padding-top: 80px;
+  padding-right: 120px;
+  gap: 10px;
+  background-color: #fff;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+/* .left-side-content img {
+  width: 621px;
+} */
+.right-side-content {
+  width: 621px;
+  border: 2px solid #eaeaea;
+  border-radius: 16px;
+  padding: 32px;
+}
+.book-space-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.basicModal_space h2 {
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 48px;
+  text-align: center;
+  margin-top: 0px;
+  margin-bottom: 8px;
+}
+.para {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 21px;
+  color: #8897ae;
+  margin-bottom: 32px;
+}
+
+.back-icon {
+  cursor: pointer;
+}
+.book-space-header h2 {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 100%;
+  color: #1f1035;
+  margin-top: 15px;
+}
+
+.workspace_id {
+  background-color: #fafafa;
+  padding: 32px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+}
+.workspace_id h1 {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 100%;
+  color: #1d1e2c;
+  margin-bottom: 16px;
+}
+
+.workspace_id_buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 30px;
+}
+.workspace_id_button {
+  border: 1px solid #d9dce1;
+  background-color: #d9dce1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 13.5px 12px;
+  border-radius: 8px;
+  width: 240.5px;
+  cursor: pointer;
+}
+.workspace_id_button img {
+  width: 48px;
+  height: 48px;
+}
+.workspace_id_button p {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 100%;
+  color: #494949;
+  padding-top: 20px;
+}
+.workspace-button2 {
+  border: 1px solid #d9dce1;
+  background-color: #d9dce1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 13.5px 12px;
+  border-radius: 8px;
+  width: 240.5px;
+  cursor: pointer;
+}
+.workspace-button2 p {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 100%;
+  color: #494949;
+  padding-top: 20px;
+}
+.workspace_id_button.active {
+  background-color: #773dd3;
+  color: #fff;
+}
+.workspace_id_button.active img {
+  filter: brightness(0) invert(1);
+}
+.workspace_id_button.active p {
+  color: #fff;
+}
+
+.workspace-button2.active {
+  background-color: #773dd3;
+  color: #fff;
+}
+.workspace-button2.active img {
+  filter: brightness(0) invert(1);
+}
+.workspace-button2.active p {
+  color: #fff;
+}
+
+.subscription_type {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.subscription-option {
+  border: 2px solid #eaeaea;
+  background-color: #fff;
+  border-radius: 8px;
+  height: 114px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 167px;
+  cursor: pointer;
+  color: #494949;
+  font-weight: 600;
+  font-size: 20px;
+}
+.subscription-option span {
+  font-weight: 500;
+  font-size: 14px;
+  color: #848484;
+}
+.subscription-option.active {
+  border-color: #773dd3;
+  color: #773dd3;
+}
+.subscription-option.active span {
+  color: #773dd3;
+}
+
+.basicModal_sub {
+  position: relative;
+}
+.start-date {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 100%;
+  margin-bottom: 12px;
+}
+.basicModal_dateContainer_end {
+  width: 100%;
+  background-color: transparent;
+  border-radius: 6px;
+  height: 45px;
+  padding: 14px;
+  border: 1px solid #afbaca;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  background: white;
+}
+.basicModal_dateContainer_end p {
+  margin-bottom: 0px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #787676;
+}
+.calendar {
+  position: absolute;
+  z-index: 9999;
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-width: 430px;
+  margin: 0 auto;
+  transition: opacity 0.5s ease-in-out;
+}
+.workspaceinfo {
+  margin-top: 8px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+}
+.sub-type {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 100%;
+  color: #1d1e2c;
+  padding: 16px 0px;
+}
+.basicModal_Container {
+  background-color: #fbfbfb;
+  padding: 32px 12px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  border: 1px solid #eaeaea;
+}
+.basicModal_sub_con {
+  position: absolute;
+  z-index: 9999;
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  background-color: #fff;
+  gap: 8px;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: -2px 2px 12px 2px rgba(21, 30, 42, 0.08);
+  transition: opacity 0.5s ease-in-out;
+}
+.basicModal_sub_conFlex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #dddd;
+  cursor: pointer;
+}
+.basicModal_summary {
+  width: 100%;
+  max-width: 430px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-radius: 8px;
+  padding: 24px;
+}
+.basicModal_summary h5 {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: black;
+}
+.basicModal_summary p {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: black;
+  margin-bottom: 0;
+}
+.basicModal_summary_flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2px;
+}
+.basicModal_sub_con h5 {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  color: #334155;
+}
+.basicModal_sub_con p {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #334155;
+}
+
+.loader {
+  width: 275px;
+  height: 56px;
+  margin: 0 auto;
+  margin-top: 8px;
+  margin-bottom: 64px;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+}
+.basicModal_form_flex {
+  display: flex;
+  gap: 8px;
+}
+.basicModal_form_flex_input {
+  width: 274.5px;
+}
+label {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 100%;
+  color: #1d1e2c;
+  margin-bottom: 12px;
+}
+.basicModal_form input {
+  border: 1px solid #afbaca;
+  width: 100%;
+  height: 56px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  padding: 10px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  outline: none;
+  color: #8897ae;
+}
+.basicModal_button {
+  width: 100%;
+  background-color: #773dd3;
+  color: #fff;
+  border-radius: 8px;
+  height: 56px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.basicModal_workspaceInfo {
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 140%;
+  letter-spacing: 2%;
+  text-align: center;
+  color: #212529;
+  margin-bottom: 40px;
+}
+.react-calendar {
+  width: 100%;
+  max-width: 100%;
+  background: white;
+  border: none;
+  font-family: inherit;
+  line-height: 1.125em;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.react-calendar--doubleView {
+  width: 700px;
+}
+
+.react-calendar--doubleView .react-calendar__viewContainer {
+  display: flex;
+  margin: 31px;
+}
+
+.react-calendar--doubleView .react-calendar__viewContainer > * {
+  width: 50%;
+  margin: 31px;
+}
+
+.react-calendar,
+.react-calendar *,
+.react-calendar *:before,
+.react-calendar *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* Navigation */
+.react-calendar__navigation {
+  display: flex;
+  height: 44px;
+  margin-bottom: 20px;
+}
+
+.react-calendar__navigation button {
+  min-width: 44px;
+  background: none;
+  font-size: 24px;
+  /* larger arrows */
+  margin-top: 8px;
+}
+
+.react-calendar__navigation button:disabled {
+  background-color: #f0f0f0;
+}
+
+.react-calendar__navigation button:enabled:hover,
+.react-calendar__navigation button:enabled:focus {
+  background-color: #e6e6e6;
+}
+
+.react-calendar__navigation__label {
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 18px;
+  color: #1f1035;
+  text-align: left;
+  padding-left: 0;
+  pointer-events: none;
+  flex-grow: 1 !important;
+}
+
+.react-calendar__navigation__label {
+  order: 1;
+}
+
+.react-calendar__navigation__prev-button {
+  order: 2;
+}
+
+.react-calendar__navigation__next-button {
+  order: 3;
+}
+
+/* Weekdays - Apply Grid to match days */
+.react-calendar__month-view__weekdays {
+  text-align: center;
+  text-transform: capitalize;
+  font-weight: 500;
+  font-size: 16px;
+  color: #333333;
+  text-decoration: none !important;
+  margin-bottom: 10px;
+  display: grid !important;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 15px;
+}
+
+.react-calendar__month-view__weekdays__weekday {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.react-calendar__month-view__weekdays__weekday abbr {
+  text-decoration: none;
+  cursor: default;
+}
+
+/* Use Grid for the days container to support gap */
+.react-calendar__month-view__days {
+  display: grid !important;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 15px;
+}
+
+/* Numbers (Tiles) */
+.react-calendar__tile {
+  max-width: 100%;
+  padding: 0px !important;
+  background: none;
+  text-align: center;
+  line-height: normal;
+  font-weight: 500;
+  font-size: 16px;
+  color: #7d7d7d;
+  border-radius: 6px;
+  margin-bottom: 5px;
+  height: 50px;
+  width: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.react-calendar__tile:disabled {
+  background-color: #ededed;
+  color: #7d7d7d;
+}
+
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+  background-color: #e6e6e6;
+  color: #1f1035;
+}
+
+/* Active Tile (Selected Date) */
+.react-calendar__tile--active,
+.react-calendar__tile--active:enabled:hover,
+.react-calendar__tile--active:enabled:focus {
+  border: 1px solid #773dd3;
+  color: white;
+}
+
+/* Current Day (Now) */
+.react-calendar__tile--now {
+  background: #773dd3 !important;
+  /* default highlight for today? or remove */
+  background: transparent;
+  font-weight: bold;
+  color: #ffffff !important;
+}
+
+.react-calendar__tile--now:enabled:hover,
+.react-calendar__tile--now:enabled:focus {
+  background: #ffffa9;
+  background: #f0f0f0;
+}
+
+.react-calendar__tile--hasActive {
+  background: #76baff;
+}
+
+.react-calendar__tile--hasActive:enabled:hover,
+.react-calendar__tile--hasActive:enabled:focus {
+  background: #a9d4ff;
+}
+
+.react-calendar__tile--active {
+  border: 1px solid #773dd3;
+  color: #773dd3;
+  border-radius: 6px;
+}
+/* Selected custom dates - Global Style */
+.selected-day {
+  border: 1px solid #773dd3 !important;
+  color: #773dd3 !important;
+  border-radius: 6px;
+}
+
+.selected-day:enabled:hover,
+.selected-day:enabled:focus {
+  border: 1px solid #6a35bd !important;
+  color: #6a35bd !important;
+}
+
+/* this is the css for booking summary  */
+.summary-details {
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 16px 24px;
+  background-color: #fafafa;
+}
+.summary-item h5 {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 160%;
+  letter-spacing: 0%;
+  color: #787878;
+}
+.summary-item p {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 160%;
+  letter-spacing: 0%;
+  color: #292d32;
+}
+
+@media screen and (max-width: 1280px) {
+  .basicModal_space {
+    width: 90%;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  .left-side-content img {
+    width: 100%;
+    height: auto;
+  }
+  .right-side-content {
+    width: 100%;
+    padding: 10px;
+  }
+  .workspace_id {
+    padding: 15px;
+  }
+  .subscription_type {
+    gap: 8px;
+
+  }
+  .subscription-option {
+    width: 200px;
+  }
+}
+@media screen and (max-width: 1114px) {
+  .basicModal_space {
+    width: 90%;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  .left-side-content img {
+    width: 100%;
+    height: auto;
+  }
+  .right-side-content {
+    width: 100%;
+    padding: 10px;
+  }
+  .workspace_id {
+    padding: 15px;
+  }
+  .subscription_type {
+    gap: 8px;
+  }
+  .subscription-option {
+    width: 150px;
+  }
+  .basicModal_Container {
+    padding: 20px 20px;
+  }
+  .react-calendar__month-view__weekdays,
+  .react-calendar__month-view__days {
+    gap: 15px !important;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .basicModal_space {
+    width: 90%;
+    padding-left: 50px;
+    padding-right: 0px;
+  }
+  .left-side-content img {
+    width: 100%;
+    height: auto;
+  }
+  .right-side-content {
+    width: 100%;
+    padding: 10px;
+  }
+  .workspace_id {
+    padding: 15px;
+  }
+  .subscription_type {
+    gap: 8px;
+  }
+  .subscription-option {
+    width: 150px;
+  }
+  .basicModal_Container {
+    padding: 20px 20px;
+  }
+}
+@media screen and (max-width: 900px) {
+  .basicModal_space {
+    width: 90%;
+    padding-left: 70px;
+    padding-right: 16px;
+  }
+  .right-side-content {
+    width: 100%;
+    padding: 20px;
+    border: none;
+    /* margin-top: 20px; */
+  }
+  .left-side-content {
+    display: none;
+  }
+  .react-calendar__month-view__weekdays,
+  .react-calendar__month-view__days {
+    gap: 14px !important;
+  }
+  .subscription_type {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+  }
+  .basicModal_space h2 {
+    font-size: 24px;
+    line-height: 28.8px;
+  }
+  .basicModal_space .para {
+    font-size: 12px;
+    line-height: 18px;
+  }
+  .basicModal_dateContainer {
+    flex-direction: column;
+    width: 100%;
+  }
+  .calendar {
+    width: 100%;
+  }
+  .basicModal_dateContainer_start,
+  .basicModal_dateContainer_end {
+    width: 100%;
+    margin: auto;
+  }
+  .basicModal_dateContainer_start p,
+  .basicModal_dateContainer_end p {
+    font-size: 14px;
+    line-height: 9.6px;
+  }
+  .basicModal_dateContainer_start .start-date,
+  .basicModal_dateContainer_end .end-date {
+    font-size: 14px;
+    line-height: 16.8px;
+  }
+  .basicModal_price {
+    width: 100%;
+  }
+  .checkbox-label {
+    margin: 5px 0px 0px 0px;
+  }
+  .basicModal_summary {
+    max-width: 90%;
+  }
+  .basicModal_form_flex {
+    display: block;
+  }
+  .basicModal_form_flex_input {
+    width: 100%;
+  }
+  .people-image {
+    display: none;
+  }
+}
+@media screen and (max-width: 480px) {
+  .basicModal_space {
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .right-side-content {
+    width: 100%;
+    padding: 10px;
+  }
+  .workspace_id {
+    padding: 10px;
+  }
+  .workspace_id_button {
+    padding: 10px 15px;
+  }
+  .workspace-button2 {
+    padding: 10px;
+  }
+  .workspace_id_button img {
+    width: 30px;
+    height: 30px;
+  }
+  .workspace-button2 img {
+    width: 30px;
+    height: 30px;
+  }
+  .workspace-button2 p {
+    padding-top: 10px;
+  }
+  .workspace_id_button p {
+    padding-top: 10px;
+  }
+  .subscription_type {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .subscription-option {
+    width: 100%;
+  }
+  .basicModal_price_total .workings {
+    font-size: 6.76px;
+    line-height: 10.13px;
+  }
+  .basicModal_button {
+    width: 100%;
+    margin: 8px 0px 22px 0px;
+    font-size: 16px;
+  }
+  .react-calendar__month-view__weekdays,
+  .react-calendar__month-view__days {
+    gap: 10px !important;
+  }
+  .basicModal_sub_con {
+    right: 4%;
+  }
+  .calendar {
+    left: 2%;
+  }
+  .workspace-button1,
+  .workspace-button2 {
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+  .basicModal_form_flex_input {
+    display: block;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 428px) {
+  .basicModal_space {
+    width: 100%;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 32px;
+  }
+  .right-side-content {
+    border: none;
+  }
+  .workspace_id {
+    padding: 5px;
+  }
+  .workspace_id_button {
+    padding: 5px;
+    gap: 5px;
+  }
+  .workspace-button2 {
+    padding: 5px;
+    gap: 5px;
+  }
+  .workspace_id_button img {
+    width: 20px;
+    height: 20px;
+  }
+  .workspace-button2 img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .workspace_id_button p {
+    font-size: 12px;
+    padding-top: 10px;
+  }
+  .react-calendar__month-view__weekdays,
+  .react-calendar__month-view__days {
+    gap: 4px !important;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .basicModal_space {
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+  .react-calendar__month-view__weekdays,
+  .react-calendar__month-view__days {
+    gap: 2px !important;
+  }
+  .react-calendar__tile {
+    font-size: 13px !important;
+    height: 40px !important;
+  }
+  .react-calendar__month-view__weekdays {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 330px) {
+  .basicModal_space {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .react-calendar__month-view__weekdays,
+  .react-calendar__month-view__days {
+    gap: 1px !important;
+  }
+  .react-calendar__tile {
+    font-size: 12px !important;
+    height: 35px !important;
+    width: 35px !important;
+  }
+  .react-calendar__month-view__weekdays {
+    font-size: 12px;
+  }
+}

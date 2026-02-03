@@ -15,10 +15,12 @@ import Application from "./pages/Application";
 import ShowContext from "./showContext";
 import Unsubscribe from "./pages/Unsubscribe";
 import Contact from "./pages/contact";
+import BookSpace from "./components/bookSpace";
+import BookingSummary from "./components/BookingSummary";
 
 const App = () => {
   const { pathname } = useLocation();
-  useEffect(() => {  
+  useEffect(() => {
     AOS.init();
     AOS.refresh();
   }, []);
@@ -70,7 +72,7 @@ const App = () => {
           open, setOpen
         }}
       >
-        
+
         <Layout>
           <Switch>
             <Route path="/" exact component={LandingPage} />
@@ -81,6 +83,8 @@ const App = () => {
             <Route path="/startup" exact component={StartUp} />
             <Route path="/blog" exact component={Blog} />
             <Route path="/contact" exact component={Contact} />
+            <Route path="/bookSpace" exact component={BookSpace} />
+            <Route path="/booking-summary" exact component={BookingSummary} />
 
             <Route path="*">
               <Redirect to="/" />

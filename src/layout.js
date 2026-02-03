@@ -7,7 +7,6 @@ import Scroll from "./components/Scroll";
 import Sidebar from "./components/sidebar";
 // import Contact from "./pages/contact";
 import ShowContext from "./showContext";
-import BasicModal from "./components/BasicModal/BasicModal";
 
 const Layout = ({ children }) => {
 
@@ -19,11 +18,9 @@ const Layout = ({ children }) => {
     reveal,
     modal,
     modalClick,
-    open, setOpen
   } = useContext(ShowContext);
   return (
     <>
-      {open && <BasicModal setOpen={setOpen}/>}
       <Header
         click={() => {
           console.log(sidebar);
