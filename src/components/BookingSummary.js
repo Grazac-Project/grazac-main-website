@@ -5,7 +5,6 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Loader from "./Loader";
-import { IoIosArrowBack } from "react-icons/io";
 import "./BookSpace/BookSpace.css";
 import people from "../images/workspace/people-2.png"
 import backIcon from "../images/workspace/arrowleft.png";
@@ -67,11 +66,11 @@ const BookingSummary = () => {
   const handlePayment = async () => {
     setIsLoading(true);
 
-    const dataValues = {
-      ...userInfo,
-      startDate: startDate,
-      subscriptionType: selectedPaymentOption?.value || "",
-    };
+    // const dataValues = {
+    //   ...userInfo,
+    //   startDate: startDate,
+    //   subscriptionType: selectedPaymentOption?.value || "",
+    // };
     let payload = {};
     if (showModal === "id") {
       payload = {

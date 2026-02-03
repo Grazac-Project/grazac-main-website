@@ -1,15 +1,10 @@
 import { useEffect, useState, useCallback } from "react";
 import calendar from "../images/calendar.png";
-// import dropdown from "../images/drop-icon.svg";
 import "./BookSpace/BookSpace.css";
 import "react-calendar/dist/Calendar.css";
 import Calendar from "react-calendar";
-// import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
-// import axios from "axios";
-// import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useFormik } from "formik";
-import Loader from "./Loader";
 import { useHistory } from "react-router-dom"; // Import useHistory
 import workspace from "../images/workspace/workspace.png";
 import returningUser from "../images/workspace/returning-user.png";
@@ -46,9 +41,7 @@ const BookSpace = () => {
   const history = useHistory(); // Use history for navigation
 
   const [showModal, setShowModal] = useState("id");
-  const [toggle, setToggle] = useState(false);
   const [toggle2, setToggle2] = useState(false);
-  const [isloading, setIsLoading] = useState(false);
   const [selectedPaymentOption, setSelectedPaymentOption] = useState(null);
   const [startDate, setStartDate] = useState(today);
   const [endDate, setEndDate] = useState(null);
@@ -132,7 +125,7 @@ const BookSpace = () => {
   const handleToggle2 = (e) => {
     e.stopPropagation();
     setToggle2(!toggle2);
-    setToggle(false);
+    // setToggle(false);
   };
 
   const handlePaymentOptionChange = (option) => {
@@ -142,7 +135,7 @@ const BookSpace = () => {
       subscriptionType: option.label,
       customDates: option.value !== "custom" ? [] : prev.customDates,
     }));
-    setToggle(false);
+    // setToggle(false);
   };
 
   const handleStartDateChange = (date) => {
@@ -200,7 +193,7 @@ const BookSpace = () => {
     setSelectedPaymentOption(option);
     setUserInfo(prev => ({ ...prev, subscriptionType: "Custom", customDates: [] }));
     // setToggleCustom(!toggleCustom); // Optional: if we want to auto-open
-    setToggle(false);
+    // setToggle(false);
     setToggle2(false);
   };
 
@@ -446,12 +439,6 @@ const BookSpace = () => {
           <div>
             <p className="workspaceinfo">Grazac Workspace gives you access to exclusive discounts and allows for faster booking in the future</p>
           </div>
-
-          {isloading ? (
-            <div className="loader">
-              <Loader />
-            </div>
-          ) : (
             <button
               type="submit"
               form="bookingForm"
@@ -459,7 +446,6 @@ const BookSpace = () => {
             >
               Book Now
             </button>
-          )}
         </div>
       </div>
     </>
