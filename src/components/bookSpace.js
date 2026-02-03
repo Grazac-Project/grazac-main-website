@@ -213,32 +213,6 @@ const BookSpace = () => {
     return false;
   };
 
-  // const totalAmount = selectedPaymentOption ? selectedPaymentOption.amount : 0;
-  // const url =
-  //   "https://grazac-academy-back-end-ej7s.onrender.com/api/v1/user/book";
-
-  // const SpaceFeeFlutterwaveConfig = {
-  //   public_key: "FLWPUBK-006bdc82ad878f1518af32f44af6478f-X",
-  //   tx_ref: Date.now(),
-  //   amount: totalAmount,
-  //   currency: "NGN",
-  //   payment_options: "card,mobilemoney,ussd",
-  //   customer: {
-  //     email: userInfo.email,
-  //     phonenumber: userInfo.phoneNumber,
-  //     name: `${userInfo.firstName} ${userInfo.lastName}`,
-  //   },
-  //   customizations: {
-  //     title: "Grazac Technologies Limited",
-  //     description: "Co-working Space Payment",
-  //     logo: "https://grazac.com.ng/logo.png",
-  //   },
-  // };
-
-  // const HandleSpacePayFlutterPayment = useFlutterwave(
-  //   SpaceFeeFlutterwaveConfig
-  // );
-
   const formik = useFormik({
     initialValues: userInfo,
     enableReinitialize: true,

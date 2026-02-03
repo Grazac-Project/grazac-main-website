@@ -586,12 +586,10 @@ label {
   }
   .subscription_type {
     gap: 8px;
+
   }
   .subscription-option {
     width: 200px;
-  }
-  .basicModal_Container {
-    padding: 25px 25px;
   }
 }
 @media screen and (max-width: 1114px) {

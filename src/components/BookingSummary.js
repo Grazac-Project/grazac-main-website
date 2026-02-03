@@ -39,8 +39,7 @@ const BookingSummary = () => {
 
   // Provide safe defaults for the config object
   const SpaceFeeFlutterwaveConfig = {
-    // public_key: "FLWPUBK-006bdc82ad878f1518af32f44af6478f-X",
-    public_key: "FLWPUBK_TEST-b6c44d3213f2d2b3c0c3142f3ab81b72-X",
+    public_key: "FLWPUBK-b765ab41a14a9a8258992eafe205259f-X",
     tx_ref: Date.now(),
     amount: totalAmount,
     currency: "NGN",
@@ -93,24 +92,6 @@ const BookingSummary = () => {
     try {
       const res = await axios.post(url, payload);
       if (res.status === 201 || res.status === 200) {
-        if (showModal === "generate") {
-          toast.info(
-            "Success, an ID has been generated successfully and sent to your email",
-            {
-              position: "bottom-right",
-              style: {
-                color: "#461199",
-                fontWeight: "500",
-                textAlign: "center",
-                fontStyle: "italic",
-                fontSize: "14px",
-                fontText: "inter",
-              },
-            }
-          );
-          await new Promise((resolve) => setTimeout(resolve, 5000));
-        }
-
         // Trigger Payment
         HandleSpacePayFlutterPayment({
           callback: (response) => {
