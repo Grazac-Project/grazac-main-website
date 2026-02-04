@@ -97,6 +97,13 @@ const BookingSummary = () => {
             console.log(response);
             if (response.status === "completed") {
               toast.success("Payment successful! Verifying payment...");
+              // Clear stored form data
+              sessionStorage.removeItem("bookSpace_showModal");
+              sessionStorage.removeItem("bookSpace_selectedPaymentOption");
+              sessionStorage.removeItem("bookSpace_startDate");
+              sessionStorage.removeItem("bookSpace_endDate");
+              sessionStorage.removeItem("bookSpace_summary");
+              sessionStorage.removeItem("bookSpace_userInfo");
             }
             closePaymentModal();
             setTimeout(() => {
