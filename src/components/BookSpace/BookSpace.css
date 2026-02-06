@@ -723,6 +723,105 @@ label {
     display: none;
   }
 }
+@media screen and (max-width: 768px) {
+  .basicModal_space {
+    width: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .right-side-content {
+    width: 100%;
+    padding: 20px;
+    border: none;
+    /* margin-top: 20px; */
+  }
+  .left-side-content {
+    display: none;
+  }
+    .workspace_id {
+    padding: 10px;
+  }
+  .workspace_id_button {
+    padding: 10px 15px;
+  }
+  .workspace-button2 {
+    padding: 10px;
+  }
+  .workspace_id_button img {
+    width: 30px;
+    height: 30px;
+  }
+  .workspace-button2 img {
+    width: 30px;
+    height: 30px;
+  }
+  .workspace-button2 p {
+    padding-top: 10px;
+  }
+  .workspace_id_button p {
+    padding-top: 10px;
+  }
+   .subscription_type {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .subscription-option {
+    width: 100%;
+  }
+   .calendar {
+    width: 100%;
+  }
+  .react-calendar__month-view__weekdays,
+  .react-calendar__month-view__days {
+    gap: 14px !important;
+  }
+  .subscription_type {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+  }
+  .basicModal_space h2 {
+    font-size: 24px;
+    line-height: 28.8px;
+  }
+  .basicModal_space .para {
+    font-size: 12px;
+    line-height: 18px;
+  }
+  .basicModal_dateContainer {
+    flex-direction: column;
+    width: 100%;
+  }
+  .calendar {
+    width: 100%;
+  }
+   .react-calendar__month-view__weekdays,
+  .react-calendar__month-view__days {
+    gap: 5px !important;
+  }
+  .basicModal_sub_con {
+    right: 4%;
+  }
+  .basicModal_price {
+    width: 100%;
+  }
+  .checkbox-label {
+    margin: 5px 0px 0px 0px;
+  }
+  .basicModal_summary {
+    max-width: 90%;
+  }
+  .basicModal_form_flex {
+    display: block;
+  }
+  .basicModal_form_flex_input {
+    width: 100%;
+  }
+  .people-image {
+    display: none;
+  }
+}
 @media screen and (max-width: 480px) {
   .basicModal_space {
     width: 100%;
@@ -828,9 +927,21 @@ label {
     font-size: 12px;
     padding-top: 10px;
   }
+  .workspace-button2 p {
+    font-size: 12px;
+    padding-top: 10px;
+  }
   .react-calendar__month-view__weekdays,
   .react-calendar__month-view__days {
     gap: 4px !important;
+  }
+  .react-calendar__tile {
+    font-size: 12px !important;
+    height: 40px !important;
+    width: 35px !important;
+  }
+  .react-calendar__month-view__weekdays {
+    font-size: 12px;
   }
 }
 
@@ -844,11 +955,16 @@ label {
     gap: 2px !important;
   }
   .react-calendar__tile {
-    font-size: 13px !important;
+    font-size: 12px !important;
     height: 40px !important;
+    width: 35px !important;
   }
   .react-calendar__month-view__weekdays {
-    font-size: 14px;
+    font-size: 12px;
+  }
+  .workspace-button2 p {
+    font-size: 12px;
+    padding-top: 10px;
   }
 }
 
@@ -868,5 +984,9 @@ label {
   }
   .react-calendar__month-view__weekdays {
     font-size: 12px;
+  }
+  .workspace-button2 p {
+    font-size: 12px;
+    padding-top: 10px;
   }
 }
