@@ -63,14 +63,56 @@ const BookingSummary = () => {
     return null;
   }
 
+//   const handlePayment = async () => {
+//   if (isLoading) return; // prevent double click
+//   setIsLoading(true);
+
+//   const txRef = `tx-${Date.now()}-${Math.floor(Math.random() * 100000)}`;
+
+//   try {
+//     const res = await axios.post(url, payload);
+
+//     if (res.status === 200 || res.status === 201) {
+//       HandleSpacePayFlutterPayment({
+//         tx_ref: txRef, // ✅ NEW per click
+//         callback: (response) => {
+//           console.log(response);
+
+//           if (response.status === "completed") {
+//             toast.success("Payment successful! Verifying payment...");
+
+//             sessionStorage.removeItem("bookSpace_showModal");
+//             sessionStorage.removeItem("bookSpace_selectedPaymentOption");
+//             sessionStorage.removeItem("bookSpace_startDate");
+//             sessionStorage.removeItem("bookSpace_endDate");
+//             sessionStorage.removeItem("bookSpace_summary");
+//             sessionStorage.removeItem("bookSpace_userInfo");
+//           }
+
+//           closePaymentModal();
+//           setIsLoading(false);
+
+//           setTimeout(() => {
+//             history.push("/");
+//           }, 2500);
+//         },
+//         onClose: () => {
+//           console.log("Payment closed");
+//           setIsLoading(false);
+//         },
+//       });
+//     } else {
+//       setIsLoading(false);
+//       toast.error("Submission not successful");
+//     }
+//   } catch (error) {
+//     setIsLoading(false);
+//     toast.error("An error occurred while submitting");
+//   }
+// };
+
   const handlePayment = async () => {
     setIsLoading(true);
-
-    // const dataValues = {
-    //   ...userInfo,
-    //   startDate: startDate,
-    //   subscriptionType: selectedPaymentOption?.value || "",
-    // };
     let payload = {};
     if (showModal === "id") {
       payload = {
