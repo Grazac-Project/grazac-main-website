@@ -14,10 +14,14 @@ import joy from "../images/workspace/joy-img.png";
 
 const paymentOptions = [
   { label: "Daily", value: "daily", amount: 100 },
-  { label: "Weekly", value: "weekly", amount: 15000 },
-  { label: "Monthly", value: "monthly", amount: 60000 },
-  { label: "Quarterly", value: "quarterly", amount: 165000 },
-  { label: "Yearly", value: "yearly", amount: 600000 },
+  // { label: "Weekly", value: "weekly", amount: 15000 },
+  { label: "Weekly", value: "weekly", amount: 100 },
+  // { label: "Monthly", value: "monthly", amount: 60000 },
+  { label: "Monthly", value: "monthly", amount: 100 },
+  // { label: "Quarterly", value: "quarterly", amount: 165000 },
+  { label: "Quarterly", value: "quarterly", amount: 100 },
+  // { label: "Yearly", value: "yearly", amount: 600000 },
+  { label: "Yearly", value: "yearly", amount: 100 },
 ];
 
 const getDayWithSuffix = (day) => {
