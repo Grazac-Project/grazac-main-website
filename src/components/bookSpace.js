@@ -13,11 +13,15 @@ import backIcon from "../images/workspace/arrowleft.png";
 import joy from "../images/workspace/joy-img.png";
 
 const paymentOptions = [
-  { label: "Daily", value: "daily", amount: 3000 },
-  { label: "Weekly", value: "weekly", amount: 15000 },
-  { label: "Monthly", value: "monthly", amount: 60000 },
-  { label: "Quarterly", value: "quarterly", amount: 165000 },
-  { label: "Yearly", value: "yearly", amount: 600000 },
+  { label: "Daily", value: "daily", amount: 100 },
+  // { label: "Weekly", value: "weekly", amount: 15000 },
+  { label: "Weekly", value: "weekly", amount: 105 },
+  // { label: "Monthly", value: "monthly", amount: 60000 },
+  { label: "Monthly", value: "monthly", amount: 110 },
+  // { label: "Quarterly", value: "quarterly", amount: 165000 },
+  { label: "Quarterly", value: "quarterly", amount: 115 },
+  // { label: "Yearly", value: "yearly", amount: 600000 },
+  { label: "Yearly", value: "yearly", amount: 120 },
 ];
 
 const getDayWithSuffix = (day) => {
@@ -180,7 +184,7 @@ const BookSpace = () => {
       } else if (count === 365) {
         newTotal = 600000; // Yearly
       } else {
-        newTotal = count * 3000; // Daily rate
+        newTotal = count * 100; // Daily rate
       }
 
       setSelectedPaymentOption((prev) => ({
