@@ -13,8 +13,7 @@ import backIcon from "../images/workspace/arrowleft.png";
 import joy from "../images/workspace/joy-img.png";
 
 const paymentOptions = [
-  // { label: "Daily", value: "daily", amount: 3000 },
-  { label: "Daily", value: "daily", amount: 140 },
+  { label: "Daily", value: "daily", amount: 3000 },
   { label: "Weekly", value: "weekly", amount: 15000 },
   { label: "Monthly", value: "monthly", amount: 60000 },
   { label: "Quarterly", value: "quarterly", amount: 165000 },
@@ -181,9 +180,8 @@ const BookSpace = () => {
       } else if (count === 365) {
         newTotal = 600000; // Yearly
       } else {
-        // newTotal = count * 3000; // Daily rate
-        newTotal = count * 140; // Daily rate
-      }
+        newTotal = count * 3000; // Daily rate
+      } 
 
       setSelectedPaymentOption((prev) => ({
         ...prev,
