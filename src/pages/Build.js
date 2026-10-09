@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet";
 import {
   FiArrowRight,
   FiBookOpen,
-  FiCheck,
+  // FiCheck, // used by the "Why Grazac Build" section (commented out below)
   FiCode,
   FiGlobe,
   FiLifeBuoy,
@@ -19,7 +19,8 @@ import useSanity from "../lib/useSanity";
 import { BUILD_QUERY, imageUrl } from "../lib/sanity";
 import "../styles/pages.css";
 
-import teamImg from "../images/redesign/build-team.jpg";
+// Used by the "Why Grazac Build" section (commented out below). Uncomment both together.
+// import teamImg from "../images/redesign/build-team.jpg";
 
 const services = [
   {
@@ -73,24 +74,25 @@ const steps = [
   },
 ];
 
-const reasons = [
-  {
-    title: "Talent from our own ecosystem",
-    text: "Our team is drawn from the designers and engineers trained through Grazac Academy and Talent City.",
-  },
-  {
-    title: "We understand startups",
-    text: "Supporting founders at the Grazac Innovation Lab means we build with your growth in mind.",
-  },
-  {
-    title: "Close collaboration",
-    text: "You work directly with the team building your product and see progress at every stage.",
-  },
-  {
-    title: "Built to last",
-    text: "Clean, maintainable code and a proper handover, so your product keeps working after launch.",
-  },
-];
+// Used by the "Why Grazac Build" section (commented out below).
+// const reasons = [
+//   {
+//     title: "Talent from our own ecosystem",
+//     text: "Our team is drawn from the designers and engineers trained through Grazac Academy and Talent City.",
+//   },
+//   {
+//     title: "We understand startups",
+//     text: "Supporting founders at the Grazac Innovation Lab means we build with your growth in mind.",
+//   },
+//   {
+//     title: "Close collaboration",
+//     text: "You work directly with the team building your product and see progress at every stage.",
+//   },
+//   {
+//     title: "Built to last",
+//     text: "Clean, maintainable code and a proper handover, so your product keeps working after launch.",
+//   },
+// ];
 
 const formOptions = [...services.map((service) => service.title), "Something else"];
 
