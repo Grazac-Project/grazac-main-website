@@ -4,7 +4,6 @@ import axios from 'axios';
 // import study1 from "../images/study1.png";
 import buildvideo from "../images/buildvideo.png";
 
-import Subscribe from "../components/subscribe";
 import { useEffect } from "react";
 import Scroll from "../components/Scroll";
 import { Helmet } from "react-helmet";
@@ -304,7 +303,6 @@ const Build = () => {
           </button>
         </div>
       </div>
-      <Subscribe />
       <Scroll />
     </div>
   );

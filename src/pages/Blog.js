@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import Loader from "../components/Loader";
 import Scroll from "../components/Scroll";
-import Subscribe from "../components/subscribe";
 
 const Blog = () => {
   useEffect(() => {
@@ -116,7 +115,6 @@ const Blog = () => {
         )}
       </div>
       <div className="blogs__subscribe">
-        <Subscribe />
       </div>
       <Scroll />
     </div>

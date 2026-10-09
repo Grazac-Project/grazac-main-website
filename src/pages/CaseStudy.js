@@ -9,7 +9,6 @@ import case8 from "../images/case8.png";
 import case9 from "../images/case9.png";
 import case10 from "../images/case10.png";
 
-import Subscribe from "../components/subscribe";
 import { useEffect } from "react";
 import Scroll from "../components/Scroll";
 import { Helmet } from "react-helmet";
@@ -128,7 +127,6 @@ const CaseStudy = () => {
         <img src={case9} alt="casestudy" width="100%" />
         <img src={case10} alt="casestudy" width="100%" />
       </div>
-      <Subscribe />
       <Scroll />
     </div>
   );

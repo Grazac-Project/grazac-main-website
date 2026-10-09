@@ -1,422 +1,307 @@
 // @ts-nocheck
-// components
 import React, { useEffect, useState } from "react";
-// import ShowContext from "../showContext";
-// import Footer from "../components/Footer";
-import Subscribe from "../components/subscribe";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
+import axios from "axios";
+import { FiArrowRight, FiLayers } from "react-icons/fi";
+import "../styles/pages.css";
 
-//images
-import working from "../images/svg/working.svg";
-import build from "../images/svg/gtc.svg";
-import academy from "../images/svg/academy.svg";
-import innovation from "../images/svg/innovation.svg";
-// import business from "../images/svg/business.svg";
-import arrow from "../images/svg/button-arrow.svg";
-// import news1 from "../images/news1.png";
-// import news2 from "../images/news2.png";
-// import news3 from "../images/news3.png";
-import scroll1 from "../images/svg/scroll1.svg";
-import pattern1 from "../images/svg/home-right-pattern.svg";
-import pattern2 from "../images/svg/home-left-pattern.svg";
-import btnwhite from "../images/svg/button-arrow.svg";
+// photography (latest team photos)
+import team1 from "../images/website/newabout1.png";
+import team2 from "../images/website/newabout2.png";
+import team3 from "../images/website/newabout3.png";
+import team4 from "../images/website/newabout4.png";
+import team5 from "../images/website/newabout5.png";
+import team7 from "../images/website/newabout7.png";
+import teamMeeting from "../images/website/about-spread.png";
+import spaceImg from "../images/redesign/space.jpg";
 
+// partner logos
 import google from "../images/google.png";
 import haptic from "../images/haptic.png";
 import businessday from "../images/businessday.png";
 import pettysave from "../images/pettysave.png";
 import tg from "../images/tg.png";
-import google2 from "../images/google2.png";
-import haptic2 from "../images/haptic2.png";
-import businessday2 from "../images/businessday2.png";
-import pettysave2 from "../images/pettysave2.png";
-import tg2 from "../images/tg2.png";
-import { Helmet } from "react-helmet";
-import Button from "../components/button";
-import axios from "axios";
-// import Loader from "../components/Loader";
-import { Splide, SplideSlide } from "@splidejs/react-splide";
-import "@splidejs/react-splide/css";
+
+const offerings = [
+  {
+    title: "Grazac Innovation Lab",
+    text: "Where imagination meets execution. We give start-ups the tools, talent, mentorship and funding access to grow into viable ventures.",
+    image: team7,
+    cta: "Join the lab",
+    to: "/startup",
+  },
+  {
+    title: "Grazac Academy",
+    text: "Upskill for the future of work you desire. Learn today's in-demand tech skills and the tools needed to thrive in the digital age.",
+    image: team2,
+    cta: "Start learning",
+    href: "https://grazacacademy.com/",
+  },
+  {
+    title: "Co-Working Space",
+    text: "A beautifully designed shared workspace with reliable power and fast internet, for entrepreneurs, freelancers and teams.",
+    image: spaceImg,
+    cta: "Book a space",
+    to: "/bookSpace",
+  },
+];
+
+const partners = [
+  { name: "PettySave", logo: pettysave },
+  { name: "BusinessDay", logo: businessday },
+  { name: "TG", logo: tg },
+  { name: "Google Digital Skills for Africa", logo: google },
+  { name: "Haptic", logo: haptic },
+];
+
+const imageFromPost = (post) => {
+  if (post.thumbnail) return post.thumbnail;
+  const match = String(post.description || "").match(/<img[^>]+src="([^">]+)"/);
+  return match ? match[1] : null;
+};
+
+const formatDate = (value) => {
+  const date = new Date(String(value).replace(" ", "T"));
+  return isNaN(date)
+    ? ""
+    : date.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+};
+
+const OfferCard = ({ item, index }) => {
+  const button = (
+    <>
+      <span className="gz-pill__dot" aria-hidden="true">
+        <FiArrowRight />
+      </span>
+      {item.cta}
+    </>
+  );
+
+  return (
+    <article
+      className="gz-offer"
+      data-aos="fade-up"
+      data-aos-delay={index * 100}
+      data-aos-once="true"
+    >
+      <div className="gz-offer__img">
+        <img src={item.image} alt="" loading="lazy" />
+      </div>
+      <div className="gz-offer__body">
+        <h3 className="gz-h3">{item.title}</h3>
+        <p className="gz-body">{item.text}</p>
+        {item.href ? (
+          <a className="gz-pill" href={item.href} target="_blank" rel="noreferrer">
+            {button}
+          </a>
+        ) : (
+          <Link className="gz-pill" to={item.to}>
+            {button}
+          </Link>
+        )}
+      </div>
+    </article>
+  );
+};
 
 const Landing = () => {
+  const [blogs, setBlogs] = useState([]);
+  const [blogState, setBlogState] = useState("loading");
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const [blogs, setBlogs] = useState([]);
-
-  const options = {
-    width: "100%",
-    type: "loop",
-    gap: "20px",
-    autoplay: true,
-    pauseOnHover: true,
-    resetProgress: false,
-    arrows: false,
-    dots: false,
-    perPage: 5,
-    breakpoints: {
-      450: {
-        gap: "5px",
-        arrows: true,
-        perPage: 2.5,
-      },
-      640: {
-        gap: "24px",
-        arrows: true,
-        perPage: 2.5,
-      },
-      768: {
-        gap: "24px",
-        arrows: true,
-        perPage: 3,
-      },
-      1024: {
-        gap: "8px",
-        arrows: true,
-        perPage: 4,
-      },
-    },
-  };
   useEffect(() => {
-    //   axios
-    //     .get(
-    //       "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@grazac"
-    //     )
-    //     .then((res) => {
-    //       const result = res.data.items.splice(0, 3);
-    //       console.log(res);
-    //       setBlogs(result);
-    //     });
-    // }, []);
+    let active = true;
     axios
-      .get(
-        "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@grazac"
-      )
+      .get("https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@grazac")
       .then((res) => {
-        setBlogs(res.data.items.splice(0, 3));
-      });
+        if (!active) return;
+        const items = (res.data && res.data.items) || [];
+        setBlogs(items.slice(0, 3));
+        setBlogState(items.length ? "ready" : "empty");
+      })
+      .catch(() => active && setBlogState("empty"));
+    return () => {
+      active = false;
+    };
   }, []);
 
-  // const { reveal } = React.useContext(ShowContext);
-  const navigateToContact = () => {
-    window.location.href = "/contact";
-  };
-
   return (
-    <div>
+    <div className="gz">
       <Helmet>
         <title>Home - Grazac</title>
         <meta name="description" content="IDEAS, PEOPLE AND A SMART FUTURE" />
         <meta name="theme-color" content="#773DD3" />
-        <meta
-          property="og:description"
-          content="IDEAS, PEOPLE AND A SMART FUTURE"
-        ></meta>
+        <meta property="og:description" content="IDEAS, PEOPLE AND A SMART FUTURE"></meta>
         <meta property="og:title" content="GRAZAC TECHNOLOGIES"></meta>
         <meta name="twitter:title" content="GRAZAC TECHNOLOGIES"></meta>
         <meta property="og:url" content="https://www.grazac.com.ng/" />
       </Helmet>
-      <div className="landing">
-        <div className="landing_pattern">
-          <div className="container">
-            <div className="landing_hero">
-              <h6>WELCOME TO GRAZAC</h6>
-              <h1>
-                <span>IDEAS, PEOPLE AND A SMART FUTURE</span>
-              </h1>
-              <p>
-                We are building an ecosystem that facilitates technology
-                entrepreneurship while enhancing economic development
-              </p>
-              <div className="landing_hero_btn">
-                <Button extra="button button-bg" click={navigateToContact}>Partner With Us</Button>
-              </div>
-              <img src={pattern1} alt="" className="pattern_1" />
-              <img src={pattern2} alt="" className="pattern_2" />
-            </div>
-          </div>
-        </div>
-        <div className="landing_wwd">
-          <div className="landing_wwd-columns">
-            <div className="landing_wwd-textpart section1">
-              <p>WHAT WE DO</p>
-              <h1>We develop, support and scale tech innovations</h1>
-              <p>
-                We provide best solutions and an enabling environment that
-                brings to life your intelligent ideas while leveraging on tech
-                tools
-              </p>
-              <img
-                src={scroll1}
-                alt="scroll"
-                width="40px"
-                className="hvr-hang"
-                style={{ marginBottom: "40px" }}
-              />
-            </div>
-            <div className="section1">
-              <div className="landing_wwd-four">
-                <div className="svg-circle1">
-                  <img src={innovation} alt="illustration" />
-                </div>
-                <div>
-                  <h3>Grazac Innovation Lab</h3>
-                  <p>
-                    A lab where your imagination meets execution. With the right
-                    tools and talents, we propel your idea and drive your vision
-                    forward to become a viable start-up venture in the global
-                    economy
-                  </p>
-                  <Link to="/startup" style={{ textDecoration: "none" }}>
-                    <p>Learn more</p>
-                  </Link>
-                </div>
-                <div className="svg-circle1">
-                  <img src={build} alt="illustration" />
-                </div>
-                <div>
-                  <h3>Grazac Talent City</h3>
-                  <p>
-                    A lab where your imagination meets execution. With the right
-                    tools and talents, we propel your idea and drive your vision
-                    forward to become a viable start-up venture in the global
-                    economy
-                  </p>
-                  <a
-                    href="https://grazactalentcity.com/"
-                    target="_blank"
-                    rel="noreferrer"
-                    style={{ textDecoration: "none" }}
-                  >
-                    <p>Learn more</p>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="section1">
-              <div className="landing_wwd-four">
-                <div className="svg-circle1">
-                  <img src={academy} alt="illustration" />
-                </div>
-                <div>
-                  <h3>Grazac Academy</h3>
-                  <p>
-                    Get equipped in the right platform to upskill yourself for
-                    the future of the work you desire. Gain insights into
-                    today’s tech skills and tools needed in the digital age{" "}
-                  </p>
-                  <a
-                    href="https://grazacacademy.com/"
-                    target="_blank"
-                    rel="noreferrer"
-                    style={{ textDecoration: "none" }}
-                  >
-                    <p>Learn more</p>
-                  </a>
-                </div>
-                <div className="svg-circle1">
-                  <img src={working} alt="illustration" />
-                </div>
-                <div>
-                  <h3>Grazac Co-Working Space</h3>
-                  <p>
-                    Beautifully designed shared workspace for entrepreneurs,
-                    freelancers and businesses that allow for innovative ideas,
-                    increased motivation and collaboration. With our shared
-                    office space, there is no need for an expensive move. All
-                    your technology needs are sorted out
-                  </p>
-                  <Link to="/workspace" style={{ textDecoration: "none" }}>
-                    <p>Learn more</p>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* <div className="container">
-          <div className="landing_featured">
-            <div className="landing_featured-text">
-              <p>PARTNERS</p>
-              <h1>Brands we Partnered with/As seen on</h1>
-            </div>
-            <div className="landing_featured-logos">
-              <div>
-                <img src={andela} alt="logos" />
-              </div>
-              <div>
-                <img src={fieldinsight} alt="logos" />
-              </div>
-              <div>
-                <img src={dc} alt="logos" />
-              </div>
-              <div>
-                <img src={abeg} alt="logos" />
-              </div>
-              <div>
-                <img src={busha} alt="logos" />
-              </div>
-              <div>
-                <img src={farmcrowdy} alt="logos" />
-              </div>
-              <div>
-                <img src={cowrywise} alt="logos" />
-              </div>
-              <div>
-                <img src={dear} alt="logos" />
-              </div>
-              <div>
-                <img src={axa} alt="logos" />
-              </div>
-              <div>
-                <img src={betway} alt="logos" />
-              </div>
-              <div>
-                <img src={ariga} alt="logos" />
-              </div>
-              <div>
-                <img src={decagon} alt="logos" />
-              </div>
-              <div>
-                <img src={eyowo} alt="logos" />
-              </div>
-              <div>
-                <img src={ehealth} alt="logos" />
-              </div>
-              <div>
-                <img src={barter} alt="logos" />
-              </div>
-            </div>
-          </div>
-        </div> */}
-        <div className="landing__partners">
-          <div className="landing__partners-box">
-            <div className="landing__partners-text">
-              <p className="muted muted-1">Partners </p>
-              <h2 className="subheader subheader-purple">
-                Brands we Partnered with/As seen on
-              </h2>
-            </div>
-            <div className="landing__partners-container">
-              <div className="landing__partners-img">
-                <img src={pettysave} alt="pettysave" />
-              </div>
-              <div className="landing__partners-img">
-                <img src={businessday} alt="pettysave" />
-              </div>
-              <div className="landing__partners-img">
-                <img src={tg} alt="tg" />
-              </div>
-              <div className="landing__partners-img">
-                <img src={google} alt="google" />
-              </div>
-              <div className="landing__partners-img">
-                <img src={haptic} alt="haptic" />
-              </div>
-            </div>
-            <Splide options={options} className="landing__partners-wrapper">
-              {/* <SplideSlide className="landing__partners-img2">
-                <img src={tg2} alt="pettysave" />
-              </SplideSlide> */}
 
-              <SplideSlide className="landing__partners-img2">
-                <img src={pettysave2} alt="pettysave" />
-              </SplideSlide>
-              <SplideSlide className="landing__partners-img2">
-                <img src={businessday2} alt="pettysave" />
-              </SplideSlide>
-              <SplideSlide className="landing__partners-img2">
-                <img src={tg2} alt="pettysave" />
-              </SplideSlide>
-              <SplideSlide className="landing__partners-img2">
-                <img src={haptic2} alt="pettysave" />
-              </SplideSlide>
-              <SplideSlide className="landing__partners-img2">
-                <img src={google2} alt="pettysave" />
-              </SplideSlide>
-            </Splide>
+      {/* Hero */}
+      <section className="gz-hero">
+        <div className="gz-container gz-hero__grid">
+          <div className="gz-hero__copy">
+            <span className="gz-eyebrow">Welcome to Grazac</span>
+            <h1 className="gz-display">
+              Ideas, people and a <span className="gz-accent">smart future.</span>
+            </h1>
+            <p className="gz-lead">
+              We are building an ecosystem that facilitates technology entrepreneurship while
+              enhancing economic development.
+            </p>
+            <div className="gz-actions">
+              <Link to="/contact" className="gz-btn gz-btn--primary">
+                Partner with us <FiArrowRight />
+              </Link>
+              <a href="#ecosystem" className="gz-btn gz-btn--ghost">
+                Explore our ecosystem
+              </a>
+            </div>
+          </div>
+
+          <div className="gz-hero__media gz-hero__media--collage" data-aos="fade-left" data-aos-once="true">
+            <div className="gz-collage">
+              <div className="gz-collage__col">
+                <figure><img src={team1} alt="The Grazac team" /></figure>
+                <figure><img src={team7} alt="Grazacians collaborating at a desk" /></figure>
+              </div>
+              <div className="gz-collage__col">
+                <figure className="gz-collage__tall"><img src={team3} alt="Two Grazacians sharing a laugh" /></figure>
+                <figure><img src={team5} alt="Grazacians together" /></figure>
+              </div>
+              <div className="gz-collage__col">
+                <figure className="gz-collage__tall"><img src={team4} alt="A Grazacian on a call" /></figure>
+              </div>
+            </div>
+            <div className="gz-chip gz-hero__chip">
+              <span className="gz-chip__icon">
+                <FiLayers />
+              </span>
+              <span>
+                <strong>One ecosystem</strong>
+                Lab · Talent · Academy · Space
+              </span>
+            </div>
           </div>
         </div>
-        <div className=" nextbigthing">
-          <div className="container ">
-            <div className="landing_wwd-column1">
-              <div className="section2">
-                {/* <img src={business} alt="business" className="business" /> */}
+      </section>
+
+      {/* Our offerings */}
+      <section className="gz-section gz-section--tint" id="ecosystem">
+        <div className="gz-container">
+          <div className="gz-section-head">
+            <span className="gz-eyebrow">What we do</span>
+            <h2 className="gz-h2">Our offerings</h2>
+            <p className="gz-lead">
+              We develop, support and scale tech innovations. Here's a quick overview of how we
+              can help you take your idea or business a step further.
+            </p>
+          </div>
+          <div className="gz-offers">
+            {offerings.map((item, index) => (
+              <OfferCard key={item.title} item={item} index={index} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Partners */}
+      <section className="gz-partners" aria-label="Partners">
+        <div className="gz-container">
+          <p className="gz-partners__title">Brands we've partnered with &amp; as seen on</p>
+        </div>
+        <div className="gz-marquee">
+          <div className="gz-marquee__track">
+            {[...partners, ...partners, ...partners, ...partners].map((partner, index) => (
+              <div
+                className="gz-marquee__item"
+                key={index}
+                aria-hidden={index >= partners.length ? "true" : undefined}
+              >
+                <img src={partner.logo} alt={partner.name} />
               </div>
-              <div className="section2 section3">
-                <h1>
-                  Are you building the
-                  <br />
-                  next big thing?
-                </h1>
-                <p>
-                  We are passionate about supporting startups solving social
-                  problems in Africa.
-                </p>
-                <Link to="/startup" className="button button-bg">
-                  Join Our Startup
-                  <img src={arrow} alt="" className="hvr-buzz" />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Startup CTA */}
+      <section className="gz-section">
+        <div className="gz-container">
+          <div className="gz-panel" data-aos="fade-up" data-aos-once="true">
+            <div className="gz-panel__copy">
+              <span className="gz-eyebrow gz-eyebrow--dark">Grazac Innovation Lab</span>
+              <h2 className="gz-h2">Are you building the next big thing?</h2>
+              <p>
+                We are passionate about supporting startups solving social problems in Africa.
+              </p>
+              <div className="gz-actions">
+                <Link to="/startup" className="gz-btn gz-btn--light">
+                  Join our startup programme <FiArrowRight />
                 </Link>
               </div>
             </div>
+            <div className="gz-panel__media">
+              <img src={teamMeeting} alt="The Grazac team in a meeting" loading="lazy" />
+            </div>
           </div>
         </div>
-        {/* {blogs.length < 1 ? (
-          <div className="blogs__loader">
-            <Loader />
-          </div>
-        ) : ( */}
-        <div className="blogs__blog landing__blog">
-          <div className="blogs__blog-box">
-            <div className="landing__blog-header">
-              <h3 className="subheader subheader-purple">Latest Blog</h3>
-              <Link to="/blog" className="button button-bg">
-                <span>Visit Grazac Blog</span>
-                <img src={btnwhite} alt="arrow" />
+      </section>
+
+      {/* Blog */}
+      {blogState !== "empty" && (
+        <section className="gz-section gz-section--tint">
+          <div className="gz-container">
+            <div className="gz-section-head gz-section-head--row">
+              <div>
+                <span className="gz-eyebrow">From the blog</span>
+                <h2 className="gz-h2">Latest stories</h2>
+              </div>
+              <Link to="/blog" className="gz-btn gz-btn--ghost">
+                Visit Grazac blog <FiArrowRight />
               </Link>
             </div>
-            <div className="blogs__blog-container">
-              {blogs.map((blog, index) => {
-                return (
-                  <a
-                    // href={blog.link}
-                    href={blogs[index].link}
-                    className="blog"
-                    target="_blank"
-                    rel="noreferrer"
-                    key={index}
-                  >
-                    {blog.description
-                      .toString()
-                      .match(/<img[^>]+src="([^">]+)"/)[1] && (
-                      <div className="blog__img">
-                        <img
-                          src={
-                            blog.description
-                              .toString()
-                              .match(/<img[^>]+src="([^">]+)"/)[1]
-                          }
-                          alt="img"
-                        />
-                      </div>
-                    )}
-                    <div className="blog__content">
-                      <div className="blog__content-container">
-                        {/* <h6 className="blogtitle">press release</h6> */}
-                        <h3 className="muted muted-1">{blog.title}</h3>
-
-                        <small className="small">{blog.pubDate}</small>
+            <div className="gz-blog">
+              {blogState === "loading"
+                ? [0, 1, 2].map((key) => (
+                    <div className="gz-post gz-post--skeleton" key={key} aria-hidden="true">
+                      <div className="gz-post__img" />
+                      <div className="gz-post__body">
+                        <div className="gz-skel gz-skel--short" />
+                        <div className="gz-skel" />
+                        <div className="gz-skel" />
                       </div>
                     </div>
-                  </a>
-                );
-              })}
+                  ))
+                : blogs.map((post, index) => {
+                    const image = imageFromPost(post);
+                    return (
+                      <a
+                        href={post.link}
+                        className="gz-post"
+                        target="_blank"
+                        rel="noreferrer"
+                        key={post.guid || index}
+                      >
+                        <div className="gz-post__img">
+                          {image && <img src={image} alt="" loading="lazy" />}
+                        </div>
+                        <div className="gz-post__body">
+                          <span className="gz-post__date">{formatDate(post.pubDate)}</span>
+                          <h3 className="gz-post__title">{post.title}</h3>
+                        </div>
+                      </a>
+                    );
+                  })}
             </div>
           </div>
-        </div>
-        <Subscribe />
-      </div>
+        </section>
+      )}
+
     </div>
   );
 };
