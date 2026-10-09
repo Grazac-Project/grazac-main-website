@@ -1,9 +1,8 @@
 // @ts-nocheck
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { FiArrowRight, FiTag } from "react-icons/fi";
-import { FaWhatsapp } from "react-icons/fa";
 import {
   TbArmchair2,
   TbBolt,
@@ -16,6 +15,7 @@ import {
   TbUsers,
 } from "react-icons/tb";
 import Tour from "../components/Tour/Tour";
+import EnquiryForm from "../components/EnquiryForm";
 import { paymentOptions, DAILY_RATE, REGULAR_DAILY_RATE } from "../workspacePlans";
 import "../styles/pages.css";
 
@@ -34,12 +34,12 @@ import registeredImg from "../images/redesign/ws-registered.jpg";
 
 const naira = (amount) => `₦${amount.toLocaleString()}`;
 
-// Office plans are priced over WhatsApp; the chat opens with the plan pre-filled.
-const WHATSAPP_NUMBER = "2348068365951";
-const whatsappLink = (planName) =>
-  `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-    `Hello Grazac, I'd like to know more about the ${planName} plan and its price.`
-  )}`;
+// Desks, rooms and offices are priced on request via the enquiry form.
+const enquiryProps = {
+  priceNote: "Price on request",
+  enquire: true,
+  cta: "Enquire now",
+};
 
 const membershipDetails = {
   daily: { name: "Daily Membership", unit: "day", image: dailyImg, access: "Access for 1 working day" },
@@ -152,13 +152,7 @@ const officePlans = [
       "Access to community events and news",
     ],
   },
-].map((plan) => ({
-  ...plan,
-  priceNote: "Chat with us for pricing",
-  href: whatsappLink(plan.name),
-  cta: "Chat on WhatsApp",
-  ctaIcon: <FaWhatsapp />,
-}));
+].map((plan) => ({ ...plan, ...enquiryProps }));
 
 const amenities = [
   { label: "High-speed Internet", icon: <TbBrandSpeedtest /> },
@@ -171,7 +165,7 @@ const amenities = [
   { label: "Conducive Environment", icon: <TbPlant /> },
 ];
 
-const PlanCard = ({ plan, index }) => (
+const PlanCard = ({ plan, index, onEnquire }) => (
   <article
     className="gz-plan"
     data-aos="fade-up"
@@ -211,15 +205,14 @@ const PlanCard = ({ plan, index }) => (
           </li>
         ))}
       </ul>
-      {plan.href ? (
-        <a
-          href={plan.href}
-          target="_blank"
-          rel="noreferrer"
+      {plan.enquire ? (
+        <button
+          type="button"
           className="gz-btn gz-plan__btn gz-btn--primary"
+          onClick={() => onEnquire(plan.name)}
         >
-          {plan.ctaIcon} {plan.cta}
-        </a>
+          {plan.cta} <FiArrowRight />
+        </button>
       ) : (
         <Link
           to={plan.to}
@@ -232,8 +225,13 @@ const PlanCard = ({ plan, index }) => (
   </article>
 );
 
+const enquirySpaces = [...spaces, ...officePlans].map((item) => item.name);
+
 const CoworkingSpaces = () => {
   const [tour, setTour] = useState(false);
+  const [enquiry, setEnquiry] = useState({ open: false, space: "" });
+  const openEnquiry = useCallback((space) => setEnquiry({ open: true, space }), []);
+  const closeEnquiry = useCallback(() => setEnquiry((prev) => ({ ...prev, open: false })), []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -252,6 +250,15 @@ const CoworkingSpaces = () => {
         <meta property="og:url" content="https://www.grazac.com.ng/workspace" />
       </Helmet>
       <Tour tour={tour} setTour={setTour} />
+      {enquiry.open && (
+        <EnquiryForm
+          key={enquiry.space}
+          open
+          space={enquiry.space}
+          spaces={enquirySpaces}
+          onClose={closeEnquiry}
+        />
+      )}
 
       {/* Intro */}
       <section className="gz-hero">
@@ -290,7 +297,7 @@ const CoworkingSpaces = () => {
             <div className="gz-hero__photo">
               <img src={heroImg} alt="Workstations at the Grazac co-working space" />
             </div>
-            <div className="gz-chip gz-hero__chip">
+            {/* <div className="gz-chip gz-hero__chip">
               <span className="gz-chip__icon">
                 <FiTag />
               </span>
@@ -301,7 +308,7 @@ const CoworkingSpaces = () => {
                 </strong>
                 Flexible memberships
               </span>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
@@ -332,22 +339,17 @@ const CoworkingSpaces = () => {
             {/* <span className="gz-eyebrow">Private spaces</span> */}
             <h2 className="gz-h2">Desks and rooms for your team</h2>
             <p className="gz-lead">
-              Need a permanent desk or a room for your next meeting? Chat with us on WhatsApp and
-              we'll set it up.
+              Need a permanent desk or a room for your next meeting? Send us an enquiry and our
+              team will reach out with pricing and availability.
             </p>
           </div>
           <div className="gz-plans">
             {spaces.map((space, index) => (
               <PlanCard
                 key={space.key}
-                plan={{
-                  ...space,
-                  priceNote: "Chat with us for pricing",
-                  href: whatsappLink(space.name),
-                  cta: "Chat on WhatsApp",
-                  ctaIcon: <FaWhatsapp />,
-                }}
+                plan={{ ...space, ...enquiryProps }}
                 index={index}
+                onEnquire={openEnquiry}
               />
             ))}
           </div>
@@ -361,21 +363,16 @@ const CoworkingSpaces = () => {
             {/* <span className="gz-eyebrow">Office solutions</span> */}
             <h2 className="gz-h2">Virtual &amp; registered offices</h2>
             <p className="gz-lead">
-              Give your business a professional address without renting a full office. Chat with
-              us on WhatsApp to find the right plan and get pricing.
+              Give your business a professional address without renting a full office. Send us an
+              enquiry and we'll help you find the right plan.
             </p>
-            <a
-              href={whatsappLink("Virtual Office / Registered Office")}
-              target="_blank"
-              rel="noreferrer"
-              className="gz-link"
-            >
-              <FaWhatsapp /> Ask us a question
-            </a>
+            <button type="button" className="gz-link gz-link--button" onClick={() => openEnquiry("")}>
+              Not sure which? Ask us <FiArrowRight />
+            </button>
           </div>
           <div className="gz-plans gz-plans--two">
             {officePlans.map((plan, index) => (
-              <PlanCard key={plan.key} plan={plan} index={index} />
+              <PlanCard key={plan.key} plan={plan} index={index} onEnquire={openEnquiry} />
             ))}
           </div>
         </div>
