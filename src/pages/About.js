@@ -46,6 +46,7 @@ const units = [
   { name: "Grazac Talent City", note: "Nurturing Africa's next tech talent", href: "https://www.grazactalentcity.com/" },
   { name: "Grazac Academy", note: "Tech skills for the future of work", href: "https://www.grazacacademy.com" },
   { name: "Grazac Co-Working Space", note: "A workspace built for focus and collaboration", to: "/workspace" },
+  { name: "Grazac Build", note: "Websites, apps and MVPs built for your business", to: "/build" },
 ];
 
 const About = () => {
@@ -118,7 +119,7 @@ const About = () => {
             <h2 className="gz-h2">Hassle-free funding for technology entrepreneurs</h2>
             <p className="gz-lead">
               Leveraging science, technology and innovation, we support member hubs and their
-              communities through four connected units.
+              communities through five connected units.
             </p>
           </div>
           <ul className="gz-units">

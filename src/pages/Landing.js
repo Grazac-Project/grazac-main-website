@@ -11,6 +11,7 @@ import "../styles/pages.css";
 // photography (latest team photos)
 import heroTeam from "../images/redesign/hero-team.jpg";
 import team2 from "../images/website/newabout2.png";
+import team6 from "../images/website/newabout6.png";
 import team7 from "../images/website/newabout7.png";
 import teamMeeting from "../images/website/about-spread.png";
 import spaceImg from "../images/redesign/space.jpg";
@@ -43,6 +44,13 @@ const offerings = [
     image: spaceImg,
     cta: "Explore plans",
     to: "/workspace",
+  },
+  {
+    title: "Grazac Build",
+    text: "Need a website, app or MVP? Our team designs and builds digital solutions for businesses and startups, from idea to launch.",
+    image: team6,
+    cta: "Start a project",
+    to: "/build",
   },
 ];
 

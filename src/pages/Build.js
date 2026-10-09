@@ -1,309 +1,316 @@
 // @ts-nocheck
-import React, { useState } from "react";
-import axios from 'axios';
-// import study1 from "../images/study1.png";
-import buildvideo from "../images/buildvideo.png";
-
-import { useEffect } from "react";
-import Scroll from "../components/Scroll";
+import { useCallback, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import {
+  FiArrowRight,
+  FiBookOpen,
+  FiCheck,
+  FiCode,
+  FiGlobe,
+  FiLifeBuoy,
+  FiMousePointer,
+  FiPenTool,
+  FiSmartphone,
+  FiTrendingUp,
+} from "react-icons/fi";
+import EnquiryForm from "../components/EnquiryForm";
+import useSanity from "../lib/useSanity";
+import { BUILD_QUERY, imageUrl } from "../lib/sanity";
+import "../styles/pages.css";
+
+import teamImg from "../images/redesign/build-team.jpg";
+
+const services = [
+  {
+    icon: <FiGlobe />,
+    title: "Website Development",
+    text: "Fast, responsive websites and web applications that represent your brand and work beautifully on every device.",
+  },
+  {
+    icon: <FiSmartphone />,
+    title: "Mobile App Development",
+    text: "Android and iOS apps designed around your users and built to grow with your business.",
+  },
+  {
+    icon: <FiPenTool />,
+    title: "Product Design (UI/UX)",
+    text: "User-centred interfaces, prototypes and design systems that make your product easy and enjoyable to use.",
+  },
+  {
+    icon: <FiTrendingUp />,
+    title: "MVPs for Startups",
+    text: "Turn your idea into a minimum viable product you can test with real users, pitch to investors and scale.",
+  },
+  {
+    icon: <FiBookOpen />,
+    title: "Tech Training for Teams",
+    text: "Upskill your team in today's in-demand tech skills, delivered by the people behind Grazac Academy.",
+  },
+  {
+    icon: <FiLifeBuoy />,
+    title: "Maintenance & Support",
+    text: "We monitor, fix and improve your product after launch so it stays fast, secure and up to date.",
+  },
+];
+
+const steps = [
+  {
+    title: "Discover",
+    text: "We learn your goals, users and requirements, then agree a clear plan and scope.",
+  },
+  {
+    title: "Design",
+    text: "We shape a user-centred design and prototype you can review before we build.",
+  },
+  {
+    title: "Build",
+    text: "Our engineers develop and test your product, with regular check-ins along the way.",
+  },
+  {
+    title: "Launch & support",
+    text: "We take your product live, monitor how it performs and keep improving it.",
+  },
+];
+
+const reasons = [
+  {
+    title: "Talent from our own ecosystem",
+    text: "Our team is drawn from the designers and engineers trained through Grazac Academy and Talent City.",
+  },
+  {
+    title: "We understand startups",
+    text: "Supporting founders at the Grazac Innovation Lab means we build with your growth in mind.",
+  },
+  {
+    title: "Close collaboration",
+    text: "You work directly with the team building your product and see progress at every stage.",
+  },
+  {
+    title: "Built to last",
+    text: "Clean, maintainable code and a proper handover, so your product keeps working after launch.",
+  },
+];
+
+const formOptions = [...services.map((service) => service.title), "Something else"];
+
+// Shown only while developing locally, so empty Sanity sections are easy to spot.
+const DevHint = ({ children }) =>
+  process.env.NODE_ENV === "development" ? <div className="gz-dev-hint">{children}</div> : null;
 
 const Build = () => {
-  const [form, setForm] = useState(false);
-  const [ text, setText ] = useState('Submit');
-  const [name, setName] = useState('');
-  const [companyName, setCompanyName] = useState('');
-  const [title, setTitle] = useState('');
-  const [email, setEmail] = useState('');
-  const [industry, setIndustry] = useState('');
-  const [website, setWebsite] = useState('');
-  const [promotion, setPromotion] = useState('');
-  const [service, setService] = useState('');
-  const [message, setMessage] = useState('');
-
-  const submitForm = e => {
-    e.preventDefault();
-    setText('Submitting...');
-    var formElement = document.querySelector("form");
-    var formData = new FormData();
-    formData.append('name', name);
-    formData.append('company_name', companyName);
-    formData.append('title', title);
-    formData.append('email', email);
-    formData.append('industry', industry);
-    formData.append('website', website);
-    formData.append('promotion', promotion);
-    formData.append('service', service);
-    formData.append('message', message);
-    axios.post("http://grazac.com.ng/forms/buildWithGrazac", formData)
-    .then(({ data }) => {
-      if (data.success === true) {
-        alert('Your form has been submitted successfully, one of our marketing representative will reach out to you soon');
-        setText('Submit');
-        formElement.reset();
-        setForm(false);
-      } else {
-        alert(data.msg);
-        setText('Submit');
-      }
-    })
-    .catch(err => {
-      console.log(err);
-    });
-
-  }
+  const [enquiry, setEnquiry] = useState({ open: false, topic: "" });
+  const openForm = useCallback((topic = "") => setEnquiry({ open: true, topic }), []);
+  const closeForm = useCallback(() => setEnquiry((prev) => ({ ...prev, open: false })), []);
+  const { status, data } = useSanity(BUILD_QUERY);
+  const clients = (status === "ready" && data && data.clients) || [];
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   return (
-    <div>
+    <div className="gz">
       <Helmet>
-        <title>Build - Grazac</title>
+        <title>Grazac Build - Grazac</title>
         <meta
           name="description"
-          content="Making digital solutions a seamless part of everyday life"
+          content="Grazac Build designs and builds websites, mobile apps and startup MVPs for businesses, from idea to launch."
         />
         <meta name="theme-color" content="#773DD3" />
+        <meta property="og:title" content="Grazac Build" />
         <meta
           property="og:description"
-          content="Making digital solutions a seamless part of everyday life"
-        ></meta>
-        <meta property="og:title" content="GRAZAC TECHNOLOGIES"></meta>
-        <meta name="twitter:title" content="GRAZAC TECHNOLOGIES"></meta>
+          content="Making digital solutions a seamless part of everyday life."
+        />
         <meta property="og:url" content="https://www.grazac.com.ng/build" />
       </Helmet>
-      {form && (
-        <div className="build_stories-bg">
-          <div className="build_stories-form">
-          <form onSubmit={submitForm} method="POST">
-          <span id="cancel" onClick={_ => setForm(false)} style={{float: 'right', cursor: 'pointer', fontSize: '17px', color: '#000'}}>x</span>
-            <div className="innovation_hero-form-flexinput">
-              <input
-                type="text"
-                className="form-input"
-                placeholder="Full Name"
-                required
-                onChange={e => setName(e.target.value)}
-              />
-              <input
-                type="text"
-                className="form-input"
-                placeholder="Company Name"
-                required
-                onChange={e => setCompanyName(e.target.value)}
-              />
-            </div>
-            <div className="innovation_hero-form-flexinput">
-              <input
-                type="text"
-                className="form-input"
-                placeholder="Title/Position in the Company"
-                required
-                onChange={e => setTitle(e.target.value)}
-              />
-              <input
-                type="email"
-                className="form-input"
-                placeholder="Work Email"
-                required
-                onChange={e => setEmail(e.target.value)}
-              />
-            </div>
-            <div className="innovation_hero-form-flexinput">
-              <input
-                type="text"
-                className="form-input"
-                placeholder="Industry"
-                required
-                onChange={e => setIndustry(e.target.value)}
-              />
-              <input type="text" className="form-input" placeholder="Website" 
-                onChange={e => setWebsite(e.target.value)}
-                />
-            </div>
-            <div className="">
-              <div>
-                <label style={{ margin: "20px 0 10px" }}>
-                  How did you hear about us?
-                </label>
-                <br />
-                <label className="hear-about">
-                  Via Email
-                  <input type="radio" value="Email" name="promotion" 
-                required
-                    onChange={e => setPromotion(e.target.value)}
-                  />
-                  <span className="checkmark"></span>
-                </label>
-                <label className="hear-about">
-                  Social Media
-                  <input type="radio" value="Social Media" name="promotion" 
-                required
-                    onChange={e => setPromotion(e.target.value)}
-                  />
-                  <span className="checkmark"></span>
-                </label>
-                <label className="hear-about">
-                  Grazac Personnel
-                  <input type="radio" value="Grazac Personnel" name="promotion" 
-                required
-                    onChange={e => setPromotion(e.target.value)}
-                  />
-                  <span className="checkmark"></span>
-                </label>
-                <label className="hear-about">
-                  Referral
-                  <input type="radio" value="referral" name="promotion" 
-                    onChange={e => setPromotion(e.target.value)}
-                  />
-                  <span className="checkmark"></span>
-                </label>
-                <label className="hear-about">
-                  Online Advert
-                  <input type="radio" value="Online Advert" name="promotion" 
-                required
-                    onChange={e => setPromotion(e.target.value)}
-                  />
-                  <span className="checkmark"></span>
-                </label>
-                <label className="hear-about">
-                  Others
-                  <input type="radio" value="Others" name="promotion" 
-                required
-                    onChange={e => setPromotion(e.target.value)}
-                  />
-                  <span className="checkmark"></span>
-                </label>
-              </div>
-              <div>
-                <label style={{ margin: "20px 0 10px" }}>
-                  Which of our service are you interected in?
-                </label>
-                <br />
-                <label className="hear-about">
-                  App Development
-                  <input type="radio" value="App Development" name="service" 
-                required
-                    onChange={e => setService(e.target.value)}
-                  />
-                  <span className="checkmark"></span>
-                </label>
-                <label className="hear-about">
-                  Website Development
-                  <input type="radio" value="Website Development" name="service" 
-                required
-                    onChange={e => setService(e.target.value)}
-                  />
-                  <span className="checkmark"></span>
-                </label>
-                <label className="hear-about">
-                  Startup
-                  <input type="radio" value="Start-Up" name="service" 
-                required
-                    onChange={e => setService(e.target.value)}
-                  />
-                  <span className="checkmark"></span>
-                </label>
-                <label className="hear-about">
-                  Training
-                  <input type="radio" value="Training" name="service" 
-                required
-                    onChange={e => setService(e.target.value)}
-                  />
-                  <span className="checkmark"></span>
-                </label>
-                <label className="hear-about">
-                  Other
-                  <input type="radio" value="Others" name="service" 
-                required
-                    onChange={e => setService(e.target.value)}
-                  />
-                  <span className="checkmark"></span>
-                </label>
-              </div>
-              <div>
-                <textarea
-                  onChange={e => setMessage(e.target.value)}
-                  placeholder="Give further details on what you want us to do for you"
-                required
-                  rows={5}
-                />
-              </div>
-            </div>
-            <button type="submit" >{text}</button>
-            </form>
-          </div>
-        </div>
+
+      {enquiry.open && (
+        <EnquiryForm
+          key={enquiry.topic}
+          open
+          variant="build"
+          topic={enquiry.topic}
+          options={formOptions}
+          onClose={closeForm}
+        />
       )}
-      <div className="landing">
-        <div className="container">
-          <div className="landing_hero">
-            <p>Latest project</p>
-            <h1>
-              <span></span>Making digital solutions a seamless part of everyday
-              life
-            </h1>
-            <p>
-              Pushing the boundaries of innovation to deliver best tech
-              solutions suitable for every business type and size and capable of
-              driving impact across various industries
+
+      {/* Hero */}
+      <section className="gz-build-hero">
+        <div className="gz-container gz-build-hero__inner">
+          <span className="gz-eyebrow gz-eyebrow--dark">Grazac Build</span>
+          <h1>
+            Building digital solutions
+            <span>for your business needs</span>
+          </h1>
+          <p>
+            From websites and mobile apps to startup MVPs and team training, our team turns your ideas
+            into reliable digital products and supports you long after launch.
+          </p>
+          <div className="gz-actions">
+            <button type="button" className="gz-btn gz-btn--light" onClick={() => openForm()}>
+              Start your project <FiArrowRight />
+            </button>
+            <a href="#process" className="gz-btn gz-btn--outline-light">
+              How we work
+            </a>
+          </div>
+        </div>
+        <span className="gz-float-tag gz-float-tag--dev" aria-hidden="true">
+          <FiCode /> Developers
+        </span>
+        <span className="gz-float-tag gz-float-tag--design" aria-hidden="true">
+          <FiMousePointer className="gz-float-tag__cursor" /> Designers
+        </span>
+      </section>
+
+      {/* Process */}
+      <section className="gz-section" id="process">
+        <div className="gz-container">
+          <div className="gz-section-head gz-section-head--center">
+            <span className="gz-eyebrow">Our process</span>
+            <h2 className="gz-h2">From idea to launch, step by step</h2>
+          </div>
+          <ol className="gz-timeline gz-timeline--four">
+            {steps.map((step, index) => (
+              <li
+                className="gz-step"
+                key={step.title}
+                data-aos="fade-up"
+                data-aos-delay={index * 100}
+                data-aos-once="true"
+              >
+                <span className="gz-step__dot">{index + 1}</span>
+                <h3>{step.title}</h3>
+                <p>{step.text}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* Services */}
+      <section className="gz-section gz-dark gz-services-dark">
+        <div className="gz-container">
+          <div className="gz-section-head">
+            <span className="gz-eyebrow gz-eyebrow--dark">What we build</span>
+            <h2 className="gz-h2">Explore our services</h2>
+            <p className="gz-lead">
+              Whether you're launching something new or improving what you have, we bring the
+              design, engineering and training to get it done.
             </p>
+          </div>
+          <div className="gz-services-dark__grid">
+            {services.map((service, index) => (
+              <article
+                className="gz-service-dark"
+                key={service.title}
+                data-aos="fade-up"
+                data-aos-delay={index * 80}
+                data-aos-once="true"
+              >
+                <span className="gz-service-dark__icon">{service.icon}</span>
+                <h3>{service.title}</h3>
+                <p>{service.text}</p>
+                <button
+                  type="button"
+                  className="gz-service-dark__link"
+                  onClick={() => openForm(service.title)}
+                >
+                  Get started <FiArrowRight />
+                </button>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Client logos */}
+      {(clients.length > 0 || status !== "loading") && (
+        <section className="gz-section gz-clients">
+          <div className="gz-container">
+            {clients.length > 0 ? (
+              <>
+                <div className="gz-section-head gz-section-head--center">
+                  <span className="gz-eyebrow">Our clients</span>
+                  <h2 className="gz-h2">Innovative products our clients have built</h2>
+                  <p className="gz-lead">We build for startups and businesses in diverse industries.</p>
+                </div>
+                <ul className="gz-logos">
+                  {clients.map((client) => {
+                    const logo = imageUrl(client.logo, 320);
+                    const img = logo && <img src={logo} alt={client.name} loading="lazy" />;
+                    return (
+                      <li key={client._id}>
+                        {client.website ? (
+                          <a href={client.website} target="_blank" rel="noreferrer">
+                            {img}
+                          </a>
+                        ) : (
+                          img
+                        )}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </>
+            ) : (
+              <DevHint>
+                <strong>Client logos section is hidden.</strong> Add clients in the Studio
+                (localhost:3000/studio → Build client) and they'll appear here.
+              </DevHint>
+            )}
+          </div>
+        </section>
+      )}
+
+      {/* Why Grazac */}
+      <section className="gz-section gz-section--tint">
+        <div className="gz-container gz-split">
+          <div className="gz-split__media" data-aos="fade-right" data-aos-once="true">
+            <img src={teamImg} alt="Two Grazacians building a product together" loading="lazy" />
+          </div>
+          <div className="gz-split__copy">
+            <span className="gz-eyebrow">Why Grazac Build</span>
+            <h2 className="gz-h2">Backed by the whole Grazac ecosystem</h2>
+            <ul className="gz-checklist">
+              {reasons.map((reason) => (
+                <li key={reason.title}>
+                  <span className="gz-checklist__icon">
+                    <FiCheck />
+                  </span>
+                  <span>
+                    {reason.title}
+                    <small>{reason.text}</small>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="gz-section">
+        <div className="gz-container">
+          <div className="gz-banner" data-aos="fade-up" data-aos-once="true">
             <div>
-              <a href="#start_form" className="build-btn">
-                Start a Project
-              </a>
-              <button className="whitebg-btn">Check our Work</button>
+              <h2 className="gz-h2">Have an idea? Let's build it together.</h2>
+              <p>Tell us about your project and we'll get back to you to discuss the next steps.</p>
             </div>
-            <div>
-              {/**video playing div */}
-              <img
-                src={buildvideo}
-                alt="build"
-                width="100%"
-                style={{ margin: "40px 0" }}
-              />
+            <div className="gz-actions">
+              <button type="button" className="gz-btn gz-btn--light" onClick={() => openForm()}>
+                Start your project <FiArrowRight />
+              </button>
+              <Link to="/contact" className="gz-btn gz-btn--outline-light">
+                Talk to us
+              </Link>
             </div>
           </div>
         </div>
-      </div>
-      <div className="build">
-        <div className="container">
-          {/* <div className="build_case">
-                        <h1>Case Studies</h1>
-                        <div className="build_case-flex1">
-                            <div className="build_case-flex1_first">
-                                <img src={study1} alt="study" />
-                                <h3>Inventia</h3>
-                                <p>Revolutionising 3D cell biology to accelerare drug discovery</p>
-                            </div>
-                            <div className="build_case-flex1_second"></div>
-                        </div>
-                        <div className="build_case-flex2">
-                            <div className="build_case-flex2_first">
-                            </div>
-                            <div className="build_case-flex2_second"></div>
-                        </div>
-                        <div className="build_case-flex3">
-                            <div className="build_case-flex3_first"></div>
-                            <div className="build_case-flex3_first"></div>
-                        </div>
-                    </div> */}
-        </div>
-        <div className="build_stories" id="start_form">
-          <div className="build_stories-text">
-            <h1>
-              Let’s create digital solutions that meet your software needs
-            </h1>
-            <p>Click the button below to get started</p>
-          </div>
-          <button className="fillform-btn" onClick={() => setForm(true)}>
-            Start a Project
-          </button>
-        </div>
-      </div>
-      <Scroll />
+      </section>
     </div>
   );
 };

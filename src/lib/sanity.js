@@ -56,3 +56,9 @@ export const formatDate = (value) => {
 };
 
 export const readingTimeLabel = (minutes) => `${Math.max(1, minutes || 1)} min read`;
+
+// Grazac Build (/build): client logos, managed in the Studio.
+export const BUILD_QUERY = `{
+  "clients": *[_type == "client" && defined(logo.asset)]
+    | order(coalesce(order, 9999) asc, name asc) { _id, name, logo, website }
+}`;

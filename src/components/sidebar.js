@@ -56,10 +56,10 @@ const Sidebar = ({ animate, setShow, clickContact }) => {
               className="sidebar__item"
               
             >
-              <a className="sidebar__link" href="https://www.grazactalentcity.com/" target="_blank" rel="noreferrer" >
+              <NavLink className="sidebar__link" to="/build">
                 {" "}
-                Grazacac Talent City
-              </a>
+                Grazac Build
+              </NavLink>
             </li>
             <li
               onClick={() => setShow(false)}
