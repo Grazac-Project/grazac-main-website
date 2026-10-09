@@ -18,6 +18,7 @@ import BookSpace from "./components/bookSpace";
 import BookingSummary from "./components/BookingSummary";
 import NotFound from "./pages/NotFound";
 import CoworkingSpaces from "./pages/CoworkingSpaces";
+import BlogPost from "./pages/BlogPost";
 
 const App = () => {
   const { pathname } = useLocation();
@@ -84,6 +85,7 @@ const App = () => {
             <Route path="/casestudy" exact component={CaseStudy} />
             <Route path="/startup" exact component={StartUp} />
             <Route path="/blog" exact component={Blog} />
+            <Route path="/blog/:slug" exact component={BlogPost} />
             <Route path="/contact" exact component={Contact} />
             <Route path="/bookSpace" exact component={BookSpace} />
             <Route path="/booking-summary" exact component={BookingSummary} />

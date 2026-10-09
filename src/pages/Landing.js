@@ -1,9 +1,11 @@
 // @ts-nocheck
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import axios from "axios";
 import { FiArrowRight } from "react-icons/fi";
+import useSanity from "../lib/useSanity";
+import { LATEST_POSTS_QUERY } from "../lib/sanity";
+import { PostCard, PostCardSkeleton } from "../components/blog/PostCard";
 import "../styles/pages.css";
 
 // photography (latest team photos)
@@ -52,19 +54,6 @@ const partners = [
   { name: "Haptic", logo: haptic },
 ];
 
-const imageFromPost = (post) => {
-  if (post.thumbnail) return post.thumbnail;
-  const match = String(post.description || "").match(/<img[^>]+src="([^">]+)"/);
-  return match ? match[1] : null;
-};
-
-const formatDate = (value) => {
-  const date = new Date(String(value).replace(" ", "T"));
-  return isNaN(date)
-    ? ""
-    : date.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
-};
-
 const OfferCard = ({ item, index }) => {
   const button = (
     <>
@@ -103,27 +92,12 @@ const OfferCard = ({ item, index }) => {
 };
 
 const Landing = () => {
-  const [blogs, setBlogs] = useState([]);
-  const [blogState, setBlogState] = useState("loading");
+  const latest = useSanity(LATEST_POSTS_QUERY, { limit: 3 });
+  const showBlog =
+    latest.status === "loading" || (latest.status === "ready" && latest.data && latest.data.length > 0);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
-
-  useEffect(() => {
-    let active = true;
-    axios
-      .get("https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@grazac")
-      .then((res) => {
-        if (!active) return;
-        const items = (res.data && res.data.items) || [];
-        setBlogs(items.slice(0, 3));
-        setBlogState(items.length ? "ready" : "empty");
-      })
-      .catch(() => active && setBlogState("empty"));
-    return () => {
-      active = false;
-    };
   }, []);
 
   return (
@@ -240,7 +214,7 @@ const Landing = () => {
       </section>
 
       {/* Blog */}
-      {blogState !== "empty" && (
+      {showBlog && (
         <section className="gz-section gz-section--tint">
           <div className="gz-container">
             <div className="gz-section-head gz-section-head--row">
@@ -253,37 +227,9 @@ const Landing = () => {
               </Link>
             </div>
             <div className="gz-blog">
-              {blogState === "loading"
-                ? [0, 1, 2].map((key) => (
-                    <div className="gz-post gz-post--skeleton" key={key} aria-hidden="true">
-                      <div className="gz-post__img" />
-                      <div className="gz-post__body">
-                        <div className="gz-skel gz-skel--short" />
-                        <div className="gz-skel" />
-                        <div className="gz-skel" />
-                      </div>
-                    </div>
-                  ))
-                : blogs.map((post, index) => {
-                    const image = imageFromPost(post);
-                    return (
-                      <a
-                        href={post.link}
-                        className="gz-post"
-                        target="_blank"
-                        rel="noreferrer"
-                        key={post.guid || index}
-                      >
-                        <div className="gz-post__img">
-                          {image && <img src={image} alt="" loading="lazy" />}
-                        </div>
-                        <div className="gz-post__body">
-                          <span className="gz-post__date">{formatDate(post.pubDate)}</span>
-                          <h3 className="gz-post__title">{post.title}</h3>
-                        </div>
-                      </a>
-                    );
-                  })}
+              {latest.status === "loading"
+                ? [0, 1, 2].map((key) => <PostCardSkeleton key={key} />)
+                : latest.data.map((post) => <PostCard key={post._id} post={post} />)}
             </div>
           </div>
         </section>

@@ -1,122 +1,204 @@
 // @ts-nocheck
-
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import Loader from "../components/Loader";
-import Scroll from "../components/Scroll";
+import { FiArrowRight, FiRefreshCw } from "react-icons/fi";
+import useSanity from "../lib/useSanity";
+import { POSTS_QUERY, formatDate, imageUrl, readingTimeLabel } from "../lib/sanity";
+import { PostCard, PostCardSkeleton } from "../components/blog/PostCard";
+import "../styles/pages.css";
+
+const PAGE_SIZE = 9;
+
+const FeaturedPost = ({ post }) => {
+  const image = imageUrl(post.mainImage, 1200, 800);
+  return (
+    <Link to={`/blog/${post.slug}`} className="gz-featured" data-aos="fade-up" data-aos-once="true">
+      <div className="gz-featured__img">
+        {image && <img src={image} alt={(post.mainImage && post.mainImage.alt) || ""} />}
+      </div>
+      <div className="gz-featured__body">
+        <p className="gz-post__meta">
+          {post.category && <span className="gz-post__cat">{post.category.title}</span>}
+          <span>{formatDate(post.publishedAt)}</span>
+          <span>{readingTimeLabel(post.readingTime)}</span>
+        </p>
+        <h2>{post.title}</h2>
+        {post.excerpt && <p className="gz-featured__excerpt">{post.excerpt}</p>}
+        <span className="gz-btn gz-btn--primary gz-featured__cta">
+          Read article <FiArrowRight />
+        </span>
+      </div>
+    </Link>
+  );
+};
+
+const BlogMessage = ({ title, text, action }) => (
+  <div className="gz-blog-message">
+    <h2>{title}</h2>
+    <p>{text}</p>
+    {action}
+  </div>
+);
 
 const Blog = () => {
+  const { status, data, retry } = useSanity(POSTS_QUERY);
+  const [category, setCategory] = useState("all");
+  const [visible, setVisible] = useState(PAGE_SIZE);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  const [blogs, setBlogs] = useState([]);
 
-  useEffect(() => {
-    axios
-      .get(
-        "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@grazac"
-      )
-      .then((res) => {
-        setBlogs(res.data.items);
-      });
-  }, []);
+  const posts = useMemo(() => data || [], [data]);
+  const featured = posts.find((post) => post.featured) || posts[0];
+
+  const categories = useMemo(() => {
+    const seen = new Map();
+    posts.forEach((post) => post.category && seen.set(post.category.slug, post.category.title));
+    return [...seen.entries()].map(([slug, title]) => ({ slug, title }));
+  }, [posts]);
+
+  const filtered = useMemo(() => {
+    if (category === "all") return posts.filter((post) => post !== featured);
+    return posts.filter((post) => post.category && post.category.slug === category);
+  }, [posts, category, featured]);
+
+  const chooseCategory = (slug) => {
+    setCategory(slug);
+    setVisible(PAGE_SIZE);
+  };
+
   return (
-    <div className="">
+    <div className="gz">
       <Helmet>
         <title>Blog - Grazac</title>
-        <meta name="description" content=" Welcome to Grazac Blog" />
+        <meta
+          name="description"
+          content="Stories, insights and updates from the Grazac ecosystem: startups, tech talent, learning and the future of work in Africa."
+        />
         <meta name="theme-color" content="#773DD3" />
-        <meta property="og:description" content="Welcome to Grazac Blog"></meta>
-        <meta property="og:title" content="GRAZAC TECHNOLOGIES"></meta>
-        <meta name="twitter:title" content="GRAZAC TECHNOLOGIES"></meta>
+        <meta property="og:title" content="Grazac Blog"></meta>
+        <meta
+          property="og:description"
+          content="Stories, insights and updates from the Grazac ecosystem."
+        ></meta>
         <meta property="og:url" content="https://www.grazac.com.ng/blog" />
       </Helmet>
-      <div className="blogs">
-        <div className="blogs__welcome">
-          <div className="blogs__container">
-            <div className="blogs__intro">
-              <span>Welcome to</span>
-              <span>grazac blog</span>
-            </div>
-            {/* <ul className="blogs__list">
-              <li className="blogs__item">Use cases</li>
-              <li className="blogs__item">Culture</li>
-              <li className="blogs__item">Updates</li>
-              <li className="blogs__item">Customer Experience</li>
-              <li className="blogs__item">Support</li>
-              <li className="blogs__item">Design</li>
-              <li className="blogs__item">Marketing</li>
-            </ul> */}
-            {blogs.length > 0 ? (
-              <a
-                className="blogs__hero"
-                href={blogs[0].link}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <div className="blogs__hero-container">
-                  <>
-                    <div className="blogs__hero-img">
-                      {/* {blogs[0].thumbnail && <img src={blogs[0].thumbnail} alt="breath" />} */}
-                      {blogs[0].description.toString().match(/<img[^>]+src="([^">]+)"/)[1] && <img src={blogs[0].description.toString().match(/<img[^>]+src="([^">]+)"/)[1]} alt="breath" />}
-                    </div>
-                    <div className="blogs__hero-content">
-                      {/* <h6 className="blogtitle">Startups</h6> */}
-                      <h4>{blogs[0].title}</h4>
-                      <p>
-                        {blogs[0].description
-                          .replace(/(<([^>]+)>)/gi, "")
-                          .substring(0, 450)}
-                        ...
-                      </p>
-                      <small className="small">{blogs[0].pubDate}</small>
-                    </div>
-                  </>
-                </div>
-              </a>
-            ) : null}
-          </div>
-        </div>
-        {blogs.length < 1 ? (
-          <div className="blogs__loader">
-            <Loader />
-          </div>
-        ) : (
-          <div className="blogs__blog">
-            <div className="blogs__blog-box">
-              <div className="blogs__blog-container">
-                {blogs.map((blog, index) => {
-                  return (
-                    <a
-                      href={blog.link}
-                      className="blog"
-                      target="_blank"
-                      rel="noreferrer"
-                      key={index}
-                    >
-                      {blog.description.toString().match(/<img[^>]+src="([^">]+)"/)[1] && <div className="blog__img">
-                        <img src={blog.description.toString().match(/<img[^>]+src="([^">]+)"/)[1]} alt="img" />
-                      </div>}
-                      <div className="blog__content">
-                        <div className="blog__content-container">
-                          {/* <h6 className="blogtitle">press release</h6> */}
-                          <h3 className="muted muted-1">{blog.title}</h3>
 
-                          <small className="small">{blog.pubDate}</small>
-                        </div>
-                      </div>
-                    </a>
-                  );
-                })}
+      {/* Intro */}
+      <section className="gz-hero gz-blog-hero">
+        <div className="gz-container gz-blog-hero__inner">
+          <span className="gz-eyebrow">Grazac Blog</span>
+          <h1 className="gz-display">
+            Stories from the <span className="gz-accent">Grazac ecosystem.</span>
+          </h1>
+          <p className="gz-lead">
+            Insights on startups, tech talent, learning and the future of work in Africa, straight
+            from the Grazac team and community.
+          </p>
+        </div>
+      </section>
+
+      <section className="gz-section gz-blog-page">
+        <div className="gz-container">
+          {status === "unconfigured" && (
+            <BlogMessage
+              title="Our blog is coming soon"
+              text="We're setting things up. Check back shortly for stories from the Grazac community."
+            />
+          )}
+
+          {status === "error" && (
+            <BlogMessage
+              title="We couldn't load the blog"
+              text="Please check your connection and try again."
+              action={
+                <button type="button" className="gz-btn gz-btn--primary" onClick={retry}>
+                  <FiRefreshCw /> Try again
+                </button>
+              }
+            />
+          )}
+
+          {status === "loading" && (
+            <>
+              <div className="gz-featured gz-featured--skeleton" aria-hidden="true">
+                <div className="gz-featured__img gz-skel" />
+                <div className="gz-featured__body">
+                  <div className="gz-skel gz-skel--short" />
+                  <div className="gz-skel" />
+                  <div className="gz-skel" />
+                </div>
               </div>
-            </div>
-          </div>
-        )}
-      </div>
-      <div className="blogs__subscribe">
-      </div>
-      <Scroll />
+              <div className="gz-blog" aria-busy="true">
+                {[0, 1, 2].map((key) => (
+                  <PostCardSkeleton key={key} />
+                ))}
+              </div>
+            </>
+          )}
+
+          {status === "ready" && posts.length === 0 && (
+            <BlogMessage
+              title="No stories yet"
+              text="We're working on our first posts. Check back soon."
+            />
+          )}
+
+          {status === "ready" && posts.length > 0 && (
+            <>
+              {category === "all" && featured && (
+                <>
+                  <p className="gz-blog-label">Featured</p>
+                  <FeaturedPost post={featured} />
+                </>
+              )}
+
+              <div className="gz-blog-toolbar">
+                <h2 className="gz-h3">{category === "all" ? "More to explore" : "Stories"}</h2>
+                {categories.length > 1 && (
+                  <div className="gz-chips" role="group" aria-label="Filter by category">
+                    {[{ slug: "all", title: "All" }, ...categories].map((item) => (
+                      <button
+                        type="button"
+                        key={item.slug}
+                        className={`gz-chip-btn ${category === item.slug ? "is-active" : ""}`}
+                        aria-pressed={category === item.slug}
+                        onClick={() => chooseCategory(item.slug)}
+                      >
+                        {item.title}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {filtered.length === 0 ? (
+                <p className="gz-body">More stories coming soon.</p>
+              ) : (
+                <div className="gz-blog">
+                  {filtered.slice(0, visible).map((post) => (
+                    <PostCard key={post._id} post={post} />
+                  ))}
+                </div>
+              )}
+
+              {filtered.length > visible && (
+                <div className="gz-blog-more">
+                  <button
+                    type="button"
+                    className="gz-btn gz-btn--ghost"
+                    onClick={() => setVisible((count) => count + PAGE_SIZE)}
+                  >
+                    Load more stories
+                  </button>
+                </div>
+              )}
+            </>
+          )}
+        </div>
+      </section>
     </div>
   );
 };
