@@ -1,0 +1,11 @@
+{
+  "rewrites": [
+    {
+      "source": "/static/:file(favicon\\.ico|favicon\\.svg|apple-touch-icon\\.png|manifest\\.webmanifest)",
+      "destination": "/studio/static/:file"
+    },
+    { "source": "/studio", "destination": "/studio/index.html" },
+    { "source": "/studio/:path*", "destination": "/studio/index.html" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
