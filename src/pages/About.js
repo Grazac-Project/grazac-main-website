@@ -77,7 +77,7 @@ const About = () => {
         <div className="gz-container">
           <div className="gz-about-hero__head">
             <div className="gz-copy">
-              <span className="gz-eyebrow">About Grazac</span>
+              {/* <span className="gz-eyebrow">About Grazac</span> */}
               <h1 className="gz-display">
                 We are <span className="gz-accent">Grazacians.</span>
               </h1>
@@ -115,7 +115,7 @@ const About = () => {
       <section className="gz-section gz-section--tint">
         <div className="gz-container gz-split gz-split--top">
           <div className="gz-split__copy">
-            <span className="gz-eyebrow">Who we are</span>
+            {/* <span className="gz-eyebrow">Who we are</span> */}
             <h2 className="gz-h2">Hassle-free funding for technology entrepreneurs</h2>
             <p className="gz-lead">
               Leveraging science, technology and innovation, we support member hubs and their
@@ -156,7 +156,7 @@ const About = () => {
       <section className="gz-section">
         <div className="gz-container">
           <div className="gz-section-head gz-section-head--center">
-            <span className="gz-eyebrow">What defines us</span>
+            {/* <span className="gz-eyebrow">What defines us</span> */}
             <h2 className="gz-h2">Our core values</h2>
             <p className="gz-lead">Three principles guide how we build, support and show up for our community.</p>
           </div>
@@ -184,7 +184,7 @@ const About = () => {
         <div className="gz-container">
           <div className="gz-panel" data-aos="fade-up" data-aos-once="true">
             <div className="gz-panel__copy">
-              <span className="gz-eyebrow gz-eyebrow--dark">Let's work together</span>
+              {/* <span className="gz-eyebrow gz-eyebrow--dark">Let's work together</span> */}
               <h2 className="gz-h2">Ready to change the world with us?</h2>
               <p>
                 We are always looking out for talented young people who want to build the future of
@@ -208,11 +208,11 @@ const About = () => {
               <img src={aboutSpread} alt="The Grazac team in a meeting" loading="lazy" />
             </div>
           </div>
-          <p style={{ textAlign: "center", marginTop: 32 }}>
+          {/* <p style={{ textAlign: "center", marginTop: 32 }}>
             <Link to="/contact" className="gz-link">
               Or get in touch with our team <FiArrowRight />
             </Link>
-          </p>
+          </p> */}
         </div>
       </section>
 

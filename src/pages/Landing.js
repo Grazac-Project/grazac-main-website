@@ -42,8 +42,8 @@ const offerings = [
     title: "Co-Working Space",
     text: "A beautifully designed shared workspace with reliable power and fast internet, for entrepreneurs, freelancers and teams.",
     image: spaceImg,
-    cta: "Book a space",
-    to: "/bookSpace",
+    cta: "Explore plans",
+    to: "/workspace",
   },
 ];
 
@@ -145,7 +145,7 @@ const Landing = () => {
       <section className="gz-hero">
         <div className="gz-container gz-hero__grid">
           <div className="gz-hero__copy">
-            <span className="gz-eyebrow">Welcome to Grazac</span>
+            {/* <span className="gz-eyebrow">Welcome to Grazac</span> */}
             <h1 className="gz-display">
               Ideas, people and a <span className="gz-accent">smart future.</span>
             </h1>
@@ -177,7 +177,7 @@ const Landing = () => {
                 <figure className="gz-collage__tall"><img src={team4} alt="A Grazacian on a call" /></figure>
               </div>
             </div>
-            <div className="gz-chip gz-hero__chip">
+            {/* <div className="gz-chip gz-hero__chip">
               <span className="gz-chip__icon">
                 <FiLayers />
               </span>
@@ -185,7 +185,7 @@ const Landing = () => {
                 <strong>One ecosystem</strong>
                 Lab · Talent · Academy · Space
               </span>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
@@ -194,7 +194,7 @@ const Landing = () => {
       <section className="gz-section gz-section--tint" id="ecosystem">
         <div className="gz-container">
           <div className="gz-section-head">
-            <span className="gz-eyebrow">What we do</span>
+            {/* <span className="gz-eyebrow">What we do</span> */}
             <h2 className="gz-h2">Our offerings</h2>
             <p className="gz-lead">
               We develop, support and scale tech innovations. Here's a quick overview of how we
@@ -234,7 +234,7 @@ const Landing = () => {
         <div className="gz-container">
           <div className="gz-panel" data-aos="fade-up" data-aos-once="true">
             <div className="gz-panel__copy">
-              <span className="gz-eyebrow gz-eyebrow--dark">Grazac Innovation Lab</span>
+              {/* <span className="gz-eyebrow gz-eyebrow--dark">Grazac Innovation Lab</span> */}
               <h2 className="gz-h2">Are you building the next big thing?</h2>
               <p>
                 We are passionate about supporting startups solving social problems in Africa.
@@ -258,7 +258,7 @@ const Landing = () => {
           <div className="gz-container">
             <div className="gz-section-head gz-section-head--row">
               <div>
-                <span className="gz-eyebrow">From the blog</span>
+                {/* <span className="gz-eyebrow">From the blog</span> */}
                 <h2 className="gz-h2">Latest stories</h2>
               </div>
               <Link to="/blog" className="gz-btn gz-btn--ghost">
