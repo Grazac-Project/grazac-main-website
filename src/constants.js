@@ -60,67 +60,52 @@ export const values = [
 export const areas = [
   {
     id: 1,
-    duration: 1000,
     bgcolor: "#EBFCE7",
     title: "Financial Tech",
     icon: financial,
-    text: "Ideas that help enterprises, business owners and consumers better control and manage their financial operations, activities,  ",
-    
-    // text: "Ideas that help enterprises, business owners and consumers better control and manage their financial operations, activities, and lives by utilizing specialized software and digital innovations. ",
+    text: "Software and digital innovations that help businesses and consumers better control and manage their finances.",
   },
   {
     id: 2,
-
     bgcolor: "#E8FAF5",
     title: "Agriculture",
     icon: agric,
-    // text: "All industries around the world have been invaded by technological advances and agriculture is no exception. We believe that new innovations in tech will revolutionize agriculture and result in a positive impact on the bottom line of farmers and growers in several ways. ",
-    text: "Ideas that help enterprises, business owners and consumers better control and manage their financial operations, activities,  ",
-
+    text: "Tech that revolutionises agriculture and makes a positive impact on the bottom line of farmers and growers.",
   },
   {
     id: 3,
     bgcolor: "#FEFAE6",
-    title: "Lifestyle  & Entertainment",
+    title: "Lifestyle & Entertainment",
     icon: lifestyle,
-    // text: "The entertainment industry highly depends on technology. Every piece of musical or visual art needs to be captured by specific equipment designed for that job. For the customers to get access to the art, they have to find the right device to play or watch it. Ideas on better methods of capturing and showcasing entertainment are welcomed.",
-    text: "Ideas that help enterprises, business owners and consumers better control and manage their financial operations, activities,  ",
-
+    text: "Better ways of capturing, distributing and showcasing music, film and visual art to audiences everywhere.",
   },
   {
     id: 4,
     bgcolor: "#DDEFF4",
     title: "Governance",
     icon: governance,
-    // text: "Fast-pace innovations and short product cycles require some words continuosly delivery of technology products and merearchitectural plug & play together excellence",
-    text: "Ideas that help enterprises, business owners and consumers better control and manage their financial operations, activities,  ",
-
+    text: "Solutions that make public services more transparent, efficient and accessible to every citizen.",
   },
   {
     id: 5,
     bgcolor: "#EDE8FA",
     title: "Health Tech",
     icon: health,
-    // text: "Digital technology will help transform unsustainable healthcare systems into sustainable ones. Health trackers, wearables and sensors are perfect tools for getting to know more about ourselves and taking charge of our own lives again. With more tech innovations in healthcare, we will have more healthy people in our society",
-    text: "Ideas that help enterprises, business owners and consumers better control and manage their financial operations, activities,  ",
-
+    text: "Trackers, wearables and digital tools that make healthcare sustainable and help people take charge of their health.",
   },
   {
     id: 6,
     bgcolor: "#FAE9E8",
     title: "Education",
     icon: education,
-    // text: "Innovations in the educational sector that create digital learning tools and devices which help build 21st century skills, supports learning 24 hours a day, increases student engagement and motivation and ultimately accelerates learning in the nation.",
-    text: "Ideas that help enterprises, business owners and consumers better control and manage their financial operations, activities,  ",
+    text: "Digital learning tools that build 21st-century skills, support learning around the clock and boost engagement.",
   },
   {
     id: 7,
     bgcolor: "#EBF9FC",
     icon: digital,
     title: "Digital Security",
-    // text: "The protection of one's digital personality is Digital Security, as it reflects the physical identity of the network on which you operate or the internet service in use. There are quite a number of cyber-attacks, cyber-theft, hack or crime everyday. What role can you play in putting proper digital security systems in place to make Nigeria a better place to live in?",
-    text: "Ideas that help enterprises, business owners and consumers better control and manage their financial operations, activities,  ",
-
+    text: "Systems that protect people and businesses from cyber-attacks, theft and fraud, making our digital space safer.",
   },
 ];
 

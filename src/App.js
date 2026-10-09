@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { Switch, Route, Redirect, useLocation } from "react-router-dom";
+import { Switch, Route, useLocation } from "react-router-dom";
 import LandingPage from "./pages/Landing";
 import InnovationPage from "./pages/workspace";
 import About from "./pages/About";
@@ -17,6 +17,8 @@ import Unsubscribe from "./pages/Unsubscribe";
 import Contact from "./pages/contact";
 import BookSpace from "./components/bookSpace";
 import BookingSummary from "./components/BookingSummary";
+import NotFound from "./pages/NotFound";
+import CoworkingSpaces from "./pages/CoworkingSpaces";
 
 const App = () => {
   const { pathname } = useLocation();
@@ -77,6 +79,7 @@ const App = () => {
           <Switch>
             <Route path="/" exact component={LandingPage} />
             <Route path="/workspace" exact component={InnovationPage} />
+            <Route path="/coworking-spaces" exact component={CoworkingSpaces} />
             <Route path="/about" exact component={About} />
             <Route path="/build" exact component={Build} />
             <Route path="/casestudy" exact component={CaseStudy} />
@@ -86,9 +89,7 @@ const App = () => {
             <Route path="/bookSpace" exact component={BookSpace} />
             <Route path="/booking-summary" exact component={BookingSummary} />
 
-            <Route path="*">
-              <Redirect to="/" />
-            </Route>
+            <Route path="*" component={NotFound} />
           </Switch>
         </Layout>
       </ShowContext.Provider>

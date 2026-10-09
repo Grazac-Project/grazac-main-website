@@ -11,14 +11,14 @@ import returningUser from "../images/workspace/returning-user.png";
 import firstTimeUser from "../images/workspace/first-time-user.png";
 import backIcon from "../images/workspace/arrowleft.png";
 import joy from "../images/workspace/joy-img.png";
+import { paymentOptions, customPlan, priceForDays } from "../workspacePlans";
 
-const paymentOptions = [
-  { label: "Daily", value: "daily", amount: 3000 },
-  { label: "Weekly", value: "weekly", amount: 15000 },
-  { label: "Monthly", value: "monthly", amount: 60000 },
-  { label: "Quarterly", value: "quarterly", amount: 165000 },
-  { label: "Yearly", value: "yearly", amount: 600000 },
-];
+// A plan chosen on the co-working plans page arrives as ?plan=<value>
+const planFromUrl = () => {
+  const plan = new URLSearchParams(window.location.search).get("plan");
+  if (plan === customPlan.value) return customPlan;
+  return paymentOptions.find((option) => option.value === plan) || null;
+};
 
 const getDayWithSuffix = (day) => {
   if (day >= 11 && day <= 13) {
@@ -47,6 +47,8 @@ const BookSpace = () => {
   });
   const [toggle2, setToggle2] = useState(false);
   const [selectedPaymentOption, setSelectedPaymentOption] = useState(() => {
+    const fromUrl = planFromUrl();
+    if (fromUrl) return fromUrl;
     const saved = sessionStorage.getItem("bookSpace_selectedPaymentOption");
     return saved ? JSON.parse(saved) : null;
   });
@@ -134,6 +136,10 @@ const BookSpace = () => {
   // Removed handleClickOutside useEffect since it's a page now
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     if (selectedPaymentOption) {
       updateEndDateAndSummary(startDate, selectedPaymentOption);
     }
@@ -167,21 +173,8 @@ const BookSpace = () => {
         updatedDates.push(dateString);
       }
 
-      // Smart Pricing Logic
-      let newTotal = 0;
-      const count = updatedDates.length;
-
-      if (count === 7) {
-        newTotal = 15000; // Weekly
-      } else if (count === 31) {
-        newTotal = 60000; // Monthly
-      } else if (count === 91) {
-        newTotal = 165000; // Quarterly
-      } else if (count === 365) {
-        newTotal = 600000; // Yearly
-      } else {
-        newTotal = count * 3000; // Daily rate
-      } 
+      // Smart Pricing Logic: bundle price for exact plan lengths, else daily rate
+      const newTotal = priceForDays(updatedDates.length);
 
       setSelectedPaymentOption((prev) => ({
         ...prev,
@@ -207,8 +200,7 @@ const BookSpace = () => {
 
   const handleCustomDateClick = (e) => {
     e.stopPropagation();
-    const option = { value: "custom", label: "Custom", amount: 0 };
-    setSelectedPaymentOption(option);
+    setSelectedPaymentOption(customPlan);
     setUserInfo(prev => ({ ...prev, subscriptionType: "Custom", customDates: [] }));
     // setToggleCustom(!toggleCustom); // Optional: if we want to auto-open
     // setToggle(false);
