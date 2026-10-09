@@ -14,23 +14,20 @@ import "../styles/pages.css";
 const EMAIL_REGEX =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
+const OGUN_DIGITAL_SUMMIT = "https://www.ogundigitalsummit.com/";
+
 const columns = [
   {
     title: "Explore",
     links: [
-      { label: "Innovation Lab", to: "/startup" },
-      { label: "Co-working Space", to: "/workspace" },
-      { label: "Membership Plans", to: "/coworking-spaces" },
-      { label: "Book a Space", to: "/bookSpace" },
+      { label: "Ogun Digital Summit", href: OGUN_DIGITAL_SUMMIT },
       { label: "Grazac Academy", href: "https://www.grazacacademy.com" },
-      { label: "Grazac Talent City", href: "https://www.grazactalentcity.com" },
     ],
   },
   {
     title: "Company",
     links: [
       { label: "About Us", to: "/about" },
-      { label: "Blog", to: "/blog" },
       { label: "Careers", href: "https://grazac.breezy.hr/" },
       { label: "Contact Us", to: "/contact" },
     ],
@@ -38,9 +35,12 @@ const columns = [
   {
     title: "Community",
     links: [
-      { label: "Apply to the Lab", to: "/apply" },
+      {
+        label: "Join Grazac Community",
+        href: "https://forms.zohopublic.com/grazac/form/BookASpaceNewsletter/formperma/-zdzLA8_2xqVRXw7FFvvfRr_5iFt6z0SoH5xUGElMwA",
+      },
       { label: "Become a Mentor", to: "/contact" },
-      { label: "Ogun Digital Summit", href: "https://www.ogundigitalsummit.com/" },
+      { label: "Ogun Digital Summit", href: OGUN_DIGITAL_SUMMIT },
     ],
   },
 ];

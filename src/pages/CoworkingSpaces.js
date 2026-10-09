@@ -16,7 +16,7 @@ import {
   TbUsers,
 } from "react-icons/tb";
 import Tour from "../components/Tour/Tour";
-import { paymentOptions, DAILY_RATE } from "../workspacePlans";
+import { paymentOptions, DAILY_RATE, REGULAR_DAILY_RATE } from "../workspacePlans";
 import "../styles/pages.css";
 
 import dailyImg from "../images/redesign/ws-daily.jpg";
@@ -60,12 +60,14 @@ const sharedPerks = [
 const memberships = [
   ...paymentOptions.map((option) => {
     const detail = membershipDetails[option.value];
-    const saving = Math.round((1 - option.amount / (option.days * DAILY_RATE)) * 100);
+    // savings are measured against the standard ₦5,000/day price
+    const saving = Math.round((1 - option.amount / (option.days * REGULAR_DAILY_RATE)) * 100);
     return {
       key: option.value,
       name: detail.name,
       image: detail.image,
       price: naira(option.amount),
+      wasPrice: option.days === 1 ? naira(REGULAR_DAILY_RATE) : null,
       unit: detail.unit,
       badge: saving > 0 ? `Save ${saving}%` : null,
       features: [detail.access, ...sharedPerks],
@@ -77,6 +79,7 @@ const memberships = [
     name: "Custom Days",
     image: customImg,
     price: naira(DAILY_RATE),
+    wasPrice: naira(REGULAR_DAILY_RATE),
     unit: "day",
     badge: "Flexible",
     features: [
@@ -189,6 +192,11 @@ const PlanCard = ({ plan, index }) => (
       <p className="gz-plan__price">
         {plan.price ? (
           <>
+            {plan.wasPrice && (
+              <s className="gz-plan__was" aria-label={`Was ${plan.wasPrice}`}>
+                {plan.wasPrice}
+              </s>
+            )}
             <strong>{plan.price}</strong> / {plan.unit}
           </>
         ) : (
@@ -241,7 +249,7 @@ const CoworkingSpaces = () => {
         />
         <meta name="theme-color" content="#773DD3" />
         <meta property="og:title" content="Co-working Spaces - Grazac"></meta>
-        <meta property="og:url" content="https://www.grazac.com.ng/coworking-spaces" />
+        <meta property="og:url" content="https://www.grazac.com.ng/workspace" />
       </Helmet>
       <Tour tour={tour} setTour={setTour} />
 
@@ -249,7 +257,7 @@ const CoworkingSpaces = () => {
       <section className="gz-hero">
         <div className="gz-container gz-hero__grid">
           <div className="gz-hero__copy">
-            <span className="gz-eyebrow">Grazac Co-working</span>
+            {/* <span className="gz-eyebrow">Grazac Co-working</span> */}
             <h1 className="gz-display">
               Co-working <span className="gz-accent">spaces.</span>
             </h1>
@@ -287,7 +295,10 @@ const CoworkingSpaces = () => {
                 <FiTag />
               </span>
               <span>
-                <strong>From {naira(DAILY_RATE)} / day</strong>
+                <strong>
+                  From <s className="gz-chip__was">{naira(REGULAR_DAILY_RATE)}</s>{" "}
+                  {naira(DAILY_RATE)} / day
+                </strong>
                 Flexible memberships
               </span>
             </div>
@@ -299,7 +310,7 @@ const CoworkingSpaces = () => {
       <section className="gz-section gz-section--tint" id="memberships">
         <div className="gz-container">
           <div className="gz-section-head">
-            <span className="gz-eyebrow">Memberships</span>
+            {/* <span className="gz-eyebrow">Memberships</span> */}
             <h2 className="gz-h2">Pick a plan, book in minutes</h2>
             <p className="gz-lead">
               Every membership includes the full Grazac experience. The longer you stay, the more
@@ -318,7 +329,7 @@ const CoworkingSpaces = () => {
       <section className="gz-section">
         <div className="gz-container">
           <div className="gz-section-head">
-            <span className="gz-eyebrow">Private spaces</span>
+            {/* <span className="gz-eyebrow">Private spaces</span> */}
             <h2 className="gz-h2">Desks and rooms for your team</h2>
             <p className="gz-lead">
               Need a permanent desk or a room for your next meeting? Chat with us on WhatsApp and
@@ -347,7 +358,7 @@ const CoworkingSpaces = () => {
       <section className="gz-section gz-section--tint" id="offices">
         <div className="gz-container gz-offices">
           <div className="gz-section-head gz-offices__head">
-            <span className="gz-eyebrow">Office solutions</span>
+            {/* <span className="gz-eyebrow">Office solutions</span> */}
             <h2 className="gz-h2">Virtual &amp; registered offices</h2>
             <p className="gz-lead">
               Give your business a professional address without renting a full office. Chat with
@@ -374,7 +385,7 @@ const CoworkingSpaces = () => {
       <section className="gz-section">
         <div className="gz-container">
           <div className="gz-section-head gz-section-head--center">
-            <span className="gz-eyebrow">Included amenities</span>
+            {/* <span className="gz-eyebrow">Included amenities</span> */}
             <h2 className="gz-h2">Everything you need to do your best work</h2>
           </div>
           <ul className="gz-amenities">

@@ -14,6 +14,11 @@ export const paymentOptions = [
 
 export const DAILY_RATE = paymentOptions[0].amount;
 
+// Standard (pre-discount) daily price. Shown crossed out next to the daily
+// rate, and used to work out the "Save %" on the longer plans. Display only —
+// checkout always charges the amounts above.
+export const REGULAR_DAILY_RATE = 5000;
+
 export const customPlan = { label: "Custom", value: "custom", amount: 0 };
 
 // Price for a hand-picked set of days: bundle price when the count matches a

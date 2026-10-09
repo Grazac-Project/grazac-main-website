@@ -195,39 +195,48 @@
   outline: 3px solid rgba(119, 61, 211, 0.45);
   outline-offset: 3px;
 }
+/* Buttons stay neutral and only take on the brand purple on hover/focus. */
 .gz-btn--primary {
-  background: var(--gz-purple);
-  color: var(--gz-white) !important;
-  box-shadow: 0 10px 24px -10px rgba(119, 61, 211, 0.7);
-}
-.gz-btn--primary:hover {
-  background: var(--gz-purple-dark);
-  transform: translateY(-1px);
+  background: var(--gz-white);
+  color: var(--gz-ink) !important;
+  border-color: var(--gz-ink);
 }
 .gz-btn--ghost {
-  background: transparent;
+  background: var(--gz-white);
   color: var(--gz-ink) !important;
   border-color: var(--gz-line);
 }
-.gz-btn--ghost:hover {
-  border-color: var(--gz-purple);
-  color: var(--gz-purple) !important;
-}
 .gz-btn--light {
-  background: var(--gz-white);
-  color: var(--gz-ink) !important;
-}
-.gz-btn--light:hover {
-  background: var(--gz-lavender);
-  transform: translateY(-1px);
+  background: transparent;
+  color: var(--gz-white) !important;
+  border-color: rgba(255, 255, 255, 0.6);
 }
 .gz-btn--outline-light {
   background: transparent;
   color: var(--gz-white) !important;
-  border-color: rgba(255, 255, 255, 0.35);
+  border-color: rgba(255, 255, 255, 0.3);
 }
-.gz-btn--outline-light:hover {
+.gz-btn--primary:hover,
+.gz-btn--primary:focus-visible,
+.gz-btn--ghost:hover,
+.gz-btn--ghost:focus-visible,
+.gz-btn--light:hover,
+.gz-btn--light:focus-visible,
+.gz-btn--outline-light:hover,
+.gz-btn--outline-light:focus-visible,
+.gz-involve:hover .gz-btn--light {
+  background: var(--gz-purple);
+  border-color: var(--gz-purple);
+  color: var(--gz-white) !important;
+  box-shadow: 0 10px 24px -10px rgba(119, 61, 211, 0.7);
+  transform: translateY(-1px);
+}
+/* on the purple "Apply now" card a purple hover would vanish, so invert instead */
+.gz-focus__cta .gz-btn--light:hover,
+.gz-focus__cta .gz-btn--light:focus-visible {
+  background: var(--gz-white);
   border-color: var(--gz-white);
+  color: var(--gz-purple) !important;
 }
 .gz-actions {
   display: flex;
@@ -411,48 +420,57 @@
   align-items: center;
   gap: 10px;
   min-height: 48px;
-  padding: 8px 24px 8px 10px;
+  padding: 8px 24px;
   border-radius: 999px;
-  background: var(--gz-purple);
-  color: var(--gz-white) !important;
+  border: 1.5px solid var(--gz-ink);
+  background: var(--gz-white);
+  color: var(--gz-ink) !important;
   font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.02em;
   line-height: 1;
   white-space: nowrap;
-  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease,
+    box-shadow 0.2s ease, padding 0.25s ease;
 }
-.gz-pill:hover {
-  background: var(--gz-purple-dark);
+.gz-pill:hover,
+.gz-pill:focus-visible {
+  background: var(--gz-purple);
+  border-color: var(--gz-purple);
+  color: var(--gz-white) !important;
   box-shadow: 0 10px 24px -10px rgba(119, 61, 211, 0.7);
 }
 .gz-pill:focus-visible {
   outline: 3px solid rgba(119, 61, 211, 0.45);
   outline-offset: 3px;
 }
+/* no dot at rest: the arrow circle slides in only on hover/focus */
 .gz-pill__dot {
   display: grid;
   place-items: center;
-  width: 30px;
+  width: 0;
   height: 30px;
+  margin-right: -10px; /* cancels the flex gap while hidden */
   border-radius: 50%;
   background: var(--gz-white);
   color: var(--gz-purple);
   font-size: 16px;
-  transform: scale(0.27);
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-.gz-pill__dot svg {
+  overflow: hidden;
   opacity: 0;
-  transition: opacity 0.2s ease;
+  transform: scale(0.4);
+  transition: width 0.25s ease, margin 0.25s ease, opacity 0.2s ease,
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.gz-pill:hover,
+.gz-pill:focus-visible {
+  padding-left: 10px;
 }
 .gz-pill:hover .gz-pill__dot,
 .gz-pill:focus-visible .gz-pill__dot {
-  transform: scale(1);
-}
-.gz-pill:hover .gz-pill__dot svg,
-.gz-pill:focus-visible .gz-pill__dot svg {
+  width: 30px;
+  margin-right: 0;
   opacity: 1;
+  transform: scale(1);
 }
 
 /* ---------- partners marquee ---------- */
@@ -1212,6 +1230,18 @@
   font-size: 17px;
   color: var(--gz-muted);
 }
+.gz-plan__was {
+  margin-right: 8px;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--gz-muted);
+  text-decoration-thickness: 2px;
+  opacity: 0.8;
+}
+.gz-chip__was {
+  font-weight: 600;
+  color: var(--gz-muted);
+}
 .gz-plan__price strong {
   font-size: 30px;
   font-weight: 700;
@@ -1469,18 +1499,21 @@ button.gz-btn {
   flex: none;
   height: 54px;
   padding: 0 28px;
-  border: 0;
+  border: 1.5px solid var(--gz-ink);
   border-radius: 999px;
-  background: var(--gz-purple);
-  color: var(--gz-white);
+  background: var(--gz-white);
+  color: var(--gz-ink);
   font-size: 17px;
   font-weight: 700;
   letter-spacing: 0.02em;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
-.gz-newsletter__form button:hover {
-  background: var(--gz-purple-dark);
+.gz-newsletter__form button:hover,
+.gz-newsletter__form button:focus-visible {
+  background: var(--gz-purple);
+  border-color: var(--gz-purple);
+  color: var(--gz-white);
 }
 .gz-newsletter__form button:disabled {
   opacity: 0.7;

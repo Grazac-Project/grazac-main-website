@@ -71,7 +71,7 @@ const StartUp = () => {
       <section className="gz-hero">
         <div className="gz-container gz-hero__grid">
           <div className="gz-hero__copy">
-            <span className="gz-eyebrow">Grazac Innovation Lab</span>
+            {/* <span className="gz-eyebrow">Grazac Innovation Lab</span> */}
             <h1 className="gz-display">
               Powering the rise of <span className="gz-accent">new innovations.</span>
             </h1>
@@ -96,7 +96,7 @@ const StartUp = () => {
             <div className="gz-hero__inset">
               <img src={focusImg} alt="A founder building at Grazac" />
             </div>
-            <div className="gz-chip gz-hero__chip">
+            {/* <div className="gz-chip gz-hero__chip">
               <span className="gz-chip__icon">
                 <FiCalendar />
               </span>
@@ -104,7 +104,7 @@ const StartUp = () => {
                 <strong>Applications twice a year</strong>
                 A new cohort every 6 months
               </span>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
@@ -113,7 +113,7 @@ const StartUp = () => {
       <section className="gz-section gz-section--tint">
         <div className="gz-container">
           <div className="gz-section-head">
-            <span className="gz-eyebrow">Areas of focus</span>
+            {/* <span className="gz-eyebrow">Areas of focus</span> */}
             <h2 className="gz-h2">7 sectors where we see the biggest impact</h2>
             <p className="gz-lead">
               We receive applications every 6 months from start-ups building in these key impact
@@ -156,7 +156,7 @@ const StartUp = () => {
       <section className="gz-section gz-dark" id="value">
         <div className="gz-container">
           <div className="gz-section-head">
-            <span className="gz-eyebrow gz-eyebrow--dark">What you get</span>
+            {/* <span className="gz-eyebrow gz-eyebrow--dark">What you get</span> */}
             <h2 className="gz-h2">Value to startups</h2>
             <p className="gz-lead">
               Everything a founder needs to go from idea to a sustainable business, in one place.
@@ -178,7 +178,7 @@ const StartUp = () => {
       <section className="gz-section gz-section--tint">
         <div className="gz-container">
           <div className="gz-section-head gz-section-head--center">
-            <span className="gz-eyebrow">How it works</span>
+            {/* <span className="gz-eyebrow">How it works</span> */}
             <h2 className="gz-h2">Our timeline</h2>
           </div>
           <ol className="gz-timeline">
@@ -203,7 +203,7 @@ const StartUp = () => {
       <section className="gz-section">
         <div className="gz-container">
           <div className="gz-section-head">
-            <span className="gz-eyebrow">Get involved</span>
+            {/* <span className="gz-eyebrow">Get involved</span> */}
             <h2 className="gz-h2">There's a place for you at Grazac</h2>
           </div>
           <div className="gz-cards-3">
