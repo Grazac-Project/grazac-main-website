@@ -2,7 +2,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { FiArrowRight, FiTag } from "react-icons/fi";
+import { FiArrowRight } from "react-icons/fi";
 import {
   TbArmchair2,
   TbBolt,

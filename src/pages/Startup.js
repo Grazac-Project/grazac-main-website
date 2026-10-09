@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { FiArrowRight, FiCalendar } from "react-icons/fi";
+import { FiArrowRight } from "react-icons/fi";
 import { values, areas } from "../constants";
 import "../styles/pages.css";
 
