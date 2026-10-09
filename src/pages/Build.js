@@ -170,7 +170,7 @@ const Build = () => {
       <section className="gz-section" id="process">
         <div className="gz-container">
           <div className="gz-section-head gz-section-head--center">
-            <span className="gz-eyebrow">Our process</span>
+            {/* <span className="gz-eyebrow">Our process</span> */}
             <h2 className="gz-h2">From idea to launch, step by step</h2>
           </div>
           <ol className="gz-timeline gz-timeline--four">
@@ -195,7 +195,7 @@ const Build = () => {
       <section className="gz-section gz-dark gz-services-dark">
         <div className="gz-container">
           <div className="gz-section-head">
-            <span className="gz-eyebrow gz-eyebrow--dark">What we build</span>
+            {/* <span className="gz-eyebrow gz-eyebrow--dark">What we build</span> */}
             <h2 className="gz-h2">Explore our services</h2>
             <p className="gz-lead">
               Whether you're launching something new or improving what you have, we bring the
@@ -267,7 +267,7 @@ const Build = () => {
       )}
 
       {/* Why Grazac */}
-      <section className="gz-section gz-section--tint">
+      {/* <section className="gz-section gz-section--tint">
         <div className="gz-container gz-split">
           <div className="gz-split__media" data-aos="fade-right" data-aos-once="true">
             <img src={teamImg} alt="Two Grazacians building a product together" loading="lazy" />
@@ -290,7 +290,7 @@ const Build = () => {
             </ul>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* CTA */}
       <section className="gz-section">
