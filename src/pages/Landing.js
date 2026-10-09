@@ -3,15 +3,12 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import axios from "axios";
-import { FiArrowRight, FiLayers } from "react-icons/fi";
+import { FiArrowRight } from "react-icons/fi";
 import "../styles/pages.css";
 
 // photography (latest team photos)
-import team1 from "../images/website/newabout1.png";
+import heroTeam from "../images/redesign/hero-team.jpg";
 import team2 from "../images/website/newabout2.png";
-import team3 from "../images/website/newabout3.png";
-import team4 from "../images/website/newabout4.png";
-import team5 from "../images/website/newabout5.png";
 import team7 from "../images/website/newabout7.png";
 import teamMeeting from "../images/website/about-spread.png";
 import spaceImg from "../images/redesign/space.jpg";
@@ -142,7 +139,7 @@ const Landing = () => {
       </Helmet>
 
       {/* Hero */}
-      <section className="gz-hero">
+      <section className="gz-hero gz-hero--home">
         <div className="gz-container gz-hero__grid">
           <div className="gz-hero__copy">
             {/* <span className="gz-eyebrow">Welcome to Grazac</span> */}
@@ -163,19 +160,9 @@ const Landing = () => {
             </div>
           </div>
 
-          <div className="gz-hero__media gz-hero__media--collage" data-aos="fade-left" data-aos-once="true">
-            <div className="gz-collage">
-              <div className="gz-collage__col">
-                <figure><img src={team1} alt="The Grazac team" /></figure>
-                <figure><img src={team7} alt="Grazacians collaborating at a desk" /></figure>
-              </div>
-              <div className="gz-collage__col">
-                <figure className="gz-collage__tall"><img src={team3} alt="Two Grazacians sharing a laugh" /></figure>
-                <figure><img src={team5} alt="Grazacians together" /></figure>
-              </div>
-              <div className="gz-collage__col">
-                <figure className="gz-collage__tall"><img src={team4} alt="A Grazacian on a call" /></figure>
-              </div>
+          <div className="gz-hero__media gz-hero__media--single" data-aos="fade-left" data-aos-once="true">
+            <div className="gz-hero__photo gz-hero__photo--wide">
+              <img src={heroTeam} alt="The Grazac team in front of the Grazac sign" />
             </div>
             {/* <div className="gz-chip gz-hero__chip">
               <span className="gz-chip__icon">

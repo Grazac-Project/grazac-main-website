@@ -698,47 +698,17 @@
   transform: scale(1.04);
 }
 
-/* ---------- home: hero collage ---------- */
-.gz-collage {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-  align-items: start;
+/* ---------- home: single team photo hero ---------- */
+@media (min-width: 901px) {
+  .gz-hero--home .gz-hero__grid {
+    grid-template-columns: 0.95fr 1.15fr;
+  }
 }
-.gz-collage__col {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+.gz-hero__photo--wide {
+  aspect-ratio: 3 / 2;
 }
-.gz-collage__col:nth-child(1) {
-  margin-top: 56px;
-}
-.gz-collage__col:nth-child(3) {
-  margin-top: 112px;
-}
-.gz-collage figure {
-  height: 160px;
-  border-radius: var(--gz-radius);
-  overflow: hidden;
-  background: var(--gz-lavender);
-  box-shadow: var(--gz-shadow);
-}
-.gz-collage .gz-collage__tall {
-  height: 300px;
-}
-.gz-collage img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.gz-hero__media--collage {
-  padding: 0;
-}
-.gz-hero__media--collage .gz-hero__chip {
-  top: auto;
-  bottom: 24px;
-  left: -24px;
-  right: auto;
+.gz-hero__photo--wide img {
+  object-position: center 40%;
 }
 
 /* ---------- unit cards (about) ---------- */
@@ -1140,7 +1110,7 @@
 }
 
 /* ---------- co-working plans ---------- */
-.gz-hero__media--single {
+.gz-hero__media.gz-hero__media--single {
   padding: 0;
 }
 .gz-hero__media--single .gz-hero__chip {
@@ -1929,12 +1899,6 @@ button.gz-btn {
   .gz-mosaic .gz-mosaic__tall {
     height: 332px;
   }
-  .gz-hero__media--collage {
-    max-width: 560px;
-  }
-  .gz-hero__media--collage .gz-hero__chip {
-    left: 12px;
-  }
   .gz-timeline {
     grid-template-columns: 1fr;
     gap: 28px;
@@ -2091,28 +2055,6 @@ button.gz-btn {
   }
   .gz-mosaic .gz-mosaic__tall {
     grid-row: span 2;
-  }
-  .gz-collage {
-    gap: 10px;
-  }
-  .gz-collage__col {
-    gap: 10px;
-  }
-  .gz-collage__col:nth-child(1) {
-    margin-top: 36px;
-  }
-  .gz-collage__col:nth-child(3) {
-    margin-top: 72px;
-  }
-  .gz-collage figure {
-    height: 110px;
-  }
-  .gz-collage .gz-collage__tall {
-    height: 210px;
-  }
-  .gz-hero__media--collage .gz-hero__chip {
-    left: 0;
-    bottom: 0;
   }
   .gz-feature,
   .gz-values__item {
