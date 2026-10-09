@@ -254,8 +254,9 @@ const CoworkingSpaces = () => {
         <EnquiryForm
           key={enquiry.space}
           open
-          space={enquiry.space}
-          spaces={enquirySpaces}
+          variant="workspace"
+          topic={enquiry.space}
+          options={enquirySpaces}
           onClose={closeEnquiry}
         />
       )}

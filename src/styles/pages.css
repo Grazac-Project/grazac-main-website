@@ -364,8 +364,8 @@
 /* ---------- offerings (home) ---------- */
 .gz-offers {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
 }
 .gz-offer {
   display: flex;
@@ -1040,6 +1040,224 @@
   font-size: 16px;
   color: var(--gz-muted);
   max-width: 200px;
+}
+
+.gz-timeline--four {
+  grid-template-columns: repeat(4, 1fr);
+}
+.gz-timeline--four::before {
+  left: 12.5%;
+  right: 12.5%;
+}
+
+/* ---------- Grazac Build ---------- */
+.gz-build-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 140px 0 150px;
+  background: var(--gz-ink);
+  color: var(--gz-white);
+  isolation: isolate;
+}
+.gz-build-hero::before {
+  /* brand glow + faint blueprint grid */
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(55% 60% at 50% 0%, rgba(119, 61, 211, 0.55), transparent 70%),
+    radial-gradient(40% 50% at 100% 100%, rgba(87, 38, 166, 0.45), transparent 70%),
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: auto, auto, 64px 64px, 64px 64px;
+  -webkit-mask-image: radial-gradient(90% 90% at 50% 40%, #000 55%, transparent);
+  mask-image: radial-gradient(90% 90% at 50% 40%, #000 55%, transparent);
+}
+.gz-build-hero__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  max-width: 900px;
+  text-align: center;
+}
+.gz-build-hero h1 {
+  font-size: clamp(42px, 6.6vw, 86px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.015em;
+  color: var(--gz-white);
+}
+.gz-build-hero h1 span {
+  display: block;
+  background: linear-gradient(180deg, #d9c8f7 0%, rgba(183, 154, 240, 0.55) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.gz-build-hero p {
+  max-width: 620px;
+  font-size: clamp(18px, 1.7vw, 20px);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75);
+}
+.gz-build-hero .gz-actions {
+  justify-content: center;
+  margin-top: 8px;
+}
+.gz-float-tag {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  pointer-events: none;
+  animation: gz-float 6s ease-in-out infinite;
+}
+.gz-float-tag--dev {
+  left: 7%;
+  top: 34%;
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--gz-white);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.gz-float-tag--design {
+  right: 8%;
+  bottom: 24%;
+  background: var(--gz-purple);
+  color: var(--gz-white);
+  animation-delay: -3s;
+}
+.gz-float-tag__cursor {
+  position: absolute;
+  top: -22px;
+  left: -18px;
+  font-size: 22px;
+  color: var(--gz-white);
+  transform: rotate(-10deg);
+}
+@keyframes gz-float {
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.gz-logos {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+}
+.gz-logos li {
+  display: grid;
+  place-items: center;
+  height: 96px;
+  padding: 18px;
+  border-radius: 16px;
+  background: var(--gz-white);
+  border: 1px solid var(--gz-line);
+}
+.gz-logos a {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+}
+.gz-logos img {
+  max-width: 100%;
+  max-height: 48px;
+  object-fit: contain;
+  filter: grayscale(1);
+  opacity: 0.7;
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}
+.gz-logos li:hover img {
+  filter: none;
+  opacity: 1;
+}
+
+.gz-services-dark__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  border-radius: var(--gz-radius);
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.gz-service-dark {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 40px 36px;
+  background: var(--gz-ink);
+  transition: background-color 0.25s ease;
+}
+.gz-service-dark:hover {
+  background: #2a1648;
+}
+.gz-service-dark__icon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: rgba(119, 61, 211, 0.25);
+  border: 1px solid rgba(183, 154, 240, 0.3);
+  color: #d9c8f7;
+  font-size: 24px;
+  margin-bottom: 6px;
+}
+.gz-service-dark h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--gz-white);
+}
+.gz-service-dark p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 17px;
+}
+.gz-service-dark__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: auto;
+  padding: 6px 0 0;
+  border: 0;
+  background: none;
+  color: #b79af0;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.gz-service-dark__link svg {
+  transition: transform 0.2s ease;
+}
+.gz-service-dark__link:hover,
+.gz-service-dark__link:focus-visible {
+  color: var(--gz-white);
+}
+.gz-service-dark__link:hover svg {
+  transform: translateX(3px);
+}
+
+.gz-dev-hint {
+  padding: 20px 24px;
+  border-radius: 16px;
+  border: 2px dashed var(--gz-line);
+  background: var(--gz-lavender-2);
+  color: var(--gz-muted);
+  font-size: 16px;
+  text-align: center;
+}
+.gz-dev-hint strong {
+  color: var(--gz-purple);
 }
 
 /* ---------- involve cards ---------- */
@@ -2250,6 +2468,18 @@ button.gz-btn {
 
 /* ---------- responsive ---------- */
 @media (max-width: 1100px) {
+  .gz-services-dark__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .gz-logos {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .gz-float-tag {
+    display: none;
+  }
+  .gz-offers {
+    grid-template-columns: repeat(2, 1fr);
+  }
   .gz-offices {
     grid-template-columns: 1fr;
     gap: 0;
@@ -2277,6 +2507,13 @@ button.gz-btn {
 }
 
 @media (max-width: 900px) {
+  .gz-build-hero {
+    padding: 96px 0 104px;
+  }
+  .gz-services-dark__grid {
+    grid-template-columns: 1fr;
+  }
+
   .gz-featured {
     grid-template-columns: 1fr;
     margin-bottom: 56px;
@@ -2387,6 +2624,16 @@ button.gz-btn {
   .gz {
     font-size: 17px;
   }
+  .gz-build-hero {
+    padding: 72px 0 80px;
+  }
+  .gz-logos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .gz-service-dark {
+    padding: 28px 24px;
+  }
+
   .gz-blog-hero {
     padding: 40px 0 44px;
   }
