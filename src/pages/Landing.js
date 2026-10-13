@@ -10,11 +10,11 @@ import "../styles/pages.css";
 
 // photography (latest team photos)
 import heroTeam from "../images/redesign/hero-team.jpg";
-import team2 from "../images/website/newabout2.png";
-import team6 from "../images/website/newabout6.png";
+import team2 from "../images/website/grazacAcademy.jpg";
+import team6 from "../images/website/grazacBuild.png";
 import team7 from "../images/website/newabout7.png";
 import teamMeeting from "../images/website/about-spread.png";
-import spaceImg from "../images/redesign/space.jpg";
+import spaceImg from "../images/website/co-working space.jpeg";
 
 // partner logos
 import google from "../images/google.png";
@@ -22,7 +22,24 @@ import haptic from "../images/haptic.png";
 import businessday from "../images/businessday.png";
 import pettysave from "../images/pettysave.png";
 import tg from "../images/tg.png";
-
+import threeMTT from "../images/3MTT_Logo_clear_4x.png";
+import afdb from "../images/AFDB Logo.png";
+import airtel from "../images/Airtel Logo.png";
+import amazon from "../images/amazon logo.png";
+import apple from "../images/Apple Logo.png";
+import boi from "../images/BOI Logo.png";
+import flutterwave from "../images/flutterwave-logo.png";
+import foundersfriday from "../images/Founders Friday.png";
+import freindsOfFigma from "../images/Friends of Figma logo.png";
+import googlelogo from "../images/Google logo 1.png";
+import idice from "../images/idice_clear_4x.png";
+import idiceStartup from "../images/idicexstartupbrige_logo_clear_4x.png";
+import ogunTechCommunity from "../images/Ogun tech community logo.png";
+import polarisBank from "../images/Polaris bank logo.png";
+import prooval from "../images/prooval logo.png";
+import tiye from "../images/Tiye logo.png";
+import uba from "../images/UBA LOGO.png";
+import microsoft from "../images/microsoft logo.png";
 const offerings = [
   {
     title: "Grazac Innovation Lab",
@@ -60,7 +77,31 @@ const partners = [
   { name: "TG", logo: tg },
   { name: "Google Digital Skills for Africa", logo: google },
   { name: "Haptic", logo: haptic },
+  { name: "3MTT", logo: threeMTT },
+  { name: "AFDB", logo: afdb },
+  { name: "Airtel", logo: airtel },
+  { name: "Amazon", logo: amazon },
+  { name: "Apple", logo: apple },
+  { name: "BOI", logo: boi },
+  { name: "Flutterwave", logo: flutterwave },
+  { name: "Founders Friday", logo: foundersfriday },
+  { name: "Friends of Figma", logo: freindsOfFigma },
+  { name: "Google", logo: googlelogo },
+  { name: "idice", logo: idice },
+  { name: "idice Startup", logo: idiceStartup },
+  { name: "Ogun Tech Community", logo: ogunTechCommunity },
+  { name: "Polaris Bank", logo: polarisBank },
+  { name: "Prooval", logo: prooval },
+  { name: "Tiye", logo: tiye },
+  { name: "UBA", logo: uba },
+  { name: "Microsoft", logo: microsoft },
 ];
+
+const partnerRows = [
+  partners.slice(0, Math.ceil(partners.length / 2)),
+  partners.slice(Math.ceil(partners.length / 2)),
+];
+
 
 const OfferCard = ({ item, index }) => {
   const button = (
@@ -183,19 +224,23 @@ const Landing = () => {
         <div className="gz-container">
           <p className="gz-partners__title">Brands we've partnered with &amp; as seen on</p>
         </div>
-        <div className="gz-marquee">
-          <div className="gz-marquee__track">
-            {[...partners, ...partners, ...partners, ...partners].map((partner, index) => (
-              <div
-                className="gz-marquee__item"
-                key={index}
-                aria-hidden={index >= partners.length ? "true" : undefined}
-              >
-                <img src={partner.logo} alt={partner.name} />
-              </div>
-            ))}
+        {partnerRows.map((row, rowIndex) => (
+          <div className="gz-marquee" key={rowIndex}>
+            <div
+              className={`gz-marquee__track${rowIndex === 1 ? " gz-marquee__track--reverse" : ""}`}
+            >
+              {[0, 1].map((copy) => (
+                <div className="gz-marquee__group" key={copy} aria-hidden={copy === 1 || undefined}>
+                  {row.map((partner) => (
+                    <div className="gz-marquee__item" key={partner.name}>
+                      <img src={partner.logo} alt={copy === 0 ? partner.name : ""} />
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        ))}
       </section>
 
       {/* Startup CTA */}
