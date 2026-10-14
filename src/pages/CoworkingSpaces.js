@@ -25,12 +25,12 @@ import monthlyImg from "../images/redesign/ws-monthly.jpg";
 import quarterlyImg from "../images/redesign/ws-quarterly.jpg";
 import yearlyImg from "../images/redesign/ws-yearly.jpg";
 import customImg from "../images/redesign/ws-custom.jpg";
-import deskImg from "../images/redesign/ws-desk.jpg";
+import deskImg from "../images/redesign/dedicated desk.png";
 import meetingImg from "../images/redesign/ws-meeting.jpg";
 import boardroomImg from "../images/redesign/ws-boardroom.jpg";
 import heroImg from "../images/redesign/ws-hero.jpg";
 import virtualImg from "../images/redesign/ws-virtual.jpg";
-import registeredImg from "../images/redesign/ws-registered.jpg";
+import registeredImg from "../images/redesign/registeredOffice.png";
 
 const naira = (amount) => `₦${amount.toLocaleString()}`;
 
