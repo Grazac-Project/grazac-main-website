@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FiArrowRight } from "react-icons/fi";
-import { formatDate, imageUrl } from "../../lib/sanity";
+import { formatDate, imageUrl, postSlug } from "../../lib/sanity";
 
 export const PostCard = ({ post }) => {
   const image = imageUrl(post.mainImage, 720, 450);
+  const slug = postSlug(post.slug);
   return (
-    <Link to={`/blog/${post.slug}`} className="gz-post">
+    <Link to={`/blog/${slug}`} className="gz-post">
       <div className="gz-post__img">
         {image && (
           <img src={image} alt={(post.mainImage && post.mainImage.alt) || ""} loading="lazy" />

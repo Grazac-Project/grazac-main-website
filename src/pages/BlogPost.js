@@ -6,7 +6,7 @@ import { PortableText } from "@portabletext/react";
 import { FiArrowLeft, FiArrowRight, FiCheck, FiLink, FiRefreshCw } from "react-icons/fi";
 import { FaFacebookF, FaLinkedinIn, FaWhatsapp, FaXTwitter } from "react-icons/fa6";
 import useSanity from "../lib/useSanity";
-import { POST_QUERY, formatDate, imageUrl, readingTimeLabel } from "../lib/sanity";
+import { POST_QUERY, formatDate, imageUrl, postSlug, readingTimeLabel } from "../lib/sanity";
 import { PostCard } from "../components/blog/PostCard";
 import NotFound from "./NotFound";
 import "../styles/pages.css";
@@ -89,7 +89,10 @@ const ShareLinks = ({ url, title }) => {
 
 const BlogPost = () => {
   const { slug } = useParams();
-  const { status, data: post, retry } = useSanity(POST_QUERY, { slug });
+  const { status, data: post, retry } = useSanity(POST_QUERY, {
+    slug,
+    slugPattern: `*${slug}`,
+  });
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -141,7 +144,7 @@ const BlogPost = () => {
     );
   }
 
-  const url = `${SITE_URL}/blog/${post.slug}`;
+  const url = `${SITE_URL}/blog/${postSlug(post.slug)}`;
   const cover = imageUrl(post.mainImage, 1600, 900);
   const ogImage = imageUrl(post.mainImage, 1200, 630);
   const avatar = post.author && imageUrl(post.author.image, 96, 96);
