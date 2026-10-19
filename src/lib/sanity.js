@@ -41,7 +41,8 @@ export const POSTS_QUERY = `*[${PUBLISHED}] | order(publishedAt desc) { ${CARD_F
 
 export const LATEST_POSTS_QUERY = `*[${PUBLISHED}] | order(publishedAt desc)[0...$limit] { ${CARD_FIELDS} }`;
 
-export const POST_QUERY = `*[${PUBLISHED} && slug.current == $slug][0] {
+export const POST_QUERY = `*[${PUBLISHED} && (slug.current == $slug || slug.current match $slugPattern)]
+  | order(slug.current == $slug desc)[0] {
   ${CARD_FIELDS},
   body,
   "related": *[${PUBLISHED} && category._ref == ^.category._ref && _id != ^._id]
@@ -56,6 +57,11 @@ export const formatDate = (value) => {
 };
 
 export const readingTimeLabel = (minutes) => `${Math.max(1, minutes || 1)} min read`;
+
+export const postSlug = (slug) => {
+  if (typeof slug !== "string") return "";
+  return slug.split("/").filter(Boolean).pop() || "";
+};
 
 // Grazac Build (/build): client logos, managed in the Studio.
 export const BUILD_QUERY = `{

@@ -15,9 +15,14 @@ export default defineType({
       name: "slug",
       title: "Slug",
       type: "slug",
-      description: "The post's web address: grazac.com.ng/blog/<slug>. Click Generate.",
+      description: "Enter only the post slug, not the domain or /blog/ path. Click Generate from the title.",
       options: { source: "title", maxLength: 96 },
-      validation: (rule) => rule.required(),
+      validation: (rule) =>
+        rule.required().custom((value) =>
+          !value?.current || !value.current.includes("/")
+            ? true
+            : "Enter only the slug, without a domain or path.",
+        ),
     }),
     defineField({
       name: "excerpt",

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { FiArrowRight, FiRefreshCw } from "react-icons/fi";
 import useSanity from "../lib/useSanity";
-import { POSTS_QUERY, formatDate, imageUrl, readingTimeLabel } from "../lib/sanity";
+import { POSTS_QUERY, formatDate, imageUrl, postSlug, readingTimeLabel } from "../lib/sanity";
 import { PostCard, PostCardSkeleton } from "../components/blog/PostCard";
 import "../styles/pages.css";
 
@@ -12,8 +12,9 @@ const PAGE_SIZE = 9;
 
 const FeaturedPost = ({ post }) => {
   const image = imageUrl(post.mainImage, 1200, 800);
+  const slug = postSlug(post.slug);
   return (
-    <Link to={`/blog/${post.slug}`} className="gz-featured" data-aos="fade-up" data-aos-once="true">
+    <Link to={`/blog/${slug}`} className="gz-featured" data-aos="fade-up" data-aos-once="true">
       <div className="gz-featured__img">
         {image && <img src={image} alt={(post.mainImage && post.mainImage.alt) || ""} />}
       </div>
