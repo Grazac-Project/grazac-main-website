@@ -1,5 +1,4 @@
 // @ts-nocheck
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
@@ -431,24 +430,6 @@ const Application = () => {
 
   //   return JSON.stringify(data);
   // };
-  const loadData = () => {
-    const data = {};
-
-    for (let key in companyForm) {
-      data[key] = companyForm[key].value;
-    }
-    for (let key in productForm) {
-      data[key] = productForm[key].value;
-    }
-    for (let key in foundersForm) {
-      data[key] = foundersForm[key].value;
-    }
-    for (let key in progressForm) {
-      data[key] = progressForm[key].value;
-    }
-
-    return JSON.stringify(data);
-  };
   const valid = {};
   const formValidation = () => {
     for (let key in companyForm) {
@@ -482,34 +463,51 @@ const Application = () => {
   //     setSavedSucess(false);
   //   }, 3000);
   // };
-  const handleSubmit = () => {
-    setLoading(true);
-    const data = loadData();
-    axios
-      .post(
-        "https://grazac-academy-back-end-ej7s.onrender.com/api/v1/startup/submit",
-        data,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
-      .then((res) => {
-        console.log(res.data);
-        setLoading(false);
-        if (res.status === false) {
-          setLoading(false);
-          toast.error(res.data.msg.replace(/(<([^>]+)>)/gi, ""));
-          return;
-        } else {
-          modalReveal();
-        }
-      })
-      .catch((err) => {
-        setLoading(false);
-        toast.error("Error!!! Pls, check your inputs again");
+  // Startup applications go to their own Web3Forms form (separate inbox from
+  // the workspace/Build/partnership enquiries). Set REACT_APP_WEB3FORMS_STARTUP_KEY.
+  const handleSubmit = async () => {
+    const accessKey = process.env.REACT_APP_WEB3FORMS_STARTUP_KEY;
+    if (!accessKey) {
+      toast.error("Applications aren't connected yet. Please contact us on +234 806 836 5951.");
+      return;
+    }
+
+    // Every answer is sent under its question, so the email reads like the form.
+    const answers = {};
+    [companyForm, foundersForm, productForm, progressForm].forEach((section) => {
+      Object.values(section).forEach((field) => {
+        answers[field.label.replace(/\*$/, "").trim()] = String(field.value || "").trim() || "-";
       });
+    });
+    const companyName = String(companyForm.name.value || "").trim() || "New startup";
+    const replyTo = foundersForm.founderEmail
+      ? foundersForm.founderEmail.value
+      : companyForm.email.value;
+
+    setLoading(true);
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: accessKey,
+          subject: `New startup application: ${companyName}`,
+          from_name: "Grazac Website",
+          replyto: replyTo,
+          ...answers,
+        }),
+      });
+      const result = await response.json();
+      setLoading(false);
+      if (result.success) {
+        modalReveal();
+      } else {
+        toast.error(result.message || "We couldn't submit your application. Please try again.");
+      }
+    } catch (err) {
+      setLoading(false);
+      toast.error("We couldn't submit your application. Check your connection and try again.");
+    }
   };
 
   // const handleSubmit = () => {

@@ -191,11 +191,11 @@ const About = () => {
                 technology in Africa.
               </p>
               <div className="gz-actions">
-                <a href="mailto:jobs@grazac.com.ng" className="gz-btn gz-btn--light">
-                  <FiMail /> jobs@grazac.com.ng
+                <a href="mailto:hr@grazac.com.ng" className="gz-btn gz-btn--light">
+                  <FiMail /> hr@grazac.com.ng
                 </a>
                 <a
-                  href="https://grazac.breezy.hr/"
+                  href="hr@grazac.com.ng"
                   target="_blank"
                   rel="noreferrer"
                   className="gz-btn gz-btn--outline-light"

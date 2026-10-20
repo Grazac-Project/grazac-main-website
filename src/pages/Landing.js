@@ -1,8 +1,9 @@
 // @ts-nocheck
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { FiArrowRight } from "react-icons/fi";
+import EnquiryForm from "../components/EnquiryForm";
 import useSanity from "../lib/useSanity";
 import { LATEST_POSTS_QUERY } from "../lib/sanity";
 import { PostCard, PostCardSkeleton } from "../components/blog/PostCard";
@@ -141,6 +142,9 @@ const OfferCard = ({ item, index }) => {
 };
 
 const Landing = () => {
+  const [partnerOpen, setPartnerOpen] = useState(false);
+  const openPartner = useCallback(() => setPartnerOpen(true), []);
+  const closePartner = useCallback(() => setPartnerOpen(false), []);
   const latest = useSanity(LATEST_POSTS_QUERY, { limit: 3 });
   const showBlog =
     latest.status === "loading" || (latest.status === "ready" && latest.data && latest.data.length > 0);
@@ -161,6 +165,8 @@ const Landing = () => {
         <meta property="og:url" content="https://www.grazac.com.ng/" />
       </Helmet>
 
+      {partnerOpen && <EnquiryForm open variant="partner" onClose={closePartner} />}
+
       {/* Hero */}
       <section className="gz-hero gz-hero--home">
         <div className="gz-container gz-hero__grid">
@@ -174,9 +180,9 @@ const Landing = () => {
               enhancing economic development.
             </p>
             <div className="gz-actions">
-              <Link to="/contact" className="gz-btn gz-btn--primary">
-                Partner with us <FiArrowRight />
-              </Link>
+              <button type="button" className="gz-btn gz-btn--primary" onClick={openPartner}>
+                Partner with us
+              </button>
               <a href="#ecosystem" className="gz-btn gz-btn--ghost">
                 Explore our ecosystem
               </a>
@@ -255,7 +261,7 @@ const Landing = () => {
               </p>
               <div className="gz-actions">
                 <Link to="/startup" className="gz-btn gz-btn--light">
-                  Join our startup programme <FiArrowRight />
+                  Join our startup programme
                 </Link>
               </div>
             </div>
@@ -276,7 +282,7 @@ const Landing = () => {
                 <h2 className="gz-h2">Latest stories</h2>
               </div>
               <Link to="/blog" className="gz-btn gz-btn--ghost">
-                Visit Grazac blog <FiArrowRight />
+                Visit Grazac blog 
               </Link>
             </div>
             <div className="gz-blog">

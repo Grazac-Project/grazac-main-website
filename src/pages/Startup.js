@@ -1,9 +1,10 @@
 // @ts-nocheck
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { FiArrowRight } from "react-icons/fi";
 import { values, areas } from "../constants";
+import EnquiryForm from "../components/EnquiryForm";
 import "../styles/pages.css";
 
 import pitchImg from "../images/redesign/pitch.jpg";
@@ -39,18 +40,22 @@ const involve = [
     title: "Become a partner",
     text: "Back the next generation of African innovation.",
     cta: "Partner with us",
-    to: "/contact",
+    partner: true, // opens the partnership form instead of linking
     image: teamImg,
   },
 ];
 
 const StartUp = () => {
+  const [partnerOpen, setPartnerOpen] = useState(false);
+  const openPartner = useCallback(() => setPartnerOpen(true), []);
+  const closePartner = useCallback(() => setPartnerOpen(false), []);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   return (
     <div className="gz">
+      {partnerOpen && <EnquiryForm open variant="partner" onClose={closePartner} />}
       <Helmet>
         <title>Startup - Grazac</title>
         <meta
@@ -81,7 +86,7 @@ const StartUp = () => {
             </p>
             <div className="gz-actions">
               <Link to="/apply" className="gz-btn gz-btn--primary">
-                Apply now <FiArrowRight />
+                Apply now 
               </Link>
               <a href="#value" className="gz-btn gz-btn--ghost">
                 What you get
@@ -207,25 +212,30 @@ const StartUp = () => {
             <h2 className="gz-h2">There's a place for you at Grazac</h2>
           </div>
           <div className="gz-cards-3">
-            {involve.map((item, index) => (
-              <Link
-                to={item.to}
-                className="gz-involve"
-                key={item.title}
-                data-aos="fade-up"
-                data-aos-delay={index * 100}
-                data-aos-once="true"
-              >
-                <img src={item.image} alt="" loading="lazy" />
-                <div className="gz-involve__body">
-                  <h3>{item.title}</h3>
-                  <p>{item.text}</p>
-                  <span className="gz-btn gz-btn--light">
-                    {item.cta} <FiArrowRight />
-                  </span>
-                </div>
-              </Link>
-            ))}
+            {involve.map((item, index) => {
+              const content = (
+                <>
+                  <img src={item.image} alt="" loading="lazy" />
+                  <div className="gz-involve__body">
+                    <h3>{item.title}</h3>
+                    <p>{item.text}</p>
+                    <span className="gz-btn gz-btn--light">
+                      {item.cta} <FiArrowRight />
+                    </span>
+                  </div>
+                </>
+              );
+              const motion = { "data-aos": "fade-up", "data-aos-delay": index * 100, "data-aos-once": "true" };
+              return item.partner ? (
+                <button type="button" className="gz-involve" key={item.title} onClick={openPartner} {...motion}>
+                  {content}
+                </button>
+              ) : (
+                <Link to={item.to} className="gz-involve" key={item.title} {...motion}>
+                  {content}
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
