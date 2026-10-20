@@ -15,6 +15,41 @@ const PHONE_REGEX = /^\+?[0-9\s-]{7,16}$/;
  * `workspace` is used on the co-working page, `build` on the Grazac Build page.
  */
 export const ENQUIRY_FORMS = {
+  partner: {
+    title: "Partner with Grazac",
+    intro: "Tell us about your organisation and how you'd like to work with us. Our team will get back to you.",
+    subject: (topic) => `New partnership enquiry: ${topic}`,
+    successAbout: (topic) => `partnering with Grazac (${topic})`,
+    topic: {
+      label: "How would you like to partner?",
+      placeholder: "Choose a partnership type",
+      error: "Please choose how you'd like to partner.",
+      emailLabel: "Partnership type",
+    },
+    defaultOptions: [
+      "Sponsorship",
+      "Programme or event partnership",
+      "Investing in our startups",
+      "Hiring Grazac talent",
+      "Something else",
+    ],
+    extraFields: [
+      {
+        name: "source",
+        label: "How did you hear about us?",
+        type: "select",
+        options: ["Social media", "Email", "Referral", "Grazac staff", "Event", "Other"],
+        emailLabel: "Heard about us via",
+      },
+    ],
+    message: {
+      label: "Tell us about your organisation and goals",
+      placeholder: "Who you are, what you'd like to achieve together, and any timelines.",
+      required: true,
+      error: "Please tell us a little about your organisation.",
+    },
+    submitLabel: "Send enquiry",
+  },
   workspace: {
     title: "Tell us what you need",
     intro: "Fill in your details and our team will reach out with pricing and availability.",
@@ -110,6 +145,7 @@ const validate = (values, config) => {
  */
 const EnquiryForm = ({ open, variant = "workspace", topic, options, onClose }) => {
   const config = ENQUIRY_FORMS[variant];
+  const topicOptions = options || config.defaultOptions || [];
   const [values, setValues] = useState(() => emptyForm(config, topic));
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState("idle"); // idle | sending | success | error
@@ -298,7 +334,7 @@ const EnquiryForm = ({ open, variant = "workspace", topic, options, onClose }) =
                   aria-describedby={describedBy("topic")}
                 >
                   <option value="">{config.topic.placeholder}</option>
-                  {options.map((name) => (
+                  {topicOptions.map((name) => (
                     <option key={name} value={name}>
                       {name}
                     </option>

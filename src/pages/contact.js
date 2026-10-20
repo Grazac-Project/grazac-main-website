@@ -10,7 +10,6 @@ import { Helmet } from "react-helmet";
 import React, { useEffect, useState } from "react";
 // import Cancel from "../images/svg/cancel-purple.svg";
 import { validateEmail, required } from "../validation";
-import axios from "axios";
 // import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -47,9 +46,8 @@ const Contact = ({ animate }) => {
       errors.number = "Phone number must be 11 digits";
       isValid = false;
     }
-    if (!validateEmail() || !required(email) || !email.trim()) {
+    if (!required(email).isTrue || !validateEmail(email.trim()).isTrue) {
       errors.email = "Email is invalid or missing";
-      console.log(errors.email);
       isValid = false;
     }
     if (!subject.trim()) {
@@ -67,47 +65,53 @@ const Contact = ({ animate }) => {
     return isValid;
   };
 
-  const handleSubmit = (e) => {
+  // Contact messages go to the main Web3Forms form (same inbox as the other
+  // website enquiries). Set REACT_APP_WEB3FORMS_ACCESS_KEY.
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validateForm({ name, number, email, subject, message })) {
-      console.log(email);
-      const btn = document.querySelector("#submit");
-      btn.setAttribute("disabled", "");
-      btn.textContent = "Submitting...";
-      axios
-        .post(
-          "https://grazac-academy-back-end-ej7s.onrender.com/api/v1/user/contactForm",
-          {
-            name,
-            phone: number,
-            purpose: subject,
-            email,
-            message,
-          }
-        )
-        .then((resp) => resp.data)
-        .then((response) => {
-          console.log(response);
-          if (response.status === 201) {
-            // alert(response.msg);
-            btn.textContent = "Submitted!";
-            setName("");
-            setEmail("");
-            setNumber("");
-            setSubject("");
-            setMessage("");
-            toast.success(response.message);
-          } else {
-            btn.textContent = "Submit";
-            toast.error(response.message);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-          btn.textContent = "Submit";
-          toast.error(error);
-        });
+    if (!validateForm({ name, number, email, subject, message })) return;
+
+    const accessKey = process.env.REACT_APP_WEB3FORMS_ACCESS_KEY;
+    if (!accessKey) {
+      toast.error("This form isn't connected yet. Please call us on +234 806 836 5951.");
+      return;
     }
+
+    const btn = document.querySelector("#submit");
+    btn.setAttribute("disabled", "");
+    btn.textContent = "Submitting...";
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: accessKey,
+          subject: `New contact message: ${subject.trim()}`,
+          from_name: "Grazac Website",
+          replyto: email.trim(),
+          "Full name": name.trim(),
+          Email: email.trim(),
+          Phone: number.trim(),
+          Purpose: subject.trim(),
+          Message: message.trim(),
+        }),
+      });
+      const result = await response.json();
+      if (result.success) {
+        setName("");
+        setEmail("");
+        setNumber("");
+        setSubject("");
+        setMessage("");
+        toast.success("Thank you! Your message has been sent. We'll get back to you shortly.");
+      } else {
+        toast.error(result.message || "We couldn't send your message. Please try again.");
+      }
+    } catch (err) {
+      toast.error("We couldn't send your message. Check your connection and try again.");
+    }
+    btn.removeAttribute("disabled");
+    btn.textContent = "Submit";
   };
 
   return (
@@ -180,7 +184,7 @@ const Contact = ({ animate }) => {
 
                 <input
                   type="text"
-                  placeholder="ex. John Doe"
+                  placeholder="ex. Partnership enquiry"
                   value={subject}
                   onChange={(e) => setSubject(e.target.value)}
                 />
@@ -245,7 +249,7 @@ const Contact = ({ animate }) => {
                   <img src={Facebook} alt="social" />
                 </a>
                 <a
-                  href="https://twitter.com/grazacacademy"
+                  href="https://twitter.com/grazacng"
                   target="_blank"
                   rel="noreferrer"
                   className="social"
@@ -261,7 +265,7 @@ const Contact = ({ animate }) => {
                   <img src={Youtube} alt="social" />
                 </a>
                 <a
-                  href="https://www.instagram.com/grazacacademy/"
+                  href="https://www.instagram.com/grazacng"
                   target="_blank"
                   rel="noreferrer"
                   className="social"

@@ -1266,6 +1266,19 @@
   color: var(--gz-white);
   isolation: isolate;
 }
+button.gz-involve {
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+button.gz-involve:focus-visible {
+  outline: 3px solid rgba(119, 61, 211, 0.45);
+  outline-offset: 4px;
+}
 .gz-involve img {
   position: absolute;
   inset: 0;
