@@ -32,3 +32,6 @@ yarn-error.log*
 /studio/dist
 /studio/.sanity
 /studio/.env
+
+# Logo files for uploading to Sanity (not used by the site build)
+/client-logos

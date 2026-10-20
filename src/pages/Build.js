@@ -106,6 +106,10 @@ const Build = () => {
   const closeForm = useCallback(() => setEnquiry((prev) => ({ ...prev, open: false })), []);
   const { status, data } = useSanity(BUILD_QUERY);
   const clients = (status === "ready" && data && data.clients) || [];
+  // Repeat the logos so one loop is wider than the screen (no gap in the scroll).
+  const marqueeClients = clients.length
+    ? Array.from({ length: Math.ceil(10 / clients.length) }, () => clients).flat()
+    : [];
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -240,23 +244,6 @@ const Build = () => {
                   <h2 className="gz-h2">Innovative products our clients have built</h2>
                   <p className="gz-lead">We build for startups and businesses in diverse industries.</p>
                 </div>
-                <ul className="gz-logos">
-                  {clients.map((client) => {
-                    const logo = imageUrl(client.logo, 320);
-                    const img = logo && <img src={logo} alt={client.name} loading="lazy" />;
-                    return (
-                      <li key={client._id}>
-                        {client.website ? (
-                          <a href={client.website} target="_blank" rel="noreferrer">
-                            {img}
-                          </a>
-                        ) : (
-                          img
-                        )}
-                      </li>
-                    );
-                  })}
-                </ul>
               </>
             ) : (
               <DevHint>
@@ -265,6 +252,39 @@ const Build = () => {
               </DevHint>
             )}
           </div>
+          {clients.length > 0 && (
+            <div className="gz-marquee gz-clients__marquee">
+              <div className="gz-marquee__track">
+                {[0, 1].map((copy) => (
+                  <div className="gz-marquee__group" key={copy} aria-hidden={copy === 1 || undefined}>
+                    {marqueeClients.map((client, index) => {
+                      const logo = imageUrl(client.logo, 360);
+                      if (!logo) return null;
+                      // Only the first copy is announced/focusable; the rest are visual repeats.
+                      const visible = copy === 0 && index < clients.length;
+                      const img = <img src={logo} alt={visible ? client.name : ""} loading="lazy" />;
+                      return (
+                        <div className="gz-marquee__item" key={`${client._id}-${index}`}>
+                          {client.website ? (
+                            <a
+                              href={client.website}
+                              target="_blank"
+                              rel="noreferrer"
+                              tabIndex={visible ? undefined : -1}
+                            >
+                              {img}
+                            </a>
+                          ) : (
+                            img
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </section>
       )}
 
