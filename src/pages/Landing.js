@@ -41,6 +41,7 @@ import prooval from "../images/prooval logo.png";
 import tiye from "../images/Tiye logo.png";
 import uba from "../images/UBA LOGO.png";
 import microsoft from "../images/microsoft logo.png";
+import zohoForStartups from "../images/zoho-for-startups.webp";
 const offerings = [
   {
     title: "Grazac Innovation Lab",
@@ -96,6 +97,7 @@ const partners = [
   { name: "Tiye", logo: tiye },
   { name: "UBA", logo: uba },
   { name: "Microsoft", logo: microsoft },
+  { name: "Zoho for Startups", logo: zohoForStartups },
 ];
 
 const partnerRows = [
@@ -228,7 +230,7 @@ const Landing = () => {
       {/* Partners */}
       <section className="gz-partners" aria-label="Partners">
         <div className="gz-container">
-          <p className="gz-partners__title">Brands we've partnered with &amp; as seen on</p>
+          <p className="gz-partners__title">Brands we've Collaborated with &amp; as seen on</p>
         </div>
         {partnerRows.map((row, rowIndex) => (
           <div className="gz-marquee" key={rowIndex}>
