@@ -49,7 +49,7 @@ export const POSTS_QUERY = `*[${PUBLISHED}] | order(publishedAt desc) { ${CARD_F
 export const LATEST_POSTS_QUERY = `*[${PUBLISHED}] | order(publishedAt desc)[0...$limit] { ${CARD_FIELDS} }`;
 
 export const POST_QUERY = `*[${PUBLISHED} && (slug.current == $slug || slug.current match $slugPattern)]
-  | order(slug.current == $slug desc)[0] {
+  | order((slug.current == $slug) desc)[0] {
   ${CARD_FIELDS},
   body,
   "related": *[${PUBLISHED} && category._ref == ^.category._ref && _id != ^._id]
