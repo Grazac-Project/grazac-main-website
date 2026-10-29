@@ -19,6 +19,7 @@ import BookingSummary from "./components/BookingSummary";
 import NotFound from "./pages/NotFound";
 import CoworkingSpaces from "./pages/CoworkingSpaces";
 import BlogPost from "./pages/BlogPost";
+import BuildProject from "./pages/BuildProject";
 
 const App = () => {
   const { pathname } = useLocation();
@@ -82,6 +83,7 @@ const App = () => {
             <Redirect from="/coworking-spaces" to="/workspace" exact />
             <Route path="/about" exact component={About} />
             <Route path="/build" exact component={Build} />
+            <Route path="/build/:slug" exact component={BuildProject} />
             <Route path="/casestudy" exact component={CaseStudy} />
             <Route path="/startup" exact component={StartUp} />
             <Route path="/blog" exact component={Blog} />

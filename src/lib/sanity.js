@@ -8,8 +8,15 @@ const dataset = process.env.REACT_APP_SANITY_DATASET || "production";
 export const sanityConfigured = Boolean(projectId);
 
 // Read-only, public client. Never add a write token here: this code ships to browsers.
+// The CDN is fast but browsers may reuse its answers for ~1 minute, so while
+// developing we read the live API to see Studio edits as soon as they're published.
 export const client = sanityConfigured
-  ? createClient({ projectId, dataset, apiVersion: "2024-05-01", useCdn: true })
+  ? createClient({
+      projectId,
+      dataset,
+      apiVersion: "2024-05-01",
+      useCdn: process.env.NODE_ENV === "production",
+    })
   : null;
 
 const builder = sanityConfigured ? imageUrlBuilder({ projectId, dataset }) : null;
@@ -63,8 +70,38 @@ export const postSlug = (slug) => {
   return slug.split("/").filter(Boolean).pop() || "";
 };
 
-// Grazac Build (/build): client logos, managed in the Studio.
+// Grazac Build (/build): client projects, managed in the Studio.
+const PROJECT_CARD_FIELDS = `_id, name, "slug": slug.current, tagline, services, coverImage, logo`;
+
 export const BUILD_QUERY = `{
   "clients": *[_type == "client" && defined(logo.asset)]
-    | order(coalesce(order, 9999) asc, name asc) { _id, name, logo, website }
+    | order(coalesce(order, 9999) asc, name asc) { ${PROJECT_CARD_FIELDS} }
 }`;
+
+// A single case study (/build/:slug), plus every case study in display order
+// (to work out the "Next project" link).
+export const PROJECT_QUERY = `*[_type == "client" && slug.current == $slug][0] {
+  ${PROJECT_CARD_FIELDS},
+  website,
+  headline,
+  summary,
+  brandColor,
+  platforms,
+  deliverables,
+  stack,
+  overview,
+  challenge,
+  solution,
+  results,
+  steps,
+  highlights,
+  desktopScreens,
+  mobileScreens,
+  slides,
+  "projects": *[_type == "client" && defined(logo.asset) && defined(slug.current)]
+    | order(coalesce(order, 9999) asc, name asc) { ${PROJECT_CARD_FIELDS}, brandColor }
+}`;
+
+// Startup page (/startup): incubated startup logos, managed in the Studio.
+export const STARTUPS_QUERY = `*[_type == "startup" && defined(logo.asset)]
+  | order(coalesce(order, 9999) asc, name asc) { _id, name, logo, website }`;
