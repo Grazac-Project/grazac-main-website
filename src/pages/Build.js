@@ -16,7 +16,8 @@ import {
 } from "react-icons/fi";
 import EnquiryForm from "../components/EnquiryForm";
 import useSanity from "../lib/useSanity";
-import { BUILD_QUERY, imageUrl } from "../lib/sanity";
+import { BUILD_QUERY } from "../lib/sanity";
+import ProjectCard from "../components/ProjectCard";
 import "../styles/pages.css";
 
 // Used by the "Why Grazac Build" section (commented out below). Uncomment both together.
@@ -94,7 +95,7 @@ const steps = [
 //   },
 // ];
 
-const formOptions = [...services.map((service) => service.title), "Something else"];
+export const formOptions = [...services.map((service) => service.title), "Something else"];
 
 // Shown only while developing locally, so empty Sanity sections are easy to spot.
 const DevHint = ({ children }) =>
@@ -106,10 +107,6 @@ const Build = () => {
   const closeForm = useCallback(() => setEnquiry((prev) => ({ ...prev, open: false })), []);
   const { status, data } = useSanity(BUILD_QUERY);
   const clients = (status === "ready" && data && data.clients) || [];
-  // Repeat the logos so one loop is wider than the screen (no gap in the scroll).
-  const marqueeClients = clients.length
-    ? Array.from({ length: Math.ceil(10 / clients.length) }, () => clients).flat()
-    : [];
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -239,10 +236,15 @@ const Build = () => {
           <div className="gz-container">
             {clients.length > 0 ? (
               <>
-                <div className="gz-section-head gz-section-head--center">
+                <div className="gz-section-head">
                   <span className="gz-eyebrow">Our clients</span>
                   <h2 className="gz-h2">Innovative products our clients have built</h2>
                   <p className="gz-lead">We build for startups and businesses in diverse industries.</p>
+                </div>
+                <div className="gz-projects">
+                  {clients.map((client) => (
+                    <ProjectCard key={client._id} project={client} />
+                  ))}
                 </div>
               </>
             ) : (
@@ -252,39 +254,6 @@ const Build = () => {
               </DevHint>
             )}
           </div>
-          {clients.length > 0 && (
-            <div className="gz-marquee gz-clients__marquee">
-              <div className="gz-marquee__track">
-                {[0, 1].map((copy) => (
-                  <div className="gz-marquee__group" key={copy} aria-hidden={copy === 1 || undefined}>
-                    {marqueeClients.map((client, index) => {
-                      const logo = imageUrl(client.logo, 360);
-                      if (!logo) return null;
-                      // Only the first copy is announced/focusable; the rest are visual repeats.
-                      const visible = copy === 0 && index < clients.length;
-                      const img = <img src={logo} alt={visible ? client.name : ""} loading="lazy" />;
-                      return (
-                        <div className="gz-marquee__item" key={`${client._id}-${index}`}>
-                          {client.website ? (
-                            <a
-                              href={client.website}
-                              target="_blank"
-                              rel="noreferrer"
-                              tabIndex={visible ? undefined : -1}
-                            >
-                              {img}
-                            </a>
-                          ) : (
-                            img
-                          )}
-                        </div>
-                      );
-                    })}
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
         </section>
       )}
 

@@ -5,6 +5,9 @@ import { Helmet } from "react-helmet";
 import { FiArrowRight } from "react-icons/fi";
 import { values, areas } from "../constants";
 import EnquiryForm from "../components/EnquiryForm";
+import LogoMarquee from "../components/LogoMarquee";
+import useSanity from "../lib/useSanity";
+import { STARTUPS_QUERY } from "../lib/sanity";
 import "../styles/pages.css";
 
 import pitchImg from "../images/redesign/pitch.jpg";
@@ -13,13 +16,17 @@ import labImg from "../images/redesign/lab.jpg";
 import mentorsImg from "../images/redesign/mentors.jpg";
 import teamImg from "../images/redesign/crew.jpg";
 
-const timeline = [
-  { title: "Application deadline", text: "Submit your startup's application to the lab." },
-  { title: "Startups selected", text: "Shortlisted founders are announced." },
-  { title: "Start of accelerator", text: "Hands-on support, mentorship and resources." },
-  { title: "Demo Day", text: "Pitch your progress to investors and partners." },
-  { title: "Alumni programme", text: "Stay connected to the Grazac community." },
-];
+const DevHint = ({ children }) =>
+  process.env.NODE_ENV === "development" ? <div className="gz-dev-hint">{children}</div> : null;
+
+// Used by the "Our timeline" section (commented out below).
+// const timeline = [
+//   { title: "Application deadline", text: "Submit your startup's application to the lab." },
+//   { title: "Startups selected", text: "Shortlisted founders are announced." },
+//   { title: "Start of accelerator", text: "Hands-on support, mentorship and resources." },
+//   { title: "Demo Day", text: "Pitch your progress to investors and partners." },
+//   { title: "Alumni programme", text: "Stay connected to the Grazac community." },
+// ];
 
 const involve = [
   {
@@ -49,6 +56,8 @@ const StartUp = () => {
   const [partnerOpen, setPartnerOpen] = useState(false);
   const openPartner = useCallback(() => setPartnerOpen(true), []);
   const closePartner = useCallback(() => setPartnerOpen(false), []);
+  const { status, data } = useSanity(STARTUPS_QUERY);
+  const startups = (status === "ready" && data) || [];
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -179,11 +188,33 @@ const StartUp = () => {
         </div>
       </section>
 
+      {/* Incubated startups */}
+      {(startups.length > 0 || status !== "loading") && (
+        <section className="gz-section">
+          <div className="gz-container">
+            {startups.length > 0 ? (
+              <div className="gz-section-head gz-section-head--center">
+                <h2 className="gz-h2">Startups we've incubated</h2>
+                <p className="gz-lead">
+                  Some of the founders who have grown with the Grazac Innovation Lab.
+                </p>
+              </div>
+            ) : (
+              <DevHint>
+                <strong>Incubated startups section is hidden.</strong> Add startups in the Studio
+                (localhost:3000/studio → Incubated startup) and they'll appear here.
+              </DevHint>
+            )}
+          </div>
+          {startups.length > 0 && <LogoMarquee items={startups} />}
+        </section>
+      )}
+
       {/* Timeline */}
-      <section className="gz-section gz-section--tint">
+      {/* <section className="gz-section gz-section--tint">
         <div className="gz-container">
           <div className="gz-section-head gz-section-head--center">
-            {/* <span className="gz-eyebrow">How it works</span> */}
+            <span className="gz-eyebrow">How it works</span>
             <h2 className="gz-h2">Our timeline</h2>
           </div>
           <ol className="gz-timeline">
@@ -202,7 +233,7 @@ const StartUp = () => {
             ))}
           </ol>
         </div>
-      </section>
+      </section> */}
 
       {/* Get involved */}
       <section className="gz-section">

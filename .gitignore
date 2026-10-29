@@ -35,3 +35,6 @@ yarn-error.log*
 
 # Logo files for uploading to Sanity (not used by the site build)
 /client-logos
+
+# Case study designs for uploading to Sanity (not used by the site build)
+/case-study-assets
